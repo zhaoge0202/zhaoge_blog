@@ -29,3 +29,18 @@ export async function apiGet<T>(path: string): Promise<T> {
   const response = await api.get<ApiResponse<T>>(path);
   return response.data.data;
 }
+
+export async function apiPost<T, P = unknown>(path: string, payload: P): Promise<T> {
+  const response = await api.post<ApiResponse<T>>(path, payload);
+  return response.data.data;
+}
+
+export async function apiPut<T, P = unknown>(path: string, payload: P): Promise<T> {
+  const response = await api.put<ApiResponse<T>>(path, payload);
+  return response.data.data;
+}
+
+export async function apiPatch<T, P = unknown>(path: string, payload?: P): Promise<T> {
+  const response = await api.patch<ApiResponse<T>>(path, payload);
+  return response.data.data;
+}
