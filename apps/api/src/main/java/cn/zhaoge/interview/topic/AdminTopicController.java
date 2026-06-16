@@ -39,7 +39,7 @@ public class AdminTopicController {
     }
 
     @PatchMapping("/{id}/status")
-    public ApiResponse<TopicDto> updateStatus(@PathVariable Long id, @RequestParam ContentStatus status) {
+    public ApiResponse<TopicDto> updateStatus(@PathVariable Long id, @RequestParam(name = "status") ContentStatus status) {
         return ApiResponse.ok(topicService.updateStatus(id, status));
     }
 }

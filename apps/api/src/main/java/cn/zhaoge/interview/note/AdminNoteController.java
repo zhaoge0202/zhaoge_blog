@@ -39,7 +39,7 @@ public class AdminNoteController {
     }
 
     @PatchMapping("/{id}/status")
-    public ApiResponse<PersonalNoteDto> updateStatus(@PathVariable Long id, @RequestParam ContentStatus status) {
+    public ApiResponse<PersonalNoteDto> updateStatus(@PathVariable Long id, @RequestParam(name = "status") ContentStatus status) {
         return ApiResponse.ok(personalNoteService.updateStatus(id, status));
     }
 }

@@ -25,11 +25,11 @@ public class AdminQuestionController {
 
     @GetMapping
     public ApiResponse<PageResponse<QuestionSummaryDto>> list(
-            @RequestParam(required = false) Long topicId,
-            @RequestParam(required = false) String status,
-            @RequestParam(required = false) String keyword,
-            @RequestParam(defaultValue = "1") long page,
-            @RequestParam(defaultValue = "10") long size
+            @RequestParam(name = "topicId", required = false) Long topicId,
+            @RequestParam(name = "status", required = false) String status,
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "page", defaultValue = "1") long page,
+            @RequestParam(name = "size", defaultValue = "10") long size
     ) {
         return ApiResponse.ok(questionService.listAdmin(topicId, status, keyword, page, size));
     }
@@ -50,7 +50,7 @@ public class AdminQuestionController {
     }
 
     @PatchMapping("/{id}/status")
-    public ApiResponse<QuestionDetailDto> updateStatus(@PathVariable Long id, @RequestParam ContentStatus status) {
+    public ApiResponse<QuestionDetailDto> updateStatus(@PathVariable Long id, @RequestParam(name = "status") ContentStatus status) {
         return ApiResponse.ok(questionService.updateStatus(id, status));
     }
 }

@@ -19,10 +19,10 @@ public class PublicQuestionController {
 
     @GetMapping
     public ApiResponse<PageResponse<QuestionSummaryDto>> list(
-            @RequestParam(required = false) Long topicId,
-            @RequestParam(required = false) String keyword,
-            @RequestParam(defaultValue = "1") long page,
-            @RequestParam(defaultValue = "10") long size
+            @RequestParam(name = "topicId", required = false) Long topicId,
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "page", defaultValue = "1") long page,
+            @RequestParam(name = "size", defaultValue = "10") long size
     ) {
         return ApiResponse.ok(questionService.listPublished(topicId, keyword, page, size));
     }
