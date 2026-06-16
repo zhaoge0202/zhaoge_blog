@@ -1,0 +1,179 @@
+:root {
+  --bg: #f7f5ef;
+  --ink: #17211b;
+  --muted: #5f685f;
+  --line: #d9d4c7;
+  --panel: #ffffff;
+  --accent: #0f766e;
+  --accent-strong: #0b4f49;
+  --warn: #a44917;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Songti SC", "Noto Serif SC", Georgia, serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shell {
+  min-height: 100vh;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  padding: 18px clamp(18px, 5vw, 72px);
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.main {
+  padding: 34px clamp(18px, 5vw, 72px) 72px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.eyebrow {
+  color: var(--accent-strong);
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+h1 {
+  font-size: clamp(42px, 7vw, 84px);
+  line-height: 0.98;
+  margin: 0 0 22px;
+  max-width: 980px;
+}
+
+h2 {
+  font-size: 28px;
+  margin: 0 0 16px;
+}
+
+h3 {
+  font-size: 19px;
+  margin: 0 0 10px;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.lead {
+  font-size: 18px;
+  max-width: 780px;
+}
+
+.section {
+  margin-top: 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.badge {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent-strong);
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 28px;
+  align-items: start;
+}
+
+.content-block {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  margin-top: 22px;
+}
+
+.answer {
+  background: #eef5f2;
+  border-left: 4px solid var(--accent);
+  padding: 16px 18px;
+  color: var(--ink);
+}
+
+.warning {
+  background: #fff4eb;
+  border-left: 4px solid var(--warn);
+  padding: 16px 18px;
+}
+
+@media (max-width: 860px) {
+  .hero-grid,
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+}

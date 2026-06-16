@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+app:
+  bootstrap-admin:
+    enabled: ${BOOTSTRAP_ADMIN_ENABLED:false}
+    username: ${ADMIN_USERNAME}
+    password: ${ADMIN_PASSWORD}
+    display-name: ${ADMIN_DISPLAY_NAME:管理员}
+  jwt:
+    secret: ${JWT_SECRET}
+    ttl-minutes: ${JWT_TTL_MINUTES:720}
