@@ -1,5 +1,8 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? 'http://localhost:8080';
 
+export type QueryParamValue = string | number | boolean | null | undefined;
+export type QueryParams = Record<string, QueryParamValue | QueryParamValue[]>;
+
 export type ApiResponse<T> = {
   success: boolean;
   data: T;
@@ -62,14 +65,61 @@ export type PersonalNote = {
   status: string;
 };
 
-export async function apiGet<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, { next: { revalidate: 60 } });
+export function buildQueryString(params?: QueryParams): string {
+  if (!params) {
+    return '';
+  }
+
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    const values = Array.isArray(value) ? value : [value];
+
+    values.forEach((item) => {
+      if (item === null || item === undefined) {
+        return;
+      }
+
+      const normalized = typeof item === 'string' ? item.trim() : String(item);
+      if (normalized) {
+        searchParams.append(key, normalized);
+      }
+    });
+  });
+
+  const queryString = searchParams.toString();
+  return queryString ? `?${queryString}` : '';
+}
+
+function joinPathAndQuery(path: string, params?: QueryParams): string {
+  const queryString = buildQueryString(params);
+
+  if (!queryString) {
+    return path;
+  }
+
+  return `${path}${path.includes('?') ? '&' : '?'}${queryString.slice(1)}`;
+}
+
+async function readErrorMessage(response: Response): Promise<string> {
+  try {
+    const body = (await response.json()) as Partial<ApiResponse<unknown>>;
+    return body.message ? `: ${body.message}` : '';
+  } catch {
+    return '';
+  }
+}
+
+export async function apiGet<T>(path: string, params?: QueryParams): Promise<T> {
+  const endpoint = joinPathAndQuery(path, params);
+  const response = await fetch(`${API_BASE}${endpoint}`, { next: { revalidate: 60 } });
   if (!response.ok) {
-    throw new Error(`API request failed: ${response.status}`);
+    const message = await readErrorMessage(response);
+    throw new Error(`API GET ${endpoint} failed: ${response.status} ${response.statusText}${message}`);
   }
   const body = (await response.json()) as ApiResponse<T>;
   if (!body.success) {
-    throw new Error(body.message ?? 'API request failed');
+    throw new Error(`API GET ${endpoint} failed: ${body.message ?? 'unknown API error'}`);
   }
   return body.data;
 }
