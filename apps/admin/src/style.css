@@ -34,6 +34,16 @@ button {
   padding: 9px 14px;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button.secondary {
+  background: #e7efec;
+  color: var(--accent);
+}
+
 input,
 textarea,
 select {
@@ -91,6 +101,16 @@ select {
   margin-bottom: 18px;
 }
 
+.toolbar h1 {
+  margin-bottom: 6px;
+}
+
+.toolbar p,
+.muted {
+  color: var(--muted);
+  margin: 0;
+}
+
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -101,6 +121,73 @@ select {
   border-bottom: 1px solid var(--line);
   padding: 12px;
   text-align: left;
+}
+
+.table tbody tr.selected,
+.list-card.selected {
+  background: #edf7f4;
+  outline: 2px solid rgba(15, 118, 110, 0.22);
+}
+
+.split {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
+}
+
+.filters {
+  align-items: end;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(240px, 1fr) minmax(180px, 240px) auto;
+  margin-bottom: 18px;
+}
+
+.form-panel {
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: 24px;
+}
+
+.form-panel h2,
+.list-card h2 {
+  margin: 0;
+}
+
+.form-panel label,
+.filters label {
+  color: var(--muted);
+  display: grid;
+  gap: 6px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-actions,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.notice {
+  color: var(--accent);
+}
+
+details {
+  display: grid;
+  gap: 12px;
+}
+
+details[open] {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
 }
 
 .login {
@@ -115,4 +202,17 @@ select {
 
 .error {
   color: #b42318;
+}
+
+@media (max-width: 960px) {
+  .layout,
+  .split,
+  .filters,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-panel {
+    position: static;
+  }
 }
