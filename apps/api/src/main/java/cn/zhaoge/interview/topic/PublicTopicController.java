@@ -22,7 +22,7 @@ public class PublicTopicController {
     }
 
     @GetMapping("/{slug}")
-    public ApiResponse<TopicDto> detail(@PathVariable String slug) {
+    public ApiResponse<TopicDto> detail(@PathVariable(name = "slug") String slug) {
         return ApiResponse.ok(topicService.getPublishedBySlug(slug));
     }
 }

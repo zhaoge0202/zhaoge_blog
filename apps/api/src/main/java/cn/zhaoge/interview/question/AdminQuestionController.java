@@ -35,7 +35,7 @@ public class AdminQuestionController {
     }
 
     @GetMapping("/{id}")
-    public ApiResponse<QuestionDetailDto> detail(@PathVariable Long id) {
+    public ApiResponse<QuestionDetailDto> detail(@PathVariable(name = "id") Long id) {
         return ApiResponse.ok(questionService.getAdminById(id));
     }
 
@@ -45,12 +45,12 @@ public class AdminQuestionController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<QuestionDetailDto> update(@PathVariable Long id, @Valid @RequestBody QuestionUpsertRequest request) {
+    public ApiResponse<QuestionDetailDto> update(@PathVariable(name = "id") Long id, @Valid @RequestBody QuestionUpsertRequest request) {
         return ApiResponse.ok(questionService.update(id, request));
     }
 
     @PatchMapping("/{id}/status")
-    public ApiResponse<QuestionDetailDto> updateStatus(@PathVariable Long id, @RequestParam(name = "status") ContentStatus status) {
+    public ApiResponse<QuestionDetailDto> updateStatus(@PathVariable(name = "id") Long id, @RequestParam(name = "status") ContentStatus status) {
         return ApiResponse.ok(questionService.updateStatus(id, status));
     }
 }

@@ -34,12 +34,12 @@ public class AdminTopicController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<TopicDto> update(@PathVariable Long id, @Valid @RequestBody TopicUpsertRequest request) {
+    public ApiResponse<TopicDto> update(@PathVariable(name = "id") Long id, @Valid @RequestBody TopicUpsertRequest request) {
         return ApiResponse.ok(topicService.update(id, request));
     }
 
     @PatchMapping("/{id}/status")
-    public ApiResponse<TopicDto> updateStatus(@PathVariable Long id, @RequestParam(name = "status") ContentStatus status) {
+    public ApiResponse<TopicDto> updateStatus(@PathVariable(name = "id") Long id, @RequestParam(name = "status") ContentStatus status) {
         return ApiResponse.ok(topicService.updateStatus(id, status));
     }
 }

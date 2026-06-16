@@ -28,7 +28,7 @@ public class PublicQuestionController {
     }
 
     @GetMapping("/{slug}")
-    public ApiResponse<QuestionDetailDto> detail(@PathVariable String slug) {
+    public ApiResponse<QuestionDetailDto> detail(@PathVariable(name = "slug") String slug) {
         return ApiResponse.ok(questionService.getPublishedBySlug(slug));
     }
 }

@@ -34,12 +34,12 @@ public class AdminNoteController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<PersonalNoteDto> update(@PathVariable Long id, @Valid @RequestBody PersonalNoteUpsertRequest request) {
+    public ApiResponse<PersonalNoteDto> update(@PathVariable(name = "id") Long id, @Valid @RequestBody PersonalNoteUpsertRequest request) {
         return ApiResponse.ok(personalNoteService.update(id, request));
     }
 
     @PatchMapping("/{id}/status")
-    public ApiResponse<PersonalNoteDto> updateStatus(@PathVariable Long id, @RequestParam(name = "status") ContentStatus status) {
+    public ApiResponse<PersonalNoteDto> updateStatus(@PathVariable(name = "id") Long id, @RequestParam(name = "status") ContentStatus status) {
         return ApiResponse.ok(personalNoteService.updateStatus(id, status));
     }
 }

@@ -31,7 +31,7 @@ public class AdminTagController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<TagDto> update(@PathVariable Long id, @Valid @RequestBody TagUpsertRequest request) {
+    public ApiResponse<TagDto> update(@PathVariable(name = "id") Long id, @Valid @RequestBody TagUpsertRequest request) {
         return ApiResponse.ok(tagService.update(id, request));
     }
 }
