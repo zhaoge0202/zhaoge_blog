@@ -45,16 +45,7 @@ export type QuestionSummary = {
 };
 
 export type QuestionDetail = QuestionSummary & {
-  shortAnswer: string;
-  longAnswer: string;
-  deepDive: string;
-  answerStrategy: string;
-  sections: Array<{ id: number; title: string; content: string; sectionType: string }>;
-  followUps: Array<{ id: number; questionText: string; answerHint: string }>;
-  misconceptions: Array<{ id: number; wrongStatement: string; whyWrong: string; correctStatement: string }>;
-  corrections: Array<{ id: number; title: string; problem: string; correction: string; evidence: string; sourceType: string }>;
-  projectMappings: Array<{ id: number; scenario: string; projectTalkingPoint: string; riskPoint: string; interviewAnswer: string }>;
-  references: Array<{ id: number; sourceName: string; sourceUrl: string; sourceType: string; usageNote: string }>;
+  content: string;
 };
 
 export type PersonalNote = {

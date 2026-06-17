@@ -16,6 +16,7 @@ public class Question {
     private String difficulty;
     private String frequency;
     private String masteryLevel;
+    private String content;
     private String shortAnswer;
     private String longAnswer;
     private String deepDive;
@@ -42,6 +43,8 @@ public class Question {
     public void setFrequency(String frequency) { this.frequency = frequency; }
     public String getMasteryLevel() { return masteryLevel; }
     public void setMasteryLevel(String masteryLevel) { this.masteryLevel = masteryLevel; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
     public String getShortAnswer() { return shortAnswer; }
     public void setShortAnswer(String shortAnswer) { this.shortAnswer = shortAnswer; }
     public String getLongAnswer() { return longAnswer; }

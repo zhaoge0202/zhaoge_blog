@@ -7,23 +7,12 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          codemirror: ['vue-codemirror6'],
-          codemirrorLang: ['@codemirror/lang-markdown'],
+          'md-editor': ['md-editor-v3'],
         },
       },
     },
   },
   server: {
     port: 5173,
-    proxy: {
-      '/preview': {
-        changeOrigin: true,
-        target: process.env.VITE_WEB_PROXY_TARGET ?? 'http://localhost:3000',
-      },
-      '/_next': {
-        changeOrigin: true,
-        target: process.env.VITE_WEB_PROXY_TARGET ?? 'http://localhost:3000',
-      },
-    },
   },
 });

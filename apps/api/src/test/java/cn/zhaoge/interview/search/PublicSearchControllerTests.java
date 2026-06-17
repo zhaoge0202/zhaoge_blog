@@ -72,6 +72,7 @@ class PublicSearchControllerTests {
         question.setDifficulty(Difficulty.ADVANCED.name());
         question.setFrequency(Frequency.MUST_KNOW.name());
         question.setMasteryLevel(MasteryLevel.DEEP_EXPLAIN.name());
+        question.setContent("## 30 秒回答\n\nMVCC 使用版本链和 ReadView");
         question.setShortAnswer("MVCC 使用版本链和 ReadView");
         question.setLongAnswer("MVCC 解决一致性读问题");
         question.setDeepDive("undo log、隐藏字段、ReadView 共同工作");

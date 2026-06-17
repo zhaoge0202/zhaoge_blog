@@ -185,11 +185,20 @@ public class QuestionService {
         question.setDifficulty(request.difficulty().name());
         question.setFrequency(request.frequency().name());
         question.setMasteryLevel(request.masteryLevel().name());
-        question.setShortAnswer(request.shortAnswer());
-        question.setLongAnswer(request.longAnswer());
-        question.setDeepDive(request.deepDive());
-        question.setAnswerStrategy(request.answerStrategy());
+        question.setContent(request.content());
+        // 旧答案字段已退化为可选遗留列：优先用传入值，否则保留现值，避免被 null 覆盖。
+        question.setShortAnswer(normalize(request.shortAnswer(), question.getShortAnswer()));
+        question.setLongAnswer(normalize(request.longAnswer(), question.getLongAnswer()));
+        question.setDeepDive(normalize(request.deepDive(), question.getDeepDive()));
+        question.setAnswerStrategy(normalize(request.answerStrategy(), question.getAnswerStrategy()));
         question.setSortOrder(request.sortOrder());
+    }
+
+    private String normalize(String value, String currentValue) {
+        if (value != null && !value.isBlank()) {
+            return value.trim();
+        }
+        return currentValue;
     }
 
     private void replaceChildren(Long questionId, QuestionUpsertRequest request) {
