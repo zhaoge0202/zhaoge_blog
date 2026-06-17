@@ -1,17 +1,21 @@
 package cn.zhaoge.interview.topic;
 
 import cn.zhaoge.interview.common.ContentStatus;
+import cn.zhaoge.interview.export.PublishedSiteExporter;
 import cn.zhaoge.interview.topic.mapper.TopicMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TopicService {
     private final TopicMapper topicMapper;
+    private final PublishedSiteExporter publishedSiteExporter;
 
-    public TopicService(TopicMapper topicMapper) {
+    public TopicService(TopicMapper topicMapper, PublishedSiteExporter publishedSiteExporter) {
         this.topicMapper = topicMapper;
+        this.publishedSiteExporter = publishedSiteExporter;
     }
 
     public List<TopicDto> listPublished() {
@@ -41,6 +45,7 @@ public class TopicService {
         return TopicDto.from(topic);
     }
 
+    @Transactional
     public TopicDto create(TopicUpsertRequest request) {
         Topic topic = new Topic();
         apply(topic, request);
@@ -49,16 +54,22 @@ public class TopicService {
         return TopicDto.from(topic);
     }
 
+    @Transactional
     public TopicDto update(Long id, TopicUpsertRequest request) {
         Topic topic = topicMapper.selectById(id);
         if (topic == null) {
             throw new IllegalArgumentException("Topic not found");
         }
+        boolean visibleBeforeUpdate = ContentStatus.PUBLISHED.name().equals(topic.getStatus());
         apply(topic, request);
         topicMapper.updateById(topic);
+        if (visibleBeforeUpdate) {
+            publishedSiteExporter.exportPublishedSite();
+        }
         return TopicDto.from(topic);
     }
 
+    @Transactional
     public TopicDto updateStatus(Long id, ContentStatus status) {
         Topic topic = topicMapper.selectById(id);
         if (topic == null) {
@@ -66,6 +77,7 @@ public class TopicService {
         }
         topic.setStatus(status.name());
         topicMapper.updateById(topic);
+        publishedSiteExporter.exportPublishedSite();
         return TopicDto.from(topic);
     }
 

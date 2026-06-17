@@ -5,7 +5,7 @@
 ## Applications
 
 - `apps/api`: Spring Boot backend.
-- `apps/web`: Next.js public site.
+- `apps/web`: VuePress Theme Hope public site.
 - `apps/admin`: Vue admin console.
 
 ## V1 Scope
@@ -62,13 +62,7 @@ npm run dev
 ```
 
 Default public site endpoint: `http://localhost:3000`.
-Run this in a separate terminal while the backend is running.
-
-Override backend API endpoint when needed:
-
-```bash
-NEXT_PUBLIC_API_BASE=http://localhost:8080 npm run dev
-```
+The site reads exported Markdown from `apps/web/src`. Publish actions in the backend rebuild those files automatically.
 
 ### 5. Start Admin Console
 
@@ -124,7 +118,7 @@ bash scripts/init-db.sh
 
 **Frontend cannot reach backend**
 
-Ensure the backend is listening on `http://localhost:8080`, then set `NEXT_PUBLIC_API_BASE` for `apps/web` or `VITE_API_BASE` for `apps/admin` if using a different backend URL.
+Ensure the backend is listening on `http://localhost:8080`, then set `VITE_API_BASE` for `apps/admin` if using a different backend URL. The public site itself no longer requests runtime content APIs.
 
 ## Production Environment
 

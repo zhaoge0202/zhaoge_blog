@@ -1,6 +1,7 @@
 package cn.zhaoge.interview.search;
 
 import cn.zhaoge.interview.common.ContentStatus;
+import cn.zhaoge.interview.export.ExportPathHelper;
 import cn.zhaoge.interview.note.PersonalNote;
 import cn.zhaoge.interview.note.mapper.PersonalNoteMapper;
 import cn.zhaoge.interview.question.Question;
@@ -72,15 +73,19 @@ public class SearchService {
                     .or().like(Question::getDeepDive, keyword));
         }
         return questionMapper.selectList(wrapper).stream()
-                .map(question -> new SearchResultDto(
-                        "QUESTION",
-                        question.getId(),
-                        question.getSlug(),
-                        question.getTitle(),
-                        question.getSummary(),
-                        "/questions/" + question.getSlug(),
-                        question.getSortOrder()
-                ))
+                .map(question -> {
+                    Topic topic = topicMapper.selectById(question.getTopicId());
+                    String topicSlug = topic == null ? "unknown-topic" : topic.getSlug();
+                    return new SearchResultDto(
+                            "QUESTION",
+                            question.getId(),
+                            question.getSlug(),
+                            question.getTitle(),
+                            question.getSummary(),
+                            "/questions/" + topicSlug + "/" + question.getSlug() + ".html",
+                            question.getSortOrder()
+                    );
+                })
                 .toList();
     }
 
@@ -100,7 +105,7 @@ public class SearchService {
                         null,
                         note.getTitle(),
                         note.getContent(),
-                        "/journey",
+                        "/journey/" + ExportPathHelper.buildNoteSlug(note) + ".html",
                         note.getSortOrder()
                 ))
                 .toList();

@@ -101,7 +101,7 @@ class PublicSearchControllerTests {
                 .andExpect(jsonPath("$.data.topics", hasSize(1)))
                 .andExpect(jsonPath("$.data.questions", hasSize(1)))
                 .andExpect(jsonPath("$.data.notes", hasSize(1)))
-                .andExpect(jsonPath("$.data.questions[0].url").value("/questions/mysql-mvcc"))
+                .andExpect(jsonPath("$.data.questions[0].url").value("/questions/mysql/mysql-mvcc.html"))
                 .andExpect(jsonPath("$.data.total").value(3));
     }
 }

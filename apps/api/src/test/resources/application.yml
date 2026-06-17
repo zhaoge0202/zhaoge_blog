@@ -13,3 +13,6 @@ app:
   jwt:
     secret: test-secret-change-this-secret-to-at-least-32-characters
     ttl-minutes: 60
+
+content-export:
+  export-on-startup: false

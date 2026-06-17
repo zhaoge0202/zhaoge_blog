@@ -2,17 +2,17 @@
 
 The platform uses one Spring Boot backend and two frontends.
 
-- The public Next.js site reads published topics, questions, and notes.
+- The public VuePress site reads exported Markdown generated from published topics, questions, and notes.
 - The Vue admin console creates and publishes content.
 - MySQL stores structured interview content.
-- The backend separates public APIs under `/api/public/**` and `/api/admin/**`.
+- The backend separates public APIs under `/api/public/**` and `/api/admin/**`, and exports published content into the VuePress content tree.
 
 ## Local Runtime Topology
 
 Local development starts three applications independently:
 
 - `apps/api`: Spring Boot API on `http://localhost:8080`. It owns database access, Flyway migrations, admin bootstrap, JWT signing, and public/admin API boundaries.
-- `apps/web`: Next.js public site on `http://localhost:3000`. It reads the backend URL from `NEXT_PUBLIC_API_BASE` and defaults to `http://localhost:8080`.
+- `apps/web`: VuePress public site on `http://localhost:3000` in dev mode. It reads Markdown exported by the backend into `apps/web/src`.
 - `apps/admin`: Vue/Vite admin console on `http://localhost:5173`. It reads the backend URL from `VITE_API_BASE` and defaults to `http://localhost:8080`.
 
 Use separate terminals for long-running development servers:
@@ -50,5 +50,6 @@ cd apps/admin && npm run dev
 | `ADMIN_DISPLAY_NAME` | API | `管理员` | Bootstrapped local admin display name. |
 | `JWT_SECRET` | API | development-only secret | JWT signing secret. Must be strong in production. |
 | `JWT_TTL_MINUTES` | API | `720` | JWT lifetime in minutes. |
-| `NEXT_PUBLIC_API_BASE` | Web | `http://localhost:8080` | Public site API base URL. |
 | `VITE_API_BASE` | Admin | `http://localhost:8080` | Admin console API base URL. |
+| `CONTENT_EXPORT_ENABLED` | API | `true` | Toggle backend Markdown export. |
+| `CONTENT_EXPORT_OUTPUT_ROOT` | API | `../web/src` | VuePress content root rebuilt after publish operations. |

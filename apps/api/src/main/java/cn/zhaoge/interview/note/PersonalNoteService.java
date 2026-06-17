@@ -1,17 +1,21 @@
 package cn.zhaoge.interview.note;
 
 import cn.zhaoge.interview.common.ContentStatus;
+import cn.zhaoge.interview.export.PublishedSiteExporter;
 import cn.zhaoge.interview.note.mapper.PersonalNoteMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PersonalNoteService {
     private final PersonalNoteMapper personalNoteMapper;
+    private final PublishedSiteExporter publishedSiteExporter;
 
-    public PersonalNoteService(PersonalNoteMapper personalNoteMapper) {
+    public PersonalNoteService(PersonalNoteMapper personalNoteMapper, PublishedSiteExporter publishedSiteExporter) {
         this.personalNoteMapper = personalNoteMapper;
+        this.publishedSiteExporter = publishedSiteExporter;
     }
 
     public List<PersonalNoteDto> listPublished() {
@@ -33,6 +37,7 @@ public class PersonalNoteService {
                 .toList();
     }
 
+    @Transactional
     public PersonalNoteDto create(PersonalNoteUpsertRequest request) {
         PersonalNote note = new PersonalNote();
         apply(note, request);
@@ -41,16 +46,22 @@ public class PersonalNoteService {
         return PersonalNoteDto.from(note);
     }
 
+    @Transactional
     public PersonalNoteDto update(Long id, PersonalNoteUpsertRequest request) {
         PersonalNote note = personalNoteMapper.selectById(id);
         if (note == null) {
             throw new IllegalArgumentException("Note not found");
         }
+        boolean visibleBeforeUpdate = ContentStatus.PUBLISHED.name().equals(note.getStatus());
         apply(note, request);
         personalNoteMapper.updateById(note);
+        if (visibleBeforeUpdate) {
+            publishedSiteExporter.exportPublishedSite();
+        }
         return PersonalNoteDto.from(note);
     }
 
+    @Transactional
     public PersonalNoteDto updateStatus(Long id, ContentStatus status) {
         PersonalNote note = personalNoteMapper.selectById(id);
         if (note == null) {
@@ -58,6 +69,7 @@ public class PersonalNoteService {
         }
         note.setStatus(status.name());
         personalNoteMapper.updateById(note);
+        publishedSiteExporter.exportPublishedSite();
         return PersonalNoteDto.from(note);
     }
 

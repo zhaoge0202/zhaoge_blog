@@ -8,6 +8,8 @@ dist/
 .next/
 .next-dev/
 .next-build/
+apps/web/src/.vuepress/.temp/
+apps/web/src/.vuepress/.cache/
 *.tsbuildinfo
 coverage/
 *.log

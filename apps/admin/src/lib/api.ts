@@ -17,6 +17,11 @@ export const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE ?? 'http://localhost:8080',
 });
 
+function clearStoredAuth() {
+  localStorage.removeItem('admin_token');
+  localStorage.removeItem('admin_display_name');
+}
+
 function extractErrorMessage(error: unknown, fallback: string): never {
   if (axios.isAxiosError(error)) {
     const message = (error.response?.data as { message?: string } | undefined)?.message;
@@ -32,6 +37,20 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && (error.response?.status === 401 || error.response?.status === 403)) {
+      const hadToken = Boolean(localStorage.getItem('admin_token'));
+      clearStoredAuth();
+      if (hadToken && window.location.pathname !== '/login') {
+        window.location.assign('/login');
+      }
+    }
+    return Promise.reject(error);
+  },
+);
 
 export async function apiGet<T>(path: string): Promise<T> {
   try {

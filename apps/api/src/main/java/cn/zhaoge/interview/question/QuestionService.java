@@ -2,6 +2,7 @@ package cn.zhaoge.interview.question;
 
 import cn.zhaoge.interview.common.ContentStatus;
 import cn.zhaoge.interview.common.PageResponse;
+import cn.zhaoge.interview.export.PublishedSiteExporter;
 import cn.zhaoge.interview.question.mapper.CorrectionNoteMapper;
 import cn.zhaoge.interview.question.mapper.FollowUpQuestionMapper;
 import cn.zhaoge.interview.question.mapper.MisconceptionMapper;
@@ -27,6 +28,7 @@ public class QuestionService {
     private final CorrectionNoteMapper correctionMapper;
     private final ProjectMappingMapper projectMappingMapper;
     private final ReferenceSourceMapper referenceSourceMapper;
+    private final PublishedSiteExporter publishedSiteExporter;
 
     public QuestionService(
             QuestionMapper questionMapper,
@@ -35,7 +37,8 @@ public class QuestionService {
             MisconceptionMapper misconceptionMapper,
             CorrectionNoteMapper correctionMapper,
             ProjectMappingMapper projectMappingMapper,
-            ReferenceSourceMapper referenceSourceMapper
+            ReferenceSourceMapper referenceSourceMapper,
+            PublishedSiteExporter publishedSiteExporter
     ) {
         this.questionMapper = questionMapper;
         this.sectionMapper = sectionMapper;
@@ -44,6 +47,7 @@ public class QuestionService {
         this.correctionMapper = correctionMapper;
         this.projectMappingMapper = projectMappingMapper;
         this.referenceSourceMapper = referenceSourceMapper;
+        this.publishedSiteExporter = publishedSiteExporter;
     }
 
     public PageResponse<QuestionSummaryDto> listPublished(Long topicId, String keyword, long page, long size) {
@@ -96,12 +100,17 @@ public class QuestionService {
         if (question == null) {
             throw new IllegalArgumentException("Question not found");
         }
+        boolean visibleBeforeUpdate = ContentStatus.PUBLISHED.name().equals(question.getStatus());
         apply(question, request);
         questionMapper.updateById(question);
         replaceChildren(id, request);
+        if (visibleBeforeUpdate) {
+            publishedSiteExporter.exportPublishedSite();
+        }
         return getAdminById(id);
     }
 
+    @Transactional
     public QuestionDetailDto updateStatus(Long id, ContentStatus status) {
         Question question = questionMapper.selectById(id);
         if (question == null) {
@@ -112,6 +121,7 @@ public class QuestionService {
             question.setPublishedAt(LocalDateTime.now());
         }
         questionMapper.updateById(question);
+        publishedSiteExporter.exportPublishedSite();
         return getAdminById(id);
     }
 

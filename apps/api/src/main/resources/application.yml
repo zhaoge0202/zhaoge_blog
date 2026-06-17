@@ -27,3 +27,8 @@ app:
   jwt:
     secret: ${JWT_SECRET:change-this-secret-to-at-least-32-characters}
     ttl-minutes: ${JWT_TTL_MINUTES:720}
+
+content-export:
+  enabled: ${CONTENT_EXPORT_ENABLED:true}
+  export-on-startup: ${CONTENT_EXPORT_ON_STARTUP:true}
+  output-root: ${CONTENT_EXPORT_OUTPUT_ROOT:../web/src}
