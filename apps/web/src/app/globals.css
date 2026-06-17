@@ -153,6 +153,13 @@ h4 {
   border-bottom: 1px solid var(--border-soft);
 }
 
+.navbar-start {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -161,6 +168,49 @@ h4 {
   color: var(--accent);
   font-size: 16px;
   font-weight: 600;
+}
+
+/* mobile sidebar toggle — hamburger, hidden on desktop (theme-hope toggle-sidebar-button) */
+.sidebar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.4rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sidebar-toggle .bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--text);
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.sidebar-toggle.is-open .bar:nth-child(1) {
+  transform: translateY(6px) rotate(135deg);
+}
+
+.sidebar-toggle.is-open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-toggle.is-open .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-135deg);
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  z-index: 55;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .brand-logo {
@@ -403,52 +453,107 @@ kbd {
   min-width: 0;
 }
 
+/* breadcrumb — ported from vuepress-theme-hope base/breadcrumb.scss */
+.doc-breadcrumb {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 4px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-mute);
+}
+
+.doc-breadcrumb .crumb a {
+  display: inline-block;
+  padding: 0 0.5em;
+  color: inherit;
+}
+
+.doc-breadcrumb .crumb:first-child a {
+  padding-inline-start: 0;
+}
+
+.doc-breadcrumb .crumb a:hover {
+  color: var(--accent);
+}
+
+.doc-breadcrumb .crumb span {
+  padding: 0 0.5em;
+}
+
+.doc-breadcrumb .crumb-sep {
+  padding: 0;
+  color: var(--text-subtle);
+}
+
+/* page-info line — ported from info/page-info.scss */
 .doc-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  justify-content: flex-start;
   margin: 0 0 24px;
   color: var(--text-mute);
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .doc-meta .badge {
-  margin: 0;
+  margin: 0 0.5em 0 0;
 }
 
 .doc-meta-item {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  max-width: 100%;
+  margin-inline-end: 0.5em;
+  line-height: 2;
 }
 
+.doc-meta-item svg {
+  width: 1em;
+  height: 1em;
+  margin-inline-end: 0.25em;
+}
+
+/* page-nav (prev / next) — ported from base/page-nav.scss */
 .doc-prevnext {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 48px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+  min-height: 2rem;
+  margin-top: 24px;
+  padding-block: 0.5rem;
+  padding-inline: 0;
+  border-top: 1px solid var(--border);
 }
 
 .doc-prevnext a {
-  display: grid;
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
   gap: 2px;
-  max-width: 48%;
-  padding: 10px 14px;
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  transition: border-color 0.16s ease;
+  margin: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  transition: background 0.16s ease;
 }
 
 .doc-prevnext a:hover {
-  border-color: var(--accent);
+  background: var(--bg-alt);
 }
 
 .doc-prevnext .pn-label {
-  color: var(--text-subtle);
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  color: var(--text-mute);
+  font-size: 0.875rem;
+  line-height: 2;
+}
+
+.doc-prevnext .pn-label svg {
+  width: 0.85em;
+  height: 0.85em;
 }
 
 .doc-prevnext .pn-title {
@@ -457,8 +562,59 @@ kbd {
 }
 
 .doc-prevnext .next {
-  margin-left: auto;
-  text-align: right;
+  text-align: end;
+  align-items: flex-end;
+}
+
+.doc-prevnext .next .pn-label {
+  justify-content: flex-end;
+}
+
+/* page-meta footer (edit link / last updated) — ported from info/page-meta.scss */
+.doc-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-mute);
+  font-size: 14px;
+}
+
+.doc-footer-meta .doc-edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  margin-block: 0.25rem;
+  color: var(--text-mute);
+}
+
+.doc-footer-meta .doc-edit-link:hover {
+  color: var(--accent);
+}
+
+.doc-footer-meta .doc-updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  margin-block: 0.25rem;
+  text-align: end;
+}
+
+.doc-footer-meta svg {
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 880px) {
+  .doc-footer-meta {
+    display: block;
+  }
+  .doc-footer-meta .doc-updated {
+    text-align: start;
+    font-size: 13px;
+  }
 }
 
 /* ---------- TOC rail ---------- */
@@ -1041,17 +1197,26 @@ a.card:hover,
 
 @media (max-width: 880px) {
   .navbar {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
     padding: 0 16px;
   }
   .nav-links {
     display: none;
+  }
+  .sidebar-toggle {
+    display: flex;
   }
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.2s ease;
     box-shadow: 2px 0 12px rgba(0, 0, 0, 0.18);
     z-index: 60;
+  }
+  .sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+  .sidebar-open .sidebar-overlay {
+    display: block;
   }
   .main {
     margin-left: 0;

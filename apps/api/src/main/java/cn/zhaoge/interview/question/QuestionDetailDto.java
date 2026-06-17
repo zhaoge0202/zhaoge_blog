@@ -1,5 +1,6 @@
 package cn.zhaoge.interview.question;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public record QuestionDetailDto(
@@ -18,6 +19,7 @@ public record QuestionDetailDto(
         String answerStrategy,
         Integer sortOrder,
         String status,
+        LocalDateTime updatedAt,
         List<QuestionSection> sections,
         List<FollowUpQuestion> followUps,
         List<Misconception> misconceptions,
@@ -50,6 +52,7 @@ public record QuestionDetailDto(
                 question.getAnswerStrategy(),
                 question.getSortOrder(),
                 question.getStatus(),
+                question.getUpdatedAt(),
                 sections,
                 followUps,
                 misconceptions,

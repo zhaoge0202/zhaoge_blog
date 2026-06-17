@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import type { Route } from 'next';
 import type { ReactNode } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { SidebarToggle } from '@/components/SidebarToggle';
 import { DocSidebar } from '@/components/DocSidebar';
 import { loadDocTree, type DocGroup } from '@/lib/nav';
 
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <div className="shell">
           <header className="navbar">
             <div className="navbar-start">
+              <SidebarToggle />
               <Link className="brand" href="/" aria-label="返回首页">
                 <span className="brand-logo">面</span>
                 <span className="brand-name">后端面试手册</span>

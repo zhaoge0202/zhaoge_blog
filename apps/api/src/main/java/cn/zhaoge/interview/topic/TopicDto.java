@@ -1,5 +1,7 @@
 package cn.zhaoge.interview.topic;
 
+import java.time.LocalDateTime;
+
 public record TopicDto(
         Long id,
         String slug,
@@ -12,7 +14,8 @@ public record TopicDto(
         String knowledgeMap,
         String interviewFocus,
         Integer sortOrder,
-        String status
+        String status,
+        LocalDateTime updatedAt
 ) {
     public static TopicDto from(Topic topic) {
         return new TopicDto(
@@ -27,7 +30,8 @@ public record TopicDto(
                 topic.getKnowledgeMap(),
                 topic.getInterviewFocus(),
                 topic.getSortOrder(),
-                topic.getStatus()
+                topic.getStatus(),
+                topic.getUpdatedAt()
         );
     }
 }

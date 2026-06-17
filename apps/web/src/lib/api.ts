@@ -29,6 +29,7 @@ export type Topic = {
   interviewFocus: string;
   sortOrder: number;
   status: string;
+  updatedAt?: string;
 };
 
 export type QuestionSummary = {
@@ -46,6 +47,7 @@ export type QuestionSummary = {
 
 export type QuestionDetail = QuestionSummary & {
   content: string;
+  updatedAt?: string;
 };
 
 export type PersonalNote = {
