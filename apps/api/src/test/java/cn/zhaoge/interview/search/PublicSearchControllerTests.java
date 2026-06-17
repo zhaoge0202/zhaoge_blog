@@ -27,7 +27,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql(scripts = "/db/migration/V1__init_schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Sql(
+        scripts = {
+                "/db/migration/V1__init_schema.sql",
+                "/db/test/V1_1__topic_content_h2.sql"
+        },
+        executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS
+)
 class PublicSearchControllerTests {
     @Autowired
     private MockMvc mockMvc;
@@ -48,6 +54,7 @@ class PublicSearchControllerTests {
         topic.setSlug("mysql");
         topic.setTitle("MySQL");
         topic.setSummary("索引、事务、MVCC");
+        topic.setContent("## 为什么重要\n\nMySQL 是项目深挖主战场");
         topic.setTargetAudience("3-5 年 Java 后端工程师");
         topic.setWhyImportant("MySQL 是项目深挖主战场");
         topic.setPrerequisites("SQL 基础");

@@ -84,7 +84,7 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Qu
               key={topic.id}
             >
               <span>{topic.title}</span>
-              <small>{topic.interviewFocus}</small>
+              <small>{topic.summary}</small>
             </Link>
           ))}
         </div>

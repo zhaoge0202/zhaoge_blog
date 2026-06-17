@@ -17,6 +17,14 @@ export const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE ?? 'http://localhost:8080',
 });
 
+function extractErrorMessage(error: unknown, fallback: string): never {
+  if (axios.isAxiosError(error)) {
+    const message = (error.response?.data as { message?: string } | undefined)?.message;
+    throw new Error(message || error.message || fallback);
+  }
+  throw error instanceof Error ? error : new Error(fallback);
+}
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('admin_token');
   if (token) {
@@ -26,21 +34,37 @@ api.interceptors.request.use((config) => {
 });
 
 export async function apiGet<T>(path: string): Promise<T> {
-  const response = await api.get<ApiResponse<T>>(path);
-  return response.data.data;
+  try {
+    const response = await api.get<ApiResponse<T>>(path);
+    return response.data.data;
+  } catch (error) {
+    extractErrorMessage(error, `请求失败: GET ${path}`);
+  }
 }
 
 export async function apiPost<T, P = unknown>(path: string, payload: P): Promise<T> {
-  const response = await api.post<ApiResponse<T>>(path, payload);
-  return response.data.data;
+  try {
+    const response = await api.post<ApiResponse<T>>(path, payload);
+    return response.data.data;
+  } catch (error) {
+    extractErrorMessage(error, `请求失败: POST ${path}`);
+  }
 }
 
 export async function apiPut<T, P = unknown>(path: string, payload: P): Promise<T> {
-  const response = await api.put<ApiResponse<T>>(path, payload);
-  return response.data.data;
+  try {
+    const response = await api.put<ApiResponse<T>>(path, payload);
+    return response.data.data;
+  } catch (error) {
+    extractErrorMessage(error, `请求失败: PUT ${path}`);
+  }
 }
 
 export async function apiPatch<T, P = unknown>(path: string, payload?: P): Promise<T> {
-  const response = await api.patch<ApiResponse<T>>(path, payload);
-  return response.data.data;
+  try {
+    const response = await api.patch<ApiResponse<T>>(path, payload);
+    return response.data.data;
+  } catch (error) {
+    extractErrorMessage(error, `请求失败: PATCH ${path}`);
+  }
 }

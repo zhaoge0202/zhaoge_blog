@@ -10,13 +10,13 @@ export default async function TopicsPage() {
     <>
       <p className="eyebrow">Topics</p>
       <h1>专题主线</h1>
-      <p className="lead">每个专题都围绕重要性、知识主线、追问地图和作者修正过程组织。</p>
+      <p className="lead">每个专题用一篇完整 Markdown 正文组织知识主线、排查路径、易错点和项目映射。</p>
       <section className="section grid">
         {topics.map((topic) => (
           <Link className="card" href={`/topics/${topic.slug}`} key={topic.id}>
             <h2>{topic.title}</h2>
             <p>{topic.summary}</p>
-            <p className="meta">{topic.targetAudience}</p>
+            <p className="meta">{topic.content.split('\n').find((line) => line.trim())?.replace(/^#+\s*/, '') || '进入专题正文'}</p>
           </Link>
         ))}
       </section>

@@ -21,6 +21,7 @@ export type Topic = {
   slug: string;
   title: string;
   summary: string;
+  content: string;
   targetAudience: string;
   whyImportant: string;
   prerequisites: string;
@@ -110,14 +111,23 @@ async function readErrorMessage(response: Response): Promise<string> {
   }
 }
 
+async function readApiResponse<T>(response: Response, endpoint: string): Promise<ApiResponse<T>> {
+  try {
+    return (await response.json()) as ApiResponse<T>;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : 'invalid JSON';
+    throw new Error(`API GET ${endpoint} returned invalid JSON: ${detail}`);
+  }
+}
+
 export async function apiGet<T>(path: string, params?: QueryParams): Promise<T> {
   const endpoint = joinPathAndQuery(path, params);
-  const response = await fetch(`${API_BASE}${endpoint}`, { next: { revalidate: 60 } });
+  const response = await fetch(`${API_BASE}${endpoint}`, { cache: 'no-store' });
   if (!response.ok) {
     const message = await readErrorMessage(response);
     throw new Error(`API GET ${endpoint} failed: ${response.status} ${response.statusText}${message}`);
   }
-  const body = (await response.json()) as ApiResponse<T>;
+  const body = await readApiResponse<T>(response, endpoint);
   if (!body.success) {
     throw new Error(`API GET ${endpoint} failed: ${body.message ?? 'unknown API error'}`);
   }

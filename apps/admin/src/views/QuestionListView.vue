@@ -3,7 +3,7 @@
     <div class="toolbar">
       <div>
         <h1>题目管理</h1>
-        <p>题目是最小内容单元，支持检索、上下线和基础信息维护。</p>
+        <p>先筛选和选择题目，再在右侧工作区集中编辑摘要与回答内容。</p>
       </div>
     </div>
 
@@ -27,143 +27,222 @@
     <p v-if="message" class="notice">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>
 
-    <section class="split">
-      <table class="table card">
-        <thead>
-          <tr>
-            <th>标题</th>
-            <th>专题</th>
-            <th>难度</th>
-            <th>频率</th>
-            <th>状态</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
+    <section class="workspace-shell">
+      <aside class="list-panel card">
+        <div class="list-panel-header">
+          <div>
+            <p class="muted">题目列表</p>
+            <h2>{{ questions.length }} 道题</h2>
+          </div>
+        </div>
+        <div class="list-stack">
+          <article
             v-for="question in questions"
             :key="question.id"
+            class="list-card"
             :class="{ selected: selectedQuestion?.id === question.id }"
+            @click="selectQuestion(question.id)"
           >
-            <td>
-              <strong>{{ question.title }}</strong>
-              <p class="muted">{{ question.summary }}</p>
-            </td>
-            <td>{{ topicName(question.topicId) }}</td>
-            <td>{{ question.difficulty }}</td>
-            <td>{{ question.frequency }}</td>
-            <td>{{ question.status }}</td>
-            <td class="actions">
-              <button type="button" class="secondary" @click="selectQuestion(question.id)">
-                编辑
-              </button>
-              <button
-                type="button"
-                class="secondary"
-                :disabled="saving"
-                @click="toggleStatus(question)"
-              >
-                {{ question.status === 'PUBLISHED' ? '下线' : '发布' }}
-              </button>
-            </td>
-          </tr>
-          <tr v-if="questions.length === 0">
-            <td colspan="6">{{ loading ? '加载中...' : '暂无题目。' }}</td>
-          </tr>
-        </tbody>
-      </table>
+            <div class="list-card-header">
+              <div>
+                <h3>{{ question.title }}</h3>
+                <p class="muted">{{ question.slug }}</p>
+              </div>
+              <span class="badge">{{ question.status }}</span>
+            </div>
+            <p class="list-summary">{{ question.summary }}</p>
+            <div class="badge-row">
+              <span class="badge">{{ topicName(question.topicId) }}</span>
+              <span class="badge">{{ question.difficulty }}</span>
+              <span class="badge">{{ question.frequency }}</span>
+            </div>
+            <div class="list-card-footer">
+              <span class="meta">排序 {{ question.sortOrder }}</span>
+              <div class="actions">
+                <button type="button" class="secondary compact" @click.stop="selectQuestion(question.id)">编辑</button>
+                <button
+                  type="button"
+                  class="secondary compact"
+                  :disabled="saving"
+                  @click.stop="toggleStatus(question)"
+                >
+                  {{ question.status === 'PUBLISHED' ? '下线' : '发布' }}
+                </button>
+              </div>
+            </div>
+          </article>
+          <article v-if="questions.length === 0" class="list-card empty-card">
+            {{ loading ? '加载中...' : '暂无题目。' }}
+          </article>
+        </div>
+      </aside>
 
-      <form class="card form-panel" @submit.prevent="saveQuestion">
-        <h2>基础信息编辑</h2>
-        <p v-if="!selectedQuestion" class="muted">请选择一条题目后编辑。</p>
-        <template v-else>
-          <div class="form-grid">
-            <label>
-              标题
-              <input v-model.trim="form.title" required />
-            </label>
-            <label>
-              Slug
-              <input v-model.trim="form.slug" required />
-            </label>
-            <label>
-              专题
-              <select v-model.number="form.topicId" required>
-                <option v-for="topic in topics" :key="topic.id" :value="topic.id">
-                  {{ topic.title }}
-                </option>
-              </select>
-            </label>
-            <label>
-              排序
-              <input v-model.number="form.sortOrder" type="number" required />
-            </label>
-            <label>
-              难度
-              <select v-model="form.difficulty" required>
-                <option v-for="item in difficultyOptions" :key="item" :value="item">
-                  {{ item }}
-                </option>
-              </select>
-            </label>
-            <label>
-              频率
-              <select v-model="form.frequency" required>
-                <option v-for="item in frequencyOptions" :key="item" :value="item">
-                  {{ item }}
-                </option>
-              </select>
-            </label>
-            <label>
-              掌握层级
-              <select v-model="form.masteryLevel" required>
-                <option v-for="item in masteryOptions" :key="item" :value="item">
-                  {{ item }}
-                </option>
-              </select>
-            </label>
-            <label>
-              状态
-              <select v-model="form.status" disabled>
-                <option v-for="status in statusOptions" :key="status" :value="status">
-                  {{ status }}
-                </option>
-              </select>
-            </label>
-          </div>
-          <label>
+      <section class="editor-shell">
+        <div v-if="selectedQuestion" class="workspace-tabs">
+          <button
+            type="button"
+            class="secondary"
+            :class="{ active: activePanel === 'summary' }"
+            @click="activePanel = 'summary'"
+          >
             摘要
-            <textarea v-model.trim="form.summary" rows="3" required />
-          </label>
-          <label>
-            短答案
-            <textarea v-model.trim="form.shortAnswer" rows="4" required />
-          </label>
-          <label>
-            长答案
-            <textarea v-model.trim="form.longAnswer" rows="5" required />
-          </label>
-          <label>
-            深挖点
-            <textarea v-model.trim="form.deepDive" rows="4" required />
-          </label>
-          <label>
-            答题策略
-            <textarea v-model.trim="form.answerStrategy" rows="4" required />
-          </label>
-          <div class="form-actions">
-            <button type="submit" :disabled="saving">{{ saving ? '保存中...' : '保存基础信息' }}</button>
-            <button type="button" class="secondary" @click="reloadSelected">重载详情</button>
-          </div>
-        </template>
-      </form>
+          </button>
+          <button
+            type="button"
+            class="secondary"
+            :class="{ active: activePanel === 'core' }"
+            @click="activePanel = 'core'"
+          >
+            核心回答
+          </button>
+          <button
+            type="button"
+            class="secondary"
+            :class="{ active: activePanel === 'deep' }"
+            @click="activePanel = 'deep'"
+          >
+            深入回答
+          </button>
+          <button
+            type="button"
+            class="secondary"
+            :class="{ active: activePanel === 'preview' }"
+            @click="activePanel = 'preview'"
+          >
+            预览
+          </button>
+        </div>
+        <form class="card editor-main" @submit.prevent="saveQuestion">
+          <template v-if="activePanel !== 'preview'">
+            <div class="editor-main-header">
+              <div>
+                <h2>Markdown 编辑</h2>
+                <p v-if="selectedQuestion" class="muted">当前编辑：{{ selectedQuestion.title }}（{{ selectedQuestion.slug }}）</p>
+                <p v-else class="muted">请从左侧选择一条题目进入编辑。</p>
+                <p v-if="loadingDetail" class="muted">正在加载题目详情...</p>
+              </div>
+              <div v-if="selectedQuestion" class="status-chip-row">
+                <span class="badge">{{ form.status }}</span>
+              </div>
+            </div>
+
+            <template v-if="selectedQuestion">
+              <div class="meta-grid">
+                <label>
+                  标题
+                  <input v-model.trim="form.title" required />
+                </label>
+                <label>
+                  Slug
+                  <input v-model.trim="form.slug" required />
+                </label>
+                <label>
+                  专题
+                  <select v-model.number="form.topicId" required>
+                    <option v-for="topic in topics" :key="topic.id" :value="topic.id">
+                      {{ topic.title }}
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  排序
+                  <input v-model.number="form.sortOrder" type="number" required />
+                </label>
+                <label>
+                  难度
+                  <select v-model="form.difficulty" required>
+                    <option v-for="item in difficultyOptions" :key="item" :value="item">
+                      {{ item }}
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  频率
+                  <select v-model="form.frequency" required>
+                    <option v-for="item in frequencyOptions" :key="item" :value="item">
+                      {{ item }}
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  掌握层级
+                  <select v-model="form.masteryLevel" required>
+                    <option v-for="item in masteryOptions" :key="item" :value="item">
+                      {{ item }}
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  状态
+                  <select v-model="form.status" disabled>
+                    <option v-for="status in statusOptions" :key="status" :value="status">
+                      {{ status }}
+                    </option>
+                  </select>
+                </label>
+              </div>
+
+              <MarkdownEditor
+                v-if="activePanel === 'summary'"
+                v-model="form.summary"
+                hint="列表卡片和题目页顶部导语使用这段摘要。"
+                label="摘要"
+              />
+              <div v-if="activePanel === 'core'" class="stack">
+                <MarkdownEditor
+                  v-model="form.shortAnswer"
+                  hint="30 秒短回答，前台第一屏答案块会直接展示。"
+                  label="30 秒回答"
+                />
+                <MarkdownEditor
+                  v-model="form.longAnswer"
+                  hint="2 分钟展开回答，用于面试时从结论展开到机制。"
+                  label="2 分钟回答"
+                />
+              </div>
+              <div v-if="activePanel === 'deep'" class="stack">
+                <MarkdownEditor
+                  v-model="form.deepDive"
+                  hint="深度解释、原理、边界和实现细节。"
+                  label="深度解释"
+                />
+                <MarkdownEditor
+                  v-model="form.answerStrategy"
+                  hint="告诉自己实际该怎么答，避免只会背。"
+                  label="回答策略"
+                />
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" :disabled="saving">{{ saving ? '保存中...' : '保存题目' }}</button>
+                <button type="button" class="secondary" @click="reloadSelected">重载详情</button>
+              </div>
+            </template>
+          </template>
+        </form>
+
+        <MarkdownPreviewFrame
+          v-if="selectedQuestion && activePanel === 'preview'"
+          :dirty="isDirty"
+          :payload="questionPreviewPayload"
+          :preview-url="previewUrl"
+          title="题目详情页"
+          type="question-preview"
+        />
+        <section v-else class="card empty-workspace">
+          <h2>开始编辑</h2>
+          <p>从左侧列表选择一条题目，右侧会显示可编辑内容和前台真实预览。</p>
+        </section>
+      </section>
     </section>
   </AdminLayout>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import AdminLayout from '../components/AdminLayout.vue';
+import MarkdownEditor from '../components/MarkdownEditor.vue';
+import MarkdownPreviewFrame from '../components/MarkdownPreviewFrame.vue';
 import { apiGet, apiPatch, apiPut, type PageResponse } from '../lib/api';
 
 type ContentStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
@@ -249,7 +328,6 @@ type QuestionDetail = QuestionSummary & {
 };
 
 type QuestionForm = Omit<QuestionDetail, 'id' | 'sections' | 'followUps' | 'misconceptions' | 'corrections' | 'projectMappings' | 'references'>;
-
 type QuestionPayload = Omit<QuestionDetail, 'id' | 'status'>;
 
 const statusOptions: ContentStatus[] = ['DRAFT', 'PUBLISHED', 'ARCHIVED'];
@@ -260,10 +338,13 @@ const masteryOptions: MasteryLevel[] = ['READ', 'EXPLAIN', 'DEEP_EXPLAIN', 'PROJ
 const topics = ref<Topic[]>([]);
 const questions = ref<QuestionSummary[]>([]);
 const selectedQuestion = ref<QuestionDetail | null>(null);
+const activePanel = ref<'summary' | 'core' | 'deep' | 'preview'>('summary');
 const loading = ref(false);
+const loadingDetail = ref(false);
 const saving = ref(false);
 const message = ref('');
 const error = ref('');
+const previewUrl = `${import.meta.env.VITE_PREVIEW_BASE ?? ''}/preview/question`;
 
 const filters = reactive({
   keyword: '',
@@ -284,6 +365,65 @@ const form = reactive<QuestionForm>({
   answerStrategy: '',
   sortOrder: 0,
   status: 'DRAFT',
+});
+const isDirty = computed(() => {
+  const current = selectedQuestion.value;
+  if (!current) {
+    return false;
+  }
+  return JSON.stringify({
+    topicId: form.topicId,
+    slug: form.slug,
+    title: form.title,
+    summary: form.summary,
+    difficulty: form.difficulty,
+    frequency: form.frequency,
+    masteryLevel: form.masteryLevel,
+    shortAnswer: form.shortAnswer,
+    longAnswer: form.longAnswer,
+    deepDive: form.deepDive,
+    answerStrategy: form.answerStrategy,
+    sortOrder: form.sortOrder,
+  }) !== JSON.stringify({
+    topicId: current.topicId,
+    slug: current.slug,
+    title: current.title,
+    summary: current.summary,
+    difficulty: current.difficulty,
+    frequency: current.frequency,
+    masteryLevel: current.masteryLevel,
+    shortAnswer: current.shortAnswer,
+    longAnswer: current.longAnswer,
+    deepDive: current.deepDive,
+    answerStrategy: current.answerStrategy,
+    sortOrder: current.sortOrder,
+  });
+});
+
+const questionPreviewPayload = computed<QuestionDetail>(() => {
+  const detail = selectedQuestion.value;
+  return {
+    id: detail?.id ?? 0,
+    topicId: Number(form.topicId),
+    slug: form.slug || 'preview',
+    title: form.title || '未命名题目',
+    summary: form.summary,
+    difficulty: form.difficulty,
+    frequency: form.frequency,
+    masteryLevel: form.masteryLevel,
+    shortAnswer: form.shortAnswer,
+    longAnswer: form.longAnswer,
+    deepDive: form.deepDive,
+    answerStrategy: form.answerStrategy,
+    sortOrder: Number(form.sortOrder) || 0,
+    status: form.status,
+    sections: detail?.sections ?? [],
+    followUps: detail?.followUps ?? [],
+    misconceptions: detail?.misconceptions ?? [],
+    corrections: detail?.corrections ?? [],
+    projectMappings: detail?.projectMappings ?? [],
+    references: detail?.references ?? [],
+  };
 });
 
 async function loadTopics() {
@@ -315,10 +455,19 @@ async function loadQuestions() {
 }
 
 async function selectQuestion(id: number) {
+  loadingDetail.value = true;
+  activePanel.value = 'summary';
   error.value = '';
   message.value = '';
-  selectedQuestion.value = await apiGet<QuestionDetail>(`/api/admin/questions/${id}`);
-  fillForm(selectedQuestion.value);
+  try {
+    selectedQuestion.value = await apiGet<QuestionDetail>(`/api/admin/questions/${id}`);
+    fillForm(selectedQuestion.value);
+  } catch (caught) {
+    selectedQuestion.value = null;
+    error.value = caught instanceof Error ? caught.message : '加载题目详情失败';
+  } finally {
+    loadingDetail.value = false;
+  }
 }
 
 function fillForm(question: QuestionDetail) {

@@ -73,11 +73,22 @@ public class TopicService {
         topic.setSlug(request.slug());
         topic.setTitle(request.title());
         topic.setSummary(request.summary());
-        topic.setTargetAudience(request.targetAudience());
-        topic.setWhyImportant(request.whyImportant());
-        topic.setPrerequisites(request.prerequisites());
-        topic.setKnowledgeMap(request.knowledgeMap());
-        topic.setInterviewFocus(request.interviewFocus());
+        topic.setContent(request.content());
+        topic.setTargetAudience(normalize(request.targetAudience(), topic.getTargetAudience(), "3-5 年 Java 后端工程师"));
+        topic.setWhyImportant(normalize(request.whyImportant(), topic.getWhyImportant(), "详见正文。"));
+        topic.setPrerequisites(normalize(request.prerequisites(), topic.getPrerequisites(), "详见正文。"));
+        topic.setKnowledgeMap(normalize(request.knowledgeMap(), topic.getKnowledgeMap(), "详见正文。"));
+        topic.setInterviewFocus(normalize(request.interviewFocus(), topic.getInterviewFocus(), request.summary()));
         topic.setSortOrder(request.sortOrder());
+    }
+
+    private String normalize(String value, String currentValue, String defaultValue) {
+        if (value != null && !value.isBlank()) {
+            return value.trim();
+        }
+        if (currentValue != null && !currentValue.isBlank()) {
+            return currentValue;
+        }
+        return defaultValue;
     }
 }

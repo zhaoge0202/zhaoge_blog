@@ -12,6 +12,7 @@ public class Topic {
     private String slug;
     private String title;
     private String summary;
+    private String content;
     private String targetAudience;
     private String whyImportant;
     private String prerequisites;
@@ -30,6 +31,8 @@ public class Topic {
     public void setTitle(String title) { this.title = title; }
     public String getSummary() { return summary; }
     public void setSummary(String summary) { this.summary = summary; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
     public String getTargetAudience() { return targetAudience; }
     public void setTargetAudience(String targetAudience) { this.targetAudience = targetAudience; }
     public String getWhyImportant() { return whyImportant; }

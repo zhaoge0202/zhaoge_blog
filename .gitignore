@@ -6,6 +6,8 @@ target/
 node_modules/
 dist/
 .next/
+.next-dev/
+.next-build/
 *.tsbuildinfo
 coverage/
 *.log
