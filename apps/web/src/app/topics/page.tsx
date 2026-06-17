@@ -7,7 +7,7 @@ export default async function TopicsPage() {
   const topics = await apiGet<Topic[]>('/api/public/topics');
 
   return (
-    <>
+    <div className="doc-content">
       <p className="eyebrow">Topics</p>
       <h1>专题主线</h1>
       <p className="lead">每个专题用一篇完整 Markdown 正文组织知识主线、排查路径、易错点和项目映射。</p>
@@ -16,10 +16,9 @@ export default async function TopicsPage() {
           <Link className="card" href={`/topics/${topic.slug}`} key={topic.id}>
             <h2>{topic.title}</h2>
             <p>{topic.summary}</p>
-            <p className="meta">{topic.content.split('\n').find((line) => line.trim())?.replace(/^#+\s*/, '') || '进入专题正文'}</p>
           </Link>
         ))}
       </section>
-    </>
+    </div>
   );
 }

@@ -50,7 +50,7 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Qu
     : questions.records;
 
   return (
-    <>
+    <div className="doc-content">
       <p className="eyebrow">Questions</p>
       <h1>按专题和关键词进入题库。</h1>
       <p className="lead">每道题是一篇完整的 Markdown 正文，自由组织结论、机制与项目映射。URL 参数支持 q/topic/status，适合收藏一组临考筛选。</p>
@@ -136,6 +136,6 @@ export default async function QuestionsPage({ searchParams }: { searchParams: Qu
           ) : null}
         </div>
       </section>
-    </>
+    </div>
   );
 }
