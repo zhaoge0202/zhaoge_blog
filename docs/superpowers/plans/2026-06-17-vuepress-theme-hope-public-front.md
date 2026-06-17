@@ -19,7 +19,6 @@ apps/
     src/test/java/cn/zhaoge/interview/export/
     src/main/resources/application.yml
   web/
-    legacy-next/
     package.json
     src/
       README.md
@@ -74,7 +73,7 @@ docs/
 - Create: `apps/web/src/.vuepress/styles/config.scss`
 - Create: `apps/web/src/.vuepress/styles/index.scss`
 
-- [ ] Archive old Next.js source to `apps/web/legacy-next`.
+- [ ] Remove old Next.js runtime source from `apps/web`.
 - [ ] Add VuePress scripts and dependencies.
 - [ ] Create home page, list pages, and theme configuration.
 - [ ] Build the site and fix any config/runtime issues.
