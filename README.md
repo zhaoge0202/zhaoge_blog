@@ -1,140 +1,81 @@
-# Java 面试进阶平台
+# Java 面试进阶静态站
 
-面向 3-5 年 Java 后端工程师的进阶面试准备平台。
+面向 3-5 年 Java 后端工程师的进阶面试准备站点。项目现在采用 JavaGuide 类似的纯静态架构：内容直接以 Markdown 维护，VuePress Theme Hope 负责阅读体验，GitHub Pages 负责发布。
 
-## Applications
+## 项目结构
 
-- `apps/api`: Spring Boot backend.
-- `apps/web`: VuePress Theme Hope public site.
-- `apps/admin`: Vue admin console.
+- `src`: VuePress Theme Hope 静态站点内容和配置。
+- `package.json`: 本地开发、构建和清理脚本。
+- `.github/workflows/pages.yml`: GitHub Pages 自动发布流程。
+- `docs/JavaGuide`: 本地参考仓库，已被 `.gitignore` 忽略，不进入提交。
 
-## V1 Scope
+## 本地开发
 
-V1 focuses on four topics: 并发、JVM、MySQL、Redis.
-
-## Local Development
-
-The backend default profile is `local`. Run commands from the repository root unless noted otherwise.
-
-### 1. Prerequisites
-
-- Java 17+
-- Maven 3.9+
-- MySQL 8+
-- Node.js 20+ and npm
-
-### 2. Initialize MySQL
+只需要 Node.js 20+ 和 npm。
 
 ```bash
-bash scripts/init-db.sh
-```
-
-`scripts/init-db.sh` uses `root / 123456` and creates `interview_platform` by default. Override with environment variables when needed:
-
-```bash
-DB_USERNAME=root DB_PASSWORD=123456 DB_NAME=interview_platform bash scripts/init-db.sh
-```
-
-- `DB_URL`: `jdbc:mysql://localhost:3306/interview_platform?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai`
-- `DB_USERNAME`: `root`
-- `DB_PASSWORD`: `123456`
-- `DB_NAME`: `interview_platform` (used by `scripts/init-db.sh`)
-
-Flyway migrations run automatically when the backend starts.
-
-### 3. Start Backend API
-
-```bash
-bash scripts/run-api-local.sh
-```
-
-Default API endpoint: `http://localhost:8080`.
-Keep this process running and use another terminal for the frontend apps.
-
-The script first tries `mvn spring-boot:run`. If Maven plugin or dependency download fails, it prints mirror troubleshooting guidance and then attempts a `java -cp` fallback after compiling and generating the runtime classpath.
-
-### 4. Start Public Site
-
-```bash
-cd apps/web
 npm ci
 npm run dev
 ```
 
-Default public site endpoint: `http://localhost:3000`.
-The site reads exported Markdown from `apps/web/src`. Publish actions in the backend rebuild those files automatically.
+默认本地地址：
 
-### 5. Start Admin Console
-
-```bash
-cd apps/admin
-npm ci
-npm run dev
+```text
+http://localhost:3000
 ```
 
-Default admin endpoint: `http://localhost:5173`.
-Run this in a separate terminal while the backend is running.
-
-Override backend API endpoint when needed:
+## 构建
 
 ```bash
-VITE_API_BASE=http://localhost:8080 npm run dev
+npm run build
 ```
 
-### 6. Default Admin Account
+构建产物输出到：
 
-The local profile bootstraps an admin account when the backend starts:
-
-- username: `admin`
-- password: `admin123456`
-
-Override with `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `ADMIN_DISPLAY_NAME`.
-
-### 7. Local Acceptance Check
-
-```bash
-bash scripts/check-local.sh
+```text
+dist
 ```
 
-This runs backend tests, then builds `apps/web` and `apps/admin`.
+## GitHub Pages 发布
 
-### FAQ
+推送到 `main` 后，GitHub Actions 会自动：
 
-**Maven fails with Aliyun 502 or dependency transfer errors**
+1. 安装根目录依赖。
+2. 执行 `npm run build`。
+3. 上传 `dist`。
+4. 发布到 GitHub Pages。
 
-This is usually a Maven mirror problem rather than a code problem. Retry later, temporarily remove the Aliyun mirror from `~/.m2/settings.xml`, or switch to Maven Central / an available internal mirror. Then rerun:
+仓库需要在 GitHub 中开启：
 
-```bash
-bash scripts/run-api-local.sh
+```text
+Settings -> Pages -> Build and deployment -> Source: GitHub Actions
 ```
 
-**MySQL connection fails**
+默认 workflow 会按 GitHub Pages 项目地址构建：
 
-Start local MySQL first and confirm the credentials match the local environment variables. To recreate the database:
-
-```bash
-bash scripts/init-db.sh
+```text
+https://zhaoge0202.github.io/zhaoge_blog/
 ```
 
-**Frontend cannot reach backend**
+也就是默认：
 
-Ensure the backend is listening on `http://localhost:8080`, then set `VITE_API_BASE` for `apps/admin` if using a different backend URL. The public site itself no longer requests runtime content APIs.
-
-## Production Environment
-
-Production config is in `apps/api/src/main/resources/application-prod.yml`.
-Do not put production secrets into Git. Start the backend with `SPRING_PROFILES_ACTIVE=prod` and provide these environment variables:
-
-```bash
-export SPRING_PROFILES_ACTIVE=prod
-export DB_URL='jdbc:mysql://<host>:3306/interview_platform?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai'
-export DB_USERNAME='<prod-user>'
-export DB_PASSWORD='<prod-password>'
-export JWT_SECRET='<at-least-32-characters-secret>'
-export ADMIN_USERNAME='<admin-user>'
-export ADMIN_PASSWORD='<strong-admin-password>'
-export BOOTSTRAP_ADMIN_ENABLED=false
-
-cd apps/api
-mvn spring-boot:run
+```text
+VUEPRESS_BASE=/zhaoge_blog/
+VUEPRESS_HOSTNAME=https://zhaoge0202.github.io/
 ```
+
+如果使用自定义域名，继续在：
+
+```text
+Settings -> Pages -> Custom domain
+```
+
+填写域名，并在 Cloudflare 配置对应 DNS。自定义域名部署时，把 GitHub 仓库变量设置为：
+
+```text
+Settings -> Secrets and variables -> Actions -> Variables
+VUEPRESS_BASE=/
+VUEPRESS_HOSTNAME=https://你的域名
+```
+
+这样静态资源会从域名根路径加载。
