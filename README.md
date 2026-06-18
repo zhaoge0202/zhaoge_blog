@@ -1,12 +1,11 @@
 # Java 面试进阶静态站
 
-面向 3-5 年 Java 后端工程师的进阶面试准备站点。项目现在采用 JavaGuide 类似的纯静态架构：内容直接以 Markdown 维护，VuePress Theme Hope 负责阅读体验，GitHub Pages 负责发布。
+面向 3-5 年 Java 后端工程师的进阶面试准备站点。项目现在采用 JavaGuide 类似的纯静态架构，VuePress Theme Hope 负责阅读体验。
 
 ## 项目结构
 
 - `src`: VuePress Theme Hope 静态站点内容和配置。
 - `package.json`: 本地开发、构建和清理脚本。
-- `.github/workflows/pages.yml`: GitHub Pages 自动发布流程。
 - `docs/JavaGuide`: 本地参考仓库，已被 `.gitignore` 忽略，不进入提交。
 
 ## 本地开发

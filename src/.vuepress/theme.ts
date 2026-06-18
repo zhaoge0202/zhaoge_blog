@@ -19,8 +19,7 @@ export default hopeTheme({
   contributors: false,
   editLink: false,
   print: false,
-  displayFooter: true,
-  footer: "内容以 Markdown 维护，由 GitHub Pages 自动发布。",
+  displayFooter: false,
   pageInfo: ["Author", "Date", "Category", "Tag", "ReadingTime"],
   markdown: {
     align: true,
