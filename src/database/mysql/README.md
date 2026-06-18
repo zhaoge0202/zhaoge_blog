@@ -6,10 +6,10 @@ breadcrumb: true
 editLink: false
 prev:
   text: "JVM"
-  link: "/topics/jvm/"
+  link: "/java/jvm/"
 next:
   text: "Redis"
-  link: "/topics/redis/"
+  link: "/database/redis/"
 ---
 
 # MySQL
@@ -36,4 +36,4 @@ SQL 基础、B+ 树基础
 
 ## 题目列表
 
-- [MVCC 和 ReadView 是怎么工作的？](../../questions/mysql/mysql-mvcc-read-view.html) - MVCC 是 MySQL 事务面试最核心的原理题。
+- [MVCC 和 ReadView 是怎么工作的？](./mysql-mvcc-read-view.html) - MVCC 是 MySQL 事务面试最核心的原理题。

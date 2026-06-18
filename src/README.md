@@ -1,54 +1,54 @@
 ---
 home: true
 title: "Java 面试进阶指南"
-description: "面向 3-5 年 Java 后端工程师的面试进阶知识站，围绕并发、JVM、MySQL、Redis、系统设计、项目表达和复盘纠偏组织内容。"
+description: "面向 3-5 年 Java 后端工程师的进阶知识库，按 Java、数据库、系统设计与工具实践组织内容，并保留独立博客记录实战与随笔。"
 heroText: "Java 面试进阶指南"
-tagline: "面向 3-5 年后端工程师，把高频题、底层原理、项目表达和复盘纠偏整理成可持续阅读的知识体系。"
+tagline: "不是把资料一股脑堆上来，而是按知识域整理主线，再把实战、复盘和随笔单独沉淀。"
 actions:
   - text: "开始复习"
-    link: "#面试准备"
+    link: "/interview-preparation/"
     type: "primary"
-  - text: "进入题库"
-    link: "/questions/"
+  - text: "进入博客"
+    link: "/blog/"
     type: "default"
 highlights:
-  - header: "先建立主线，再进入专题"
-    description: "首页不只放文章列表，而是把面试准备、核心专题、项目表达和复盘路径组织成一个入口页。"
+  - header: "先分知识域，再进入文章"
+    description: "主线入口不再按专题 / 题库拆开，而是直接按 Java、数据库、系统设计和工具实践组织。"
     features:
       - title: "面试准备"
-        details: "明确复习顺序、题目优先级和表达目标，避免只背零散八股。"
-        link: "#面试准备"
-      - title: "Java 核心"
-        details: "围绕并发、JVM、集合、基础语义等高频题建立可追问的解释链。"
-        link: "#java-核心"
-      - title: "数据库与缓存"
-        details: "重点覆盖 MySQL 事务、索引、MVCC、Redis 缓存一致性和工程取舍。"
-        link: "#数据库与缓存"
+        details: "先看复习顺序、回答目标和纠偏方法，再进入具体知识域。"
+        link: "/interview-preparation/"
+      - title: "Java"
+        details: "围绕并发和 JVM 建立 Java 主线，后续再补基础、集合、IO 和工程实践。"
+        link: "/java/"
+      - title: "数据库"
+        details: "先把 MySQL 和 Redis 这两块最常被追问的知识域讲透。"
+        link: "/database/"
       - title: "系统设计"
-        details: "用场景题串起高并发、高可用、缓存、消息队列和架构演进。"
-        link: "#系统设计与项目表达"
-      - title: "项目表达"
-        details: "把技术点转成面试里能讲清楚的业务背景、方案权衡和排障结果。"
-        link: "#系统设计与项目表达"
-      - title: "复盘纠偏"
-        details: "记录容易混淆、容易被追问和资料之间存在冲突的地方。"
-        link: "/journey/"
+        details: "保留独立入口，后续承载高并发、高可用、缓存和场景题表达。"
+        link: "/system-design/"
+      - title: "工具实践"
+        details: "把工具链、写作流和工程小实践从知识库主线里单独分离出来。"
+        link: "/tools/"
+      - title: "博客"
+        details: "单独保留实战记录、随笔和复盘，不再和知识库栏目混成一团。"
+        link: "/blog/"
 ---
 
 <div class="home-entry-grid">
   <section class="home-entry-card home-entry-card--primary">
     <p class="home-entry-kicker">核心入口</p>
-    <h2>后端面试主线</h2>
-    <p>从准备路径进入，再按专题补齐原理、题目和项目表达。目标不是堆资料，而是把每个高频点讲成可追问、可落地的答案。</p>
+    <h2>知识库主线 + 博客支线</h2>
+    <p>先按面试准备、Java、数据库这些知识域建立主线，再把实战、复盘和随笔沉淀到博客。目标不是堆资料，而是把高频点讲成可追问、可落地的答案。</p>
     <div class="home-entry-actions">
-      <a href="#面试准备">查看准备路径</a>
-      <a href="/questions/">浏览高频题</a>
+      <a href="/interview-preparation/">查看准备路径</a>
+      <a href="/blog/">浏览博客</a>
     </div>
   </section>
   <section class="home-entry-card">
     <p class="home-entry-kicker">当前覆盖</p>
-    <h2>4 个核心专题</h2>
-    <p>并发、JVM、MySQL、Redis 先作为第一批核心内容，后续再补 Spring、消息队列、系统设计和项目专题。</p>
+    <h2>4 篇核心知识文章</h2>
+    <p>并发、JVM、MySQL、Redis 先作为第一批核心内容，先把这四条主线讲透，再继续外扩到系统设计和更多基础域。</p>
   </section>
   <section class="home-entry-card">
     <p class="home-entry-kicker">内容标准</p>
@@ -59,19 +59,19 @@ highlights:
 
 ## 面试准备
 
-- **复习顺序**：[专题总览](./topics/) -> [高频题库](./questions/) -> [复盘记录](./journey/)。先建立知识地图，再刷题，最后补表达和纠偏。
+- **复习顺序**：[面试准备](./interview-preparation/) -> [Java](./java/) / [数据库](./database/) -> [博客](./blog/)。先建立知识地图，再刷核心文章，最后补表达和纠偏。
 - **题目优先级**：先看能连接项目经验的题，比如线程池参数、G1 与 CMS、MVCC、缓存一致性。
 - **回答目标**：每道题至少讲清楚概念、核心流程、适用场景、常见坑和项目里的取舍。
 - **复盘方式**：记录资料冲突、自己讲不顺的点、面试官可能继续追问的方向。
 
-## Java 核心
+## Java
 
 ### 并发
 
 **当前重点**：
 
-- [线程池 7 个参数怎么理解？](./questions/java-concurrency/java-concurrency-thread-pool.html)
-- [并发专题入口](./topics/java-concurrency/)
+- [线程池 7 个参数怎么理解？](./java/concurrent/java-concurrency-thread-pool.html)
+- [并发入口页](./java/concurrent/)
 
 **后续补充方向**：
 
@@ -82,8 +82,8 @@ highlights:
 
 **当前重点**：
 
-- [G1 相比 CMS 改进了什么？](./questions/jvm/jvm-g1-vs-cms.html)
-- [JVM 专题入口](./topics/jvm/)
+- [G1 相比 CMS 改进了什么？](./java/jvm/jvm-g1-vs-cms.html)
+- [JVM 入口页](./java/jvm/)
 
 **后续补充方向**：
 
@@ -95,8 +95,8 @@ highlights:
 
 **当前重点**：
 
-- [MVCC 和 ReadView 是怎么工作的？](./questions/mysql/mysql-mvcc-read-view.html)
-- [MySQL 专题入口](./topics/mysql/)
+- [MVCC 和 ReadView 是怎么工作的？](./database/mysql/mysql-mvcc-read-view.html)
+- [MySQL 入口页](./database/mysql/)
 
 **后续补充方向**：
 
@@ -106,45 +106,46 @@ highlights:
 
 **当前重点**：
 
-- [如何保证缓存和数据库一致性？](./questions/redis/redis-cache-consistency.html)
-- [Redis 专题入口](./topics/redis/)
+- [如何保证缓存和数据库一致性？](./database/redis/redis-cache-consistency.html)
+- [Redis 入口页](./database/redis/)
 
 **后续补充方向**：
 
 - 缓存穿透、击穿、雪崩、热 key、大 key、持久化、主从复制、集群和分布式锁。
 
-## 系统设计与项目表达
+## 系统设计与工具实践
 
 - **高并发场景**：限流、降级、熔断、缓存、异步化和容量评估。
 - **高可用场景**：多副本、故障转移、超时重试、幂等和数据一致性。
-- **项目表达**：业务背景、原问题、备选方案、最终选择、上线效果和复盘指标。
-- **排障表达**：现象、监控、定位路径、根因、修复动作和防复发机制。
+- **工具实践**：[工具实践入口](./tools/) 用来沉淀脚本、写作链路和开发小工具，而不是挤进知识库栏目。
+- **博客支线**：[博客入口](./blog/) 用来放实战、复盘和随笔。
 
 ## 精选题目
 
 <div class="question-radar">
-  <a href="./questions/java-concurrency/java-concurrency-thread-pool.html">
+  <a href="./java/concurrent/java-concurrency-thread-pool.html">
     <span>并发</span>
     <strong>线程池 7 个参数怎么理解？</strong>
     <em>参数、队列、拒绝策略、项目调优</em>
   </a>
-  <a href="./questions/jvm/jvm-g1-vs-cms.html">
+  <a href="./java/jvm/jvm-g1-vs-cms.html">
     <span>JVM</span>
     <strong>G1 相比 CMS 改进了什么？</strong>
     <em>分区、停顿预测、并发标记、适用场景</em>
   </a>
-  <a href="./questions/mysql/mysql-mvcc-read-view.html">
+  <a href="./database/mysql/mysql-mvcc-read-view.html">
     <span>MySQL</span>
     <strong>MVCC 和 ReadView 是怎么工作的？</strong>
     <em>事务隔离、版本链、可见性判断</em>
   </a>
-  <a href="./questions/redis/redis-cache-consistency.html">
+  <a href="./database/redis/redis-cache-consistency.html">
     <span>Redis</span>
     <strong>如何保证缓存和数据库一致性？</strong>
     <em>延迟双删、旁路缓存、最终一致性</em>
   </a>
 </div>
 
-## 最近复盘
+## 最近博客
 
-- [从资料汇总转向内容纠偏](./journey/2026-06-16-note-1.html)：这个站点的价值不是简单聚合资料，而是筛选、纠错、解释取舍并沉淀自己的判断。
+- [从资料汇总转向内容纠偏](./blog/essays/2026-06-16-note-1.html)：这个站点的价值不是简单聚合资料，而是筛选、纠错、解释取舍并沉淀自己的判断。
+- [把本地 Markdown 媒体同步接到 R2 的一次实战](./blog/practice/2026-06-18-r2-media-sync-tutorial.html)：工具链要真的能跑通，卡住你的往往不是脚本，而是凭据链路。

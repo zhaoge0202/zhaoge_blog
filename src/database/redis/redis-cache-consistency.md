@@ -12,7 +12,7 @@ tag:
   - "PROJECT_READY"
 prev:
   text: "MVCC 和 ReadView 是怎么工作的？"
-  link: "/questions/mysql/mysql-mvcc-read-view.html"
+  link: "/database/mysql/mysql-mvcc-read-view.html"
 ---
 
 # 如何保证缓存和数据库一致性？
@@ -37,7 +37,7 @@ prev:
 
 ## 题目信息
 
-- 专题：[Redis](../../topics/redis/)
+- 专题：[Redis](./)
 - 难度：ADVANCED
 - 高频程度：MUST_KNOW
 - 掌握层级：PROJECT_READY

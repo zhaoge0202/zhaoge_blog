@@ -6,7 +6,7 @@ article: true
 timeline: true
 editLink: false
 category:
-  - "心路历程"
+  - "实战记录"
 tag:
   - "R2"
   - "VUEPRESS"
@@ -96,7 +96,7 @@ tag:
 核心命令只有一个：
 
 ```bash
-npm run media:sync -- src/journey/2026-06-18-r2-media-sync-tutorial.md
+npm run media:sync -- src/blog/practice/2026-06-18-r2-media-sync-tutorial.md
 ```
 
 它做的事情是：

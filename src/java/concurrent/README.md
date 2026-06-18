@@ -6,7 +6,7 @@ breadcrumb: true
 editLink: false
 next:
   text: "JVM"
-  link: "/topics/jvm/"
+  link: "/java/jvm/"
 ---
 
 # 并发
@@ -18,8 +18,6 @@ next:
 ## 知识主线
 
 线程模型 -> 内存模型 -> 锁 -> AQS -> 线程池 -> 工具类
-
-## *<u>~~woakuwaku~~</u>*
 
 ## 面试焦点
 
@@ -35,4 +33,4 @@ Java 基础、集合、线程基础
 
 ## 题目列表
 
-- [线程池 7 个参数怎么理解？](../../questions/java-concurrency/java-concurrency-thread-pool.html) - 线程池参数的排障与配置入口。
+- [线程池 7 个参数怎么理解？](./java-concurrency-thread-pool.html) - 线程池参数的排障与配置入口。

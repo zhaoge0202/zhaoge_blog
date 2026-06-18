@@ -6,10 +6,10 @@ breadcrumb: true
 editLink: false
 prev:
   text: "并发"
-  link: "/topics/java-concurrency/"
+  link: "/java/concurrent/"
 next:
   text: "MySQL"
-  link: "/topics/mysql/"
+  link: "/database/mysql/"
 ---
 
 # JVM
@@ -36,4 +36,4 @@ Java 基础、操作系统内存基础
 
 ## 题目列表
 
-- [G1 相比 CMS 改进了什么？](../../questions/jvm/jvm-g1-vs-cms.html) - 垃圾收集器对比是 JVM 面试从概念走向排障的关键题。
+- [G1 相比 CMS 改进了什么？](./jvm-g1-vs-cms.html) - 垃圾收集器对比是 JVM 面试从概念走向排障的关键题。

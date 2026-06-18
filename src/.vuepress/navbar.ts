@@ -1,16 +1,28 @@
 const navbar = [
   "/",
   {
-    text: "专题",
-    link: "/topics/",
+    text: "面试准备",
+    link: "/interview-preparation/",
   },
   {
-    text: "题库",
-    link: "/questions/",
+    text: "Java",
+    link: "/java/",
   },
   {
-    text: "心路历程",
-    link: "/journey/",
+    text: "数据库",
+    link: "/database/",
+  },
+  {
+    text: "系统设计",
+    link: "/system-design/",
+  },
+  {
+    text: "工具实践",
+    link: "/tools/",
+  },
+  {
+    text: "博客",
+    link: "/blog/",
   },
 ];
 

@@ -12,7 +12,7 @@ tag:
   - "PROJECT_READY"
 next:
   text: "G1 相比 CMS 改进了什么？"
-  link: "/questions/jvm/jvm-g1-vs-cms.html"
+  link: "/java/jvm/jvm-g1-vs-cms.html"
 ---
 
 # 线程池 7 个参数怎么理解？
@@ -37,7 +37,7 @@ next:
 
 ## 题目信息
 
-- 专题：[并发](../../topics/java-concurrency/)
+- 专题：[并发](./)
 - 难度：ADVANCED
 - 高频程度：MUST_KNOW
 - 掌握层级：PROJECT_READY

@@ -6,7 +6,7 @@ breadcrumb: true
 editLink: false
 prev:
   text: "MySQL"
-  link: "/topics/mysql/"
+  link: "/database/mysql/"
 ---
 
 # Redis
@@ -33,4 +33,4 @@ Redis 高频出现在性能优化、缓存一致性和分布式协调场景。
 
 ## 题目列表
 
-- [如何保证缓存和数据库一致性？](../../questions/redis/redis-cache-consistency.html) - 缓存一致性是 Redis 面试最容易接项目场景的题。
+- [如何保证缓存和数据库一致性？](./redis-cache-consistency.html) - 缓存一致性是 Redis 面试最容易接项目场景的题。

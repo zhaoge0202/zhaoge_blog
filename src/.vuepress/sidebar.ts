@@ -1,59 +1,52 @@
 const sidebar = {
-  "/topics/": [
+  "/interview-preparation/": [""],
+  "/java/": [
     "",
     {
       text: "并发",
-      prefix: "java-concurrency/",
+      prefix: "concurrent/",
       collapsible: true,
-      children: [""],
+      children: ["", "java-concurrency-thread-pool"],
     },
     {
       text: "JVM",
       prefix: "jvm/",
       collapsible: true,
-      children: [""],
-    },
-    {
-      text: "MySQL",
-      prefix: "mysql/",
-      collapsible: true,
-      children: [""],
-    },
-    {
-      text: "Redis",
-      prefix: "redis/",
-      collapsible: true,
-      children: [""],
+      children: ["", "jvm-g1-vs-cms"],
     },
   ],
-  "/questions/": [
+  "/database/": [
     "",
     {
-      text: "并发",
-      prefix: "java-concurrency/",
-      collapsible: true,
-      children: ["java-concurrency-thread-pool"],
-    },
-    {
-      text: "JVM",
-      prefix: "jvm/",
-      collapsible: true,
-      children: ["jvm-g1-vs-cms"],
-    },
-    {
       text: "MySQL",
       prefix: "mysql/",
       collapsible: true,
-      children: ["mysql-mvcc-read-view"],
+      children: ["", "mysql-mvcc-read-view"],
     },
     {
       text: "Redis",
       prefix: "redis/",
       collapsible: true,
-      children: ["redis-cache-consistency"],
+      children: ["", "redis-cache-consistency"],
     },
   ],
-  "/journey/": ["", "2026-06-16-note-1"],
+  "/system-design/": [""],
+  "/tools/": [""],
+  "/blog/": [
+    "",
+    {
+      text: "实战记录",
+      prefix: "practice/",
+      collapsible: true,
+      children: ["2026-06-18-r2-media-sync-tutorial"],
+    },
+    {
+      text: "随笔",
+      prefix: "essays/",
+      collapsible: true,
+      children: ["2026-06-16-note-1"],
+    },
+  ],
   "/category/": [],
   "/tag/": [],
   "/article/": [],
