@@ -38,7 +38,7 @@ export default defineUserConfig({
       resolve: {
         alias: {
           "@site/real-mermaid": realMermaidComponentPath,
-          "@vuepress/plugin-markdown-chart/client/components/Mermaid.js":
+          [realMermaidComponentPath]:
             lazyMermaidComponentPath,
         },
       },
