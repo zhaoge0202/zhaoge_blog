@@ -70,11 +70,17 @@ test("home page links point to new domain and blog entries instead of legacy sec
   }
 });
 
-test("theme enables local site search instead of disabling it", () => {
+test("theme overrides slimsearch custom fields with plain string formatters", () => {
   const theme = read("src/.vuepress/theme.ts");
 
   assert.doesNotMatch(theme, /search:\s*false/);
-  assert.match(theme, /slimsearch:\s*true/);
+  assert.match(theme, /slimsearch:\s*\{/);
+  assert.match(theme, /customFields:\s*\[/);
+  assert.match(theme, /const toSlimsearchFieldValue =/);
+  assert.match(theme, /getter:\s*\(page\)\s*=>\s*toSlimsearchFieldValue\(page\.frontmatter\.category\)/);
+  assert.match(theme, /getter:\s*\(page\)\s*=>\s*toSlimsearchFieldValue\(page\.frontmatter\.tag\)/);
+  assert.match(theme, /formatter:\s*"分类: \$content"/);
+  assert.match(theme, /formatter:\s*"标签: \$content"/);
 });
 
 test("theme config enables richer markdown and blog intro capabilities", () => {
@@ -92,6 +98,8 @@ test("theme config enables richer markdown and blog intro capabilities", () => {
   }
 
   assert.match(theme, /include:\s*\{/);
+  assert.match(theme, /const includeBaseDir = cwd \?\? __dirname/);
+  assert.match(theme, /return path\.resolve\(includeBaseDir, file\)/);
 });
 
 test("site config and theme expose SEO and JSON-LD hooks", () => {
@@ -102,7 +110,8 @@ test("site config and theme expose SEO and JSON-LD hooks", () => {
   assert.match(theme, /canonical:/);
   assert.match(theme, /jsonLd:/);
   assert.match(theme, /customHead:/);
-  assert.match(config, /apple-mobile-web-app-capable/);
+  assert.match(config, /mobile-web-app-capable/);
+  assert.doesNotMatch(config, /apple-mobile-web-app-capable/);
 });
 
 test("about author page and immersive mode client files exist", () => {
@@ -133,18 +142,25 @@ test("package manifest includes runtime support for search and mermaid features"
   );
 });
 
-test("client enhancements register image preview, lazy mermaid, and chunk reload recovery", () => {
+test("client enhancements keep lazy mermaid aliasing without duplicate component registration", () => {
   const client = read("src/.vuepress/client.ts");
+  const config = read("src/.vuepress/config.ts");
 
   for (const snippet of [
     "ClickImagePreview",
-    "LazyMermaid",
     "router.onError",
-    'app.component("Mermaid", LazyMermaid)',
     "CHUNK_LOAD_ERROR_PATTERN",
   ]) {
     assert.match(client, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
+
+  assert.doesNotMatch(
+    client,
+    /app\.component\("Mermaid",\s*LazyMermaid\)/,
+  );
+  assert.match(config, /realMermaidComponentPath/);
+  assert.match(config, /lazyMermaidComponentPath/);
+  assert.match(config, /"@site\/real-mermaid"/);
 
   for (const relativePath of [
     "src/.vuepress/components/ClickImagePreview.vue",

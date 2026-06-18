@@ -7,6 +7,21 @@ import { applySeoJsonLd, buildSeoDescription } from "./seo.js";
 const __dirname = getDirname(import.meta.url);
 const hostname = process.env.VUEPRESS_HOSTNAME || "https://zhaoge0202.github.io/";
 const authorName = "zhaoge";
+const toSlimsearchFieldValue = (
+  value: unknown,
+): string | string[] | undefined => {
+  if (typeof value === "string") return value;
+
+  if (Array.isArray(value)) {
+    const strings = value.filter(
+      (item): item is string => typeof item === "string",
+    );
+
+    return strings.length > 0 ? strings : undefined;
+  }
+
+  return undefined;
+};
 
 export default hopeTheme({
   hostname,
@@ -52,7 +67,8 @@ export default hopeTheme({
           return path.resolve(__dirname, "../snippets", file.replace("@", "./"));
         }
 
-        return path.resolve(cwd, file);
+        const includeBaseDir = cwd ?? __dirname;
+        return path.resolve(includeBaseDir, file);
       },
     },
     tasklist: true,
@@ -60,7 +76,18 @@ export default hopeTheme({
   plugins: {
     blog: true,
     photoSwipe: false,
-    slimsearch: true,
+    slimsearch: {
+      customFields: [
+        {
+          getter: (page) => toSlimsearchFieldValue(page.frontmatter.category),
+          formatter: "分类: $content",
+        },
+        {
+          getter: (page) => toSlimsearchFieldValue(page.frontmatter.tag),
+          formatter: "标签: $content",
+        },
+      ],
+    },
     seo: {
       canonical: hostname.replace(/\/$/, ""),
       ogp: (ogp, page) => ({

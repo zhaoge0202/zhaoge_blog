@@ -2,7 +2,6 @@ import { defineClientConfig } from "vuepress/client";
 import { h } from "vue";
 import DeferredLayoutToggle from "./components/DeferredLayoutToggle.vue";
 import ClickImagePreview from "./components/ClickImagePreview.vue";
-import LazyMermaid from "./components/LazyMermaid.vue";
 
 const CHUNK_LOAD_ERROR_PATTERN =
   /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Unable to preload CSS/i;
@@ -12,8 +11,6 @@ const getCurrentLocation = (): string =>
 
 export default defineClientConfig({
   enhance({ app, router }) {
-    app.component("Mermaid", LazyMermaid);
-
     router.onError((error, to) => {
       if (typeof window === "undefined") return;
 
