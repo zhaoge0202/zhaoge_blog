@@ -1,9 +1,17 @@
+import { createRequire } from "node:module";
 import { viteBundler } from "@vuepress/bundler-vite";
 import { fileURLToPath } from "node:url";
 import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
+const require = createRequire(import.meta.url);
 const dist = fileURLToPath(new URL("../../dist", import.meta.url));
+const lazyMermaidComponentPath = fileURLToPath(
+  new URL("./components/LazyMermaid.vue", import.meta.url),
+);
+const realMermaidComponentPath = require.resolve(
+  "@vuepress/plugin-markdown-chart/client/components/Mermaid.js",
+);
 
 export default defineUserConfig({
   base: process.env.VUEPRESS_BASE || "/",
@@ -25,7 +33,17 @@ export default defineUserConfig({
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
   ],
   theme,
-  bundler: viteBundler(),
+  bundler: viteBundler({
+    viteOptions: {
+      resolve: {
+        alias: {
+          "@site/real-mermaid": realMermaidComponentPath,
+          "@vuepress/plugin-markdown-chart/client/components/Mermaid.js":
+            lazyMermaidComponentPath,
+        },
+      },
+    },
+  }),
   shouldPrefetch: false,
   shouldPreload: false,
 });

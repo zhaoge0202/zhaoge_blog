@@ -132,3 +132,24 @@ test("package manifest includes runtime support for search and mermaid features"
     "package.json should include mermaid",
   );
 });
+
+test("client enhancements register image preview, lazy mermaid, and chunk reload recovery", () => {
+  const client = read("src/.vuepress/client.ts");
+
+  for (const snippet of [
+    "ClickImagePreview",
+    "LazyMermaid",
+    "router.onError",
+    'app.component("Mermaid", LazyMermaid)',
+    "CHUNK_LOAD_ERROR_PATTERN",
+  ]) {
+    assert.match(client, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  for (const relativePath of [
+    "src/.vuepress/components/ClickImagePreview.vue",
+    "src/.vuepress/components/LazyMermaid.vue",
+  ]) {
+    assert.equal(exists(relativePath), true, `${relativePath} should exist`);
+  }
+});
