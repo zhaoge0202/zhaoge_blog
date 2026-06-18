@@ -24,6 +24,10 @@ const navbar = [
     text: "博客",
     link: "/blog/",
   },
+  {
+    text: "关于",
+    link: "/about-the-author/",
+  },
 ];
 
 export default navbar;

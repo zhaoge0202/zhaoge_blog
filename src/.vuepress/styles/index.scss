@@ -259,6 +259,104 @@ pre {
   }
 }
 
+.vp-navbar,
+.vp-sidebar,
+.vp-page,
+.theme-container .vp-page {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    margin 0.3s ease,
+    padding 0.3s ease,
+    width 0.3s ease;
+}
+
+html.layout-hidden {
+  .vp-navbar {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .vp-sidebar {
+    transform: translateX(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+  }
+
+  .toggle-sidebar-wrapper,
+  .vp-sidebar-mask {
+    display: none !important;
+  }
+
+  .vp-sidebar-wrapper,
+  .sidebar-wrapper {
+    width: 0 !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .vp-toc-placeholder,
+  .toc-wrapper,
+  .vp-toc,
+  aside.vp-toc,
+  .toc {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  .theme-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    .vp-page {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      margin-left: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+  }
+
+  .theme-hope-content,
+  .vp-page-content,
+  .vp-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1rem 2rem !important;
+  }
+
+  .vp-page-container,
+  .theme-container > main {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  @media (min-width: 960px) {
+    .theme-container .vp-page {
+      padding-left: 3rem !important;
+      padding-right: 3rem !important;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .theme-container .vp-page {
+      padding-left: 4rem !important;
+      padding-right: 4rem !important;
+    }
+
+    .theme-hope-content,
+    .vp-page-content,
+    .vp-content {
+      padding: 1rem 3rem !important;
+    }
+  }
+}
+
 @media (max-width: 719px) {
   .home .vp-hero-info-wrapper {
     padding: 1.4rem 1.2rem;

@@ -32,6 +32,7 @@ const sidebar = {
   ],
   "/system-design/": [""],
   "/tools/": [""],
+  "/about-the-author/": [""],
   "/blog/": [
     "",
     {

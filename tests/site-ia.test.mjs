@@ -13,6 +13,9 @@ const read = (relativePath) =>
 const exists = (relativePath) =>
   fs.existsSync(path.join(repoRoot, relativePath));
 
+const readJson = (relativePath) =>
+  JSON.parse(read(relativePath));
+
 test("navbar exposes domain-first knowledge sections and a separate blog entry", () => {
   const navbar = read("src/.vuepress/navbar.ts");
 
@@ -65,4 +68,67 @@ test("home page links point to new domain and blog entries instead of legacy sec
   for (const legacyLink of ["/topics/", "/questions/", "/journey/"]) {
     assert.doesNotMatch(home, new RegExp(legacyLink.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
+});
+
+test("theme enables local site search instead of disabling it", () => {
+  const theme = read("src/.vuepress/theme.ts");
+
+  assert.doesNotMatch(theme, /search:\s*false/);
+  assert.match(theme, /slimsearch:\s*true/);
+});
+
+test("theme config enables richer markdown and blog intro capabilities", () => {
+  const theme = read("src/.vuepress/theme.ts");
+
+  for (const snippet of [
+    "codeTabs: true",
+    "mermaid: true",
+    "gfm: true",
+    "tasklist: true",
+    'intro: "/about-the-author/"',
+    "medias:",
+  ]) {
+    assert.match(theme, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  assert.match(theme, /include:\s*\{/);
+});
+
+test("site config and theme expose SEO and JSON-LD hooks", () => {
+  const theme = read("src/.vuepress/theme.ts");
+  const config = read("src/.vuepress/config.ts");
+
+  assert.match(theme, /seo:\s*\{/);
+  assert.match(theme, /canonical:/);
+  assert.match(theme, /jsonLd:/);
+  assert.match(theme, /customHead:/);
+  assert.match(config, /apple-mobile-web-app-capable/);
+});
+
+test("about author page and immersive mode client files exist", () => {
+  for (const relativePath of [
+    "src/about-the-author/README.md",
+    "src/.vuepress/client.ts",
+    "src/.vuepress/components/DeferredLayoutToggle.vue",
+  ]) {
+    assert.equal(exists(relativePath), true, `${relativePath} should exist`);
+  }
+
+  const styles = read("src/.vuepress/styles/index.scss");
+  assert.match(styles, /html\.layout-hidden/);
+});
+
+test("package manifest includes runtime support for search and mermaid features", () => {
+  const pkg = readJson("package.json");
+
+  assert.equal(
+    pkg.devDependencies?.["@vuepress/plugin-slimsearch"] !== undefined,
+    true,
+    "package.json should include @vuepress/plugin-slimsearch",
+  );
+  assert.equal(
+    pkg.devDependencies?.mermaid !== undefined || pkg.dependencies?.mermaid !== undefined,
+    true,
+    "package.json should include mermaid",
+  );
 });

@@ -14,6 +14,15 @@ export default defineUserConfig({
   head: [
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "zhaoge" }],
+    [
+      "meta",
+      {
+        name: "keywords",
+        content:
+          "Java面试,后端面试,Java并发,JVM,MySQL,Redis,系统设计,工具实践,技术博客",
+      },
+    ],
+    ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
   ],
   theme,
   bundler: viteBundler(),
