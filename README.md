@@ -77,3 +77,64 @@ VUEPRESS_HOSTNAME=https://你的域名
 ```
 
 这样静态资源会从域名根路径加载。
+
+## R2 媒体同步
+
+仓库提供了一个**手动触发**的本地脚本，用来把 Markdown 里的本地媒体上传到 R2，并把文中的相对路径改写成 CDN URL。
+
+### 1. 准备本地配置
+
+复制示例配置：
+
+```bash
+cp .media-sync.example.json .media-sync.json
+```
+
+然后把 `.media-sync.json` 里的占位值替换成你自己的 R2 信息。这个文件已经加入 `.gitignore`，不会进入 Git。
+
+也可以只把非敏感字段放到 `.media-sync.json`，然后通过环境变量覆盖密钥：
+
+```bash
+export R2_MEDIA_SYNC_ACCESS_KEY_ID=...
+export R2_MEDIA_SYNC_SECRET_ACCESS_KEY=...
+```
+
+### 2. 运行同步
+
+同步整个 `src`：
+
+```bash
+npm run media:sync
+```
+
+同步单篇文章：
+
+```bash
+npm run media:sync -- src/journey/2026-06-16-note-1.md
+```
+
+只预览、不改写文件：
+
+```bash
+npm run media:sync -- src --dry-run
+```
+
+### 3. 行为说明
+
+- 脚本会扫描 Markdown 图片语法、指向媒体文件的 Markdown 链接，以及 `<img> / <audio> / <video> / <source>` 的 `src`。
+- 只处理本地相对路径，远程 URL 不会重复上传。
+- 上传路径固定为 `blog/YYYY/MM/DD/`。
+- 文件名前缀格式为 `YYYYMMDD-vNNN-`，例如：
+
+```text
+blog/2026/06/18/20260618-v001-system-design-diagram.png
+```
+
+- 同一天、同一个清洗后的文件名会自动递增版本号。
+- 成功后会直接改写 Markdown 文件，把本地路径替换为 `https://media.zhaoge.top/...` 这样的公网 URL。
+
+### 4. 自检
+
+```bash
+npm run test:media-sync
+```

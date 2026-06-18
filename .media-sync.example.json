@@ -1,0 +1,9 @@
+{
+  "bucket": "zhaogepersonal",
+  "endpoint": "https://your-account-id.r2.cloudflarestorage.com",
+  "accessKeyId": "R2_ACCESS_KEY_ID",
+  "secretAccessKey": "R2_SECRET_ACCESS_KEY",
+  "publicBaseUrl": "https://media.zhaoge.top",
+  "keyPrefix": "blog",
+  "region": "auto"
+}
