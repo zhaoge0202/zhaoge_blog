@@ -271,6 +271,17 @@ pre {
     width 0.3s ease;
 }
 
+.slimsearch-mask {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: rgba(36, 27, 21, 0.2);
+  animation: none;
+}
+
+.slimsearch-modal {
+  animation: none;
+}
+
 html.layout-hidden {
   .vp-navbar {
     transform: translateY(-100%) !important;

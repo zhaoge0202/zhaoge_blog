@@ -153,3 +153,17 @@ test("client enhancements register image preview, lazy mermaid, and chunk reload
     assert.equal(exists(relativePath), true, `${relativePath} should exist`);
   }
 });
+
+test("search modal styles disable heavy backdrop blur and long open animations", () => {
+  const styles = read("src/.vuepress/styles/index.scss");
+
+  for (const snippet of [
+    ".slimsearch-mask",
+    "backdrop-filter: none",
+    "-webkit-backdrop-filter: none",
+    ".slimsearch-modal",
+    "animation: none",
+  ]) {
+    assert.match(styles, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});
