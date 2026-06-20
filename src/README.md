@@ -1,7 +1,7 @@
 ---
 home: true
 title: "Java 面试进阶指南"
-description: "面向 3-5 年 Java 后端工程师的进阶知识库，按 Java、数据库、系统设计与工具实践组织内容，并保留独立博客记录实战与随笔。"
+description: "面向 3-5 年 Java 后端工程师的进阶知识库，按 Java、计算机基础、数据库、系统设计与工具实践组织内容，并保留独立博客记录实战与随笔。"
 heroText: "Java 面试进阶指南"
 tagline: "不是把资料一股脑堆上来，而是按知识域整理主线，再把实战、复盘和随笔单独沉淀。"
 actions:
@@ -13,23 +13,29 @@ actions:
     type: "default"
 highlights:
   - header: "先分知识域，再进入文章"
-    description: "主线入口不再按专题 / 题库拆开，而是直接按 Java、数据库、系统设计和工具实践组织。"
+    description: "主线入口不再按专题 / 题库拆开，而是直接按 Java、计算机基础、数据库、系统设计和工具实践组织。"
     features:
       - title: "面试准备"
         details: "先看复习顺序、回答目标和纠偏方法，再进入具体知识域。"
         link: "/interview-preparation/"
       - title: "Java"
-        details: "围绕并发和 JVM 建立 Java 主线，后续再补基础、集合、IO 和工程实践。"
+        details: "围绕并发和 JVM 建立 Java 主线，后续再补基础、集合、IO 和新特性。"
         link: "/java/"
+      - title: "计算机基础"
+        details: "操作系统、计算机网络、数据结构与算法，撑起后端面试的底层功底。"
+        link: "/cs-basics/"
       - title: "数据库"
-        details: "先把 MySQL 和 Redis 这两块最常被追问的知识域讲透。"
+        details: "先把 MySQL 和 Redis 讲透，再外扩到 SQL、ES 和 MongoDB。"
         link: "/database/"
       - title: "系统设计"
-        details: "保留独立入口，后续承载高并发、高可用、缓存和场景题表达。"
+        details: "系统设计为主线，串联分布式、高性能、高可用的场景题表达。"
         link: "/system-design/"
       - title: "工具实践"
         details: "把工具链、写作流和工程小实践从知识库主线里单独分离出来。"
         link: "/tools/"
+      - title: "AI 应用开发"
+        details: "后端工程师怎么把大模型和 AI 编程接进业务，作为知识库的外延方向。"
+        link: "/ai/"
       - title: "博客"
         details: "单独保留实战记录、随笔和复盘，不再和知识库栏目混成一团。"
         link: "/blog/"
@@ -113,11 +119,14 @@ highlights:
 
 - 缓存穿透、击穿、雪崩、热 key、大 key、持久化、主从复制、集群和分布式锁。
 
-## 系统设计与工具实践
+## 系统设计与后端进阶
 
-- **高并发场景**：限流、降级、熔断、缓存、异步化和容量评估。
-- **高可用场景**：多副本、故障转移、超时重试、幂等和数据一致性。
-- **工具实践**：[工具实践入口](./tools/) 用来沉淀脚本、写作链路和开发小工具，而不是挤进知识库栏目。
+- **系统设计**：[系统设计入口](./system-design/) 承载框架、设计模式、安全和场景题表达。
+- **分布式**：[分布式入口](./distributed-system/) 覆盖 RPC、分布式 ID、分布式锁与事务。
+- **高性能**：[高性能入口](./high-performance/) 覆盖缓存、读写分离、分库分表与消息队列。
+- **高可用**：[高可用入口](./high-availability/) 覆盖限流、降级、熔断、超时重试与幂等。
+- **计算机基础**：[计算机基础入口](./cs-basics/) 沉淀操作系统、网络、数据结构与算法。
+- **工具实践**：[工具实践入口](./tools/) 沉淀 Docker、Git、Maven、Gradle 与写作链路。
 - **博客支线**：[博客入口](./blog/) 用来放实战、复盘和随笔。
 
 ## 精选题目
