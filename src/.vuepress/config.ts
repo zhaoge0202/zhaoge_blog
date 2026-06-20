@@ -42,6 +42,18 @@ export default defineUserConfig({
             lazyMermaidComponentPath,
         },
       },
+      build: {
+        rollupOptions: {
+          // Vite 8 默认打包器 Rolldown 对 /* #__PURE__ */ 注释位置的校验更严格，
+          // @vueuse/core 等第三方依赖的产物会刷出大量 INVALID_ANNOTATION 告警。
+          // 这是依赖自身的注释风格问题，与本站代码无关，这里只静音这一种告警，
+          // 其余构建日志照常输出。
+          onLog(level, log, handler) {
+            if (log.code === "INVALID_ANNOTATION") return;
+            handler(level, log);
+          },
+        },
+      },
     },
   }),
   shouldPrefetch: false,
