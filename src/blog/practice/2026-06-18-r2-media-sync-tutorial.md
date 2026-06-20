@@ -8,9 +8,9 @@ editLink: false
 category:
   - "实战记录"
 tag:
-  - "R2"
-  - "VUEPRESS"
-  - "TOOLING"
+  - "工具链"
+  - "对象存储"
+  - "VuePress"
 ---
 
 # 把本地 Markdown 媒体同步接到 R2 的一次实战

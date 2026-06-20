@@ -7,9 +7,9 @@ editLink: false
 category:
   - "MySQL"
 tag:
-  - "ADVANCED"
-  - "MUST_KNOW"
-  - "DEEP_EXPLAIN"
+  - "必会"
+  - "进阶"
+  - "原理深入"
 prev:
   text: "G1 相比 CMS 改进了什么？"
   link: "/java/jvm/jvm-g1-vs-cms.html"

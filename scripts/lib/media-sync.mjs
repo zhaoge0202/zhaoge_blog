@@ -285,7 +285,11 @@ export async function syncMarkdownFile(
     });
   }
 
-  const rewritten = rewriteMarkdownContent(markdown, references, replacementMap);
+  const rewritten = rewriteMarkdownContent(
+    markdown,
+    references,
+    replacementMap,
+  );
 
   if (writeChanges && rewritten !== markdown) {
     await writeFile(markdownFilePath, rewritten, "utf8");

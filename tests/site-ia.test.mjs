@@ -13,13 +13,19 @@ const read = (relativePath) =>
 const exists = (relativePath) =>
   fs.existsSync(path.join(repoRoot, relativePath));
 
-const readJson = (relativePath) =>
-  JSON.parse(read(relativePath));
+const readJson = (relativePath) => JSON.parse(read(relativePath));
 
 test("navbar exposes domain-first knowledge sections and a separate blog entry", () => {
   const navbar = read("src/.vuepress/navbar.ts");
 
-  for (const label of ["面试准备", "Java", "数据库", "系统设计", "工具实践", "博客"]) {
+  for (const label of [
+    "面试准备",
+    "Java",
+    "数据库",
+    "系统设计",
+    "工具实践",
+    "博客",
+  ]) {
     assert.match(navbar, new RegExp(label));
   }
 
@@ -61,12 +67,20 @@ test("core content is migrated into java/database/blog paths", () => {
 test("home page links point to new domain and blog entries instead of legacy sections", () => {
   const home = read("src/README.md");
 
-  for (const link of ["/interview-preparation/", "/java/", "/database/", "/blog/"]) {
+  for (const link of [
+    "/interview-preparation/",
+    "/java/",
+    "/database/",
+    "/blog/",
+  ]) {
     assert.match(home, new RegExp(link.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 
   for (const legacyLink of ["/topics/", "/questions/", "/journey/"]) {
-    assert.doesNotMatch(home, new RegExp(legacyLink.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.doesNotMatch(
+      home,
+      new RegExp(legacyLink.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 });
 
@@ -77,8 +91,14 @@ test("theme overrides slimsearch custom fields with plain string formatters", ()
   assert.match(theme, /slimsearch:\s*\{/);
   assert.match(theme, /customFields:\s*\[/);
   assert.match(theme, /const toSlimsearchFieldValue =/);
-  assert.match(theme, /getter:\s*\(page\)\s*=>\s*toSlimsearchFieldValue\(page\.frontmatter\.category\)/);
-  assert.match(theme, /getter:\s*\(page\)\s*=>\s*toSlimsearchFieldValue\(page\.frontmatter\.tag\)/);
+  assert.match(
+    theme,
+    /getter:\s*\(page\)\s*=>\s*toSlimsearchFieldValue\(page\.frontmatter\.category\)/,
+  );
+  assert.match(
+    theme,
+    /getter:\s*\(page\)\s*=>\s*toSlimsearchFieldValue\(page\.frontmatter\.tag\)/,
+  );
   assert.match(theme, /formatter:\s*"分类: \$content"/);
   assert.match(theme, /formatter:\s*"标签: \$content"/);
 });
@@ -94,7 +114,10 @@ test("theme config enables richer markdown and blog intro capabilities", () => {
     'intro: "/about-the-author/"',
     "medias:",
   ]) {
-    assert.match(theme, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(
+      theme,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 
   assert.match(theme, /include:\s*\{/);
@@ -136,7 +159,8 @@ test("package manifest includes runtime support for search and mermaid features"
     "package.json should include @vuepress/plugin-slimsearch",
   );
   assert.equal(
-    pkg.devDependencies?.mermaid !== undefined || pkg.dependencies?.mermaid !== undefined,
+    pkg.devDependencies?.mermaid !== undefined ||
+      pkg.dependencies?.mermaid !== undefined,
     true,
     "package.json should include mermaid",
   );
@@ -151,13 +175,13 @@ test("client enhancements keep lazy mermaid aliasing without duplicate component
     "router.onError",
     "CHUNK_LOAD_ERROR_PATTERN",
   ]) {
-    assert.match(client, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(
+      client,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 
-  assert.doesNotMatch(
-    client,
-    /app\.component\("Mermaid",\s*LazyMermaid\)/,
-  );
+  assert.doesNotMatch(client, /app\.component\("Mermaid",\s*LazyMermaid\)/);
   assert.match(config, /realMermaidComponentPath/);
   assert.match(config, /lazyMermaidComponentPath/);
   assert.match(config, /"@site\/real-mermaid"/);
@@ -180,6 +204,9 @@ test("search modal styles disable heavy backdrop blur and long open animations",
     ".slimsearch-modal",
     "animation: none",
   ]) {
-    assert.match(styles, new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(
+      styles,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 });

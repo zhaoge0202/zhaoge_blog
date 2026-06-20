@@ -7,9 +7,9 @@ editLink: false
 category:
   - "JVM"
 tag:
-  - "ADVANCED"
-  - "HIGH"
-  - "DEEP_EXPLAIN"
+  - "进阶"
+  - "高频"
+  - "原理深入"
 prev:
   text: "线程池 7 个参数怎么理解？"
   link: "/java/concurrent/java-concurrency-thread-pool.html"

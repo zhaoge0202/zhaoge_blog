@@ -7,9 +7,9 @@ editLink: false
 category:
   - "并发"
 tag:
-  - "ADVANCED"
-  - "MUST_KNOW"
-  - "PROJECT_READY"
+  - "必会"
+  - "进阶"
+  - "项目实战"
 next:
   text: "G1 相比 CMS 改进了什么？"
   link: "/java/jvm/jvm-g1-vs-cms.html"

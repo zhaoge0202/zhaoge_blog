@@ -9,16 +9,16 @@ const dist = fileURLToPath(new URL("../../dist", import.meta.url));
 const lazyMermaidComponentPath = fileURLToPath(
   new URL("./components/LazyMermaid.vue", import.meta.url),
 );
-const realMermaidComponentPath = require.resolve(
-  "@vuepress/plugin-markdown-chart/client/components/Mermaid.js",
-);
+const realMermaidComponentPath =
+  require.resolve("@vuepress/plugin-markdown-chart/client/components/Mermaid.js");
 
 export default defineUserConfig({
   base: process.env.VUEPRESS_BASE || "/",
   dest: dist,
   lang: "zh-CN",
   title: "Java 面试进阶指南",
-  description: "面向 3-5 年 Java 后端工程师的面试进阶知识站，围绕高频题、原理、项目表达与复盘纠偏组织内容。",
+  description:
+    "面向 3-5 年 Java 后端工程师的面试进阶知识站，围绕高频题、原理、项目表达与复盘纠偏组织内容。",
   head: [
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "zhaoge" }],
@@ -38,8 +38,7 @@ export default defineUserConfig({
       resolve: {
         alias: {
           "@site/real-mermaid": realMermaidComponentPath,
-          [realMermaidComponentPath]:
-            lazyMermaidComponentPath,
+          [realMermaidComponentPath]: lazyMermaidComponentPath,
         },
       },
       build: {

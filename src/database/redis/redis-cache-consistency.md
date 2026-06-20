@@ -7,9 +7,9 @@ editLink: false
 category:
   - "Redis"
 tag:
-  - "ADVANCED"
-  - "MUST_KNOW"
-  - "PROJECT_READY"
+  - "必会"
+  - "进阶"
+  - "项目实战"
 prev:
   text: "MVCC 和 ReadView 是怎么工作的？"
   link: "/database/mysql/mysql-mvcc-read-view.html"

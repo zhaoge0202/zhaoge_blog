@@ -16,7 +16,10 @@ import {
   parseCliArguments,
   resolveRuntimeConfig,
 } from "./lib/media-sync-cli.mjs";
-import { buildVersionedObjectKey, syncMarkdownFile } from "./lib/media-sync.mjs";
+import {
+  buildVersionedObjectKey,
+  syncMarkdownFile,
+} from "./lib/media-sync.mjs";
 
 const DEFAULT_CONFIG_PATH = ".media-sync.json";
 const MIME_TYPES = new Map([

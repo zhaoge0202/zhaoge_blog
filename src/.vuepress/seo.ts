@@ -72,7 +72,10 @@ const trimDescription = (description: string): string => {
 };
 
 const buildPathUrl = (hostname: string, pagePath: string): string =>
-  new URL(pagePath.replace(/^\//, ""), hostname.endsWith("/") ? hostname : `${hostname}/`).toString();
+  new URL(
+    pagePath.replace(/^\//, ""),
+    hostname.endsWith("/") ? hostname : `${hostname}/`,
+  ).toString();
 
 const formatSegment = (segment: string): string =>
   segmentDisplayNames[segment] ??
@@ -142,7 +145,9 @@ const buildFocusText = (page: {
     .filter(Boolean)
     .slice(0, 3);
 
-  const focus = [...categories, ...tags, ...headers].filter(Boolean).slice(0, 4);
+  const focus = [...categories, ...tags, ...headers]
+    .filter(Boolean)
+    .slice(0, 4);
 
   return focus.length ? `重点围绕 ${focus.join("、")} 等内容展开。` : "";
 };
@@ -158,12 +163,15 @@ export const buildSeoDescription = (page: {
 }): string => {
   const existingDescription = normalize(page.frontmatter.description);
 
-  if (existingDescription.length >= 90) return trimDescription(existingDescription);
+  if (existingDescription.length >= 90)
+    return trimDescription(existingDescription);
   if (page.path === "/") return HOME_DESCRIPTION;
 
   const title = normalize(page.title);
   const focusText = buildFocusText(page);
-  const bodyText = normalize(page.data?.excerpt ?? page.contentRendered ?? page.content ?? "").slice(0, 110);
+  const bodyText = normalize(
+    page.data?.excerpt ?? page.contentRendered ?? page.content ?? "",
+  ).slice(0, 110);
 
   // 栏目首页（目录页）：用完整路径层级补齐主题，描述更准确
   if (isSectionIndex(page) && !bodyText) {

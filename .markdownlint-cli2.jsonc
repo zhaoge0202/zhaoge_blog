@@ -1,0 +1,25 @@
+{
+  // 适配中文技术文档与主题内嵌 HTML 的宽松规则集
+  "config": {
+    "default": true,
+    "MD025": { "front_matter_title": "" }, // frontmatter 的 title 不计为一级标题
+    "MD013": false, // 行长度不限制（中文长句、表格）
+    "MD033": false, // 允许内嵌 HTML（首页卡片、自定义组件）
+    "MD041": false, // 首行不强制为标题（有 frontmatter）
+    "MD024": { "siblings_only": true }, // 允许不同层级下的同名标题
+    "MD034": false, // 允许裸 URL
+    "MD036": false, // 允许用强调代替标题
+    "MD026": false, // 允许标题尾部标点（中文问号等）
+    "MD029": false, // 不限制有序列表序号风格
+    "MD040": false, // 不强制代码块声明语言
+    "MD046": false, // 不限制代码块风格
+  },
+  "globs": ["src/**/*.md"],
+  "ignores": [
+    "**/node_modules/**",
+    "dist/**",
+    "docs/**",
+    "src/.vuepress/.temp/**",
+    "src/.vuepress/.cache/**",
+  ],
+}

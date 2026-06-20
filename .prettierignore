@@ -1,0 +1,7 @@
+node_modules
+dist
+docs
+src/.vuepress/.temp
+src/.vuepress/.cache
+package-lock.json
+*.svg

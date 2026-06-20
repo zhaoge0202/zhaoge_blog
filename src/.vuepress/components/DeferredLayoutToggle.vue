@@ -50,7 +50,9 @@ const applyState = (hidden: boolean) => {
   if (typeof document === "undefined") return;
 
   document.documentElement.classList.toggle("layout-hidden", hidden);
-  document.title = hidden ? "Java 面试进阶指南 - 沉浸式阅读" : originalTitle.value;
+  document.title = hidden
+    ? "Java 面试进阶指南 - 沉浸式阅读"
+    : originalTitle.value;
 };
 
 const toggleLayout = () => {

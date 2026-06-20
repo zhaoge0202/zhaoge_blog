@@ -53,10 +53,14 @@ test("rewriteMarkdownContent replaces every matched path with a CDN URL", () => 
 
   const references = findMediaReferences(markdown);
   const rewritten = rewriteMarkdownContent(markdown, references, {
-    "./images/diagram.png": "https://media.zhaoge.top/blog/2026/06/18/20260618-v001-diagram.png",
+    "./images/diagram.png":
+      "https://media.zhaoge.top/blog/2026/06/18/20260618-v001-diagram.png",
   });
 
-  assert.match(rewritten, /https:\/\/media\.zhaoge\.top\/blog\/2026\/06\/18\/20260618-v001-diagram\.png/);
+  assert.match(
+    rewritten,
+    /https:\/\/media\.zhaoge\.top\/blog\/2026\/06\/18\/20260618-v001-diagram\.png/,
+  );
   assert.equal(rewritten.includes("./images/diagram.png"), false);
 });
 
@@ -68,10 +72,7 @@ test("buildVersionedObjectKey creates dated keys with a version prefix", () => {
     originalName: "System Design Diagram.PNG",
   });
 
-  assert.equal(
-    key,
-    "blog/2026/06/18/20260618-v003-system-design-diagram.png",
-  );
+  assert.equal(key, "blog/2026/06/18/20260618-v003-system-design-diagram.png");
 });
 
 test("syncMarkdownFile uploads local media once and rewrites the markdown file", async () => {

@@ -5,7 +5,8 @@ import sidebar from "./sidebar.js";
 import { applySeoJsonLd, buildSeoDescription } from "./seo.js";
 
 const __dirname = getDirname(import.meta.url);
-const hostname = process.env.VUEPRESS_HOSTNAME || "https://zhaoge0202.github.io/";
+const hostname =
+  process.env.VUEPRESS_HOSTNAME || "https://zhaoge0202.github.io/";
 const authorName = "zhaoge";
 const toSlimsearchFieldValue = (
   value: unknown,
@@ -43,7 +44,7 @@ export default hopeTheme({
   editLink: false,
   print: false,
   displayFooter: false,
-  pageInfo: ["Author", "Date", "Category", "Tag", "ReadingTime"],
+  pageInfo: ["Author", "Date", "Category", "Tag", "Word", "ReadingTime"],
   blog: {
     intro: "/about-the-author/",
     medias: {
@@ -66,7 +67,11 @@ export default hopeTheme({
     include: {
       resolvePath: (file, cwd) => {
         if (file.startsWith("@")) {
-          return path.resolve(__dirname, "../snippets", file.replace("@", "./"));
+          return path.resolve(
+            __dirname,
+            "../snippets",
+            file.replace("@", "./"),
+          );
         }
 
         const includeBaseDir = cwd ?? __dirname;

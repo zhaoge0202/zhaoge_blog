@@ -24,10 +24,22 @@ const navbar = [
     text: "系统设计",
     icon: "mdi:sitemap-outline",
     children: [
-      { text: "系统设计总览", icon: "mdi:sitemap-outline", link: "/system-design/" },
+      {
+        text: "系统设计总览",
+        icon: "mdi:sitemap-outline",
+        link: "/system-design/",
+      },
       { text: "分布式", icon: "mdi:lan", link: "/distributed-system/" },
-      { text: "高性能", icon: "mdi:rocket-launch-outline", link: "/high-performance/" },
-      { text: "高可用", icon: "mdi:shield-check-outline", link: "/high-availability/" },
+      {
+        text: "高性能",
+        icon: "mdi:rocket-launch-outline",
+        link: "/high-performance/",
+      },
+      {
+        text: "高可用",
+        icon: "mdi:shield-check-outline",
+        link: "/high-availability/",
+      },
     ],
   },
   {
@@ -50,7 +62,11 @@ const navbar = [
       { text: "学习路线", icon: "mdi:map-outline", link: "/roadmap/" },
       { text: "开源项目", icon: "mdi:github", link: "/open-source-project/" },
       { text: "技术书籍", icon: "mdi:bookshelf", link: "/books/" },
-      { text: "程序人生", icon: "mdi:account-heart-outline", link: "/high-quality-technical-articles/" },
+      {
+        text: "程序人生",
+        icon: "mdi:account-heart-outline",
+        link: "/high-quality-technical-articles/",
+      },
     ],
   },
   {
