@@ -25,6 +25,8 @@ const toSlimsearchFieldValue = (
 
 export default hopeTheme({
   hostname,
+  logo: "/logo.svg",
+  favicon: "/logo.svg",
   author: {
     name: authorName,
   },
@@ -75,6 +77,14 @@ export default hopeTheme({
   },
   plugins: {
     blog: true,
+    feed: {
+      atom: true,
+      json: true,
+      rss: true,
+    },
+    icon: {
+      assets: "iconify",
+    },
     photoSwipe: false,
     slimsearch: {
       customFields: [
