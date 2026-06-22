@@ -54,13 +54,61 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/java/jvm/README.md",
     "src/java/jvm/jvm-g1-vs-cms.md",
     "src/database/mysql/README.md",
+    "src/database/mysql/mysql-architecture-sql-execution.md",
+    "src/database/mysql/mysql-innodb-vs-myisam.md",
+    "src/database/mysql/mysql-row-format.md",
+    "src/database/mysql/mysql-buffer-pool.md",
+    "src/database/mysql/mysql-why-bplus-tree.md",
+    "src/database/mysql/mysql-index-design.md",
+    "src/database/mysql/mysql-index-invalidation.md",
+    "src/database/mysql/mysql-explain.md",
+    "src/database/mysql/mysql-count.md",
+    "src/database/mysql/mysql-transaction-isolation.md",
     "src/database/mysql/mysql-mvcc-read-view.md",
+    "src/database/mysql/mysql-locks.md",
+    "src/database/mysql/mysql-lock-rules.md",
+    "src/database/mysql/mysql-deadlock.md",
+    "src/database/mysql/mysql-logs.md",
+    "src/database/mysql/mysql-schema-design.md",
+    "src/database/mysql/mysql-time-and-primary-key.md",
+    "src/database/mysql/mysql-auto-increment.md",
     "src/database/redis/README.md",
     "src/database/redis/redis-cache-consistency.md",
     "src/blog/essays/2026-06-16-note-1.md",
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
   ]) {
     assert.equal(exists(relativePath), true, `${relativePath} should exist`);
+  }
+});
+
+test("database sidebar exposes mysql article tree", () => {
+  const sidebar = read("src/.vuepress/sidebar.ts");
+
+  for (const snippet of [
+    'text: "MySQL"',
+    '"mysql-architecture-sql-execution"',
+    '"mysql-innodb-vs-myisam"',
+    '"mysql-row-format"',
+    '"mysql-buffer-pool"',
+    '"mysql-why-bplus-tree"',
+    '"mysql-index-design"',
+    '"mysql-index-invalidation"',
+    '"mysql-explain"',
+    '"mysql-count"',
+    '"mysql-transaction-isolation"',
+    '"mysql-mvcc-read-view"',
+    '"mysql-locks"',
+    '"mysql-lock-rules"',
+    '"mysql-deadlock"',
+    '"mysql-logs"',
+    '"mysql-schema-design"',
+    '"mysql-time-and-primary-key"',
+    '"mysql-auto-increment"',
+  ]) {
+    assert.match(
+      sidebar,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 });
 

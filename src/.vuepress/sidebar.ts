@@ -72,7 +72,58 @@ const sidebar = {
       text: "MySQL",
       prefix: "mysql/",
       collapsible: true,
-      children: ["", "mysql-mvcc-read-view"],
+      children: [
+        "",
+        {
+          text: "基础与架构",
+          collapsible: true,
+          children: [
+            "mysql-architecture-sql-execution",
+            "mysql-innodb-vs-myisam",
+          ],
+        },
+        {
+          text: "数据是怎么存的",
+          collapsible: true,
+          children: ["mysql-row-format", "mysql-buffer-pool"],
+        },
+        {
+          text: "索引与查询优化",
+          collapsible: true,
+          children: [
+            "mysql-why-bplus-tree",
+            "mysql-index-design",
+            "mysql-index-invalidation",
+            "mysql-explain",
+            "mysql-count",
+          ],
+        },
+        {
+          text: "事务与并发控制",
+          collapsible: true,
+          children: [
+            "mysql-transaction-isolation",
+            "mysql-mvcc-read-view",
+            "mysql-locks",
+            "mysql-lock-rules",
+            "mysql-deadlock",
+          ],
+        },
+        {
+          text: "日志与持久化",
+          collapsible: true,
+          children: ["mysql-logs"],
+        },
+        {
+          text: "工程细节与规范",
+          collapsible: true,
+          children: [
+            "mysql-schema-design",
+            "mysql-time-and-primary-key",
+            "mysql-auto-increment",
+          ],
+        },
+      ],
     },
     {
       text: "Redis",

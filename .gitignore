@@ -2,6 +2,7 @@
 .idea/
 .vscode/
 .worktrees/
+.claude/
 docs/
 target/
 node_modules/

@@ -11,8 +11,8 @@ tag:
   - "进阶"
   - "项目实战"
 prev:
-  text: "MVCC 和 ReadView 是怎么工作的？"
-  link: "/database/mysql/mysql-mvcc-read-view.html"
+  text: "自增主键为什么不一定连续？"
+  link: "/database/mysql/mysql-auto-increment.html"
 ---
 
 # 如何保证缓存和数据库一致性？
