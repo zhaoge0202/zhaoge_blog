@@ -112,12 +112,15 @@ highlights:
 
 **当前重点**：
 
+- [Redis 常见数据类型怎么选？](./database/redis/redis-data-structures.html)
+- [RDB、AOF 和混合持久化怎么选？](./database/redis/redis-persistence.html)
+- [缓存雪崩、击穿、穿透怎么治理？](./database/redis/redis-cache-problems.html)
 - [如何保证缓存和数据库一致性？](./database/redis/redis-cache-consistency.html)
 - [Redis 入口页](./database/redis/)
 
 **后续补充方向**：
 
-- 缓存穿透、击穿、雪崩、热 key、大 key、持久化、主从复制、集群和分布式锁。
+- 热 key、大 key、阻塞排查、消息队列、延时任务和 Redis 工程化运维。
 
 ## 系统设计与后端进阶
 

@@ -129,7 +129,28 @@ const sidebar = {
       text: "Redis",
       prefix: "redis/",
       collapsible: true,
-      children: ["", "redis-cache-consistency"],
+      children: [
+        "",
+        {
+          text: "数据结构与持久化",
+          collapsible: true,
+          children: [
+            "redis-data-structures",
+            "redis-persistence",
+            "redis-expire-eviction",
+          ],
+        },
+        {
+          text: "缓存问题",
+          collapsible: true,
+          children: ["redis-cache-problems", "redis-cache-consistency"],
+        },
+        {
+          text: "高可用与分布式协调",
+          collapsible: true,
+          children: ["redis-high-availability", "redis-distributed-lock"],
+        },
+      ],
     },
     {
       text: "SQL",
