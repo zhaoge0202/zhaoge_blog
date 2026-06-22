@@ -201,4 +201,4 @@ sequenceDiagram
 - MySQL 官方文档：InnoDB Redo Log
 - MySQL 官方文档：The Binary Log
 
-<!-- @include: @article-footer.snippet.md -->
+<!-- @include: ./_article-footer.snippet.md -->
