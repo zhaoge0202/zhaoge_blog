@@ -3,6 +3,7 @@
 .vscode/
 .worktrees/
 .claude/
+.agents/
 docs/
 target/
 node_modules/
