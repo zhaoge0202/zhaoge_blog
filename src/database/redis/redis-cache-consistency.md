@@ -11,8 +11,8 @@ tag:
   - "进阶"
   - "项目实战"
 prev:
-  text: "缓存雪崩、击穿、穿透怎么治理？"
-  link: "/database/redis/redis-cache-problems.html"
+  text: "Redis 里的布隆过滤器到底怎么用？"
+  link: "/database/redis/redis-bloom-filter.html"
 next:
   text: "Redis 的高可用方案怎么理解？"
   link: "/database/redis/redis-high-availability.html"

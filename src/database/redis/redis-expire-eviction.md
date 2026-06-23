@@ -14,8 +14,8 @@ prev:
   text: "RDB、AOF 和混合持久化怎么选？"
   link: "/database/redis/redis-persistence.html"
 next:
-  text: "缓存雪崩、击穿、穿透怎么治理？"
-  link: "/database/redis/redis-cache-problems.html"
+  text: "Redis 的大 key 和热 key 怎么发现和处理？"
+  link: "/database/redis/redis-bigkey-hotkey.html"
 ---
 
 # 过期删除和内存淘汰到底有什么区别？

@@ -25,7 +25,7 @@ next:
 很多人记日志是分开背的：undo 是回滚、redo 是重做、binlog 是归档。背完一考"两阶段提交"就懵了，因为它们在一条 update 语句里其实是有先后顺序、互相配合的。所以这篇我换个讲法——盯着一条最简单的更新语句，看 MySQL 内部依次干了哪些事，三种日志自然就串起来了。
 
 ```sql
-UPDATE t_user SET name = 'xiaolin' WHERE id = 1;
+UPDATE t_user SET name = 'alice' WHERE id = 1;
 ```
 
 ## 先看一条 update 的全过程
@@ -37,7 +37,7 @@ UPDATE t_user SET name = 'xiaolin' WHERE id = 1;
 1. 执行器通过主键索引找到 `id=1` 这一行。如果这行所在的数据页已经在 **Buffer Pool**（缓冲池）里就直接拿，不在就从磁盘把整页（默认 16KB）读进来。
 2. 比较一下旧值新值是否相同，相同就直接结束（这是个小优化）；不同才往下走，把新旧记录交给 InnoDB。
 3. InnoDB 先写 **undo log**：把这一列的旧值记下来，写进 Buffer Pool 的 Undo 页。注意——改 Undo 页本身也是改内存页，所以这步还会顺带产生一条 redo log（后面解释为什么 undo 也要被 redo 保护）。
-4. InnoDB 改 Buffer Pool 里的数据页（把 name 改成 'xiaolin'），把这个页标成**脏页**，同时把"对这个页做了什么修改"写进 **redo log buffer**。到这一步，从用户视角看更新就算"完成"了，脏页不急着落盘，后台线程会挑时机刷。这就是 WAL。
+4. InnoDB 改 Buffer Pool 里的数据页（把 name 改成 'alice'），把这个页标成**脏页**，同时把"对这个页做了什么修改"写进 **redo log buffer**。到这一步，从用户视角看更新就算"完成"了，脏页不急着落盘，后台线程会挑时机刷。这就是 WAL。
 5. 执行器生成这条语句的 **binlog**，先放进 binlog cache，还没落盘。
 6. 提交事务，进入**两阶段提交**：redo log 先写成 prepare → binlog 落盘 → redo log 置为 commit。
 
@@ -142,10 +142,10 @@ MySQL 5.7.7 之前默认 statement，之后默认 row。实际生产为了数据
 
 回到 update 时序的第 6 步。一个事务提交时，redo log 和 binlog 都要落盘，但它们是两份独立的日志、两次独立的落盘，万一中间崩了，就可能出现"一个写了一个没写"的半成功状态，导致两份日志对不上。
 
-举例：`UPDATE t_user SET name='xiaolin' WHERE id=1`，原值是 'jay'。如果不做特殊处理：
+举例：`UPDATE t_user SET name='alice' WHERE id=1`，原值是 'jay'。如果不做特殊处理：
 
-- 假如 **redo log 落盘后、binlog 还没写** 就崩了：重启后 redo log 把主库这行恢复成 'xiaolin'，但 binlog 里没这条记录，复制到从库后从库还是 'jay'——**主从不一致**。
-- 假如 **binlog 落盘后、redo log 还没写** 就崩了：主库这边事务因 redo 没写而无效，还是 'jay'，但 binlog 已经有这条记录，从库重放后变成 'xiaolin'——**还是主从不一致**。
+- 假如 **redo log 落盘后、binlog 还没写** 就崩了：重启后 redo log 把主库这行恢复成 'alice'，但 binlog 里没这条记录，复制到从库后从库还是 'jay'——**主从不一致**。
+- 假如 **binlog 落盘后、redo log 还没写** 就崩了：主库这边事务因 redo 没写而无效，还是 'jay'，但 binlog 已经有这条记录，从库重放后变成 'alice'——**还是主从不一致**。
 
 根因在于：redo log 决定主库数据，binlog 决定从库数据，两者必须同生共死。MySQL 用**两阶段提交**来保证这一点——本质是一个内部 XA 事务，binlog 当协调者，InnoDB 当参与者。它把 redo log 的写入拆成 prepare 和 commit 两步，中间夹着写 binlog：
 

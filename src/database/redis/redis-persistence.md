@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "排障"
 prev:
-  text: "Redis 常见数据类型怎么选？"
-  link: "/database/redis/redis-data-structures.html"
+  text: "Redis 里的排行榜、计数器、签到这些场景该怎么设计？"
+  link: "/database/redis/redis-typical-scenarios.html"
 next:
   text: "过期删除和内存淘汰到底有什么区别？"
   link: "/database/redis/redis-expire-eviction.html"

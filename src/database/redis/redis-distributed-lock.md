@@ -11,11 +11,11 @@ tag:
   - "项目实战"
   - "细节题"
 prev:
-  text: "Redis 的高可用方案怎么理解？"
-  link: "/database/redis/redis-high-availability.html"
+  text: "Redis 主从复制延迟和全量同步该怎么排查？"
+  link: "/database/redis/redis-replication-troubleshooting.html"
 next:
-  text: "分布式"
-  link: "/distributed-system/"
+  text: "Redis 里的 Pipeline 和 Lua 脚本该怎么选？"
+  link: "/database/redis/redis-pipeline-lua.html"
 ---
 
 # Redis 分布式锁到底能不能用？

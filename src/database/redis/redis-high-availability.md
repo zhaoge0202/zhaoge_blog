@@ -14,8 +14,8 @@ prev:
   text: "如何保证缓存和数据库一致性？"
   link: "/database/redis/redis-cache-consistency.html"
 next:
-  text: "Redis 分布式锁到底能不能用？"
-  link: "/database/redis/redis-distributed-lock.html"
+  text: "Redis Cluster 为什么是 16384 个槽？扩缩容和路由怎么理解？"
+  link: "/database/redis/redis-cluster-details.html"
 ---
 
 # Redis 的高可用方案怎么理解？

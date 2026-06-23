@@ -11,11 +11,11 @@ tag:
   - "项目实战"
   - "排障"
 prev:
-  text: "过期删除和内存淘汰到底有什么区别？"
-  link: "/database/redis/redis-expire-eviction.html"
+  text: "Redis 为什么会有内存碎片？"
+  link: "/database/redis/redis-memory-fragmentation.html"
 next:
-  text: "如何保证缓存和数据库一致性？"
-  link: "/database/redis/redis-cache-consistency.html"
+  text: "Redis 里的布隆过滤器到底怎么用？"
+  link: "/database/redis/redis-bloom-filter.html"
 ---
 
 # 缓存雪崩、击穿、穿透怎么治理？

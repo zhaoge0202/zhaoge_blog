@@ -74,6 +74,21 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/database/mysql/mysql-auto-increment.md",
     "src/database/redis/README.md",
     "src/database/redis/redis-cache-consistency.md",
+    "src/database/redis/redis-bigkey-hotkey.md",
+    "src/database/redis/redis-blocking-troubleshooting.md",
+    "src/database/redis/redis-special-data-structures.md",
+    "src/database/redis/redis-typical-scenarios.md",
+    "src/database/redis/redis-memory-fragmentation.md",
+    "src/database/redis/redis-configuration-tuning.md",
+    "src/database/redis/redis-monitoring-metrics.md",
+    "src/database/redis/redis-bloom-filter.md",
+    "src/database/redis/redis-cluster-operations.md",
+    "src/database/redis/redis-replication-troubleshooting.md",
+    "src/database/redis/redis-cluster-details.md",
+    "src/database/redis/redis-pipeline-lua.md",
+    "src/database/redis/redis-rate-limiting.md",
+    "src/database/redis/redis-message-queue.md",
+    "src/database/redis/redis-delayed-task.md",
     "src/blog/essays/2026-06-16-note-1.md",
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
   ]) {
@@ -104,6 +119,41 @@ test("database sidebar exposes mysql article tree", () => {
     '"mysql-schema-design"',
     '"mysql-time-and-primary-key"',
     '"mysql-auto-increment"',
+  ]) {
+    assert.match(
+      sidebar,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+});
+
+test("database sidebar exposes redis article tree", () => {
+  const sidebar = read("src/.vuepress/sidebar.ts");
+
+  for (const snippet of [
+    'text: "Redis"',
+    '"redis-data-structures"',
+    '"redis-special-data-structures"',
+    '"redis-typical-scenarios"',
+    '"redis-persistence"',
+    '"redis-expire-eviction"',
+    '"redis-bigkey-hotkey"',
+    '"redis-blocking-troubleshooting"',
+    '"redis-memory-fragmentation"',
+    '"redis-configuration-tuning"',
+    '"redis-monitoring-metrics"',
+    '"redis-cache-problems"',
+    '"redis-bloom-filter"',
+    '"redis-cache-consistency"',
+    '"redis-high-availability"',
+    '"redis-cluster-details"',
+    '"redis-cluster-operations"',
+    '"redis-replication-troubleshooting"',
+    '"redis-distributed-lock"',
+    '"redis-pipeline-lua"',
+    '"redis-rate-limiting"',
+    '"redis-message-queue"',
+    '"redis-delayed-task"',
   ]) {
     assert.match(
       sidebar,

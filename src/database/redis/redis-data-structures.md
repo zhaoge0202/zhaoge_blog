@@ -14,8 +14,8 @@ prev:
   text: "Redis"
   link: "/database/redis/"
 next:
-  text: "RDB、AOF 和混合持久化怎么选？"
-  link: "/database/redis/redis-persistence.html"
+  text: "Redis 的特殊数据类型该怎么选？"
+  link: "/database/redis/redis-special-data-structures.html"
 ---
 
 # Redis 常见数据类型怎么选？

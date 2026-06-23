@@ -12,7 +12,7 @@ editLink: false
 ## 当前子域
 
 - [MySQL](./mysql/)：索引、事务、MVCC、锁和日志。
-- [Redis](./redis/)：数据结构、缓存问题、高可用和分布式锁。
+- [Redis](./redis/)：数据结构、缓存问题、线上排障、高可用和扩展能力。
 
 ## 当前重点文章
 
@@ -21,6 +21,8 @@ editLink: false
 - [MVCC 和 ReadView 是怎么工作的？](./mysql/mysql-mvcc-read-view.html)
 - [Redis 常见数据类型怎么选？](./redis/redis-data-structures.html)
 - [RDB、AOF 和混合持久化怎么选？](./redis/redis-persistence.html)
+- [Redis 的大 key 和热 key 怎么发现和处理？](./redis/redis-bigkey-hotkey.html)
+- [Redis 卡顿了该从哪里开始排查？](./redis/redis-blocking-troubleshooting.html)
 - [缓存雪崩、击穿、穿透怎么治理？](./redis/redis-cache-problems.html)
 - [如何保证缓存和数据库一致性？](./redis/redis-cache-consistency.html)
 
