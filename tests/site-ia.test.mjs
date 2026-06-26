@@ -101,6 +101,17 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/database/sql/sql-null-and-case.md",
     "src/database/sql/sql-pagination.md",
     "src/database/sql/sql-writing-best-practices.md",
+    "src/database/elasticsearch/README.md",
+    "src/database/elasticsearch/es-core-concepts.md",
+    "src/database/elasticsearch/es-inverted-index.md",
+    "src/database/elasticsearch/es-analyzer.md",
+    "src/database/elasticsearch/es-mapping.md",
+    "src/database/elasticsearch/es-query-dsl.md",
+    "src/database/elasticsearch/es-scoring.md",
+    "src/database/elasticsearch/es-aggregation.md",
+    "src/database/elasticsearch/es-shard-replica.md",
+    "src/database/elasticsearch/es-read-write-flow.md",
+    "src/database/elasticsearch/es-deep-pagination-tuning.md",
     "src/blog/essays/2026-06-16-note-1.md",
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
   ]) {
@@ -190,6 +201,29 @@ test("database sidebar exposes sql article tree", () => {
     '"sql-null-and-case"',
     '"sql-pagination"',
     '"sql-writing-best-practices"',
+  ]) {
+    assert.match(
+      sidebar,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+});
+
+test("database sidebar exposes elasticsearch article tree", () => {
+  const sidebar = read("src/.vuepress/sidebar.ts");
+
+  for (const snippet of [
+    'text: "Elasticsearch"',
+    '"es-core-concepts"',
+    '"es-inverted-index"',
+    '"es-analyzer"',
+    '"es-mapping"',
+    '"es-query-dsl"',
+    '"es-scoring"',
+    '"es-aggregation"',
+    '"es-shard-replica"',
+    '"es-read-write-flow"',
+    '"es-deep-pagination-tuning"',
   ]) {
     assert.match(
       sidebar,

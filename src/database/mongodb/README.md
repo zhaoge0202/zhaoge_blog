@@ -3,6 +3,9 @@ title: "MongoDB"
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "深分页怎么优化？ES 还有哪些性能调优手段？"
+  link: "/database/elasticsearch/es-deep-pagination-tuning.html"
 ---
 
 # MongoDB

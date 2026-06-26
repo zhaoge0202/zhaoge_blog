@@ -225,7 +225,39 @@ const sidebar = {
       text: "Elasticsearch",
       prefix: "elasticsearch/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "核心概念与原理",
+          collapsible: true,
+          children: ["es-core-concepts", "es-inverted-index"],
+        },
+        {
+          text: "分词与映射",
+          collapsible: true,
+          children: ["es-analyzer", "es-mapping"],
+        },
+        {
+          text: "查询与打分",
+          collapsible: true,
+          children: ["es-query-dsl", "es-scoring"],
+        },
+        {
+          text: "聚合",
+          collapsible: true,
+          children: ["es-aggregation"],
+        },
+        {
+          text: "集群与分布式",
+          collapsible: true,
+          children: ["es-shard-replica", "es-read-write-flow"],
+        },
+        {
+          text: "工程实践",
+          collapsible: true,
+          children: ["es-deep-pagination-tuning"],
+        },
+      ],
     },
     {
       text: "MongoDB",
