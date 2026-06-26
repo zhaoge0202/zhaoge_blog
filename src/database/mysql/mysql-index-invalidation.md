@@ -241,5 +241,7 @@ SELECT * FROM t_user WHERE id NOT IN (1, 2, 3);     -- 常量 NOT IN，倾向全
 
 ## 参考
 
+本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
+
 - MySQL 官方文档：[Type Conversion in Expression Evaluation](https://dev.mysql.com/doc/refman/8.0/en/type-conversion.html)
 - MySQL 官方文档：[LIKE Comparisons](https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_like)

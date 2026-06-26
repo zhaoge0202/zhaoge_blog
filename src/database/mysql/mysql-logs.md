@@ -14,8 +14,8 @@ prev:
   text: "死锁是怎么产生的，怎么排查和避免？"
   link: "/database/mysql/mysql-deadlock.html"
 next:
-  text: "表结构和字段设计怎么做？"
-  link: "/database/mysql/mysql-schema-design.html"
+  text: "MySQL 主从复制是怎么工作的，为什么会延迟？"
+  link: "/database/mysql/mysql-replication.html"
 ---
 
 # redo log、undo log、binlog 分别有什么用？
@@ -195,6 +195,8 @@ sequenceDiagram
 5. 两阶段提交（prepare → 写 binlog → commit）保证 redo log 和 binlog 一致，避免主从数据不一致；崩溃恢复时以 binlog 里有没有对应 XID 为准来决定提交还是回滚。
 
 ## 参考
+
+本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
 
 - 《MySQL 实战 45 讲》
 - 《MySQL 是怎样运行的：从根儿上理解 MySQL》

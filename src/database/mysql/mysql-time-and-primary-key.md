@@ -184,6 +184,8 @@ SELECT FROM_UNIXTIME(1578707612);              -- 2020-01-11 09:53:32
 
 ## 参考
 
+本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
+
 - MySQL 官方文档 - 日期时间类型存储需求：<https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html>
 - MySQL 官方文档 - 日期时间类型：<https://dev.mysql.com/doc/refman/8.0/en/datetime.html>
 - 《高性能 MySQL》—— 关于时间类型选择的讨论

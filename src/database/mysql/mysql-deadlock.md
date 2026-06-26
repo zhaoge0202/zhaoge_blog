@@ -150,6 +150,8 @@ ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting trans
 
 ## 参考
 
+本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
+
 - 《MySQL 是怎样运行的？》
 - MySQL 官方文档：InnoDB Locking（Gap Locks / Insert Intention Locks / Deadlock Detection）
 - MySQL 官方文档：Deadlocks in InnoDB（成因、检测与重试建议）

@@ -216,6 +216,8 @@ select * from t_test where id = 1 for update;
 
 ## 参考
 
+本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
+
 - 《MySQL 技术内幕：InnoDB 存储引擎》
 - 《MySQL 实战 45 讲》
 - 《从根儿上理解 MySQL》

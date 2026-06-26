@@ -161,6 +161,7 @@ ROLLBACK;                            -- 回滚，这行没了
 
 ## 参考
 
+本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
+
 - 极客时间《MySQL 实战 45 讲》第 39 讲：自增主键为什么不是连续的？
 - MySQL 官方文档：[InnoDB AUTO_INCREMENT Handling](https://dev.mysql.com/doc/refman/8.0/en/innodb-auto-increment-handling.html)
-- 飞天小牛肉：MySQL 自增主键一定是连续的吗？

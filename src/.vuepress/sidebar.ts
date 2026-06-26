@@ -85,7 +85,11 @@ const sidebar = {
         {
           text: "数据是怎么存的",
           collapsible: true,
-          children: ["mysql-row-format", "mysql-buffer-pool"],
+          children: [
+            "mysql-row-format",
+            "mysql-data-page",
+            "mysql-buffer-pool",
+          ],
         },
         {
           text: "索引与查询优化",
@@ -112,7 +116,7 @@ const sidebar = {
         {
           text: "日志与持久化",
           collapsible: true,
-          children: ["mysql-logs"],
+          children: ["mysql-logs", "mysql-replication"],
         },
         {
           text: "工程细节与规范",
