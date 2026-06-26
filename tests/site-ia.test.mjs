@@ -91,6 +91,16 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/database/redis/redis-rate-limiting.md",
     "src/database/redis/redis-message-queue.md",
     "src/database/redis/redis-delayed-task.md",
+    "src/database/sql/README.md",
+    "src/database/sql/sql-execution-order.md",
+    "src/database/sql/sql-groupby-aggregate.md",
+    "src/database/sql/sql-join.md",
+    "src/database/sql/sql-subquery.md",
+    "src/database/sql/sql-set-operations.md",
+    "src/database/sql/sql-window-functions.md",
+    "src/database/sql/sql-null-and-case.md",
+    "src/database/sql/sql-pagination.md",
+    "src/database/sql/sql-writing-best-practices.md",
     "src/blog/essays/2026-06-16-note-1.md",
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
   ]) {
@@ -158,6 +168,28 @@ test("database sidebar exposes redis article tree", () => {
     '"redis-rate-limiting"',
     '"redis-message-queue"',
     '"redis-delayed-task"',
+  ]) {
+    assert.match(
+      sidebar,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
+  }
+});
+
+test("database sidebar exposes sql article tree", () => {
+  const sidebar = read("src/.vuepress/sidebar.ts");
+
+  for (const snippet of [
+    'text: "SQL"',
+    '"sql-execution-order"',
+    '"sql-groupby-aggregate"',
+    '"sql-join"',
+    '"sql-subquery"',
+    '"sql-set-operations"',
+    '"sql-window-functions"',
+    '"sql-null-and-case"',
+    '"sql-pagination"',
+    '"sql-writing-best-practices"',
   ]) {
     assert.match(
       sidebar,

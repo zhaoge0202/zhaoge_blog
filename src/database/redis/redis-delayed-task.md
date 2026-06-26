@@ -14,8 +14,8 @@ prev:
   text: "Redis 能当消息队列吗？"
   link: "/database/redis/redis-message-queue.html"
 next:
-  text: "分布式"
-  link: "/distributed-system/"
+  text: "SQL"
+  link: "/database/sql/"
 ---
 
 # Redis 延时任务怎么做更稳？

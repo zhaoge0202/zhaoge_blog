@@ -3,6 +3,9 @@ title: "Elasticsearch"
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "写 SQL 有哪些常见的写法坑？"
+  link: "/database/sql/sql-writing-best-practices.html"
 ---
 
 # Elasticsearch

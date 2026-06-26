@@ -193,7 +193,33 @@ const sidebar = {
       text: "SQL",
       prefix: "sql/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "查询执行与聚合",
+          collapsible: true,
+          children: ["sql-execution-order", "sql-groupby-aggregate"],
+        },
+        {
+          text: "多表连接、子查询与集合",
+          collapsible: true,
+          children: ["sql-join", "sql-subquery", "sql-set-operations"],
+        },
+        {
+          text: "进阶查询",
+          collapsible: true,
+          children: [
+            "sql-window-functions",
+            "sql-null-and-case",
+            "sql-pagination",
+          ],
+        },
+        {
+          text: "写法规范与优化",
+          collapsible: true,
+          children: ["sql-writing-best-practices"],
+        },
+      ],
     },
     {
       text: "Elasticsearch",
