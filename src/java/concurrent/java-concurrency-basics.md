@@ -125,6 +125,81 @@ stateDiagram-v2
 
 切换时需要保存当前线程的上下文、加载下一个线程的上下文，这个过程会消耗 CPU 和内存资源。频繁的上下文切换是性能杀手，这也是为什么线程池要控制线程数量——线程太多反而降低吞吐。
 
+## 如何正确停止线程
+
+Java 没有「安全停止线程」的方法。`Thread.stop()` 已被废弃，因为它直接终止线程，可能导致锁未释放、数据不一致。正确的方式是**中断机制**。
+
+### 中断机制三件套
+
+| 方法                     | 作用                                     |
+| ------------------------ | ---------------------------------------- |
+| `thread.interrupt()`     | 设置线程的中断标志位为 true              |
+| `thread.isInterrupted()` | 检查中断标志位（不清除）                 |
+| `Thread.interrupted()`   | 静态方法，检查并清除当前线程的中断标志位 |
+
+### 正确的停止方式
+
+```java
+Thread worker = new Thread(() -> {
+    while (!Thread.currentThread().isInterrupted()) {
+        // 正常工作
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // sleep/wait/join 被中断时会抛 InterruptedException
+            // 同时会清除中断标志位，所以需要重新设置
+            Thread.currentThread().interrupt();
+            break;
+        }
+    }
+    System.out.println("worker stopped gracefully");
+});
+worker.start();
+
+Thread.sleep(5000);
+worker.interrupt(); // 请求停止
+```
+
+关键点：
+
+1. 线程自己决定何时响应中断——调用 `interrupt()` 只是「提议」，不是「命令」。
+2. 如果线程正在 `sleep()`/`wait()`/`join()`，中断会抛 `InterruptedException` 并**清除中断标志位**，所以 catch 里要重新调 `interrupt()` 或直接退出。
+3. 线程池关闭时，`shutdownNow()` 会对所有正在执行的线程调 `interrupt()`，所以任务代码必须正确响应中断。
+
+### 为什么 stop() 被废弃？
+
+`Thread.stop()` 会直接终止线程，不管线程执行到哪一步。如果线程正在修改共享数据，被 stop 后可能留下不一致的状态，而且锁不会被释放——其他等待同一把锁的线程会永远阻塞。这是设计层面的不安全，所以从 JDK 1.2 就废弃了。
+
+## 守护线程
+
+守护线程（Daemon Thread）是一种特殊线程，当所有非守护线程结束时，JVM 不会等待守护线程完成就直接退出。
+
+```java
+Thread t = new Thread(() -> {
+    while (true) {
+        // 后台任务，如垃圾回收、心跳检测
+    }
+});
+t.setDaemon(true); // 必须在 start() 之前设置
+t.start();
+```
+
+典型应用：GC 线程、Finalizer 线程都是守护线程。虚拟线程也是守护线程——这就是为什么 Spring Boot 接入虚拟线程时需要设置 `keep-alive: true`，防止 JVM 过早退出。
+
+> 守护线程的 `finally` 块不保证执行，因为 JVM 退出时不会等待守护线程完成。所以不要在守护线程中做需要可靠清理的操作。
+
+## yield() 的语义
+
+`Thread.yield()` 是一个「提示」——告诉调度器当前线程愿意让出 CPU。但调度器可以忽略这个提示，线程可能继续运行。
+
+```java
+if (cpuBusy) {
+    Thread.yield(); // 建议让出 CPU，但不保证
+}
+```
+
+`yield()` 和 `sleep(0)` 的区别：`yield` 是提示调度器重新调度（可能选同一个线程），`sleep(0)` 在某些实现中等同于 yield，但在 Windows 上可能直接返回。实践中 `yield()` 很少使用，因为它语义模糊、行为不可预测。
+
 ## 容易踩的坑
 
 **直接调用 `run()` 而不是 `start()`。** 这是初学者最常犯的错误，代码不会报错，但任务在当前线程同步执行，完全没有多线程效果。

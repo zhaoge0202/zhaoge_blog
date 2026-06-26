@@ -61,6 +61,48 @@ next: { text: "JVM", link: "/java/jvm/" }
 | 适合任务       | CPU 密集型      | I/O 密集型               |
 | 池化           | 推荐线程池      | **不要池化**             |
 
+## 调度器与 continuation
+
+虚拟线程不绑定固定平台线程，由 JDK 内置的调度器管理：
+
+- **调度器**：一个共享的 `ForkJoinPool`，并行度默认等于 CPU 核心数（可用 `-Djdk.virtualThreadScheduler.parallelism` 调整）。
+- **载体线程**：调度器从池中取出平台线程（载体线程），将虚拟线程挂载上去执行。
+- **卸载（unmount）**：虚拟线程遇到可挂起的阻塞操作时，JDK 把它的执行栈保存为 continuation 对象，从载体线程上卸载。载体线程被释放，可以执行其他虚拟线程。
+- **重新挂载**：阻塞操作就绪后，continuation 被调度器重新挂载到某个载体线程继续执行。
+
+```mermaid
+flowchart TD
+    A[虚拟线程 A 执行中] -->|遇到网络 I/O| B[卸载 continuation\n保存到堆]
+    B --> C[载体线程释放]
+    C --> D[载体线程执行虚拟线程 B]
+    D -->|I/O 就绪| E[A 的 continuation 重新挂载]
+    E --> F[虚拟线程 A 继续执行]
+```
+
+> continuation 是 JDK 内部机制，不暴露给开发者。但你可以在 `Thread.dump` 中看到 `<continuation>` 栈帧——这是虚拟线程与传统线程最直观的区别。
+
+## 结构化并发（预览特性）
+
+JDK 21+ 还引入了**结构化并发**（Structured Concurrency，JEP 453，预览阶段），让虚拟线程的生命周期管理更清晰：
+
+```java
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+    // 并行执行多个子任务
+    Subtask<String> user = scope.fork(() -> fetchUser(id));
+    Subtask<Order> order = scope.fork(() -> fetchOrder(id));
+
+    scope.join();           // 等待所有子任务完成
+    scope.throwIfFailed();  // 任一失败则抛异常，取消其他子任务
+
+    // 所有子任务都成功
+    return new Result(user.get(), order.get());
+}
+```
+
+核心思想：子任务的生命周期限定在 scope 内，scope 关闭时所有未完成的子任务自动取消。避免了传统并发编程中"任务泄漏"（子任务跑飞了没人管）的问题。
+
+> 结构化并发目前还在预览阶段（JDK 21-24），API 可能变化。面试时提到它代表"虚拟线程配套的编程模型方向"即可。
+
 ## 如何创建虚拟线程
 
 ```java

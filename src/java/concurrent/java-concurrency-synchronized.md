@@ -83,6 +83,25 @@ synchronized 不仅保证互斥，还保证可见性：
 
 > 这也是 synchronized 和"只做互斥"的普通概念锁不同的地方。如果只保护临界区但不建立可见性，另一个线程可能仍然读到旧值。
 
+## 对象头与 Mark Word
+
+synchronized 的锁优化都围绕**对象头**展开。HotSpot 的对象头（Object Header）包含两部分：
+
+- **Mark Word**：存储哈希码、GC 分代年龄、锁状态标志位等
+- **Klass Pointer**：指向类元数据
+
+在 64 位 JVM 下，Mark Word 为 64 bit，不同锁状态下复用这段空间存储不同信息：
+
+| 锁状态   | Mark Word 存储内容        | 标志位 |
+| -------- | ------------------------- | ------ |
+| 无锁     | hashCode、GC 年龄         | `001`  |
+| 偏向锁   | 线程 ID、epoch            | `101`  |
+| 轻量级锁 | 指向栈中锁记录的指针      | `00`   |
+| 重量级锁 | 指向 ObjectMonitor 的指针 | `10`   |
+| GC 标记  | 空                        | `11`   |
+
+> 这就是为什么 `hashCode()` 和偏向锁有冲突：一旦调用过 `hashCode()`，对象头的 hashCode 位就被占用了，不能再存线程 ID，偏向锁就无法生效。JDK 15+ 偏向锁已废弃，这个细节了解即可。
+
 ## synchronized 锁优化：别把"锁升级"背成固定口诀
 
 很多资料会把 synchronized 讲成"无锁 → 偏向锁 → 轻量级锁 → 重量级锁"。这条线索对理解 HotSpot 早期优化很有帮助，但**不能脱离版本**。
@@ -106,6 +125,57 @@ synchronized 不仅保证互斥，还保证可见性：
 | JDK 24      | JEP 491 改进，虚拟线程在 synchronized 上阻塞可释放载体线程 |
 
 > 面试时可以讲"HotSpot 曾经通过偏向锁、轻量级锁、重量级锁降低 synchronized 成本"，但不要把偏向锁说成现代 JDK 一定会走的默认路径。JDK 15+ 已经默认禁用偏向锁。
+
+### 锁升级流程（面试画图题）
+
+```mermaid
+flowchart LR
+    A[无锁 001] -->|同一线程进入| B[偏向锁 101\n记录线程ID]
+    B -->|其他线程竞争| C[撤销偏向\nCAS 操作对象头]
+    C -->|CAS 成功| D[轻量级锁 00\n自旋等待]
+    D -->|自旋超限| E[重量级锁 10\nOS 互斥量]
+    C -->|CAS 失败| E
+```
+
+- **偏向锁**：第一个线程进入时，对象头记录线程 ID，后续同一线程进入只需比对 ID，无需 CAS。
+- **轻量级锁**：出现竞争时，线程在栈帧中创建 Lock Record，CAS 把对象头的 Mark Word 拷贝到 Lock Record。成功则获得锁，失败则自旋。
+- **重量级锁**：自旋超过阈值（自适应自旋）仍未获得锁，膨胀为重量级锁。底层使用 ObjectMonitor，依赖操作系统的互斥量（Mutex），线程被 park 挂起。
+
+### 锁消除与锁粗化
+
+除了锁升级，JIT 还会做两种优化：
+
+**锁消除**：JIT 通过逃逸分析发现某个锁对象不可能被其他线程访问，直接消除锁操作。
+
+```java
+// StringBuffer 的 append 是 synchronized 方法
+// 但 sb 是局部变量，不可能逃逸到其他线程
+// JIT 会消除这个锁
+public String concat(String a, String b) {
+    StringBuffer sb = new StringBuffer();
+    sb.append(a);  // 锁被消除
+    sb.append(b);  // 锁被消除
+    return sb.toString();
+}
+```
+
+**锁粗化**：JIT 发现对同一对象连续加锁解锁，会把多个锁操作合并成一个更大的锁范围。
+
+```java
+// 优化前：每次循环都加锁解锁
+for (int i = 0; i < 1000; i++) {
+    synchronized (lock) {
+        // do something
+    }
+}
+
+// 锁粗化后：合并成一个锁
+synchronized (lock) {
+    for (int i = 0; i < 1000; i++) {
+        // do something
+    }
+}
+```
 
 ### 工程上的结论
 

@@ -159,6 +159,65 @@ CAS 是乐观锁的实现方式，和悲观锁是两种并发控制思路：
 
 > 注意：`LongAdder` 解决了乐观锁在高并发下的自旋问题——它不是靠无限重试，而是把竞争分散到多个 Cell 上。如果写操作非常频繁，`LongAdder` 比 `AtomicLong` 性能更好，代价是占用更多内存。
 
+## VarHandle：JDK 9+ 的替代方案
+
+`Unsafe` 是内部 API，从 JDK 9 开始，Java 提供了 `VarHandle` 作为官方的替代方案，提供标准化的内存操作能力：
+
+```java
+// JDK 9+ 用 VarHandle 替代 Unsafe
+private static final VarHandle VALUE;
+static {
+    try {
+        VALUE = MethodHandles.lookup()
+            .findVarHandle(AtomicInteger.class, "value", int.class);
+    } catch (Exception e) {
+        throw new ExceptionInInitializerError(e);
+    }
+}
+
+// compareAndSet 操作
+boolean success = VALUE.compareAndSet(instance, expect, update);
+```
+
+`VarHandle` 提供了和 `Unsafe` 类似的功能（CAS、内存屏障、可见性控制），但它是标准 API，有明确的文档和稳定性保证。`AtomicInteger` 从 JDK 9 开始也改用 `VarHandle` 实现。面试中提到 `Unsafe` 后补充 `VarHandle` 的存在，能体现版本意识。
+
+## LongAdder 怎么做到比 AtomicLong 快
+
+`LongAdder` 是 JDK 8 引入的高并发计数器，核心思想是**分散竞争**。
+
+### 内部结构
+
+```
+LongAdder
+  └─ base (long)          — 无竞争时直接操作
+  └─ Cell[] cells          — 有竞争时分散到不同 Cell
+       └─ Cell (volatile long value, @Contended)
+```
+
+每个 `Cell` 用 `@Contended` 注解填充缓存行，避免**伪共享**——多个 Cell 在同一个缓存行上，一个 Cell 被修改会导致其他 Cell 的缓存行失效，引发不必要的缓存一致性流量。
+
+### 工作流程
+
+```
+add(1):
+  1. 先尝试 CAS 更新 base
+  2. 失败 → 根据 threadLocalRandomProbe 找到一个 Cell
+  3. CAS 更新该 Cell 的 value
+  4. Cell 的 CAS 也失败 → 扩容 Cell 数组（最多到 CPU 核心数）
+```
+
+`sum()` 时把 base 和所有 Cell 的值相加——所以 `sum()` 不是精确的（遍历过程中其他线程可能还在修改），但计数器场景通常不需要强一致性。
+
+### 性能对比
+
+| 并发场景           | AtomicLong | LongAdder                   |
+| ------------------ | ---------- | --------------------------- |
+| 低并发（1-2 线程） | 好         | 略差（Cell 数组初始化开销） |
+| 中并发（4-8 线程） | 自旋增多   | 明显更好                    |
+| 高并发（16+ 线程） | 严重退化   | 优势巨大                    |
+
+> 选型原则：计数器场景用 `LongAdder`，需要精确值或 CAS 语义（如 `compareAndSet`）用 `AtomicLong`。
+
 ## Atomic 类概览
 
 `java.util.concurrent.atomic` 包提供了丰富的原子类：

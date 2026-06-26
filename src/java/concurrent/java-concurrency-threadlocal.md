@@ -58,6 +58,68 @@ Thread
 2. `ThreadLocalMap` 的 Entry 的 key 是 `ThreadLocal` 的**弱引用**（继承 `WeakReference`）。
 3. `ThreadLocalMap` 没有链表结构，用**开放寻址法**（线性探测）解决哈希冲突。
 
+### 哈希算法：为什么用 0x61c88647
+
+ThreadLocalMap 用**开放寻址法**，哈希冲突时线性探测。如果多个 ThreadLocal 的哈希值挤在一起，探测效率会很差。
+
+ThreadLocal 用了一个魔法数 `0x61c88647`（黄金分割数）作为增量：
+
+```java
+private static final int HASH_INCREMENT = 0x61c88647;
+
+// 每个 ThreadLocal 实例的 threadLocalHashCode
+private final int threadLocalHashCode = nextHashCode();
+
+private static AtomicInteger nextHashCode = new AtomicInteger();
+
+private static int nextHashCode() {
+    return nextHashCode.getAndAdd(HASH_INCREMENT);
+}
+```
+
+这个增量让连续创建的 ThreadLocal 在数组中**均匀分布**——每个 ThreadLocal 的哈希值之间的间隔正好是黄金分割比例，能把元素均匀地散布在整个数组中，减少冲突。
+
+### set() 的源码流程
+
+```java
+public void set(T value) {
+    Thread t = Thread.currentThread();
+    ThreadLocalMap map = getMap(t); // t.threadLocals
+    if (map != null) {
+        map.set(this, value);
+    } else {
+        createMap(t, value); // 第一次访问时延迟创建
+    }
+}
+
+// ThreadLocalMap.set 的核心逻辑
+private void set(ThreadLocal<?> key, Object value) {
+    Entry[] tab = table;
+    int len = tab.length;
+    int i = key.threadLocalHashCode & (len-1); // 定位槽位
+
+    // 线性探测：从 i 开始往后找
+    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
+        ThreadLocal<?> k = e.get();
+        if (k == key) {           // 找到了，覆盖旧值
+            e.value = value;
+            return;
+        }
+        if (k == null) {          // key 被 GC 回收了（弱引用）
+            replaceStaleEntry(key, value, i); // 替换过期 Entry，顺便清理
+            return;
+        }
+    }
+    // 没找到，新建 Entry
+    tab[i] = new Entry(key, value);
+    int sz = ++size;
+    if (!cleanSomeSlots(i, sz) && sz >= threshold) // 启发式清理 + 检查是否需要扩容
+        rehash(); // 扩容（容量翻倍）
+}
+```
+
+> 扩容阈值是 `len * 2/3`，扩容后容量翻倍，同时清理所有 key=null 的过期 Entry。
+
 ### 为什么 key 用弱引用？
 
 如果 key 是强引用，即使外部不再使用 ThreadLocal 对象，只要线程还活着，ThreadLocalMap 就会一直持有它，导致无法回收。用弱引用后，当 ThreadLocal 的外部强引用消失后，GC 可以回收 key，留下一个 key=null 的 Entry。

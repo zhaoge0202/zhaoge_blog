@@ -53,14 +53,76 @@ ConcurrentHashMap
 
 锁粒度细化到**每个桶的头节点**——只要 hash 不冲突，多个线程可以同时操作不同的桶，互不影响。
 
-### put 操作的锁流程
+### put 操作的完整流程
+
+```java
+// 简化版 JDK 8 ConcurrentHashMap.putVal
+final V putVal(K key, V value, boolean onlyIfAbsent) {
+    int hash = spread(key.hashCode());
+    int binCount = 0;
+    for (Node<K,V>[] tab = table;;) {
+        Node<K,V> f; int n, i, fh;
+        // 1. 桶为空 → CAS 插入（无锁）
+        if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
+            if (casTabAt(tab, i, null, new Node<>(hash, key, value)))
+                break;
+        }
+        // 2. 桶头节点是 ForwardingNode → 正在扩容，当前线程帮忙迁移
+        else if ((fh = f.hash) == MOVED)
+            tab = helpTransfer(tab, f);
+        // 3. 桶非空 → synchronized 锁住头节点
+        else {
+            synchronized (f) {
+                if (tabAt(tab, i) == f) { // 二次检查，防止其他线程已修改
+                    // 链表：遍历到尾部插入 / 覆盖已有 key
+                    // 红黑树：调用 TreeNode 的 put 方法
+                }
+            }
+            if (binCount >= TREEIFY_THRESHOLD)
+                treeifyBin(tab, i); // 链表长度 ≥ 8 → 转红黑树
+            break;
+        }
+    }
+    addCount(1L, binCount); // 更新元素计数
+    return null;
+}
+```
+
+关键点：
+
+1. 桶为空时用 CAS 无锁插入，不需要 synchronized。
+2. 桶非空时只锁住桶头节点，不影响其他桶。
+3. 扩容时通过 `ForwardingNode`（hash=MOVED）标记，其他线程看到这个标志会帮忙迁移数据。
+
+### 扩容：transfer 机制
+
+ConcurrentHashMap 的扩容是**多线程并行**的：
+
+1. 触发条件：元素总数 > `sizeCtl`（阈值 = 桶数 × 0.75）。
+2. 创建一个 2 倍大小的新数组。
+3. 多个线程各自负责迁移旧数组的一段（默认每个线程 16 个桶）。
+4. 迁移完一个桶后，在旧数组对应位置放 `ForwardingNode`，后续读请求转发到新数组。
+
+> 这个设计很巧妙——扩容不是阻塞操作，读写请求在扩容期间仍然可以继续。读请求遇到 ForwardingNode 会被转发到新数组，写请求遇到 ForwardingNode 会帮忙迁移。
+
+### size() 怎么算
+
+ConcurrentHashMap 的 `size()` 不维护一个精确的计数器（那样会成为瓶颈）。它用了一个类似 LongAdder 的思路：
 
 ```
-1. 计算 hash，定位桶
-2. 桶为空 → CAS 插入（无锁）
-3. 桶非空 → synchronized 锁住头节点，链表/红黑树插入
-4. 链表长度 ≥ 8 → 转红黑树
+baseCount + sumCell()
 ```
+
+- 无竞争时直接 CAS 更新 `baseCount`。
+- 有竞争时分散到 `CounterCell[]` 数组，`size()` 时求和。
+
+所以 `size()` 返回的是一个**近似值**——遍历过程中其他线程可能还在修改。这是并发容器为性能做的权衡。
+
+### 弱一致性迭代
+
+ConcurrentHashMap 的迭代器是**弱一致性**的：迭代器创建后只保证看到创建那一刻已存在的元素，迭代期间其他线程的新增/删除不一定反映出来。这和 `HashMap` 的 fail-fast 不同——`HashMap` 迭代时被修改会抛 `ConcurrentModificationException`，而 ConcurrentHashMap 不会。
+
+> 这不是缺陷，而是设计选择。并发场景下强一致迭代的代价太高（需要全局锁），弱一致性是合理的权衡。
 
 ### 和 HashMap 的结构差异
 
