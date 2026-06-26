@@ -16,9 +16,9 @@ export default defineUserConfig({
   base: process.env.VUEPRESS_BASE || "/",
   dest: dist,
   lang: "zh-CN",
-  title: "Java 面试进阶指南",
+  title: "拾级",
   description:
-    "面向 3-5 年 Java 后端工程师的面试进阶知识站，围绕高频题、原理、项目表达与复盘纠偏组织内容。",
+    "拾级 —— 面向 3-5 年 Java 后端工程师的进阶知识库，按知识域讲透高频题、原理与项目取舍，并保留独立博客记录实战与复盘。",
   head: [
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "zhaoge" }],

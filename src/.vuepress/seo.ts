@@ -1,6 +1,6 @@
-const SITE_TITLE = "Java 面试进阶指南";
+const SITE_TITLE = "拾级";
 const HOME_DESCRIPTION =
-  "Java 面试进阶指南是一份面向 3-5 年 Java 后端工程师的知识库，覆盖 Java、数据库、系统设计、工具实践与个人复盘，适合系统复习、查漏补缺和沉淀自己的技术判断。";
+  "拾级是一份面向 3-5 年 Java 后端工程师的进阶知识库，覆盖 Java、数据库、系统设计、工具实践与个人复盘，适合系统复习、查漏补缺和沉淀自己的技术判断。";
 
 // 路径段 -> 中文显示名，用于面包屑和栏目页结构化数据
 const segmentDisplayNames: Record<string, string> = {

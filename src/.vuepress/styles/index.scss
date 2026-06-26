@@ -112,78 +112,34 @@ pre {
   background: var(--home-surface);
 }
 
-.home-entry-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1rem;
-  margin: 2rem 0 2.6rem;
-}
-
-.home-entry-card {
-  border: 1px solid var(--home-border);
-  border-radius: 20px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.95),
-      rgba(250, 245, 238, 0.92)
-    ),
-    var(--home-surface);
-  padding: 1.35rem 1.4rem;
-  box-shadow: 0 18px 36px rgba(67, 46, 29, 0.06);
-}
-
-.home-entry-card h2 {
-  margin: 0.15rem 0 0.55rem;
-  font-size: 1.35rem;
-}
-
-.home-entry-card p {
-  margin: 0;
-  color: var(--home-muted);
-  line-height: 1.8;
-}
-
-.home-entry-card--primary {
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(181, 90, 42, 0.12),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.98),
-      rgba(250, 244, 236, 0.96)
-    );
-}
-
-.home-entry-kicker {
-  margin: 0;
-  color: var(--vp-c-accent);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.home-entry-actions {
+.home-domain-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1.6rem 0 2.4rem;
 }
 
-.home-entry-actions a {
+.home-domain-row a {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
   border: 1px solid var(--home-border);
-  background: rgba(255, 255, 255, 0.78);
-  padding: 0.45rem 0.9rem;
-  color: var(--vp-c-accent);
+  background: var(--home-surface);
+  padding: 0.5rem 1.1rem;
+  color: var(--vp-c-text);
   font-weight: 600;
   text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.home-domain-row a:hover {
+  color: var(--vp-c-accent);
+  border-color: var(--vp-c-accent);
+  background: var(--home-accent-soft);
 }
 
 .home h2 {
@@ -261,14 +217,12 @@ pre {
   --home-accent-soft: rgba(181, 90, 42, 0.18);
 }
 
-[data-theme="dark"] .home-entry-card,
 [data-theme="dark"] .question-radar a,
 [data-theme="dark"] .home .vp-hero-info-wrapper {
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
 }
 
 @media (max-width: 959px) {
-  .home-entry-grid,
   .question-radar {
     grid-template-columns: 1fr;
   }
@@ -396,7 +350,6 @@ html.layout-hidden {
     padding: 1.4rem 1.2rem;
   }
 
-  .home-entry-card,
   .question-radar a {
     border-radius: 16px;
   }
