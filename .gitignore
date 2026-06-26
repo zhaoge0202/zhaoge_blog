@@ -20,3 +20,4 @@ coverage/
 .env.local
 .media-sync.json
 AGENTS.md
+.catpaw

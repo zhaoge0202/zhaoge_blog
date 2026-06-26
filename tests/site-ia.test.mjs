@@ -50,7 +50,17 @@ test("new domain entry pages exist", () => {
 test("core content is migrated into java/database/blog paths", () => {
   for (const relativePath of [
     "src/java/concurrent/README.md",
+    "src/java/concurrent/java-concurrency-basics.md",
+    "src/java/concurrent/java-concurrency-jmm.md",
+    "src/java/concurrent/java-concurrency-volatile.md",
+    "src/java/concurrent/java-concurrency-synchronized.md",
+    "src/java/concurrent/java-concurrency-cas.md",
+    "src/java/concurrent/java-concurrency-reentrantlock.md",
     "src/java/concurrent/java-concurrency-thread-pool.md",
+    "src/java/concurrent/java-concurrency-threadlocal.md",
+    "src/java/concurrent/java-concurrency-concurrent-collections.md",
+    "src/java/concurrent/java-concurrency-completablefuture.md",
+    "src/java/concurrent/java-concurrency-virtual-thread.md",
     "src/java/jvm/README.md",
     "src/java/jvm/jvm-g1-vs-cms.md",
     "src/database/mysql/README.md",
@@ -116,6 +126,30 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
   ]) {
     assert.equal(exists(relativePath), true, `${relativePath} should exist`);
+  }
+});
+
+test("java sidebar exposes concurrent article tree", () => {
+  const sidebar = read("src/.vuepress/sidebar.ts");
+
+  for (const snippet of [
+    'text: "并发"',
+    '"java-concurrency-basics"',
+    '"java-concurrency-jmm"',
+    '"java-concurrency-volatile"',
+    '"java-concurrency-synchronized"',
+    '"java-concurrency-cas"',
+    '"java-concurrency-reentrantlock"',
+    '"java-concurrency-thread-pool"',
+    '"java-concurrency-threadlocal"',
+    '"java-concurrency-concurrent-collections"',
+    '"java-concurrency-completablefuture"',
+    '"java-concurrency-virtual-thread"',
+  ]) {
+    assert.match(
+      sidebar,
+      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    );
   }
 });
 

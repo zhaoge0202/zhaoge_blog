@@ -18,7 +18,46 @@ const sidebar = {
       text: "并发",
       prefix: "concurrent/",
       collapsible: true,
-      children: ["", "java-concurrency-thread-pool"],
+      children: [
+        "",
+        {
+          text: "线程基础与内存模型",
+          collapsible: true,
+          children: [
+            "java-concurrency-basics",
+            "java-concurrency-jmm",
+            "java-concurrency-volatile",
+          ],
+        },
+        {
+          text: "锁与同步",
+          collapsible: true,
+          children: [
+            "java-concurrency-synchronized",
+            "java-concurrency-cas",
+            "java-concurrency-reentrantlock",
+          ],
+        },
+        {
+          text: "线程池",
+          collapsible: true,
+          children: ["java-concurrency-thread-pool"],
+        },
+        {
+          text: "并发工具与集合",
+          collapsible: true,
+          children: [
+            "java-concurrency-threadlocal",
+            "java-concurrency-concurrent-collections",
+            "java-concurrency-completablefuture",
+          ],
+        },
+        {
+          text: "虚拟线程",
+          collapsible: true,
+          children: ["java-concurrency-virtual-thread"],
+        },
+      ],
     },
     {
       text: "JVM",
