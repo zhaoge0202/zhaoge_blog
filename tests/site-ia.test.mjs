@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { build } from "esbuild";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -14,6 +15,258 @@ const exists = (relativePath) =>
   fs.existsSync(path.join(repoRoot, relativePath));
 
 const readJson = (relativePath) => JSON.parse(read(relativePath));
+
+const sidebarVirtualRoutes = new Set([
+  "/category/",
+  "/tag/",
+  "/article/",
+  "/timeline/",
+  "/star/",
+]);
+
+const markdownFrontmatterFields = [
+  "title",
+  "description",
+  "breadcrumb",
+  "article",
+  "editLink",
+  "category",
+  "tag",
+];
+
+const posixJoin = (...parts) =>
+  parts.join("/").replace(/\/+/g, "/").replace(/^\.\//, "");
+
+const trimSlashes = (value) => value.replace(/^\/+|\/+$/g, "");
+
+const collectMarkdownFiles = (dir) => {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const absolutePath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      if ([".vuepress", "node_modules", "dist"].includes(entry.name)) continue;
+      files.push(...collectMarkdownFiles(absolutePath));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name.endsWith(".md")) {
+      files.push(
+        path.relative(repoRoot, absolutePath).replaceAll(path.sep, "/"),
+      );
+    }
+  }
+
+  return files.sort();
+};
+
+const parseFrontmatter = (content) => {
+  if (!content.startsWith("---\n")) return {};
+
+  const end = content.indexOf("\n---", 4);
+  if (end === -1) return {};
+
+  const frontmatter = {};
+  const lines = content.slice(4, end).split("\n");
+  const parseInlineObject = (value) => {
+    const objectValue = {};
+    const pairPattern = /(\w+):\s*(?:"([^"]*)"|'([^']*)'|([^,}]+))/g;
+    let match;
+
+    while ((match = pairPattern.exec(value)) !== null) {
+      objectValue[match[1]] = (match[2] ?? match[3] ?? match[4]).trim();
+    }
+
+    return objectValue;
+  };
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const match = line.match(/^([A-Za-z][\w-]*):(?:\s*(.*))?$/);
+    if (!match) continue;
+
+    const [, key, rawValue = ""] = match;
+    const value = rawValue.trim();
+
+    if (value === "") {
+      if (lines[index + 1]?.match(/^\s+-\s+/)) {
+        const values = [];
+
+        while (lines[index + 1]?.match(/^\s+-\s+/)) {
+          index += 1;
+          values.push(
+            lines[index]
+              .replace(/^\s+-\s+/, "")
+              .trim()
+              .replace(/^["']|["']$/g, ""),
+          );
+        }
+
+        frontmatter[key] = values;
+        continue;
+      }
+
+      if (lines[index + 1]?.match(/^\s+\w+:/)) {
+        const values = {};
+
+        while (lines[index + 1]?.match(/^\s+\w+:/)) {
+          index += 1;
+          const nested = lines[index].match(/^\s+(\w+):\s*(.*)$/);
+          if (nested) {
+            values[nested[1]] = nested[2].trim().replace(/^["']|["']$/g, "");
+          }
+        }
+
+        frontmatter[key] = values;
+        continue;
+      }
+
+      if (lines[index + 1]?.match(/^\s+\{/)) {
+        const objectLines = [];
+
+        while (lines[index + 1] && !lines[index + 1].match(/^\s*\}\s*$/)) {
+          index += 1;
+          objectLines.push(lines[index].trim());
+        }
+
+        if (lines[index + 1]?.match(/^\s*\}\s*$/)) index += 1;
+
+        frontmatter[key] = parseInlineObject(objectLines.join(" "));
+        continue;
+      }
+    }
+
+    if (value.startsWith("{") && value.endsWith("}")) {
+      frontmatter[key] = parseInlineObject(value);
+      continue;
+    }
+
+    frontmatter[key] = value.replace(/^["']|["']$/g, "");
+  }
+
+  return frontmatter;
+};
+
+const loadSidebar = async () => {
+  const sidebarEntry = path.join(repoRoot, "src/.vuepress/sidebar.ts");
+  const result = await build({
+    entryPoints: [sidebarEntry],
+    bundle: true,
+    write: false,
+    format: "esm",
+    platform: "node",
+  });
+  const code = result.outputFiles[0].text;
+  const encoded = Buffer.from(code).toString("base64");
+  const module = await import(`data:text/javascript;base64,${encoded}`);
+
+  return module.default;
+};
+
+const resolveSidebarLink = (basePath, prefix, value) => {
+  const link = typeof value === "string" ? value : value.link;
+
+  if (link === undefined || /^(?:https?:)?\/\//.test(link)) return undefined;
+
+  const withoutHash = link.split("#")[0];
+  if (!withoutHash) {
+    return `src/${posixJoin(trimSlashes(basePath), prefix)}README.md`;
+  }
+
+  if (withoutHash.endsWith(".html")) {
+    const pagePath = `src/${trimSlashes(withoutHash).replace(/\.html$/, ".md")}`;
+    const indexPath = `src/${trimSlashes(withoutHash).replace(
+      /\.html$/,
+      "/README.md",
+    )}`;
+
+    return exists(pagePath) ? pagePath : indexPath;
+  }
+
+  if (withoutHash.endsWith(".md")) {
+    return `src/${trimSlashes(withoutHash)}`;
+  }
+
+  const route = withoutHash.startsWith("/")
+    ? trimSlashes(withoutHash)
+    : posixJoin(trimSlashes(basePath), prefix, withoutHash);
+
+  return withoutHash.endsWith("/")
+    ? `src/${route}/README.md`
+    : `src/${route}.md`;
+};
+
+const collectSidebarReferences = (sidebar) => {
+  const references = [];
+
+  const walk = (basePath, items, prefix = "") => {
+    for (const item of items) {
+      if (typeof item === "string") {
+        const relativePath = resolveSidebarLink(basePath, prefix, item);
+        if (relativePath) references.push(relativePath);
+        continue;
+      }
+
+      if (!item || typeof item !== "object") continue;
+
+      const relativePath = resolveSidebarLink(basePath, prefix, item);
+      if (relativePath) references.push(relativePath);
+
+      if (Array.isArray(item.children)) {
+        walk(basePath, item.children, posixJoin(prefix, item.prefix ?? ""));
+      }
+    }
+  };
+
+  for (const [basePath, items] of Object.entries(sidebar)) {
+    if (sidebarVirtualRoutes.has(basePath)) continue;
+    walk(basePath, items);
+  }
+
+  return [...new Set(references)].sort();
+};
+
+const resolveSiteLink = (fromRelativePath, link) => {
+  if (!link || /^(?:https?:)?\/\//.test(link) || link.startsWith("mailto:")) {
+    return undefined;
+  }
+
+  const withoutHash = link.split("#")[0];
+  if (!withoutHash) return undefined;
+
+  if (withoutHash.endsWith(".html")) {
+    const pagePath = `src/${trimSlashes(withoutHash).replace(/\.html$/, ".md")}`;
+    const indexPath = `src/${trimSlashes(withoutHash).replace(
+      /\.html$/,
+      "/README.md",
+    )}`;
+
+    return exists(pagePath) ? pagePath : indexPath;
+  }
+
+  if (withoutHash.startsWith("/")) {
+    const route = trimSlashes(withoutHash);
+    if (route.endsWith(".html")) {
+      const pagePath = `src/${route.replace(/\.html$/, ".md")}`;
+      const indexPath = `src/${route.replace(/\.html$/, "/README.md")}`;
+
+      return exists(pagePath) ? pagePath : indexPath;
+    }
+
+    return withoutHash.endsWith("/")
+      ? `src/${route}/README.md`
+      : `src/${route.replace(/\.md$/, "")}.md`;
+  }
+
+  const fromDir = path.posix.dirname(fromRelativePath);
+  const route = path.posix.normalize(path.posix.join(fromDir, withoutHash));
+
+  return route.endsWith("/")
+    ? `${route}README.md`
+    : route.replace(/\.html$/, ".md");
+};
 
 test("navbar exposes domain-first knowledge sections and a separate blog entry", () => {
   const navbar = read("src/.vuepress/navbar.ts");
@@ -129,140 +382,118 @@ test("core content is migrated into java/database/blog paths", () => {
   }
 });
 
-test("java sidebar exposes concurrent article tree", () => {
-  const sidebar = read("src/.vuepress/sidebar.ts");
+test("sidebar is modularized behind the stable compatibility entry", () => {
+  const sidebarEntry = read("src/.vuepress/sidebar.ts");
+  const sidebarIndex = read("src/.vuepress/sidebar/index.ts");
 
-  for (const snippet of [
-    'text: "并发"',
-    '"java-concurrency-basics"',
-    '"java-concurrency-jmm"',
-    '"java-concurrency-volatile"',
-    '"java-concurrency-synchronized"',
-    '"java-concurrency-cas"',
-    '"java-concurrency-reentrantlock"',
-    '"java-concurrency-thread-pool"',
-    '"java-concurrency-threadlocal"',
-    '"java-concurrency-concurrent-collections"',
-    '"java-concurrency-completablefuture"',
-    '"java-concurrency-virtual-thread"',
-  ]) {
-    assert.match(
-      sidebar,
-      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+  assert.match(
+    sidebarEntry,
+    /export \{ default \} from "\.\/sidebar\/index\.js"/,
+  );
+  assert.match(sidebarIndex, /knowledgeSidebar/);
+  assert.match(sidebarIndex, /navigationSidebar/);
+  assert.equal(exists("src/.vuepress/sidebar/knowledge.ts"), true);
+  assert.equal(exists("src/.vuepress/sidebar/navigation.ts"), true);
+});
+
+test("sidebar references resolve to existing markdown files", async () => {
+  const sidebar = await loadSidebar();
+  const references = collectSidebarReferences(sidebar);
+
+  assert.ok(
+    references.includes("src/java/concurrent/java-concurrency-thread-pool.md"),
+  );
+  assert.ok(references.includes("src/database/mysql/mysql-locks.md"));
+  assert.ok(
+    references.includes("src/database/redis/redis-cache-consistency.md"),
+  );
+  assert.ok(references.includes("src/database/sql/sql-window-functions.md"));
+  assert.ok(references.includes("src/database/elasticsearch/es-query-dsl.md"));
+
+  for (const relativePath of references) {
+    assert.equal(exists(relativePath), true, `${relativePath} should exist`);
+  }
+});
+
+test("public markdown files are discoverable from sidebar", async () => {
+  const sidebar = await loadSidebar();
+  const references = new Set(collectSidebarReferences(sidebar));
+  const allowedOrphans = new Set([
+    "src/README.md",
+    "src/database/mysql/_article-footer.snippet.md",
+  ]);
+  const markdownFiles = collectMarkdownFiles(path.join(repoRoot, "src"));
+
+  for (const relativePath of markdownFiles) {
+    if (allowedOrphans.has(relativePath)) continue;
+    assert.equal(
+      references.has(relativePath),
+      true,
+      `${relativePath} should be reachable from sidebar`,
     );
   }
 });
 
-test("database sidebar exposes mysql article tree", () => {
-  const sidebar = read("src/.vuepress/sidebar.ts");
+test("sidebar article frontmatter keeps required note fields", async () => {
+  const sidebar = await loadSidebar();
+  const references = collectSidebarReferences(sidebar).filter(
+    (relativePath) =>
+      !relativePath.endsWith("/README.md") &&
+      !relativePath.startsWith("src/blog/"),
+  );
 
-  for (const snippet of [
-    'text: "MySQL"',
-    '"mysql-architecture-sql-execution"',
-    '"mysql-innodb-vs-myisam"',
-    '"mysql-row-format"',
-    '"mysql-data-page"',
-    '"mysql-buffer-pool"',
-    '"mysql-why-bplus-tree"',
-    '"mysql-index-design"',
-    '"mysql-index-invalidation"',
-    '"mysql-explain"',
-    '"mysql-count"',
-    '"mysql-transaction-isolation"',
-    '"mysql-mvcc-read-view"',
-    '"mysql-locks"',
-    '"mysql-lock-rules"',
-    '"mysql-deadlock"',
-    '"mysql-logs"',
-    '"mysql-replication"',
-    '"mysql-schema-design"',
-    '"mysql-time-and-primary-key"',
-    '"mysql-auto-increment"',
-  ]) {
-    assert.match(
-      sidebar,
-      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+  for (const relativePath of references) {
+    const frontmatter = parseFrontmatter(read(relativePath));
+
+    for (const field of markdownFrontmatterFields) {
+      assert.ok(
+        Object.hasOwn(frontmatter, field),
+        `${relativePath} frontmatter should include ${field}`,
+      );
+    }
+
+    assert.equal(
+      Array.isArray(frontmatter.category),
+      true,
+      `${relativePath} category should be a YAML array`,
+    );
+    assert.equal(
+      Array.isArray(frontmatter.tag),
+      true,
+      `${relativePath} tag should be a YAML array`,
     );
   }
 });
 
-test("database sidebar exposes redis article tree", () => {
-  const sidebar = read("src/.vuepress/sidebar.ts");
+test("article prev and next links point to existing markdown files", async () => {
+  const sidebar = await loadSidebar();
+  const references = collectSidebarReferences(sidebar).filter(
+    (relativePath) =>
+      !relativePath.endsWith("/README.md") &&
+      !relativePath.startsWith("src/blog/"),
+  );
 
-  for (const snippet of [
-    'text: "Redis"',
-    '"redis-data-structures"',
-    '"redis-special-data-structures"',
-    '"redis-typical-scenarios"',
-    '"redis-persistence"',
-    '"redis-expire-eviction"',
-    '"redis-bigkey-hotkey"',
-    '"redis-blocking-troubleshooting"',
-    '"redis-memory-fragmentation"',
-    '"redis-configuration-tuning"',
-    '"redis-monitoring-metrics"',
-    '"redis-cache-problems"',
-    '"redis-bloom-filter"',
-    '"redis-cache-consistency"',
-    '"redis-high-availability"',
-    '"redis-cluster-details"',
-    '"redis-cluster-operations"',
-    '"redis-replication-troubleshooting"',
-    '"redis-distributed-lock"',
-    '"redis-pipeline-lua"',
-    '"redis-rate-limiting"',
-    '"redis-message-queue"',
-    '"redis-delayed-task"',
-  ]) {
-    assert.match(
-      sidebar,
-      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
-    );
-  }
-});
+  for (const relativePath of references) {
+    const frontmatter = parseFrontmatter(read(relativePath));
 
-test("database sidebar exposes sql article tree", () => {
-  const sidebar = read("src/.vuepress/sidebar.ts");
+    for (const field of ["prev", "next"]) {
+      assert.ok(
+        frontmatter[field]?.link,
+        `${relativePath} frontmatter should include ${field}.link`,
+      );
+      assert.equal(
+        typeof frontmatter[field].link,
+        "string",
+        `${relativePath} frontmatter ${field}.link should be a string`,
+      );
 
-  for (const snippet of [
-    'text: "SQL"',
-    '"sql-execution-order"',
-    '"sql-groupby-aggregate"',
-    '"sql-join"',
-    '"sql-subquery"',
-    '"sql-set-operations"',
-    '"sql-window-functions"',
-    '"sql-null-and-case"',
-    '"sql-pagination"',
-    '"sql-writing-best-practices"',
-  ]) {
-    assert.match(
-      sidebar,
-      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
-    );
-  }
-});
-
-test("database sidebar exposes elasticsearch article tree", () => {
-  const sidebar = read("src/.vuepress/sidebar.ts");
-
-  for (const snippet of [
-    'text: "Elasticsearch"',
-    '"es-core-concepts"',
-    '"es-inverted-index"',
-    '"es-analyzer"',
-    '"es-mapping"',
-    '"es-query-dsl"',
-    '"es-scoring"',
-    '"es-aggregation"',
-    '"es-shard-replica"',
-    '"es-read-write-flow"',
-    '"es-deep-pagination-tuning"',
-  ]) {
-    assert.match(
-      sidebar,
-      new RegExp(snippet.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
-    );
+      const target = resolveSiteLink(relativePath, frontmatter[field].link);
+      assert.equal(
+        exists(target),
+        true,
+        `${relativePath} ${field}.link should resolve to ${target}`,
+      );
+    }
   }
 });
 
