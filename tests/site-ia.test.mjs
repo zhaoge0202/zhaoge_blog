@@ -375,6 +375,11 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/database/elasticsearch/es-shard-replica.md",
     "src/database/elasticsearch/es-read-write-flow.md",
     "src/database/elasticsearch/es-deep-pagination-tuning.md",
+    "src/database/mongodb/README.md",
+    "src/database/mongodb/mongodb-data-model.md",
+    "src/database/mongodb/mongodb-index-query.md",
+    "src/database/mongodb/mongodb-aggregation-pipeline.md",
+    "src/database/mongodb/mongodb-replica-sharding.md",
     "src/blog/essays/2026-06-16-note-1.md",
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
   ]) {
@@ -409,6 +414,7 @@ test("sidebar references resolve to existing markdown files", async () => {
   );
   assert.ok(references.includes("src/database/sql/sql-window-functions.md"));
   assert.ok(references.includes("src/database/elasticsearch/es-query-dsl.md"));
+  assert.ok(references.includes("src/database/mongodb/mongodb-data-model.md"));
 
   for (const relativePath of references) {
     assert.equal(exists(relativePath), true, `${relativePath} should exist`);

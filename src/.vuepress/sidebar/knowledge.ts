@@ -302,7 +302,29 @@ export const knowledgeSidebar = {
       text: "MongoDB",
       prefix: "mongodb/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "文档模型与选型",
+          collapsible: true,
+          children: ["mongodb-data-model"],
+        },
+        {
+          text: "索引与查询优化",
+          collapsible: true,
+          children: ["mongodb-index-query"],
+        },
+        {
+          text: "聚合管道",
+          collapsible: true,
+          children: ["mongodb-aggregation-pipeline"],
+        },
+        {
+          text: "高可用与扩展",
+          collapsible: true,
+          children: ["mongodb-replica-sharding"],
+        },
+      ],
     },
   ],
   "/system-design/": [
