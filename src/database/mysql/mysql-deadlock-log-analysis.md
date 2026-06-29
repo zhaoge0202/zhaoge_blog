@@ -1,0 +1,108 @@
+---
+title: "MySQL 线上死锁日志怎么看？"
+description: "从 LATEST DETECTED DEADLOCK、data_locks 和业务重试讲清死锁日志分析。"
+breadcrumb: true
+article: true
+editLink: false
+category:
+  - "MySQL"
+tag:
+  - "排障"
+  - "项目实战"
+  - "进阶"
+prev:
+  text: "慢 SQL 应该按什么顺序排查？"
+  link: "/database/mysql/mysql-slow-query-troubleshooting.html"
+next:
+  text: "主从延迟怎么定位和治理？"
+  link: "/database/mysql/mysql-replication-delay-troubleshooting.html"
+---
+
+# MySQL 线上死锁日志怎么看？
+
+> 看死锁日志的目标不是背字段，而是还原等待环：谁持有什么锁、谁在等什么锁、最后回滚了谁。
+
+已有死锁篇讲了成因。这篇只讲线上拿到一段死锁信息后怎么读。
+
+## 先把现场保留下来
+
+`SHOW ENGINE INNODB STATUS\G` 里有 `LATEST DETECTED DEADLOCK`，但只保留最近一次。生产建议开启：
+
+```sql
+SET GLOBAL innodb_print_all_deadlocks = ON;
+```
+
+这样每次死锁都会写入 error log，避免被下一次死锁覆盖。长期是否开启要结合日志量评估。
+
+## 死锁日志看哪几块？
+
+一段死锁日志通常包含：
+
+1. 事务 1 的 SQL、持锁信息、等待锁信息。
+2. 事务 2 的 SQL、持锁信息、等待锁信息。
+3. InnoDB 选择回滚哪个事务。
+
+读法按这个顺序：
+
+- 看 `TRANSACTION`：事务活了多久、改了多少行、持有多少锁。
+- 看 `WAITING FOR THIS LOCK TO BE GRANTED`：它正在等哪个索引、哪个锁模式。
+- 看 `HOLDS THE LOCK(S)`：它已经持有哪些锁。
+- 看 SQL：把锁映射回业务操作。
+- 看 `WE ROLL BACK TRANSACTION`：确认被牺牲的是哪个事务。
+
+## LOCK_MODE 怎么翻译？
+
+如果用 `performance_schema.data_locks` 辅助观察，重点看：
+
+| LOCK_MODE             | 含义               |
+| --------------------- | ------------------ |
+| `X`                   | X 型 next-key lock |
+| `X, REC_NOT_GAP`      | X 型记录锁         |
+| `X, GAP`              | X 型间隙锁         |
+| `X, INSERT_INTENTION` | 插入意向锁         |
+
+`LOCK_TYPE=RECORD` 只是说这是行级锁，不等于 Record Lock。这个误读很常见。
+
+## 怎么还原等待环？
+
+可以用一句话描述：
+
+```text
+事务 A 持有 lock1，等待 lock2；
+事务 B 持有 lock2，等待 lock1。
+```
+
+如果是间隙锁死锁，常见形态是：
+
+- 两个事务都先 `SELECT ... FOR UPDATE`，各自持有同一段兼容的 gap/next-key。
+- 随后都要 INSERT，插入意向锁和对方持有的间隙锁冲突。
+- 双方互等，形成死锁。
+
+如果是更新顺序不一致，常见形态是：
+
+- A 先改订单再改库存。
+- B 先改库存再改订单。
+- 两个事务访问资源顺序相反。
+
+## 应用层应该怎么处理？
+
+InnoDB 检测到死锁后会回滚其中一个事务，应用会看到 `ERROR 1213`。正确处理方式不是直接报系统异常，而是：
+
+- 捕获死锁错误。
+- 回滚当前事务。
+- 按幂等规则重试整个事务。
+- 控制重试次数和退避时间。
+
+不要只重试失败 SQL 的后半段。事务上下文已经被回滚，必须从业务事务入口重新执行。
+
+## 小结
+
+- `SHOW ENGINE INNODB STATUS` 只保留最近一次死锁，生产可用 `innodb_print_all_deadlocks` 记录全部。
+- 看死锁日志要还原“持有什么锁、等什么锁、谁被回滚”的等待环。
+- `LOCK_TYPE=RECORD` 不等于记录锁，具体锁类型看 `LOCK_MODE`。
+- 常见根因是资源访问顺序不一致、间隙锁 + 插入意向锁、长事务持锁。
+- 应用层要捕获 1213，回滚并重试整个幂等事务。
+
+## 参考
+
+综合社区资料、本站 `mysql-deadlock.md`，并结合 `performance_schema.data_locks` 的线上排障读法做了整理。

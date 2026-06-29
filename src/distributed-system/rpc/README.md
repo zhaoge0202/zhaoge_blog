@@ -3,6 +3,9 @@ title: "RPC"
 article: false
 breadcrumb: true
 editLink: false
+next:
+  text: "RPC 一次调用经历了哪些步骤？"
+  link: "/distributed-system/rpc/rpc-call-flow.html"
 ---
 
 # RPC
@@ -15,9 +18,12 @@ editLink: false
 
 调用模型 -> 序列化 -> 网络传输 -> 服务治理
 
+## 当前重点文章
+
+- [RPC 一次调用经历了哪些步骤？](./rpc-call-flow.html) — 从代理、服务发现、负载均衡、编解码到响应回包讲清一次调用的完整主线。
+- [Dubbo 的注册发现、负载均衡和容错怎么配合？](./dubbo-discovery-loadbalance-faulttolerance.html) — 从 `Directory`、路由、负载均衡和 cluster 容错层看一次 Dubbo 调用如何收口。
+
 ## 后续计划
 
-- RPC 调用全流程与动态代理。
 - 序列化协议对比（Hessian、Protobuf、JSON）。
-- 常见框架：Dubbo、gRPC、Thrift。
-- 负载均衡、容错、超时与重试。
+- gRPC、Thrift 等框架选型。

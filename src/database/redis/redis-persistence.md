@@ -14,8 +14,8 @@ prev:
   text: "Redis 里的排行榜、计数器、签到这些场景该怎么设计？"
   link: "/database/redis/redis-typical-scenarios.html"
 next:
-  text: "过期删除和内存淘汰到底有什么区别？"
-  link: "/database/redis/redis-expire-eviction.html"
+  text: "Redis 持久化为什么会导致线上卡顿？"
+  link: "/database/redis/redis-persistence-latency.html"
 ---
 
 # RDB、AOF 和混合持久化怎么选？

@@ -12,7 +12,37 @@ export const knowledgeSidebar = {
       text: "集合",
       prefix: "collection/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "List",
+          collapsible: true,
+          children: ["java-collection-arraylist-linkedlist"],
+        },
+        {
+          text: "Map",
+          collapsible: true,
+          children: [
+            "java-collection-hashmap-structure",
+            "java-collection-hashmap-thread-safety",
+            "java-collection-concurrenthashmap",
+            "java-collection-linkedhashmap-lru",
+          ],
+        },
+        {
+          text: "Set",
+          collapsible: true,
+          children: ["java-collection-hashset"],
+        },
+        {
+          text: "并发集合与队列",
+          collapsible: true,
+          children: [
+            "java-collection-copyonwritearraylist",
+            "java-collection-queue-scenarios",
+          ],
+        },
+      ],
     },
     {
       text: "并发",
@@ -63,7 +93,37 @@ export const knowledgeSidebar = {
       text: "JVM",
       prefix: "jvm/",
       collapsible: true,
-      children: ["", "jvm-g1-vs-cms"],
+      children: [
+        "",
+        {
+          text: "内存与对象",
+          collapsible: true,
+          children: ["jvm-memory-areas", "jvm-object-lifecycle"],
+        },
+        {
+          text: "类加载",
+          collapsible: true,
+          children: ["jvm-class-loading", "jvm-classloader"],
+        },
+        {
+          text: "GC 原理与收集器",
+          collapsible: true,
+          children: [
+            "jvm-object-recycling",
+            "jvm-gc-collectors",
+            "jvm-g1-vs-cms",
+          ],
+        },
+        {
+          text: "线上排障与调优",
+          collapsible: true,
+          children: [
+            "jvm-oom-troubleshooting",
+            "jvm-full-gc-troubleshooting",
+            "jvm-parameters-tuning",
+          ],
+        },
+      ],
     },
     {
       text: "IO",
@@ -84,13 +144,79 @@ export const knowledgeSidebar = {
       text: "操作系统",
       prefix: "operating-system/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "进程线程",
+          collapsible: true,
+          children: [
+            "os-process-thread",
+            "os-context-switch",
+            "os-thread-count-limit",
+            "os-ipc",
+            "os-deadlock",
+          ],
+        },
+        {
+          text: "内存与文件系统",
+          collapsible: true,
+          children: [
+            "os-virtual-memory",
+            "os-malloc-physical-memory",
+            "os-page-cache",
+          ],
+        },
+        {
+          text: "网络 IO",
+          collapsible: true,
+          children: ["os-io-multiplexing", "os-zero-copy", "os-reactor-netty"],
+        },
+      ],
     },
     {
       text: "计算机网络",
       prefix: "network/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "网络基础",
+          collapsible: true,
+          children: ["network-tcp-ip-model", "network-url-process"],
+        },
+        {
+          text: "TCP 连接生命周期",
+          collapsible: true,
+          children: [
+            "network-tcp-three-way-handshake",
+            "network-tcp-four-way-wave-time-wait",
+          ],
+        },
+        {
+          text: "TCP 可靠传输与控制",
+          collapsible: true,
+          children: [
+            "network-tcp-reliability",
+            "network-tcp-flow-congestion-control",
+            "network-tcp-queue-overflow",
+            "network-server-no-accept",
+          ],
+        },
+        {
+          text: "HTTP/HTTPS",
+          collapsible: true,
+          children: [
+            "network-http-versions",
+            "network-https-rsa-ecdhe",
+            "network-http-keepalive-tcp-keepalive",
+          ],
+        },
+        {
+          text: "抓包排障",
+          collapsible: true,
+          children: ["network-tcpdump-handshake-retransmission"],
+        },
+      ],
     },
     {
       text: "数据结构",
@@ -155,7 +281,13 @@ export const knowledgeSidebar = {
         {
           text: "日志与持久化",
           collapsible: true,
-          children: ["mysql-logs", "mysql-replication"],
+          children: [
+            "mysql-logs",
+            "mysql-replication",
+            "mysql-update-execution",
+            "mysql-crash-recovery-logs",
+            "mysql-flush-policy",
+          ],
         },
         {
           text: "工程细节与规范",
@@ -164,6 +296,17 @@ export const knowledgeSidebar = {
             "mysql-schema-design",
             "mysql-time-and-primary-key",
             "mysql-auto-increment",
+          ],
+        },
+        {
+          text: "工程排障与变更",
+          collapsible: true,
+          children: [
+            "mysql-next-key-lock-range",
+            "mysql-slow-query-troubleshooting",
+            "mysql-deadlock-log-analysis",
+            "mysql-replication-delay-troubleshooting",
+            "mysql-online-ddl",
           ],
         },
       ],
@@ -179,9 +322,13 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "redis-data-structures",
+            "redis-internal-data-structures",
+            "redis-zset-skiplist",
+            "redis-single-thread-performance",
             "redis-special-data-structures",
             "redis-typical-scenarios",
             "redis-persistence",
+            "redis-persistence-latency",
             "redis-expire-eviction",
           ],
         },
@@ -210,6 +357,8 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "redis-high-availability",
+            "redis-replication-internals",
+            "redis-sentinel-failover",
             "redis-cluster-details",
             "redis-cluster-operations",
             "redis-replication-troubleshooting",
@@ -339,7 +488,18 @@ export const knowledgeSidebar = {
       text: "框架",
       prefix: "framework/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        "spring-ioc-container-startup",
+        "spring-bean-lifecycle-extension-points",
+        "spring-circular-dependency-resolution",
+        "spring-aop-proxy-weaving",
+        "spring-transaction-failure-cases",
+        "spring-mvc-request-processing",
+        "spring-boot-auto-configuration-principles",
+        "mybatis-cache-pitfalls",
+        "mybatis-plugin-pagination-mechanism",
+      ],
     },
     {
       text: "安全",
@@ -350,15 +510,84 @@ export const knowledgeSidebar = {
   ],
   "/distributed-system/": [
     "",
+    "distributed-cap-base",
+    "distributed-raft-overview",
+    "distributed-zookeeper-zab",
+    "distributed-lock-implementations",
     {
       text: "RPC",
       prefix: "rpc/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        "rpc-call-flow",
+        "dubbo-discovery-loadbalance-faulttolerance",
+      ],
     },
   ],
-  "/high-performance/": [""],
-  "/high-availability/": [""],
+  "/high-performance/": [
+    "",
+    {
+      text: "性能定位与 SQL 排查",
+      collapsible: true,
+      children: [
+        "high-performance-bottleneck-analysis",
+        "high-performance-sql-optimization-chain",
+      ],
+    },
+    {
+      text: "数据库扩展与一致性",
+      collapsible: true,
+      children: [
+        "high-performance-read-write-splitting-consistency",
+        "high-performance-sharding-tradeoffs",
+      ],
+    },
+    {
+      text: "消息队列与异步链路",
+      collapsible: true,
+      children: [
+        "high-performance-message-queue-role",
+        "high-performance-message-reliability",
+        "high-performance-message-idempotency",
+        "high-performance-message-backlog",
+        "high-performance-mq-selection",
+      ],
+    },
+  ],
+  "/high-availability/": [
+    "",
+    {
+      text: "可用性目标",
+      collapsible: true,
+      children: ["high-availability-sla-rto-rpo"],
+    },
+    {
+      text: "稳定性治理",
+      collapsible: true,
+      children: [
+        "high-availability-rate-limiting",
+        "high-availability-resilience-composition",
+        "high-availability-retry-storm",
+      ],
+    },
+    {
+      text: "幂等与重复请求",
+      collapsible: true,
+      children: [
+        "high-availability-idempotency-design",
+        "high-availability-idempotency-cases",
+      ],
+    },
+    {
+      text: "容灾与验证",
+      collapsible: true,
+      children: [
+        "high-availability-disaster-recovery",
+        "high-availability-performance-testing",
+      ],
+    },
+  ],
   "/tools/": [
     "",
     {

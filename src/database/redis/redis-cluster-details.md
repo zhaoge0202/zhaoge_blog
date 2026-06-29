@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "体系化"
 prev:
-  text: "Redis 的高可用方案怎么理解？"
-  link: "/database/redis/redis-high-availability.html"
+  text: "Redis Sentinel 是怎么判断故障并完成选主的？"
+  link: "/database/redis/redis-sentinel-failover.html"
 next:
   text: "Redis Cluster 在工程上怎么部署和扩缩容？"
   link: "/database/redis/redis-cluster-operations.html"

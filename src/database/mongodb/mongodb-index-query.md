@@ -262,6 +262,6 @@ db.orders
 
 ## 参考
 
-- 综合自 `docs/JavaGuide/docs/database/mongodb/mongodb-questions-02.md` 中索引类型、复合索引、TTL、覆盖查询相关内容，并按访问模式重新组织。
+- 综合社区资料中索引类型、复合索引、TTL、覆盖查询相关内容，并按访问模式重新组织。
 - 对照 MongoDB 官方文档 Indexes、TTL Indexes、Compound Indexes 与 Query Plans，校准了索引类型、TTL 删除延迟和覆盖查询边界。
 - 对资料中“文本索引”“TTL 到期删除”等容易答得过满的表述补充了工程使用边界。

@@ -14,8 +14,8 @@ prev:
   text: "Redis"
   link: "/database/redis/"
 next:
-  text: "Redis 的特殊数据类型该怎么选？"
-  link: "/database/redis/redis-special-data-structures.html"
+  text: "SDS、dict、quicklist、listpack、skiplist 分别解决什么问题？"
+  link: "/database/redis/redis-internal-data-structures.html"
 ---
 
 # Redis 常见数据类型怎么选？

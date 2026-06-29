@@ -11,13 +11,13 @@ editLink: false
 
 ## 子域
 
-- [操作系统](./operating-system/)：进程线程、内存管理、IO 模型、调度。
-- [计算机网络](./network/)：TCP/IP、HTTP/HTTPS、握手挥手、网络模型。
+- [操作系统](./operating-system/)：进程线程、虚拟内存、Page Cache、零拷贝、IO 多路复用与 Reactor。
+- [计算机网络](./network/)：TCP/IP 分层、URL 请求链路、TCP 握手挥手、HTTP/HTTPS 与抓包排障。
 - [数据结构](./data-structure/)：数组、链表、树、图、哈希、堆。
 - [算法](./algorithms/)：常见算法思想、复杂度分析、面试高频题型。
 
 ## 后续计划
 
-- 操作系统：进程与线程、死锁、虚拟内存、用户态/内核态、零拷贝、IO 多路复用。
-- 网络：三次握手四次挥手、TCP 可靠传输、HTTP 状态码、HTTPS 加密流程、DNS。
+- 网络：继续扩展 TCP/UDP 选型、DNS/CDN、HTTP 缓存和典型线上网络故障复盘。
+- 操作系统：后续补充调度、文件系统、Linux 命令排障和容器资源隔离。
 - 数据结构与算法：红黑树、B+ 树、跳表、布隆过滤器、排序与查找、动态规划。

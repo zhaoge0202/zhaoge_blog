@@ -11,8 +11,8 @@ tag:
   - "细节题"
   - "排障"
 prev:
-  text: "RDB、AOF 和混合持久化怎么选？"
-  link: "/database/redis/redis-persistence.html"
+  text: "Redis 持久化为什么会导致线上卡顿？"
+  link: "/database/redis/redis-persistence-latency.html"
 next:
   text: "Redis 的大 key 和热 key 怎么发现和处理？"
   link: "/database/redis/redis-bigkey-hotkey.html"

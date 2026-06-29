@@ -13,8 +13,8 @@ prev:
   text: "时间字段和主键怎么选？"
   link: "/database/mysql/mysql-time-and-primary-key.html"
 next:
-  text: "Redis"
-  link: "/database/redis/"
+  text: "一条 UPDATE 语句在 MySQL 里怎么执行？"
+  link: "/database/mysql/mysql-update-execution.html"
 ---
 
 # 自增主键为什么不一定连续？

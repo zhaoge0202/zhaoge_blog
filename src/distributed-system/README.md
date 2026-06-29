@@ -3,6 +3,9 @@ title: "分布式"
 article: false
 breadcrumb: true
 editLink: false
+next:
+  text: "CAP 和 BASE 怎么理解？为什么不是简单三选二？"
+  link: "/distributed-system/distributed-cap-base.html"
 ---
 
 # 分布式
@@ -11,12 +14,21 @@ editLink: false
 
 ## 子域
 
+- [分布式基础](./distributed-cap-base.html)：CAP、BASE 这些分布式理论边界，决定后面所有一致性与可用性取舍怎么谈。
 - [RPC](./rpc/)：远程调用原理、序列化、常见框架。
+
+## 当前重点文章
+
+- [CAP 和 BASE 怎么理解？为什么不是简单三选二？](./distributed-cap-base.html)
+- [Raft 解决了什么问题？为什么比 Paxos 更容易落地？](./distributed-raft-overview.html)
+- [ZooKeeper 和 ZAB 是什么关系？](./distributed-zookeeper-zab.html)
+- [分布式锁有哪些实现？Redis 锁的边界在哪里？](./distributed-lock-implementations.html)
+- [RPC 一次调用经历了哪些步骤？](./rpc/rpc-call-flow.html)
+- [Dubbo 的注册发现、负载均衡和容错怎么配合？](./rpc/dubbo-discovery-loadbalance-faulttolerance.html)
 
 ## 后续计划
 
 - 分布式 ID：雪花算法、号段模式、设计权衡。
-- 分布式锁：Redis、ZooKeeper、数据库实现与对比。
 - 分布式事务：2PC、TCC、本地消息表、Seata。
 - 服务注册发现、配置中心、API 网关。
-- 分布式协调：ZooKeeper、一致性协议（Paxos / Raft）。
+- ZooKeeper、一致性协议（Paxos / Raft / ZAB）。

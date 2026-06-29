@@ -38,10 +38,10 @@ MongoDB 的集群能力经常被一句“支持副本集和分片”带过。面
 
 ```mermaid
 flowchart TB
-  C[Client] --> P[Primary]
-  P -->|oplog| S1[Secondary]
-  P -->|oplog| S2[Secondary]
-  S1 -. election .- S2
+ C[Client] --> P[Primary]
+ P -->|oplog| S1[Secondary]
+ P -->|oplog| S2[Secondary]
+ S1 -. election .- S2
 ```
 
 角色大概分三类：
@@ -134,11 +134,11 @@ MongoDB 分片集群由三类角色组成：
 
 ```mermaid
 flowchart LR
-  App[应用] --> Mongos[mongos 路由]
-  Mongos --> Config[Config Server 副本集]
-  Mongos --> Shard1[Shard 1 副本集]
-  Mongos --> Shard2[Shard 2 副本集]
-  Mongos --> Shard3[Shard 3 副本集]
+ App[应用] --> Mongos[mongos 路由]
+ Mongos --> Config[Config Server 副本集]
+ Mongos --> Shard1[Shard 1 副本集]
+ Mongos --> Shard2[Shard 2 副本集]
+ Mongos --> Shard3[Shard 3 副本集]
 ```
 
 | 组件          | 作用                                    |
@@ -264,6 +264,6 @@ MongoDB 常见分片策略有两类。
 
 ## 参考
 
-- 综合自 `docs/JavaGuide/docs/database/mongodb/mongodb-questions-02.md` 中副本集、oplog、分片集群、分片键与分片策略相关内容，并重写为高可用与扩展主线。
+- 综合社区资料中副本集、oplog、分片集群、分片键与分片策略相关内容，并重写为高可用与扩展主线。
 - 对照 MongoDB 官方文档 Sharding、Read Preference、Write Concern 与 Transactions，校准了精准路由、Secondary 旧读、`majority` 语义和分片键选择边界。
 - 对资料中“读写分离”“分片键可重新选择”等容易答得过满的说法补充了工程代价和版本边界。

@@ -56,15 +56,15 @@ order_items(id, order_id, sku_id, name, price, quantity)
 
 ```json
 {
-  "_id": ObjectId("..."),
-  "userId": 10086,
-  "status": "PAID",
-  "totalAmount": 23900,
-  "createdAt": ISODate("2026-06-28T10:00:00Z"),
-  "items": [
-    { "skuId": 1, "name": "机械键盘", "price": 19900, "quantity": 1 },
-    { "skuId": 2, "name": "键盘轴体", "price": 4000, "quantity": 1 }
-  ]
+ "_id": ObjectId("..."),
+ "userId": 10086,
+ "status": "PAID",
+ "totalAmount": 23900,
+ "createdAt": ISODate("2026-06-28T10:00:00Z"),
+ "items": [
+ { "skuId": 1, "name": "机械键盘", "price": 19900, "quantity": 1 },
+ { "skuId": 2, "name": "键盘轴体", "price": 4000, "quantity": 1 }
+ ]
 }
 ```
 
@@ -109,10 +109,10 @@ MongoDB 也支持集合级别的 schema validation。它不是为了把 MongoDB 
 
 ```mermaid
 flowchart LR
-  A[读取订单详情] --> B[一个 orders 文档]
-  B --> C[订单主信息]
-  B --> D[items 数组]
-  B --> E[收货地址快照]
+ A[读取订单详情] --> B[一个 orders 文档]
+ B --> C[订单主信息]
+ B --> D[items 数组]
+ B --> E[收货地址快照]
 ```
 
 这样设计的好处很直接：少一次 join，少一次网络往返，也少了一组跨表一致性问题。
@@ -132,11 +132,11 @@ flowchart LR
 ```json
 // comments 集合里只引用 articleId，而不是把所有评论嵌到 article 文档中
 {
-  "_id": ObjectId("..."),
-  "articleId": ObjectId("..."),
-  "userId": 10086,
-  "content": "写得很清楚",
-  "createdAt": ISODate("2026-06-28T10:00:00Z")
+ "_id": ObjectId("..."),
+ "articleId": ObjectId("..."),
+ "userId": 10086,
+ "content": "写得很清楚",
+ "createdAt": ISODate("2026-06-28T10:00:00Z")
 }
 ```
 
@@ -212,6 +212,6 @@ MongoDB 单文档写入天然具备原子性。多文档事务后来也支持副
 
 ## 参考
 
-- 综合自 `docs/JavaGuide/docs/database/mongodb/mongodb-questions-01.md` 中 MongoDB 基础、BSON、事务与数据建模相关内容，并按本知识库风格重写。
+- 综合社区资料中 MongoDB 基础、BSON、事务与数据建模相关内容，并按本知识库风格重写。
 - 对照 MongoDB 官方文档 Data Modeling 与 Transactions，校准了嵌入式建模、单文档原子性、多文档事务成本等边界。
 - 对资料中“MongoDB 可替代关系库”“支持事务”这类容易答得过满的表述做了场景化收敛。

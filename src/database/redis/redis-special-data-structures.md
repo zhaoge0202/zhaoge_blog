@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "项目实战"
 prev:
-  text: "Redis 常见数据类型怎么选？"
-  link: "/database/redis/redis-data-structures.html"
+  text: "Redis 单线程为什么还能这么快？"
+  link: "/database/redis/redis-single-thread-performance.html"
 next:
   text: "Redis 里的排行榜、计数器、签到这些场景该怎么设计？"
   link: "/database/redis/redis-typical-scenarios.html"

@@ -48,11 +48,11 @@ db.orders.aggregate([
 
 ```mermaid
 flowchart LR
-  A[原始文档] --> B[$match 过滤]
-  B --> C[$project 改字段]
-  C --> D[$group 分组统计]
-  D --> E[$sort 排序]
-  E --> F[$limit 输出]
+ A[原始文档] --> B[$match 过滤]
+ B --> C[$project 改字段]
+ C --> D[$group 分组统计]
+ D --> E[$sort 排序]
+ E --> F[$limit 输出]
 ```
 
 每个阶段只做一类事：
@@ -77,15 +77,15 @@ flowchart LR
 
 ```json
 {
-  "_id": ObjectId("..."),
-  "userId": 10086,
-  "status": "PAID",
-  "amount": 23900,
-  "items": [
-    { "skuId": 1, "category": "keyboard", "quantity": 1 },
-    { "skuId": 2, "category": "switch", "quantity": 1 }
-  ],
-  "createdAt": ISODate("2026-06-28T10:00:00Z")
+ "_id": ObjectId("..."),
+ "userId": 10086,
+ "status": "PAID",
+ "amount": 23900,
+ "items": [
+ { "skuId": 1, "category": "keyboard", "quantity": 1 },
+ { "skuId": 2, "category": "switch", "quantity": 1 }
+ ],
+ "createdAt": ISODate("2026-06-28T10:00:00Z")
 }
 ```
 
@@ -258,6 +258,6 @@ db.orders.createIndex({ userId: 1, status: 1, createdAt: -1 });
 
 ## 参考
 
-- 综合自 `docs/JavaGuide/docs/database/mongodb/mongodb-questions-01.md` 中聚合管道、常用阶段操作符、map-reduce 相关内容，并用订单统计例子重写。
+- 综合社区资料中聚合管道、常用阶段操作符、map-reduce 相关内容，并用订单统计例子重写。
 - 对照 MongoDB 官方文档 Aggregation Pipeline，校准了阶段模型、`$match`/`$group`/`$lookup` 的定位，以及 MongoDB 5.0 起 map-reduce 不推荐使用的版本边界。
 - 对资料中“聚合方式并列罗列”的说法补充了新项目优先级和工程优化顺序。

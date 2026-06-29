@@ -14,8 +14,8 @@ prev:
   text: "如何保证缓存和数据库一致性？"
   link: "/database/redis/redis-cache-consistency.html"
 next:
-  text: "Redis Cluster 为什么是 16384 个槽？扩缩容和路由怎么理解？"
-  link: "/database/redis/redis-cluster-details.html"
+  text: "Redis 主从复制是怎么完成全量和增量同步的？"
+  link: "/database/redis/redis-replication-internals.html"
 ---
 
 # Redis 的高可用方案怎么理解？
