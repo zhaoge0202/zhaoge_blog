@@ -450,6 +450,8 @@ test("core content is migrated into java/database/blog paths", () => {
     "src/distributed-system/distributed-raft-overview.md",
     "src/distributed-system/distributed-zookeeper-zab.md",
     "src/distributed-system/distributed-lock-implementations.md",
+    "src/distributed-system/distributed-id-selection.md",
+    "src/distributed-system/distributed-transaction-selection.md",
     "src/distributed-system/rpc/rpc-call-flow.md",
     "src/distributed-system/rpc/dubbo-discovery-loadbalance-faulttolerance.md",
     "src/high-performance/README.md",

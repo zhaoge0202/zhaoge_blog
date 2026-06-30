@@ -514,6 +514,8 @@ export const knowledgeSidebar = {
     "distributed-raft-overview",
     "distributed-zookeeper-zab",
     "distributed-lock-implementations",
+    "distributed-id-selection",
+    "distributed-transaction-selection",
     {
       text: "RPC",
       prefix: "rpc/",

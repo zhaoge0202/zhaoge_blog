@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "RPC"
-  link: "/distributed-system/rpc/"
+  text: "分布式事务怎么选：2PC、TCC、Saga、本地消息表？"
+  link: "/distributed-system/distributed-transaction-selection.html"
 next:
   text: "Dubbo 的注册发现、负载均衡和容错怎么配合？"
   link: "/distributed-system/rpc/dubbo-discovery-loadbalance-faulttolerance.html"

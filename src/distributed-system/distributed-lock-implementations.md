@@ -14,8 +14,8 @@ prev:
   text: "ZooKeeper 和 ZAB 是什么关系？"
   link: "/distributed-system/distributed-zookeeper-zab.html"
 next:
-  text: "RPC 一次调用经历了哪些步骤？"
-  link: "/distributed-system/rpc/rpc-call-flow.html"
+  text: "分布式 ID 怎么选：雪花、号段、数据库自增？"
+  link: "/distributed-system/distributed-id-selection.html"
 ---
 
 # 分布式锁有哪些实现？Redis 锁的边界在哪里？
