@@ -239,4 +239,4 @@ add(1):
 
 ## 参考
 
-综合自多篇 CAS 详解和乐观锁/悲观锁资料。部分资料分别从实现和概念角度讲解，本文将两者合并为统一叙事，并补充了 `LongAdder` 作为高并发场景解决方案的说明。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

@@ -268,6 +268,4 @@ next:
 
 ## 参考
 
-综合自社区高可用资料，并结合本站
-[`Redis 做分布式限流为什么经常配 Lua？`](../database/redis/redis-rate-limiting.html)
-的工程场景，对几种常见限流算法和选型边界做了重写整理。
+基于 Redis、MySQL、Apache Kafka、Apache RocketMQ、Nginx、Kubernetes 官方文档，以及 Google SRE 官方公开文档中可用性、限流、重试、熔断、幂等、容灾和压测相关内容整理。

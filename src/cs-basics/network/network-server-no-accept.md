@@ -170,4 +170,4 @@ ulimit -n
 
 ## 参考
 
-综合社区资料，并结合 Java 服务 accept 线程、全连接队列和客户端超时现象做了工程化整理。
+基于 IETF RFC 791、RFC 793、RFC 9293、RFC 9110、RFC 9112、RFC 9113、RFC 9114、RFC 8446、RFC 9000、RFC 9204 以及 Linux man-pages 中网络协议与排障命令相关内容整理。

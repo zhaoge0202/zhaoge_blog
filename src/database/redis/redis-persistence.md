@@ -14,8 +14,8 @@ prev:
   text: "Redis 里的排行榜、计数器、签到这些场景该怎么设计？"
   link: "/database/redis/redis-typical-scenarios.html"
 next:
-  text: "Redis 持久化为什么会导致线上卡顿？"
-  link: "/database/redis/redis-persistence-latency.html"
+  text: "RDB fork 会带来哪些线上风险？"
+  link: "/database/redis/redis-rdb-fork-risk.html"
 ---
 
 # RDB、AOF 和混合持久化怎么选？
@@ -288,5 +288,4 @@ Redis 4.0 之后支持混合持久化。
 
 ## 参考
 
-- 综合 Redis 持久化相关资料重写，重点覆盖 RDB、AOF、写时复制和重写机制。
-- 结合混合持久化、`appendfsync` 策略和版本差异的常见讨论，按面试取舍视角重新整理。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

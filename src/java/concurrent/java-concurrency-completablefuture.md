@@ -202,4 +202,4 @@ CompletableFuture.supplyAsync(() -> getUser(userId), executor)
 
 ## 参考
 
-综合自美团技术团队《CompletableFuture 原理与实践-外卖商家端 API 的异步化》及多篇 CompletableFuture 详解资料。部分资料对 API 有逐方法详解，本文聚焦在编排模式和项目实践上。京东开源的 asyncTool 框架对复杂编排场景有参考价值。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

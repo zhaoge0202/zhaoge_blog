@@ -156,4 +156,4 @@ if (cache.size() < 1000) {
 
 ## 参考
 
-综合自《ConcurrentHashMap 源码分析》《Java 常见并发容器总结》《Java 集合常见面试题总结》，并与本站并发专题错位组织为源码结构、锁粒度和工程边界视角。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

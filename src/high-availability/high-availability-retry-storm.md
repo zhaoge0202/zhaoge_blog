@@ -225,5 +225,4 @@ next:
 
 ## 参考
 
-综合自社区高可用资料，并按
-“故障放大链路”的角度重组了重试风暴、退避和预算的内容。
+基于 Redis、MySQL、Apache Kafka、Apache RocketMQ、Nginx、Kubernetes 官方文档，以及 Google SRE 官方公开文档中可用性、限流、重试、熔断、幂等、容灾和压测相关内容整理。

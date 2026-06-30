@@ -169,4 +169,4 @@ WHERE  NOT EXISTS (SELECT 1 FROM orders o
 
 ## 参考
 
-综合社区 SQL 语法资料中子查询章节及嵌套子查询题目的拆解思路重写；其中"`NOT IN` 遇 NULL 失效""`EXISTS` 与 `IN` 的驱动方向"是资料未深入、结合三值逻辑展开讲清的部分，并和 [NULL 专题](./sql-null-and-case.html) 互相呼应。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

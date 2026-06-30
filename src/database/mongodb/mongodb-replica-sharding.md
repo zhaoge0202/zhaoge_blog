@@ -264,6 +264,4 @@ MongoDB 常见分片策略有两类。
 
 ## 参考
 
-- 综合社区资料中副本集、oplog、分片集群、分片键与分片策略相关内容，并重写为高可用与扩展主线。
-- 对照 MongoDB 官方文档 Sharding、Read Preference、Write Concern 与 Transactions，校准了精准路由、Secondary 旧读、`majority` 语义和分片键选择边界。
-- 对资料中“读写分离”“分片键可重新选择”等容易答得过满的说法补充了工程代价和版本边界。
+基于 MongoDB Manual 中 Data Modeling、Indexes、Aggregation、Replication、Sharding、Read Preference、Write Concern 与 Transactions 等相关官方章节整理。

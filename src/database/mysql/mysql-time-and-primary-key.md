@@ -140,7 +140,7 @@ SELECT FROM_UNIXTIME(1578707612);              -- 2020-01-11 09:53:32
 - **需要数据库自动管时区、且时间确定在 2038 前：`TIMESTAMP`**。典型就是 `created_at` / `updated_at` 这种「记录发生时刻、且就是当下」的字段——它们永远是「现在」，2038 前肯定够用，又能蹭 `ON UPDATE` 的自动刷新。
 - **极度看重比较性能、或频繁跨系统传时间、能接受可读性差：数值时间戳（`BIGINT`）**。高并发、分布式、需要做时间运算密集排序的场景可以考虑。
 
-顺带一提：《高性能 MySQL》的作者更倾向 `TIMESTAMP`，理由是「数值表示时间不够直观」。这个观点可以参考，但别当圣旨——它更多是在「`TIMESTAMP` vs 数值」之间表态，而 2038 问题在那个年代还没这么紧迫。今天我个人更推 `DATETIME` 兜底。
+如果只在 `TIMESTAMP` 和数值时间戳之间选，可读性确实是 `TIMESTAMP` 更好；但长期业务还要把 2038 边界算进去。面试里可以直接说：默认 `DATETIME` 兜底，只有明确需要数据库时区转换或自动刷新时再选 `TIMESTAMP`。
 
 ## 主键怎么选：优先自增整型
 
@@ -184,9 +184,4 @@ SELECT FROM_UNIXTIME(1578707612);              -- 2020-01-11 09:53:32
 
 ## 参考
 
-本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
-
-- MySQL 官方文档 - 日期时间类型存储需求：<https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html>
-- MySQL 官方文档 - 日期时间类型：<https://dev.mysql.com/doc/refman/8.0/en/datetime.html>
-- 《高性能 MySQL》—— 关于时间类型选择的讨论
-- 聚簇索引与页分裂的原理详见本知识库[索引设计篇](/database/mysql/mysql-index-design.html)
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

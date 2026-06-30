@@ -203,4 +203,4 @@ if (config != null) {
 
 ## 参考
 
-综合自多篇 JMM 详解资料中关于 volatile 的部分。部分资料在 happens-before 规则的阐述上较为完整，本文补充了 DCL 单例和内存屏障的实操解释，并强调了"volatile 不保证原子性"这一面试高频追问点。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

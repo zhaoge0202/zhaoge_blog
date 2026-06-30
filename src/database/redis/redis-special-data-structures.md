@@ -217,6 +217,4 @@ GEO 让你直接把经纬度信息放进 Redis，并做：
 
 ## 参考
 
-- 综合多份 Redis 特殊数据类型与工程实践资料，重写 Bitmap、HyperLogLog、GEO 的使用场景和边界。
-- 结合数据结构和业务建模资料，补充特殊结构不是“冷门知识”，而是业务模型映射的表达方式。
-- 对照 Redis 官方文档的数据类型与概率型数据结构页面，校准 Bitmap 的底层定位、HyperLogLog 的近似计数边界，以及 GEO、Stream 的能力范围。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

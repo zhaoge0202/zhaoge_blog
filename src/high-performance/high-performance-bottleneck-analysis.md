@@ -235,5 +235,4 @@ next:
 
 ## 参考
 
-综合自社区高性能资料和消息队列相关资料，
-并结合本站 MySQL、Redis、高可用专题重组了性能定位主线。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

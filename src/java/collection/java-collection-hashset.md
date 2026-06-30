@@ -186,4 +186,4 @@ for (Long id : ids) {
 
 ## 参考
 
-综合自《Java 集合常见面试题总结》《Java 集合使用注意事项总结》，并围绕 `HashMap.put` 返回值、`equals/hashCode` 契约和工程去重场景重新组织。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

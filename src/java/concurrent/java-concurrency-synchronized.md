@@ -240,4 +240,4 @@ public void update() {
 
 ## 参考
 
-综合自多篇 Java 锁详解资料，交叉验证了 JEP 374（偏向锁废弃）和 JEP 491（虚拟线程 synchronized 改进）的官方说明。部分资料对锁优化和版本差异的描述已较为完整，本文在此基础上突出了"偏向锁已废弃"这一容易被忽略的事实。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

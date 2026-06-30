@@ -201,4 +201,4 @@ UUID 的优势是简单、无需中心组件。尤其 UUID v7 具备时间有序
 
 ## 参考
 
-综合自本仓库 `docs/` 下的分布式 ID 资料，并结合 MySQL 聚簇索引写入、Redis 持久化/主从切换、Snowflake 时钟回拨和 Kubernetes Worker ID 分配场景做了边界验证与改写。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

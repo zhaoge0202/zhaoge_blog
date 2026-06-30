@@ -262,5 +262,4 @@ Redis Cluster 的核心思路是：**分片**。
 
 ## 参考
 
-- 综合 Redis 主从复制、哨兵和分片集群相关资料重写。
-- 结合全量复制、增量复制、故障转移和高可用架构演进的常见问法，重新组织为一条主线。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

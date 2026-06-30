@@ -196,11 +196,6 @@ sequenceDiagram
 
 ## 参考
 
-本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
-
-- 《MySQL 实战 45 讲》
-- 《MySQL 是怎样运行的：从根儿上理解 MySQL》
-- MySQL 官方文档：InnoDB Redo Log
-- MySQL 官方文档：The Binary Log
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。
 
 <!-- @include: ./_article-footer.snippet.md -->

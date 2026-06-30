@@ -262,6 +262,4 @@ db.orders
 
 ## 参考
 
-- 综合社区资料中索引类型、复合索引、TTL、覆盖查询相关内容，并按访问模式重新组织。
-- 对照 MongoDB 官方文档 Indexes、TTL Indexes、Compound Indexes 与 Query Plans，校准了索引类型、TTL 删除延迟和覆盖查询边界。
-- 对资料中“文本索引”“TTL 到期删除”等容易答得过满的表述补充了工程使用边界。
+基于 MongoDB Manual 中 Data Modeling、Indexes、Aggregation、Replication、Sharding、Read Preference、Write Concern 与 Transactions 等相关官方章节整理。

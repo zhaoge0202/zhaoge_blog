@@ -400,4 +400,4 @@ ZooKeeper 官方 overview 文档也直接说了：
 
 ## 参考
 
-综合自 ZAB/ZooKeeper 资料，并结合 Apache ZooKeeper 官方 internals 与 overview 文档对 atomic broadcast、leader activation、zxid、quorum 和一致性保证的说明，重写了 ZooKeeper 与 ZAB 的真实关系。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

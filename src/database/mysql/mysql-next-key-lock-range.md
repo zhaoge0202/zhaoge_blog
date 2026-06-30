@@ -103,4 +103,4 @@ SELECT * FROM performance_schema.data_lock_waits\G
 
 ## 参考
 
-综合社区资料和本站 `mysql-lock-rules.md`，并结合 MySQL 8.0 `performance_schema.data_locks` 的观察方式做了压缩整理。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

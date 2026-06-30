@@ -163,4 +163,4 @@ JDK 8 的逻辑更准确地说是：
 
 ## 参考
 
-综合自《HashMap 源码分析》《Java 集合常见面试题总结》，并重点核对了 JDK 8 的尾插、树化阈值、最小树化容量、扩容拆分和容量取整边界。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

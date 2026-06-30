@@ -389,4 +389,4 @@ spring.main.allow-circular-references=true
 
 ## 参考
 
-综合自 Spring 循环依赖专题与 Spring Framework 官方参考文档中的循环依赖说明，并结合 Spring Boot API 对 `allowCircularReferences` 的默认行为说明，重写了三级缓存、构造器注入失败原因、`@Lazy` 边界和版本态度变化。
+基于 Spring Framework Reference Documentation 中 IoC Container、Bean Lifecycle、AOP Proxies、Transaction Management、Spring MVC DispatcherServlet 与 Handler Methods 等相关章节整理。

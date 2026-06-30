@@ -178,5 +178,4 @@ Sentinel 建在 Redis 异步复制之上。
 
 ## 参考
 
-- 综合社区资料和现有 Redis 高可用文章重写。
-- 对照 Redis 官方 Sentinel 文档与 Sentinel client spec，校准 `quorum`、多数派授权、ODOWN、failover 和客户端服务发现边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

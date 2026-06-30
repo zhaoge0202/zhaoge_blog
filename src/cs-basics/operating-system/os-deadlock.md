@@ -94,4 +94,4 @@ jcmd <pid> Thread.print > /tmp/threads.txt
 
 ## 参考
 
-综合社区资料，并结合 Java 线程栈、数据库事务死锁与线上恢复策略做了整理。
+基于 Linux man-pages、Linux kernel documentation、OpenJDK 工具文档与 POSIX 相关规范中进程、线程、内存、文件系统、I/O、epoll、sendfile 等内容整理。

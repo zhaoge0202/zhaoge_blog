@@ -11,8 +11,8 @@ tag:
   - "排障"
   - "项目实战"
 prev:
-  text: "Redis 的大 key 和热 key 怎么发现和处理？"
-  link: "/database/redis/redis-bigkey-hotkey.html"
+  text: "大 key 对持久化、复制和删除有什么影响？"
+  link: "/database/redis/redis-bigkey-persistence-replication-delete.html"
 next:
   text: "Redis 为什么会有内存碎片？"
   link: "/database/redis/redis-memory-fragmentation.html"
@@ -248,5 +248,4 @@ Redis 的价值就在于“数据在内存里”。
 
 ## 参考
 
-- 综合多份 Redis 阻塞问题、持久化与排障资料，重写 Redis 卡顿的分层排查思路。
-- 结合大 key、复制与工程经验资料，补充删除、迁移、复制链路对延迟的影响。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

@@ -369,4 +369,4 @@ List<User> list2 = mapper.listActiveUsers();
 
 ## 参考
 
-综合自 MyBatis 常见问题整理，并结合 MyBatis 官方文档中关于本地缓存、`localCacheScope`、`clearCache()`、namespace 缓存、`<cache/>`、`cache-ref`、`useCache`/`flushCache` 默认行为的说明，重写了一级缓存和二级缓存的真实边界与常见坑。
+基于 MyBatis 官方文档中 Mapper、Configuration、Plugins、Caching、Dynamic SQL 与 RowBounds 等相关章节整理。

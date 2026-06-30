@@ -231,4 +231,4 @@ ConcurrentHashMap 提供了丰富的原子复合方法：`putIfAbsent`、`comput
 
 ## 参考
 
-综合自多篇 Java 并发容器总结资料。部分资料对各容器的介绍较为全面，本文补充了 JDK 7/8 的对比、null 禁止原因和复合操作陷阱——这三个是面试中常被追问的点。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

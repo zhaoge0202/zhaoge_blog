@@ -308,4 +308,4 @@ Spring 官方文档专门提醒：
 
 ## 参考
 
-综合自 Spring 生命周期相关内容，并结合 Spring 官方文档对 `@PostConstruct`、`InitializingBean`、多种初始化机制的执行顺序、单例创建锁以及 `SmartInitializingSingleton` / `ContextRefreshedEvent` 的适用边界做了交叉核对和重写。
+基于 Spring Framework Reference Documentation 中 IoC Container、Bean Lifecycle、AOP Proxies、Transaction Management、Spring MVC DispatcherServlet 与 Handler Methods 等相关章节整理。

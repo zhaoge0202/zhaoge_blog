@@ -14,8 +14,8 @@ prev:
   text: "过期删除和内存淘汰到底有什么区别？"
   link: "/database/redis/redis-expire-eviction.html"
 next:
-  text: "Redis 卡顿了该从哪里开始排查？"
-  link: "/database/redis/redis-blocking-troubleshooting.html"
+  text: "大 key 对持久化、复制和删除有什么影响？"
+  link: "/database/redis/redis-bigkey-persistence-replication-delete.html"
 ---
 
 # Redis 的大 key 和热 key 怎么发现和处理？
@@ -275,5 +275,4 @@ Redis 提供了 `redis-cli --hotkeys` 这种手段，但它有明显边界：
 
 ## 参考
 
-- 综合多份 Redis 线上问题、数据结构与排障资料，重写 big key、hot key 的判定、发现和治理思路。
-- 结合 Redis 官方文档与工程实践资料，补充 big key 对删除、复制、迁移链路的影响，并统一改写为知识库口径。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

@@ -238,4 +238,4 @@ UserContext ctx = USER_CONTEXT.get();
 
 ## 参考
 
-综合自多篇 ThreadLocal 详解资料。部分资料对 ThreadLocalMap 的 set/get/清理机制做了逐行源码分析，非常详尽。本文聚焦在数据结构、泄漏根因和防护实践上，省略了哈希算法（黄金分割数 0x61c88647）和扩容机制的细节，面试前建议对照原文过一遍。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

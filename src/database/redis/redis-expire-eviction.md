@@ -239,5 +239,4 @@ Redis 支持给 key 设置 TTL，比如：
 
 ## 参考
 
-- 综合 Redis 过期删除、内存淘汰和缓存管理相关资料重写。
-- 结合缓存基础与线上内存问题的常见问法，改写为故障分析和工程边界视角。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

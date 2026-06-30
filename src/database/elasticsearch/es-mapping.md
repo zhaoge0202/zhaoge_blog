@@ -174,4 +174,4 @@ POST /_reindex
 
 ## 参考
 
-本篇以 Elasticsearch 官方文档（Mapping、Field data types、text/keyword、doc_values/fielddata、dynamic templates、reindex）为权威源重写，字段类型行为与版本约束均依据官方文档核对。过时或不严谨的说法已在正文中点明。
+基于 Elasticsearch 官方文档与 Apache Lucene 官方文档中核心概念、索引、映射、分词、查询、评分、聚合、分页、分片副本和读写流程相关内容整理。

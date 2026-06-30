@@ -242,6 +242,4 @@ Lua 脚本也不能假装自己是“跨集群全局事务”。
 
 ## 参考
 
-- 综合多份 Redis 性能优化、Lua 脚本与分布式锁资料，重写 Pipeline、事务、Lua 三者的边界。
-- 结合工程实践资料，补充“减少往返”和“原子执行”不是一回事的表达。
-- 对照 Redis 官方 `pipelining`、`eval-intro` 文档，校准 RTT、批次大小、脚本原子执行、脚本缓存易失和 Cluster 下显式 key 参数约束。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

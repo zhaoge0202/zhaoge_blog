@@ -14,8 +14,8 @@ prev:
   text: "MyBatis 一级缓存和二级缓存为什么容易踩坑？"
   link: "/system-design/framework/mybatis-cache-pitfalls.html"
 next:
-  text: "安全"
-  link: "/system-design/security/"
+  text: "认证和授权有什么区别？"
+  link: "/system-design/security/security-authentication-authorization.html"
 ---
 
 # MyBatis 插件机制和分页插件怎么工作？
@@ -406,4 +406,4 @@ count SQL 或分页 SQL 的改写就可能变得不可靠。
 
 ## 参考
 
-综合自 MyBatis 常见问题整理，并结合 MyBatis 官方文档中关于 plugins、`Interceptor`、四大可拦截接口、`RowBounds` 和结果处理限制的说明，重写了插件机制、分页插件主线和常见踩坑点。
+基于 MyBatis 官方文档中 Mapper、Configuration、Plugins、Caching、Dynamic SQL 与 RowBounds 等相关章节整理。

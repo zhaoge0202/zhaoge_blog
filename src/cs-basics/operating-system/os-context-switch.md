@@ -98,4 +98,4 @@ Java 服务里，如果看到：
 
 ## 参考
 
-综合社区资料，并结合 Linux `vmstat`、`pidstat` 与 Java 线程排障经验做了整理。
+基于 Linux man-pages、Linux kernel documentation、OpenJDK 工具文档与 POSIX 相关规范中进程、线程、内存、文件系统、I/O、epoll、sendfile 等内容整理。

@@ -3,14 +3,18 @@ title: "开源项目"
 article: false
 breadcrumb: true
 editLink: false
+next:
+  text: "读 Spring 源码应该从 Bean 生命周期还是启动流程切入？"
+  link: "/open-source-project/source-reading-spring-entry.html"
 ---
 
 # 开源项目
 
 值得读源码、值得参与、值得拿来做项目经验的开源项目沉淀。读源码是把八股讲到原理层的最好方式。
 
-## 后续计划
+## 题目列表
 
-- 适合学习的 Java 后端开源项目。
-- 按方向分类：框架、中间件、工具。
-- 读源码的方法与切入点。
+- [读 Spring 源码应该从 Bean 生命周期还是启动流程切入？](./source-reading-spring-entry.html)
+- [读 MyBatis 源码应该先看 Executor 还是 Mapper 代理？](./source-reading-mybatis-entry.html)
+- [读 Netty 源码应该先理解 Reactor 还是 ByteBuf？](./source-reading-netty-entry.html)
+- [面试里怎么把源码阅读讲成项目能力？](./source-reading-project-expression.html)

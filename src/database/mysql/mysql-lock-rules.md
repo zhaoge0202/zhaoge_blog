@@ -311,7 +311,4 @@ select * from performance_schema.data_locks\G;
 
 ## 参考
 
-本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
-
-- MySQL 官方文档：InnoDB Locking（Gap Lock / Next-Key Lock / Insert Intention Lock）
-- MySQL 官方文档：Locks Set by Different SQL Statements in InnoDB
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

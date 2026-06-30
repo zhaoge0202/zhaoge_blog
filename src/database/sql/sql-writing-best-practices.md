@@ -133,4 +133,4 @@ INSERT INTO t(a) VALUES(1),(2),(3);
 
 ## 参考
 
-综合 SQL 优化资料中"避免 SELECT \*""尽量避免多表 join""不用外键与级联""字段类型""UNION ALL 代替 UNION""批量操作""正确使用索引"等章节重写；其中索引失效、执行计划、表结构设计等内部机制不在本篇展开，分别链接到 MySQL 专题的 [索引失效](../mysql/mysql-index-invalidation.html)、[执行计划](../mysql/mysql-explain.html)、[表设计](../mysql/mysql-schema-design.html) 等已有文章，本篇只聚焦"写法层面"的取舍。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

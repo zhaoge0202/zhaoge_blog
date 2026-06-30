@@ -153,4 +153,4 @@ put 4           [2, 3, 1, 4]
 
 ## 参考
 
-综合自《LinkedHashMap 源码分析》《Java 集合常见面试题总结》，并重点验证了访问顺序、`afterNodeAccess`、`removeEldestEntry` 和工程缓存边界。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

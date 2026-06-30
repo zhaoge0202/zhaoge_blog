@@ -162,6 +162,4 @@ Redis 复制是异步的。
 
 ## 参考
 
-- 综合多份 Redis 复制、高可用和性能优化资料，重写复制延迟与全量同步退化的排障路径。
-- 对照 Redis 官方 replication 文档，补充 `psync`、offset、backlog 和全量同步对主库压力的解释。
-- 对照 Redis 官方 replication 文档，校准主从异步复制、部分重同步与全量同步恢复流程的事实边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

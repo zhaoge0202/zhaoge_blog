@@ -235,6 +235,4 @@ next:
 
 ## 参考
 
-- 综合多份布隆过滤器、缓存穿透与 Redis 工程实践资料，重写布隆过滤器在缓存穿透场景下的定位和边界。
-- 结合缓存防护资料，补充布隆过滤器与空值缓存的取舍。
-- 对照 Redis 官方文档 Bloom Filter 页面，校准“概率型数据结构”“负判断可靠、正判断可能误判”和 `BF.*` 命令族的表述。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

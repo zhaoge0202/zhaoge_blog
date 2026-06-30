@@ -91,4 +91,4 @@ SHOW SLAVE STATUS\G; -- 旧版本写法
 
 ## 参考
 
-综合自本站 `mysql-replication.md`、社区 MySQL 资料，并结合 MySQL 5.6/5.7/8.0 并行复制边界做了整理。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

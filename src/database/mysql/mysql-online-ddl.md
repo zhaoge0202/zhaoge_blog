@@ -92,4 +92,4 @@ ALTER TABLE t ADD COLUMN c INT, ALGORITHM=INPLACE, LOCK=NONE;
 
 ## 参考
 
-综合自本站 `mysql-locks.md`、社区 MySQL 资料，并结合 MySQL Online DDL、MDL 与 pt-online-schema-change 的工程边界做了整理。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

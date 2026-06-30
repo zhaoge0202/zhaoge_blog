@@ -206,6 +206,4 @@ Redis 有不少后台周期动作，比如：
 
 ## 参考
 
-- 综合多份 Redis 持久化、内存管理与性能优化资料，重写常见配置项的取舍逻辑。
-- 结合复制与缓存治理资料，补充 backlog 和满内存行为的工程视角。
-- 对照 Redis 官方配置与命令文档，校准 `maxmemory`、淘汰策略、`appendfsync`、lazy free、`activedefrag` 和复制 backlog 的语义边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

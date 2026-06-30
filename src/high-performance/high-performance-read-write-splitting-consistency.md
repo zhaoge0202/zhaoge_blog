@@ -222,5 +222,4 @@ next:
 
 ## 参考
 
-综合自社区高性能资料，
-并结合本站 MySQL 主从复制、主从延迟和缓存一致性相关文章重写了读写分离的一致性边界。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

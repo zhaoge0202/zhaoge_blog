@@ -156,4 +156,4 @@ OOM 现场：
 
 ## 参考
 
-综合自《最重要的 JVM 参数总结》《JDK 监控和故障处理工具总结》《JVM 线上问题排查和性能调优案例》，并按 JDK 8/JDK 11+ 日志差异、元空间参数误区和容器内存边界做了重写。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

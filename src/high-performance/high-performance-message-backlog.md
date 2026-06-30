@@ -193,5 +193,4 @@ MQ 积压本质上是一个速率问题：
 
 ## 参考
 
-综合自社区消息队列资料，并结合本站慢 SQL、Redis 卡顿、高可用
-重试和容量治理相关文章，重写了消息积压的分层排查顺序。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

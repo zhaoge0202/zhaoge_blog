@@ -415,4 +415,4 @@ Raft 虽然比 Paxos 更容易实现，但不代表没有坑。
 
 ## 参考
 
-综合自 Raft 资料，并结合 Raft 论文《In Search of an Understandable Consensus Algorithm》对强 Leader、问题拆解、日志复制与安全约束的原始描述，重写了 Raft 的主线与工程落地意义。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

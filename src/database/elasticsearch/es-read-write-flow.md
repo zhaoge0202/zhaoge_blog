@@ -125,4 +125,4 @@ flowchart TB
 
 ## 参考
 
-本篇以 Elasticsearch 官方文档（Indexing、Near Real-Time、Distributed search 的 query/fetch 两阶段、write consistency）为权威源重写，写流程各步骤与读流程两阶段均依据官方文档核对。过时或不严谨的说法已在正文中点明。
+基于 Elasticsearch 官方文档与 Apache Lucene 官方文档中核心概念、索引、映射、分词、查询、评分、聚合、分页、分片副本和读写流程相关内容整理。

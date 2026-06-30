@@ -134,4 +134,4 @@ jstat -gcutil <pid> 1000 10
 
 ## 参考
 
-综合自《JVM 垃圾回收详解》《最重要的 JVM 参数总结》，并结合 CMS 移除、ZGC/Shenandoah 生产可用和分代 ZGC 的版本边界做了更新整理。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

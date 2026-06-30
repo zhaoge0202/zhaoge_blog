@@ -253,4 +253,4 @@ BeanPostProcessor -> 再改成品或半成品
 
 ## 参考
 
-综合自 IoC、Spring 核心问题整理，以及 Spring 官方文档对 `ApplicationContext`、`refresh()`、Bean 生命周期回调与初始化阶段代理边界的说明，做了交叉核对和重写。
+基于 Spring Framework Reference Documentation 中 IoC Container、Bean Lifecycle、AOP Proxies、Transaction Management、Spring MVC DispatcherServlet 与 Handler Methods 等相关章节整理。

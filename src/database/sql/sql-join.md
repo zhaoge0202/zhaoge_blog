@@ -203,4 +203,4 @@ WHERE  r.amt > 120;
 
 ## 参考
 
-综合社区 SQL 语法资料中连接章节及连接查询题目的真实踩坑（LEFT JOIN 把过滤放 ON 还是 WHERE 影响结果）做了提炼；其中"MySQL 无 FULL JOIN 需 UNION 模拟""ON 与 WHERE 在外连接的差别"是资料未点透、结合 MySQL 官方文档展开讲清的部分。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

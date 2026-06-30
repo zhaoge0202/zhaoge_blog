@@ -145,4 +145,4 @@ ss -s
 
 ## 参考
 
-综合社区资料，并结合 Linux `TIME_WAIT`、`CLOSE_WAIT`、`tcp_fin_timeout` 常见误区做了排障化整理。
+基于 IETF RFC 791、RFC 793、RFC 9293、RFC 9110、RFC 9112、RFC 9113、RFC 9114、RFC 8446、RFC 9000、RFC 9204 以及 Linux man-pages 中网络协议与排障命令相关内容整理。

@@ -155,4 +155,4 @@ NMT 需要启动参数支持：
 
 ## 参考
 
-综合自《Java 内存区域详解》《JVM 基础常见知识点&面试题总结》，并结合 HotSpot JDK 7/8 的字符串常量池、静态变量、永久代/元空间差异做了版本边界整理。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

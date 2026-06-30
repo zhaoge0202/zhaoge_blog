@@ -382,4 +382,4 @@ starter 是依赖入口，自动配置是配置生效机制。
 
 ## 参考
 
-综合自 Spring Boot 自动装配原理整理，并结合 Spring Boot 官方文档中关于 auto-configuration、auto-configuration packages、`AutoConfiguration.imports`、条件注解、back-off 和 conditions report 的说明，重写了自动装配主线与版本边界。
+基于 Spring Boot Reference Documentation 中 Auto-configuration、Condition annotations、AutoConfiguration.imports、Back-off 与 Conditions Evaluation Report 等相关章节整理。

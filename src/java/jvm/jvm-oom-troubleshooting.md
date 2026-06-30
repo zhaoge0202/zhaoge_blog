@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "高频"
 prev:
-  text: "G1 相比 CMS 改进了什么？"
-  link: "/java/jvm/jvm-g1-vs-cms.html"
+  text: "G1、ZGC、Shenandoah 分别适合什么场景？"
+  link: "/java/jvm/jvm-g1-zgc-shenandoah-scenarios.html"
 next:
   text: "频繁 Full GC 怎么排查？"
   link: "/java/jvm/jvm-full-gc-troubleshooting.html"
@@ -139,4 +139,4 @@ Netty 场景还要结合 allocator 指标和是否存在 ByteBuf 未释放。
 
 ## 参考
 
-综合自《JDK 监控和故障处理工具总结》《JVM 线上问题排查和性能调优案例》《最重要的 JVM 参数总结》，并结合 `jcmd`、NMT、MAT 和线上保留现场流程做了排查顺序整理。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

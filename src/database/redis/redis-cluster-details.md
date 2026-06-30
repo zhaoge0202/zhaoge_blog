@@ -234,6 +234,4 @@ Redis Cluster 的复制依然是 **异步复制**。
 
 ## 参考
 
-- 综合多份 Redis Cluster 原理与面试资料，提炼 Cluster 高频追问点。
-- 结合大 key 迁移与分片治理资料，补充槽位、迁移和分片倾斜的工程视角。
-- 对照 Redis 官方 `Redis cluster specification`，校准 16384 槽、`CRC16 mod 16384`、hash tag、`MOVED`、`ASK` 和异步复制写安全边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

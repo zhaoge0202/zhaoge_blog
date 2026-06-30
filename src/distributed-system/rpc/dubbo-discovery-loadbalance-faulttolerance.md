@@ -445,4 +445,4 @@ flowchart TD
 
 ## 参考
 
-综合自 Dubbo/RPC 资料，并结合 Apache Dubbo 官方文档中关于服务发现、负载均衡、集群容错与调用链分层的说明，重写了 Dubbo 在一次调用中的治理协作主线。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

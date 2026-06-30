@@ -395,4 +395,4 @@ Spring AOP 常见是在 `BeanPostProcessor` 这层完成自动代理创建的。
 
 ## 参考
 
-综合自 IoC/AOP 与 Spring 核心问题整理，并结合 Spring Framework 官方文档中关于代理机制、Advice 顺序和自调用限制的说明，重写了代理生成规则、通知链、自调用失效和 AspectJ 边界。
+基于 Spring Framework Reference Documentation 中 IoC Container、Bean Lifecycle、AOP Proxies、Transaction Management、Spring MVC DispatcherServlet 与 Handler Methods 等相关章节整理。

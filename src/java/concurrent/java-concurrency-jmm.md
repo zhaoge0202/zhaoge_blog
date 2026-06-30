@@ -214,4 +214,4 @@ JMM 是一个中间层：
 
 ## 参考
 
-综合自《Java 并发编程的艺术》第三章及多篇 JMM 详解资料。部分资料关于八种同步操作（lock/unlock/read/load/use/assign/store/write）的描述较为繁琐，实践中了解即可，本文未逐条展开，而是聚焦在 happens-before 和三特性上。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

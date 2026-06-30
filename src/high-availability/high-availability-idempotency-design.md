@@ -271,5 +271,4 @@ where order_no = ? and status = 'UNPAID' and version = ?;
 
 ## 参考
 
-综合自社区高可用资料，并结合本站分布式锁、
-MySQL 事务与状态流转相关文章，重写了幂等设计的选型顺序和边界。
+基于 Redis、MySQL、Apache Kafka、Apache RocketMQ、Nginx、Kubernetes 官方文档，以及 Google SRE 官方公开文档中可用性、限流、重试、熔断、幂等、容灾和压测相关内容整理。

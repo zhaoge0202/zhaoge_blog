@@ -221,5 +221,4 @@ next:
 
 ## 参考
 
-综合自社区高可用资料，并结合本站分布式锁、
-Redis 与消息队列文章，对支付回调和重复消费场景做了场景化重写。
+基于 Redis、MySQL、Apache Kafka、Apache RocketMQ、Nginx、Kubernetes 官方文档，以及 Google SRE 官方公开文档中可用性、限流、重试、熔断、幂等、容灾和压测相关内容整理。

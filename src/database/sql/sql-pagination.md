@@ -130,4 +130,4 @@ INNER JOIN (
 
 ## 参考
 
-综合 SQL 优化资料中"深度分页优化"一节的四种方案对比与限量查询题目的分页写法重写；其中"深分页慢在回表而非有无索引""游标分页多列排序要带全排序列"是资料未点透、结合 [MySQL 执行计划](../mysql/mysql-explain.html) 与 [索引失效](../mysql/mysql-index-invalidation.html) 展开讲清的部分。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

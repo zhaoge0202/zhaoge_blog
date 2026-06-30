@@ -176,5 +176,4 @@ Redis 单线程模型的代价是：**一个慢命令会挡住后面的命令。
 
 ## 参考
 
-- 综合社区资料和现有 Redis 排障文章重写。
-- 结合 Redis 6.0 I/O 多线程与慢命令排障资料，校准“单线程”的语义边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

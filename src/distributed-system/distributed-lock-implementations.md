@@ -388,4 +388,4 @@ Watch Dog 解决的是租约提前过期问题，不是所有正确性问题。
 
 ## 参考
 
-综合自社区分布式锁资料，并结合 Redis 官方分布式锁文档、Apache Curator 锁 recipe 与 etcd 并发原语文档，重写了 Redis 锁的边界、Redlock 争议、ZooKeeper/etcd 选型和 fencing token 的工程意义。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

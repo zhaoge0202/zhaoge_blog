@@ -138,4 +138,4 @@ GET /articles/_search
 
 ## 参考
 
-本篇以 Elasticsearch 官方文档（Search - from/size、scroll、search_after、Tune for search/indexing speed、Heap size sizing）为权威源重写，三种分页方案的限制与调优经验值均依据官方文档核对。过时或不严谨的说法已在正文中点明。
+基于 Elasticsearch 官方文档与 Apache Lucene 官方文档中核心概念、索引、映射、分词、查询、评分、聚合、分页、分片副本和读写流程相关内容整理。

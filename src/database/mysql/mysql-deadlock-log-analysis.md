@@ -105,4 +105,4 @@ InnoDB 检测到死锁后会回滚其中一个事务，应用会看到 `ERROR 12
 
 ## 参考
 
-综合社区资料、本站 `mysql-deadlock.md`，并结合 `performance_schema.data_locks` 的线上排障读法做了整理。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

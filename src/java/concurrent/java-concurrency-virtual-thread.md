@@ -205,4 +205,4 @@ spring:
 
 ## 参考
 
-综合自多篇虚拟线程总结资料及 JEP 444 官方文档。部分资料对虚拟线程的创建方式、底层原理、Pinning 检测和 Spring Boot 接入有完整介绍，本文在此基础上突出了版本差异（JDK 21-23 vs JDK 24+）和迁移注意事项——这两点是面试和实践中最容易被追问的。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

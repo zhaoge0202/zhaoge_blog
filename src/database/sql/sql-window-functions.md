@@ -150,4 +150,4 @@ FROM   daily_sales;
 
 ## 参考
 
-综合社区 SQL 题目中窗口函数章节的函数说明与真题（每类试卷前三名、累计作答数等）重写；其中"窗口函数与 GROUP BY 的本质区别""LAST_VALUE 默认帧范围""不能进 WHERE 的执行顺序原因"是资料未点透、结合 [执行顺序](./sql-execution-order.html) 与 MySQL 8.0 官方文档展开讲清的部分。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

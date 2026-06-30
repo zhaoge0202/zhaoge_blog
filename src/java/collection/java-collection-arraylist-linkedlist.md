@@ -146,4 +146,4 @@ Long first = queue.pollFirst();
 
 ## 参考
 
-综合自《ArrayList 源码分析》《LinkedList 源码分析》《Java 集合常见面试题总结》《Java 集合使用注意事项总结》，并结合 JDK 8 之后的扩容、`RandomAccess`、fail-fast 和 `ArrayDeque` 选型边界做了重新组织与纠偏。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

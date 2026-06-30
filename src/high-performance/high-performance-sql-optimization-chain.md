@@ -201,5 +201,4 @@ LIMIT 1000000, 20;
 
 ## 参考
 
-综合自社区高性能资料，
-并结合本站 MySQL 的慢 SQL、索引与 EXPLAIN 相关文章重写了数据库性能排查链。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

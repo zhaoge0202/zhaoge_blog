@@ -212,5 +212,4 @@ PAID -> DELIVERING -> DELIVERED
 
 ## 参考
 
-综合自社区高性能与高可用资料，并结合本站接口幂等、支付回调和
-分布式锁相关文章，重写了消息消费侧幂等的落地主线。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

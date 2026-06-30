@@ -135,4 +135,4 @@ public void publish(Event event) {
 
 ## 参考
 
-综合自《CopyOnWriteArrayList 源码分析》《Java 常见并发容器总结》，并结合监听器、配置快照等后端场景重新梳理了读写成本和一致性边界。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

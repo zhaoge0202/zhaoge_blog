@@ -219,5 +219,4 @@ Broker 不能只是一台机器，尤其是核心 Topic。
 
 ## 参考
 
-综合自社区高性能与消息队列资料，并结合本站高可用补偿、幂等和
-容灾相关文章，按消息链路三段式重写了可靠性主线。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

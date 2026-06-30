@@ -87,4 +87,4 @@ write(socket, buf, len);
 
 ## 参考
 
-综合社区资料，并结合 Kafka、Nginx、Netty 的文件传输场景做了边界化整理。
+基于 Linux man-pages、Linux kernel documentation、OpenJDK 工具文档与 POSIX 相关规范中进程、线程、内存、文件系统、I/O、epoll、sendfile 等内容整理。

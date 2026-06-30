@@ -169,4 +169,4 @@ GROUP BY uid;
 
 ## 参考
 
-综合社区 SQL 题目中空值处理、条件语句章节的真题写法（`COUNT(*)-COUNT(submit_time)`、`COUNT(CASE WHEN...)`、`SUM(条件)`、`IF` 处理 NULL）及语法资料重写；其中"三值逻辑""NULL 算术传染""NOT IN 失效原理"是资料未展开、这里系统讲清的部分，并与 [子查询](./sql-subquery.html)、[MySQL count](../mysql/mysql-count.html) 两篇互相呼应。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

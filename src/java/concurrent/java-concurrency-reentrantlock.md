@@ -217,4 +217,4 @@ try {
 
 ## 参考
 
-综合自美团技术团队《从 ReentrantLock 的实现看 AQS 的原理及应用》及多篇 Java 锁详解资料。原文对 AQS 源码逐行分析非常详细，本文聚焦在流程脉络和面试回答框架上，省略了 CANCELLED 节点清理等源码细节，建议面试前对照原文过一遍核心方法。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

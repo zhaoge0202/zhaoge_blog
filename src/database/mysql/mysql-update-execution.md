@@ -113,4 +113,4 @@ InnoDB 用 WAL：先把 redo log 持久化，再择机刷脏页。这样一次 U
 
 ## 参考
 
-综合社区资料，并结合本站 `mysql-logs.md` 的已有内容做了时序化拆分和 MySQL 8.0 查询缓存边界说明。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

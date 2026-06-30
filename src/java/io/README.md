@@ -3,6 +3,9 @@ title: "IO"
 article: false
 breadcrumb: true
 editLink: false
+next:
+  text: "新特性"
+  link: "/java/new-features/"
 ---
 
 # IO

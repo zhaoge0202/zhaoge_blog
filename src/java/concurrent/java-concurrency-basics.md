@@ -218,4 +218,4 @@ if (cpuBusy) {
 
 ## 参考
 
-综合自《Java 并发编程的艺术》及多篇并发面试题总结资料，交叉验证后修正了部分资料中线程状态变迁图的三处错误（JVM 不区分 READY/RUNNING、`BLOCKED` 仅针对 `synchronized`）。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

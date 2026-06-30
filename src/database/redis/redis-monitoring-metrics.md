@@ -251,6 +251,4 @@ Redis 官方文档里说得很明确，`INFO` 会返回多类统计信息。
 
 ## 参考
 
-- 综合多份 Redis 阻塞、内存管理和性能优化资料，重写 Redis 线上监控面板思路。
-- 结合复制、缓存问题和工程排障资料，补充复制延迟、全量同步与系统层联动的观察点。
-- 对照 Redis 官方 `INFO`、replication、configuration 文档，校准关键 section 和核心指标口径。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

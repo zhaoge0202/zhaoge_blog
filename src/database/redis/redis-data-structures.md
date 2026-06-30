@@ -276,5 +276,4 @@ ZADD rank:game 1200 alice 980 bob 1500 carol
 
 ## 参考
 
-- 综合 Redis 数据类型与命令使用资料重写，按业务建模和场景选型重新组织。
-- 结合 String、Hash、List、Set、ZSet 的常见用法与误区，改写成面试高频问法下的表达方式。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

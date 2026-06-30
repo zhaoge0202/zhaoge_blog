@@ -212,6 +212,4 @@ MongoDB 单文档写入天然具备原子性。多文档事务后来也支持副
 
 ## 参考
 
-- 综合社区资料中 MongoDB 基础、BSON、事务与数据建模相关内容，并按本知识库风格重写。
-- 对照 MongoDB 官方文档 Data Modeling 与 Transactions，校准了嵌入式建模、单文档原子性、多文档事务成本等边界。
-- 对资料中“MongoDB 可替代关系库”“支持事务”这类容易答得过满的表述做了场景化收敛。
+基于 MongoDB Manual 中 Data Modeling、Indexes、Aggregation、Replication、Sharding、Read Preference、Write Concern 与 Transactions 等相关官方章节整理。

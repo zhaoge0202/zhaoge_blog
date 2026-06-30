@@ -112,6 +112,7 @@ export const knowledgeSidebar = {
             "jvm-object-recycling",
             "jvm-gc-collectors",
             "jvm-g1-vs-cms",
+            "jvm-g1-zgc-shenandoah-scenarios",
           ],
         },
         {
@@ -135,7 +136,13 @@ export const knowledgeSidebar = {
       text: "新特性",
       prefix: "new-features/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        "java-new-features-stream-optional",
+        "java-new-features-java17-lts",
+        "java-new-features-java21-virtual-threads",
+        "java-new-features-modern-syntax",
+      ],
     },
   ],
   "/cs-basics/": [
@@ -328,6 +335,8 @@ export const knowledgeSidebar = {
             "redis-special-data-structures",
             "redis-typical-scenarios",
             "redis-persistence",
+            "redis-rdb-fork-risk",
+            "redis-aof-rewrite-stall",
             "redis-persistence-latency",
             "redis-expire-eviction",
           ],
@@ -337,6 +346,7 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "redis-bigkey-hotkey",
+            "redis-bigkey-persistence-replication-delete",
             "redis-blocking-troubleshooting",
             "redis-memory-fragmentation",
             "redis-configuration-tuning",
@@ -505,7 +515,17 @@ export const knowledgeSidebar = {
       text: "安全",
       prefix: "security/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        "security-authentication-authorization",
+        "security-session-cookie-token-jwt",
+        "security-jwt-vs-session",
+        "security-sso-flow",
+        "security-rbac-design",
+        "security-password-reset",
+        "security-crypto-algorithms",
+        "security-data-masking-encryption",
+      ],
     },
   ],
   "/distributed-system/": [

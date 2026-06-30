@@ -55,6 +55,7 @@ Java 基础、集合、并发、操作系统内存基础。
 - [如何判断对象可以被回收？](./jvm-object-recycling.html) — GC Roots、可达性分析、引用类型和类卸载。
 - [常见垃圾收集器怎么选？](./jvm-gc-collectors.html) — 按吞吐、延迟、内存占用和 JDK 版本做 GC 选择。
 - [G1 相比 CMS 改进了什么？](./jvm-g1-vs-cms.html) — Region、Mixed GC、停顿预测和 CMS 版本边界。
+- [G1、ZGC、Shenandoah 分别适合什么场景？](./jvm-g1-zgc-shenandoah-scenarios.html) — 从停顿目标、堆大小和 JDK 版本讲清低延迟 GC 选型。
 
 ### 线上排障与调优
 

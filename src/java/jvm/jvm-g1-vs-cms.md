@@ -14,8 +14,8 @@ prev:
   text: "常见垃圾收集器怎么选？"
   link: "/java/jvm/jvm-gc-collectors.html"
 next:
-  text: "线上 OOM 怎么定位？"
-  link: "/java/jvm/jvm-oom-troubleshooting.html"
+  text: "G1、ZGC、Shenandoah 分别适合什么场景？"
+  link: "/java/jvm/jvm-g1-zgc-shenandoah-scenarios.html"
 ---
 
 # G1 相比 CMS 改进了什么？
@@ -131,4 +131,4 @@ jstat -gcutil <pid> 1000 10
 
 ## 参考
 
-综合自《JVM 垃圾回收详解》《最重要的 JVM 参数总结》，并结合 CMS 在 JDK 9 废弃、JDK 14 移除以及 G1 成为 JDK 9+ 默认 GC 的版本事实做了重写。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

@@ -99,7 +99,7 @@ flowchart TD
 | `DiscardPolicy`       | 静默丢弃                        | 非关键路径（日志、监控）     |
 | `DiscardOldestPolicy` | 丢弃队列最老的任务              | 只关心最新数据（行情推送）   |
 
-生产环境常见的做法是**自定义拒绝策略**：记录监控指标、写入数据库后续补偿、或放入消息队列异步重试。美团技术团队在《Java 线程池实现原理及其在美团业务中的实践》中提到，`CallerRunsPolicy` 是他们线上业务中较常使用的策略——它形成天然的反压机制，调用者在此期间无法提交新任务。
+生产环境常见的做法是**自定义拒绝策略**：记录监控指标、写入数据库后续补偿、或放入消息队列异步重试。`CallerRunsPolicy` 的价值在于形成天然反压：调用者线程被迫执行任务，在此期间无法继续提交新任务。
 
 ## 线程池的状态
 
@@ -304,4 +304,4 @@ private ThreadPoolExecutor orderExecutor;
 
 ## 参考
 
-综合自《阿里巴巴 Java 开发手册》及多篇线程池详解资料。部分资料对 Worker 机制、execute 源码和内置线程池的介绍非常详细，本文聚焦在面试回答框架和项目实践要点上。美团技术团队的《Java 线程池实现原理及其在美团业务中的实践》对拒绝策略的选型有很好的参考价值。
+基于 Oracle Java SE API Documentation、Java Language Specification、OpenJDK JEP 与 java.util.concurrent 官方 API 中并发、JMM、锁、线程池和虚拟线程相关内容整理。

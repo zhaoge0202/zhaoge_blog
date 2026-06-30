@@ -171,4 +171,4 @@ GROUP BY yr;   -- MySQL 允许，标准 SQL 不允许，迁库时要小心
 
 ## 参考
 
-综合社区 SQL 语法资料中分组、子查询、`WHERE`/`HAVING` 相关内容，结合标准 SQL 执行顺序做了系统化重写；其中"书写顺序与执行顺序不同""别名可见性"是资料未明确展开、这里补全的部分，`GROUP BY` 引用别名的 MySQL 扩展参考了 MySQL 官方文档的边界说明。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

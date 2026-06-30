@@ -190,6 +190,4 @@ Redis 里常见做法一般会用：
 
 ## 参考
 
-- 综合多份 Redis 应用、Lua 脚本和缓存防护资料，重写 Redis 限流的常见模式。
-- 结合高并发防护和工程治理资料，补充 Redis 限流在整条保护链路里的位置。
-- 对照 Redis 官方 `INCR` 文档中的 rate limiter pattern 以及 Redis rate limiter 用例资料，校准固定窗口计数和原子更新的语义边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

@@ -148,4 +148,4 @@ flowchart LR
 
 ## 参考
 
-本篇以 Elasticsearch 官方文档（Inverted Index、Near Real-Time、Segments 与 translog 机制）和 Lucene 文档为权威源重写。FST、posting list 压缩（FOR 编码）、segment merge 等机制依据 Lucene 实现说明核对。过时或不严谨的说法已在正文中点明。
+基于 Elasticsearch 官方文档与 Apache Lucene 官方文档中核心概念、索引、映射、分词、查询、评分、聚合、分页、分片副本和读写流程相关内容整理。

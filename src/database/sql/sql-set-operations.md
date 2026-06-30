@@ -128,4 +128,4 @@ SELECT cust_id FROM returns;
 
 ## 参考
 
-综合社区 SQL 语法资料中"组合"章节与 SQL 优化资料中"用 UNION ALL 代替 UNION"一节重写；其中"UNION 即 UNION ALL + 去重""MySQL 对 INTERSECT/EXCEPT 的版本支持边界"是资料未点明、结合 MySQL 8.0.31 发行说明补全的部分。
+基于 MySQL 8.0 Reference Manual 中 SQL Statements、Functions and Operators、JOIN、Subqueries、Window Functions 与 Optimization 等相关官方章节整理。

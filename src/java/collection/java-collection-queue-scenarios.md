@@ -182,4 +182,4 @@ task.run();
 
 ## 参考
 
-综合自《Java 集合常见面试题总结》《DelayQueue 源码分析》《ArrayBlockingQueue 源码分析》，并对 `PriorityQueue` 资料正文不足、`DelayQueue` 版本史表述过满的问题做了边界化处理。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

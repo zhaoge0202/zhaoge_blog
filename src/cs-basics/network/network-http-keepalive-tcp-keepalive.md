@@ -141,4 +141,4 @@ grep -R "keepalive" /etc/nginx/nginx.conf /etc/nginx/conf.d 2>/dev/null
 
 ## 参考
 
-综合社区资料，并结合 HTTP/2/3 连接级头部边界、Nginx keepalive 参数和 `TIME_WAIT` 排查场景做了整理。
+基于 IETF RFC 791、RFC 793、RFC 9293、RFC 9110、RFC 9112、RFC 9113、RFC 9114、RFC 8446、RFC 9000、RFC 9204 以及 Linux man-pages 中网络协议与排障命令相关内容整理。

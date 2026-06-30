@@ -190,5 +190,4 @@ Redis 不是所有 ZSet 都直接上 dict + skiplist。
 
 ## 参考
 
-- 综合社区资料重写。
-- 结合 Redis ZSet 编码与跳表实现资料，校准 “ZSet = dict + skiplist” 的表达边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

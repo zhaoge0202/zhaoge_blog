@@ -382,4 +382,4 @@ BASE 强调的是：
 
 ## 参考
 
-综合自社区分布式理论资料，并结合 Gilbert & Lynch 关于 CAP 的经典论文和 Eric Brewer 关于 CAP 反思的公开资料，重写了 CAP 的真实前提、`C` 的语义、分区时取舍与 BASE 的工程意义。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

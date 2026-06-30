@@ -86,4 +86,4 @@ Java NIO 的 `Selector` 在 Linux 上底层通常会使用 epoll。Netty 的 `Ep
 
 ## 参考
 
-综合社区资料，并结合 Java NIO、Netty epoll 与 Linux fd 排障场景做了改写。
+基于 Linux man-pages、Linux kernel documentation、OpenJDK 工具文档与 POSIX 相关规范中进程、线程、内存、文件系统、I/O、epoll、sendfile 等内容整理。

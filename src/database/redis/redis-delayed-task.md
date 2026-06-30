@@ -212,5 +212,4 @@ Redis 的过期删除不是精确定时器模型，而是：
 
 ## 参考
 
-- 综合多份 Redis 延时任务与工程实践资料，重写过期事件监听、Redisson DelayedQueue 和可靠性边界。
-- 结合 ZSet 延迟队列实现思路，补充“数据结构能实现，不等于系统能力就完整”的工程取舍。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

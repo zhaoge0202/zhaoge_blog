@@ -153,4 +153,4 @@ JDK 9+ 模块化后，Extension 口径变成 Platform ClassLoader，`rt.jar` 这
 
 ## 参考
 
-综合自《类加载过程详解》《类加载器详解》《Class 文件结构总结》，并按 JDK 8 与 JDK 9+ 的加载器差异、初始化触发条件和 `<clinit>` 排查方式做了边界整理。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

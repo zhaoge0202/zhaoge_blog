@@ -138,4 +138,4 @@ jcmd <pid> VM.classloader_stats
 
 ## 参考
 
-综合自《JDK 监控和故障处理工具总结》《JVM 线上问题排查和性能调优案例》《JVM 垃圾回收详解》，并按线上排查顺序重组为“确认现象 → 日志证据 → 区域定位 → 根因修复”。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

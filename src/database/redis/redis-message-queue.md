@@ -235,5 +235,4 @@ Kafka 这类专业 MQ 很强的一点，是它天然适合磁盘堆积。
 
 ## 参考
 
-- 综合多份 Redis 消息流、数据结构与工程实践资料，重写 List、Pub/Sub、Stream 三种实现路径和能力边界。
-- 对照 Redis 官方文档，补充消费者组、ACK 和轻量消息流适用场景的口径。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

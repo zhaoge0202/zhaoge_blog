@@ -149,4 +149,4 @@ POST /my_index/_analyze
 
 ## 参考
 
-本篇以 Elasticsearch 官方文档（Analysis、Analyzer 构成、内置 analyzer）为权威源重写，IK 分词器的两种模式与索引/查询配套用法依据 IK 官方说明核对。过时或不严谨的说法已在正文中点明。
+基于 Elasticsearch 官方文档与 Apache Lucene 官方文档中核心概念、索引、映射、分词、查询、评分、聚合、分页、分片副本和读写流程相关内容整理。

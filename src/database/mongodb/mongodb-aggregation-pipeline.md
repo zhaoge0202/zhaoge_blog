@@ -258,6 +258,4 @@ db.orders.createIndex({ userId: 1, status: 1, createdAt: -1 });
 
 ## 参考
 
-- 综合社区资料中聚合管道、常用阶段操作符、map-reduce 相关内容，并用订单统计例子重写。
-- 对照 MongoDB 官方文档 Aggregation Pipeline，校准了阶段模型、`$match`/`$group`/`$lookup` 的定位，以及 MongoDB 5.0 起 map-reduce 不推荐使用的版本边界。
-- 对资料中“聚合方式并列罗列”的说法补充了新项目优先级和工程优化顺序。
+基于 MongoDB Manual 中 Data Modeling、Indexes、Aggregation、Replication、Sharding、Read Preference、Write Concern 与 Transactions 等相关官方章节整理。

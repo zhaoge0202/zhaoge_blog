@@ -91,4 +91,4 @@ commit 阶段：按顺序提交到 InnoDB
 
 ## 参考
 
-综合社区资料，并结合 MySQL 8.0.30 redo 容量参数变化和线上 I/O 排障场景做了整理。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

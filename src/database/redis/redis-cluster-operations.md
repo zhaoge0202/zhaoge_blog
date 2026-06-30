@@ -174,6 +174,4 @@ hot key 你已经知道了，它会打爆单个 key。
 
 ## 参考
 
-- 综合多份 Redis Cluster、迁槽和排障资料，重写 Cluster 扩缩容的工程主线。
-- 结合大 key、热点槽与缓存治理资料，补充分片倾斜和迁槽抖动的风险表达。
-- 对照 Redis 官方 Cluster specification 和相关管理文档，校准在线迁槽、路由更新和分槽模型的边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

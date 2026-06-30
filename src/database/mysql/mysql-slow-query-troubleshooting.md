@@ -120,4 +120,4 @@ SHOW ENGINE INNODB STATUS\G
 
 ## 参考
 
-综合自社区 MySQL 资料，并结合本站 `mysql-explain.md` 的字段解释做了排查顺序化整理。
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

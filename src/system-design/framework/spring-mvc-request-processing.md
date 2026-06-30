@@ -377,4 +377,4 @@ HandlerExceptionResolver
 
 ## 参考
 
-综合自 Spring MVC 相关整理，并结合 Spring Framework 官方文档中关于 `DispatcherServlet`、processing 流程、handler method arguments、异常解析和前置控制器模型的说明，重写了 Spring MVC 的真实请求处理主线。
+基于 Spring Framework Reference Documentation 中 IoC Container、Bean Lifecycle、AOP Proxies、Transaction Management、Spring MVC DispatcherServlet 与 Handler Methods 等相关章节整理。

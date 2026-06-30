@@ -150,4 +150,4 @@ java -XX:+TraceClassLoading -XX:+TraceClassUnloading -jar app.jar
 
 ## 参考
 
-综合自《类加载器详解》《类加载过程详解》《Class 文件结构总结》，并结合 Tomcat、SPI、线程上下文类加载器和 `jcmd VM.classloader_stats` 排查方式做了工程化整理。
+基于 Oracle Java SE Documentation、OpenJDK JEP、HotSpot VM 文档与 JDK 工具官方文档中 JVM、GC、类加载、监控与诊断相关内容整理。

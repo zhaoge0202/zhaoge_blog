@@ -219,8 +219,4 @@ select * from t_user where age > 20 and reward = 100000;
 
 ## 参考
 
-本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
-
-- 《MySQL 实战 45 讲》
-- 《高性能 MySQL》
-- MySQL 官方文档：Query Cache（8.0 已移除）、Optimizer 与 Index Condition Pushdown
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。

@@ -210,5 +210,4 @@ RocketMQ、RabbitMQ 都常被拿来做这类能力，但具体实现模型和限
 
 ## 参考
 
-综合自社区高性能与消息队列资料，并结合本站高可用、分布式和
-消息治理相关文章，重写了三种主流 MQ 的选型边界。
+基于 MySQL、Redis、Apache Kafka、Apache RocketMQ、RabbitMQ、Nginx 与 Linux 官方文档中性能定位、SQL 优化、读写分离、分片和消息队列相关内容整理。

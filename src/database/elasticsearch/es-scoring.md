@@ -126,4 +126,4 @@ GET /articles/_search
 
 ## 参考
 
-本篇以 Elasticsearch 官方文档（Score、Similarity、BM25 与 TF-IDF 的切换说明）和 Lucene `BM25Similarity` 实现说明为权威源重写，BM25 的 k1/b 参数语义、5.0 默认切换等版本事实均依据官方文档核对。过时或不严谨的说法已在正文中点明。
+基于 Elasticsearch 官方文档与 Apache Lucene 官方文档中核心概念、索引、映射、分词、查询、评分、聚合、分页、分片副本和读写流程相关内容整理。

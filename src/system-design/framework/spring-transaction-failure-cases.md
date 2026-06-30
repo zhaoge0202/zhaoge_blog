@@ -428,4 +428,4 @@ public void createOrder() {}
 
 ## 参考
 
-综合自 Spring 事务专题与 Spring 核心问题整理，并结合 Spring Framework 官方文档对 `@Transactional` 代理模式、自调用限制、方法可见性、默认回滚规则、多事务管理器和传播行为的说明，重写了常见失效场景与排障顺序。
+基于 Spring Framework Reference Documentation 中 IoC Container、Bean Lifecycle、AOP Proxies、Transaction Management、Spring MVC DispatcherServlet 与 Handler Methods 等相关章节整理。

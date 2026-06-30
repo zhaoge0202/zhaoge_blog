@@ -167,5 +167,4 @@ Redis 官方文档提到，实例会有主 replication id 和第二 replication 
 
 ## 参考
 
-- 综合社区资料和现有 Redis 复制排障文章重写。
-- 对照 Redis 官方 replication 文档，校准异步复制、`PSYNC`、replication id、offset、backlog 和部分重同步边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

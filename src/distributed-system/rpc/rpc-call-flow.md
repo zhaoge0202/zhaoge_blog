@@ -437,4 +437,4 @@ HTTP 可以作为传输承载，但 RPC 的核心是：
 
 ## 参考
 
-综合自 RPC 基础与 Dubbo 资料，并结合 Apache Dubbo 与 gRPC 官方文档对服务发现、调用链、负载均衡和序列化协议的说明，重写了 RPC 一次调用的完整主线。
+基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。

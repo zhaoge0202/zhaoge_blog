@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "项目实战"
 prev:
-  text: "RDB、AOF 和混合持久化怎么选？"
-  link: "/database/redis/redis-persistence.html"
+  text: "AOF rewrite 为什么可能造成卡顿？"
+  link: "/database/redis/redis-aof-rewrite-stall.html"
 next:
   text: "过期删除和内存淘汰到底有什么区别？"
   link: "/database/redis/redis-expire-eviction.html"
@@ -199,5 +199,4 @@ aof_delayed_fsync
 
 ## 参考
 
-- 综合社区资料和 Redis 阻塞排障资料重写。
-- 对照 Redis 官方 persistence 文档，校准 RDB、AOF、multi-part AOF、`appendfsync` 和 AOF/RDB 交互边界。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

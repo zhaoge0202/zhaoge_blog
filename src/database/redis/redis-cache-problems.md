@@ -253,5 +253,4 @@ next:
 
 ## 参考
 
-- 综合缓存异常治理相关资料重写，并按雪崩、击穿、穿透三类问题重新组织。
-- 结合缓存分层、多级缓存和线上故障处理经验，调整为排障与面试表达视角。
+基于 Redis 官方文档中 Data types、Persistence、Replication、Sentinel、Cluster、Programmability、Administration 与 Observability 等相关章节整理。

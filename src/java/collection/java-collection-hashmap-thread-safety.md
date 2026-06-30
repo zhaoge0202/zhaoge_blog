@@ -143,4 +143,4 @@ if (!sessions.containsKey(userId)) {
 
 ## 参考
 
-综合自《HashMap 源码分析》《Java 集合常见面试题总结》，并按 JDK 7/JDK 8 行为差异重新梳理了死循环、数据覆盖、fail-fast 与并发容器选型边界。
+基于 Oracle Java SE API Documentation 与 OpenJDK Java Collections Framework 源码中 List、Map、Set、Queue、Concurrent Collections 等相关内容整理。

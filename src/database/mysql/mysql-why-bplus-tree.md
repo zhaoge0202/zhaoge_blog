@@ -181,7 +181,4 @@ $$y \approx \frac{15 \times 1024}{1000} \approx 15$$
 
 ## 参考
 
-本篇综合多份社区资料与 MySQL 官方文档交叉验证后重写，资料里过时或不严谨的地方已在正文中点明。
-
-- 《MySQL 单表不要超过 2000W 行，靠谱吗？》（原文 https://my.oschina.net/u/4090830/blog/5559454 ）
-- MySQL 官方文档：How MySQL Uses Indexes
+基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。
