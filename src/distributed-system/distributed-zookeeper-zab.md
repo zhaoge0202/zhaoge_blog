@@ -107,6 +107,15 @@ ZooKeeper 官方 internals 文档写得很明确：
 
 这也是 ZooKeeper 为什么能用 Observer 扩读而不改变写一致性机制。
 
+角色边界可以再说细一点：
+
+- Leader 可以处理读写，并负责给写请求排序
+- Follower 可以直接处理读请求，收到写请求时转发给 Leader
+- Observer 也可以处理读请求并接收同步流，但不参与选举，也不参与写入过半确认
+
+所以 Observer 的价值是扩展读能力，而不是扩展写能力。
+如果把 Observer 加进 quorum 计算，写入要等待的节点反而会变多，整体写吞吐会更差。
+
 ## `zxid` 是什么？为什么它很关键？
 
 ZAB 里最重要的抓手之一就是：
@@ -120,21 +129,30 @@ zxid
 - proposal 会带一个全局事务 id
 - 这个 id 体现全局顺序
 
-并且 `zxid` 是两段式的：
+并且 `zxid` 是一个 64 位编号，两段式拆分：
 
-1. 高位是 epoch
-2. 低位是计数器
+1. 高 32 位是 epoch
+2. 低 32 位是事务计数器
 
 翻成人话就是：
 
 - epoch 用来标识“这是谁的领导期”
 - counter 用来标识“在这个领导期里的第几条事务”
+- 新 Leader 上位时，epoch 增加，低 32 位从新领导期重新计数
 
 所以 `zxid` 的价值不是单纯编号，而是：
 
 **同时把领导期变化和事务全序顺序编码进去了。**
 
 这也是为什么恢复时大家会特别在意“谁见过更高的 zxid”。
+
+你在 ZooKeeper 数据模型里看到的 `cZxid`、`mZxid`、`pZxid`，本质上也是 `zxid` 在不同语义下的体现：
+
+- `cZxid`：节点创建时对应的事务
+- `mZxid`：节点数据最后一次修改对应的事务
+- `pZxid`：子节点列表最后一次变化对应的事务
+
+这些字段不是业务版本号，而是 ZooKeeper 用来表达事务顺序和数据变化历史的线索。
 
 ## ZAB 为什么要分成两个阶段？
 
@@ -205,6 +223,13 @@ sequenceDiagram
 
 这也是为什么 ZooKeeper 对事务日志 I/O 很敏感，事务日志盘慢，P99 会直接恶化。
 
+还有一个容易被漏掉的顺序细节：
+
+**Leader 会为每个 peer 维护 FIFO 发送队列，配合 TCP 连接顺序和递增的 `zxid`，保证 proposal 按顺序交付。**
+
+如果 proposal 可以乱序到达，Follower 即使都落了盘，也无法保证状态机按同一条全局事务流执行。
+所以 ZAB 的顺序性不是只靠一个编号字段，而是 `zxid`、Leader 单点排序、FIFO 队列、TCP 顺序传输共同配合出来的。
+
 ## 为什么说它“像两阶段提交，但又不完全一样”？
 
 ZooKeeper 官方 internals 文档自己就提到：
@@ -234,7 +259,7 @@ ZooKeeper 官方 internals 文档自己就提到：
 
 这带来的好处是：
 
-1. 写顺序来源唯一， easier to reason
+1. 写顺序来源唯一，更容易推理
 2. proposal 编号和提交点推进更容易统一
 3. 崩溃恢复时更容易围绕 leader 历史收敛
 
@@ -263,6 +288,28 @@ ZooKeeper 官方 internals 文档有两个特别关键的要求：
 这两条一起用，才保证了：
 
 **新 leader 不会在不知道最新历史的情况下接管写入。**
+
+如果按恢复流程再拆细一点，可以理解成三段：
+
+1. **Discovery**：找到新 Leader，并收集各节点最后看到的历史
+2. **Synchronization**：让 Follower 和新 Leader 的历史对齐
+3. **Broadcast**：恢复正常写入广播
+
+同步阶段常见有三种处理方式：
+
+| 方式    | 什么时候用                         | 做什么                     |
+| ------- | ---------------------------------- | -------------------------- |
+| `DIFF`  | Follower 只落后一点                | 给它补齐缺失事务           |
+| `TRUNC` | Follower 有未提交的多余旧 proposal | 截断到新 Leader 认可的位置 |
+| `SNAP`  | 差距太大或日志不足                 | 直接发快照做全量同步       |
+
+这里有两个关键边界：
+
+- 已经被 quorum 提交、只是还没广播到所有节点的 proposal，恢复后必须保留
+- 只留在旧 Leader 或少数派节点本地、没完成 quorum 的 proposal，恢复后必须丢弃
+
+ZAB 的恢复阶段就是在把这两类历史分清楚。
+否则要么丢掉已经承诺过的写入，要么把没真正提交过的旧 proposal 带进新历史。
 
 ## 为什么少数派旧 leader 恢复后不会把历史写乱？
 
@@ -312,6 +359,17 @@ sync
 所以可以这样总结：
 
 **ZooKeeper 对写序和全局事务顺序控制很强，但默认读并不是“每次都必须打到全局最新状态”的那种粗暴强一致。**
+
+举个例子：
+
+1. 客户端 A 写入 `/config/version = 2`，写请求已经在 Leader 侧成功提交
+2. 客户端 B 连接到一个同步稍慢的 Follower
+3. B 立刻普通读 `/config/version`
+
+这时 B 可能暂时读到旧值 `1`。
+如果 B 必须读到刚提交的新值，就要先 `sync`，或者把读路由到能满足新鲜度要求的路径上。
+
+所以 ZooKeeper 的读一致性要结合会话、`sync` 和读路由讲，不能简单答成“默认线性一致读”。
 
 ## 为什么 ZooKeeper 适合“读多写少”的协调场景？
 
@@ -400,4 +458,4 @@ ZooKeeper 官方 overview 文档也直接说了：
 
 ## 参考
 
-基于 Apache ZooKeeper、Apache Dubbo、gRPC、Apache RocketMQ、Apache Seata 官方文档，以及 Raft 扩展论文中一致性、RPC、分布式锁、分布式事务和服务治理相关内容整理。
+基于 ZooKeeper 官方文档、ZAB 原子广播相关论文与 ZooKeeper 读写一致性说明整理，并结合 `zxid`、quorum、Observer、`sync`、`DIFF/TRUNC/SNAP` 等机制做了交叉校验。

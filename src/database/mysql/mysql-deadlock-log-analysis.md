@@ -34,6 +34,19 @@ SET GLOBAL innodb_print_all_deadlocks = ON;
 
 这样每次死锁都会写入 error log，避免被下一次死锁覆盖。长期是否开启要结合日志量评估。
 
+如果死锁还在持续发生，也可以用 Performance Schema 看当前锁等待：
+
+```sql
+SELECT *
+FROM performance_schema.data_lock_waits\G
+
+SELECT ENGINE_TRANSACTION_ID, OBJECT_SCHEMA, OBJECT_NAME, INDEX_NAME,
+       LOCK_TYPE, LOCK_MODE, LOCK_STATUS, LOCK_DATA
+FROM performance_schema.data_locks\G
+```
+
+`SHOW ENGINE INNODB STATUS` 更像事后现场，`data_locks` / `data_lock_waits` 更适合观察还没结束的等待链。注意：这些表只能看到当前仍存在的锁和等待，死锁被 InnoDB 处理掉以后，现场就会消失。
+
 ## 死锁日志看哪几块？
 
 一段死锁日志通常包含：
@@ -50,6 +63,18 @@ SET GLOBAL innodb_print_all_deadlocks = ON;
 - 看 SQL：把锁映射回业务操作。
 - 看 `WE ROLL BACK TRANSACTION`：确认被牺牲的是哪个事务。
 
+可以用这个模板记录结论：
+
+```text
+事务 A：执行 SQL_A，已持有 <索引/范围/锁模式>，正在等待 <索引/范围/锁模式>
+事务 B：执行 SQL_B，已持有 <索引/范围/锁模式>，正在等待 <索引/范围/锁模式>
+等待环：A 等 B，B 等 A
+回滚方：InnoDB 回滚了事务 <编号>
+业务根因：资源访问顺序不一致 / 范围锁过大 / 插入意向锁冲突 / 长事务
+```
+
+这样写比贴一大段日志更有价值，开发同事能直接按业务操作去改。
+
 ## LOCK_MODE 怎么翻译？
 
 如果用 `performance_schema.data_locks` 辅助观察，重点看：
@@ -62,6 +87,8 @@ SET GLOBAL innodb_print_all_deadlocks = ON;
 | `X, INSERT_INTENTION` | 插入意向锁         |
 
 `LOCK_TYPE=RECORD` 只是说这是行级锁，不等于 Record Lock。这个误读很常见。
+
+MySQL 8.0.13 之后，`data_locks.LOCK_MODE` 对 `REC_NOT_GAP`、`INSERT_INTENTION` 等描述更完整。老版本如果看不到这些字段细节，要结合 `SHOW ENGINE INNODB STATUS`、SQL 条件和索引结构自己还原。
 
 ## 怎么还原等待环？
 
@@ -84,6 +111,29 @@ SET GLOBAL innodb_print_all_deadlocks = ON;
 - B 先改库存再改订单。
 - 两个事务访问资源顺序相反。
 
+## 死锁和锁等待超时有什么区别？
+
+这两个错误经常被混着处理：
+
+| 类型       | 常见错误     | 触发条件                              | 应用处理                           |
+| ---------- | ------------ | ------------------------------------- | ---------------------------------- |
+| 死锁       | `ERROR 1213` | InnoDB 检测到等待环，主动回滚一个事务 | 回滚并重试整个幂等事务             |
+| 锁等待超时 | `ERROR 1205` | 等锁超过 `innodb_lock_wait_timeout`   | 先查慢事务和锁等待，再决定是否重试 |
+
+死锁通常会很快返回，因为 InnoDB 默认开启主动死锁检测。锁等待超时不一定有等待环，可能只是某个事务长期不提交。它们都不能只重试最后一条 SQL，事务上下文已经不可信，必须从业务事务入口重新执行。
+
+## 怎么把死锁映射回业务代码？
+
+日志里的 SQL 往往只是最后一条语句，真正根因可能在事务前半段。排查时要补齐：
+
+1. 事务入口：哪个接口、定时任务、消费逻辑开启了事务。
+2. 访问顺序：同一个事务里先改哪些表、哪些行、哪些索引。
+3. WHERE 条件：是否走了预期索引，是否把点查变成范围扫描。
+4. 事务时长：是否夹了 RPC、文件处理、复杂计算或人工等待。
+5. 重试幂等：死锁重试会不会重复扣库存、重复发消息。
+
+最终修复通常不是“把超时时间调大”，而是统一资源访问顺序、缩短事务、补索引、拆批、把外部调用移出事务。
+
 ## 应用层应该怎么处理？
 
 InnoDB 检测到死锁后会回滚其中一个事务，应用会看到 `ERROR 1213`。正确处理方式不是直接报系统异常，而是：
@@ -101,7 +151,8 @@ InnoDB 检测到死锁后会回滚其中一个事务，应用会看到 `ERROR 12
 - 看死锁日志要还原“持有什么锁、等什么锁、谁被回滚”的等待环。
 - `LOCK_TYPE=RECORD` 不等于记录锁，具体锁类型看 `LOCK_MODE`。
 - 常见根因是资源访问顺序不一致、间隙锁 + 插入意向锁、长事务持锁。
-- 应用层要捕获 1213，回滚并重试整个幂等事务。
+- 死锁 `1213` 和锁等待超时 `1205` 不一样，但都要从业务事务入口处理。
+- 应用层要捕获 1213，回滚并重试整个幂等事务，同时保证重试幂等。
 
 ## 参考
 

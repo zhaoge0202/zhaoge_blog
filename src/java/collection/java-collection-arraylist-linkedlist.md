@@ -39,6 +39,31 @@ next:
 
 所以，`LinkedList` 不是“增删场景的默认答案”。如果你没有明确证明自己只做头尾操作，默认选 `ArrayList` 往往更稳。
 
+## 选型时应该先问哪几个问题？
+
+不要先背“数组 vs 链表”，而是先把访问模式问清楚：
+
+```text
+需要按下标频繁读吗？
+├── 是：优先 ArrayList
+└── 否：继续问
+
+主要是尾部追加 + 顺序遍历吗？
+├── 是：优先 ArrayList，能预估容量就提前指定
+└── 否：继续问
+
+需要头尾两端入队出队吗？
+├── 是：优先 ArrayDeque
+└── 否：继续问
+
+必须在中间频繁插入删除吗？
+├── 只是按 index 插删：LinkedList 也要先遍历，未必更好
+└── 已经持有节点引用：Java LinkedList 不暴露节点，业务代码通常做不到
+```
+
+这个判断能避开一个常见误区：把“数据结构理论里的链表节点插入 O(1)”直接套到 Java
+`LinkedList` 上。Java 业务代码拿到的是 `List` API，不是内部节点指针。
+
 ## ArrayList 为什么适合普通业务列表？
 
 `ArrayList` 底层是一段 `Object[]` 数组。数组带来两个直接好处：
@@ -93,6 +118,26 @@ newCapacity = oldCapacity + oldCapacity / 2 = 15
               ↑ 2、3、4 都要右移
 ```
 
+### 预估容量怎么用才合适？
+
+有明确上界时，直接用构造参数最清楚：
+
+```java
+List<Long> ids = new ArrayList<>(records.size());
+for (Record record : records) {
+    ids.add(record.id());
+}
+```
+
+如果集合已经创建出来，后面才知道要批量追加，也可以调用 `ensureCapacity`：
+
+```java
+result.ensureCapacity(result.size() + appendList.size());
+result.addAll(appendList);
+```
+
+但这不是所有场景都要做的“性能仪式”。只有在大批量写入、容量能预估、扩容复制确实会造成抖动时才值得加；小列表为了少一次扩容把代码写复杂，收益通常很低。
+
 ## LinkedList 真正擅长什么？
 
 `LinkedList` 底层是双向链表，每个节点大致包含三部分：
@@ -128,13 +173,76 @@ Long first = queue.pollFirst();
 
 `ArrayDeque` 底层是循环数组，头尾操作也是均摊 O(1)，对象分配更少。除非你确实需要存储 `null`，否则 `ArrayDeque` 往往比 `LinkedList` 更适合作为双端队列。
 
+## List 使用里还有哪些隐蔽坑？
+
+集合选型答完后，面试经常会继续追使用细节。几个高频坑最好一起说清楚。
+
+### subList 不是独立新集合
+
+`subList(from, to)` 返回的是原列表的一个视图，不是复制出来的新 `ArrayList`。对子列表做结构性修改会影响原列表；原列表在子列表之外发生结构性修改，也可能让子列表后续访问抛异常。
+
+```java
+List<String> all = new ArrayList<>(List.of("a", "b", "c", "d"));
+List<String> part = all.subList(1, 3);
+part.clear(); // all 变成 ["a", "d"]
+```
+
+如果需要一份真正独立的数据，应该再包一层构造：
+
+```java
+List<String> copy = new ArrayList<>(all.subList(1, 3));
+```
+
+### Arrays.asList 返回固定大小列表
+
+`Arrays.asList(array)` 返回的列表背后仍然关联原数组，不能直接 `add/remove`，否则会抛 `UnsupportedOperationException`。它不是完全不可改：`set` 可以替换元素，并且会回写到底层数组。
+
+```java
+String[] names = {"a", "b"};
+List<String> view = Arrays.asList(names);
+view.set(0, "x"); // names[0] 也变成 "x"
+```
+
+如果要继续增删，也要复制成新的 `ArrayList`：
+
+```java
+List<String> editable = new ArrayList<>(Arrays.asList("a", "b", "c"));
+editable.add("d");
+```
+
+还有一个细节：基本类型数组会被当成一个元素，而不是自动拆成多个包装类型元素：
+
+```java
+int[] nums = {1, 2, 3};
+List<int[]> list = Arrays.asList(nums); // size 是 1
+```
+
+### 迭代删除要用正确入口
+
+`foreach` 语法底层是迭代器。遍历过程中直接调集合自己的 `remove`，会绕开迭代器记录的期望修改次数，触发 fail-fast。
+
+```java
+Iterator<Long> iterator = ids.iterator();
+while (iterator.hasNext()) {
+    if (iterator.next() <= 0) {
+        iterator.remove();
+    }
+}
+```
+
+如果只是按条件过滤，`removeIf` 更直接：
+
+```java
+ids.removeIf(id -> id <= 0);
+```
+
 ## 容易踩的坑
 
 1. `ArrayList` 尾插不是“永远 O(1)”，触发扩容时需要复制数组；只是均摊后可以看作 O(1)。
 2. `LinkedList` 指定位置插入不是 O(1)，因为定位节点本身是 O(n)。
 3. `RandomAccess` 只是标记接口，不是它让 `ArrayList` 变快；真正原因是数组支持下标寻址。
-4. `foreach` 里直接调用集合的 `remove` 容易触发 fail-fast，要用 `Iterator.remove()` 或 `removeIf()`。
-5. `Arrays.asList()` 返回的是固定大小列表，不能直接 `add/remove`。
+4. `subList` 是视图，不是独立副本，跨原列表修改要格外小心。
+5. `foreach` 里直接调用集合的 `remove` 容易触发 fail-fast，要用 `Iterator.remove()` 或 `removeIf()`。
 
 ## 小结
 

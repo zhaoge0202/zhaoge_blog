@@ -46,6 +46,8 @@ Sentinel 的价值就是把这套流程自动化。
 
 但真正难点在第一步：怎么判断“真的故障”。
 
+Sentinel 自身也是一个特殊模式的 Redis 进程。它不是业务数据节点，不存业务 key；它负责观察主从拓扑、协商故障转移，并向客户端提供当前主节点信息。
+
 ## 主观下线：一个 Sentinel 自己觉得它挂了
 
 Sentinel 会周期性向主从节点发请求。
@@ -91,6 +93,14 @@ Redis 官方文档明确区分了两件事：
 
 这也是为什么 Sentinel 一般至少部署 3 个，并且常用奇数个。
 
+上线前可以用命令做一次仲裁检查：
+
+```bash
+redis-cli -p 26379 SENTINEL CKQUORUM mymaster
+```
+
+它能帮你确认当前 Sentinel 数量和配置是否足够完成故障判定与 failover 授权。这个检查比只看“我部署了几个 Sentinel”更可靠。
+
 ## 谁来执行故障转移
 
 当主库进入客观下线后，Sentinel 之间会选出一个 leader。
@@ -100,6 +110,8 @@ Redis 官方文档明确区分了两件事：
 这样做是为了避免多个 Sentinel 同时各切各的，导致配置冲突。
 
 leader 拿到的是一次 failover 的配置版本，也就是 epoch。后续其他 Sentinel 会接受更高版本的新配置。
+
+Sentinel 之间的互相发现也不是手工把所有哨兵地址写死。它们会通过被监控主库上的 `__sentinel__:hello` 频道交换信息，再互相建立连接；同时 Sentinel 会通过 `INFO` 获取主库下的从库列表。理解这一点，就能解释为什么 Sentinel 配置里通常只需要写被监控 master，而不是枚举每个 Sentinel 和每个 replica。
 
 ## 新主怎么选
 
@@ -132,6 +144,15 @@ leader Sentinel 选好新主后，大致会做四件事：
 
 切换完成不代表所有从库已经完全追上新主。它表示新主已经确立，配置开始向外传播。
 
+两个参数经常影响切换体验：
+
+| 参数               | 影响                                     |
+| ------------------ | ---------------------------------------- |
+| `failover-timeout` | 控制一次故障转移的超时和重试节奏         |
+| `parallel-syncs`   | 控制同一时间有多少从库并行跟新主重新同步 |
+
+`parallel-syncs` 不是越大越好。值太大，新主会同时承担多个从库同步压力；值太小，整体恢复时间会拉长。线上要按实例大小、网络和读流量取舍。
+
 ## 客户端怎么知道新主
 
 Sentinel 不只是内部切换工具，也充当客户端服务发现来源。
@@ -139,6 +160,14 @@ Sentinel 不只是内部切换工具，也充当客户端服务发现来源。
 支持 Sentinel 的客户端会向 Sentinel 查询当前 master 地址。如果发生 failover，客户端应该重新获取新 master 地址。
 
 所以业务里用 Sentinel 时，客户端必须显式支持 Sentinel 模式。只把 Redis 地址写死成旧主地址，并不会因为有 Sentinel 就自动神奇切走。
+
+客户端常见流程是：
+
+```bash
+redis-cli -p 26379 SENTINEL get-master-addr-by-name mymaster
+```
+
+支持 Sentinel 的客户端库会封装这一步，并在连接失败或收到切换事件后重新发现主节点。生产里还要确认连接池、DNS、超时和重试策略不会把切换窗口放大成更长的业务故障。
 
 ## Sentinel 也不是强一致方案
 
@@ -168,6 +197,10 @@ Sentinel 建在 Redis 异步复制之上。
 
 不一定。客户端需要支持 Sentinel 服务发现，否则可能还连着旧地址。
 
+### “Sentinel 能替代 Cluster”
+
+不对。Sentinel 解决的是主从故障转移，不能把一个大 key 空间自动分片到多台主节点上。容量和写吞吐扩展仍然要看 Cluster 或业务拆分。
+
 ## 小结
 
 - Sentinel 的核心职责是监控、选主和通知。
@@ -175,6 +208,8 @@ Sentinel 建在 Redis 异步复制之上。
 - quorum 用于故障判定，真正执行 failover 还要多数 Sentinel 授权 leader。
 - 新主选择会过滤不健康从库，再比较优先级、复制进度和 ID。
 - Sentinel 提供自动故障转移，但不提供强一致保证。
+- Sentinel 通过 `__sentinel__:hello`、`INFO`、事件发布和客户端服务发现把拓扑变化传播出去。
+- `failover-timeout`、`parallel-syncs`、客户端重连策略都会影响真实恢复时间。
 
 ## 参考
 

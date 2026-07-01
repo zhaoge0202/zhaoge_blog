@@ -33,6 +33,20 @@ next:
 
 所以 `free` 看到内存被 cache 占满，不一定是坏事。Linux 会尽量用空闲内存做缓存，内存紧张时再回收干净页。
 
+历史上还会区分 Page Cache 和 Buffer Cache：前者偏文件页缓存，后者偏块设备缓存。现代 Linux 里两者关系已经不像早期那样割裂，很多工程语境会把文件缓存、块缓存放在一起讨论。但排查时不能把 `Buffers`、`Cached`、`SwapCached` 粗暴相加后当成精确 Page Cache，内核版本、`Shmem`、`SReclaimable`、容器统计口径都会影响结果。
+
+## 文件页和匿名页有什么区别？
+
+内存回收时，Page Cache 对应的文件页和进程堆栈这类匿名页，处理成本不一样：
+
+| 类型       | 来源                               | 回收方式                 | 成本 |
+| ---------- | ---------------------------------- | ------------------------ | ---- |
+| 干净文件页 | 读文件、文件映射、缓存命中后未修改 | 直接丢弃，需要时再读文件 | 低   |
+| 脏文件页   | 写文件后还没刷盘                   | 先回写磁盘，再释放       | 中高 |
+| 匿名页     | 堆、栈、匿名 mmap                  | 通常要依赖 swap 才能换出 | 高   |
+
+这也是为什么文件缓存占内存不一定可怕：干净文件页可回收。真正容易造成抖动的是大量脏页回写、匿名页 swap、直接内存回收。
+
 ## 写文件为什么不一定马上落盘？
 
 普通 buffered IO 的 `write(fd, data)` 大致是：
@@ -53,6 +67,27 @@ fdatasync(fd);
 
 `fsync` 更强调数据和元数据都同步，`fdatasync` 只同步必要元数据和数据。
 
+再补一个 `sync`：
+
+| 调用        | 刷新范围                   | 常见用途                             |
+| ----------- | -------------------------- | ------------------------------------ |
+| `fsync`     | 指定文件的数据和相关元数据 | 数据库、日志、关键文件强一致刷盘     |
+| `fdatasync` | 指定文件数据和必要元数据   | 只关心文件内容持久化，少刷部分元数据 |
+| `sync`      | 系统范围内的脏数据提交回写 | 管理操作，不适合业务请求频繁调用     |
+
+脏页回写通常有三个触发来源：应用主动调用刷盘接口；内核后台线程按周期或脏页比例回写；内存回收发现脏页时先写回再释放。第三类最容易和延迟抖动绑在一起，因为业务线程可能被直接回收路径拖住。
+
+可以看这些参数理解回写策略：
+
+```bash
+cat /proc/sys/vm/dirty_ratio
+cat /proc/sys/vm/dirty_background_ratio
+cat /proc/sys/vm/dirty_expire_centisecs
+cat /proc/sys/vm/dirty_writeback_centisecs
+```
+
+参数名会让人误以为调大一定提高性能，但脏页攒太多会放大机器故障丢数据窗口，也可能在集中回写时制造 IO 尖峰。
+
 ## 和 MySQL、Redis 有什么关系？
 
 MySQL InnoDB 有自己的 Buffer Pool，很多场景会考虑绕开或弱化 Page Cache，避免数据在 InnoDB Buffer Pool 和 Page Cache 里缓存两份。是否使用 Direct IO 取决于数据库配置和文件类型。
@@ -60,6 +95,10 @@ MySQL InnoDB 有自己的 Buffer Pool，很多场景会考虑绕开或弱化 Pag
 Redis AOF 写入也会经过操作系统缓存，`appendfsync always/everysec/no` 的取舍，本质是在吞吐和丢数据窗口之间权衡。
 
 日志系统、消息队列、Kafka segment 文件也会利用 Page Cache。顺序写、顺序读和预读机制可以让磁盘文件表现得像内存一样快一段时间。
+
+顺序读还有预读机制。应用只请求当前页时，内核可能把后续相邻页也读进 Page Cache。日志扫描、Kafka 顺序消费、冷文件顺序读取会受益；但如果访问模式很随机，预读命中率低，就可能变成额外 IO 和缓存污染。
+
+Direct IO 的价值是绕开 Page Cache，减少双缓存并让应用自己管理缓存策略。它不等于“所有场景更快”，也不等于“写成功就绝对持久化”。设备缓存、控制器缓存、RAID、文件系统屏障、挂载参数都会影响最终落盘语义。
 
 ## 怎么观察 Page Cache？
 
@@ -76,6 +115,17 @@ cat /proc/meminfo
 
 容器场景要注意：文件 IO 产生的 Page Cache 也可能计入 cgroup 内存。应用堆不大但容器内存持续升高时，要把 Page Cache 纳入排查。
 
+进一步定位可以看：
+
+```bash
+cat /proc/meminfo | egrep 'Cached|Buffers|Dirty|Writeback|Active|Inactive|SReclaimable'
+iostat -xz 1
+pidstat -d 1
+vmstat 1
+```
+
+如果 `Dirty`、`Writeback` 高，同时 `iostat` 里磁盘利用率、await、队列长度也高，就要怀疑写入速度超过了设备回写能力。若容器内存上涨但 Java 堆平稳，可以同时看 cgroup memory、进程 RSS、应用写文件量和 Page Cache。
+
 ## 容易踩的坑
 
 - `write` 成功不等于落盘成功。
@@ -83,15 +133,17 @@ cat /proc/meminfo
 - Page Cache 不是“内存泄漏”，可回收缓存和不可回收匿名内存要区分。
 - Direct IO 绕开 Page Cache，但也失去内核预读、合并等优化，不是所有场景都更快。
 - Direct IO 写成功也不等于绝对持久化成功，还要看磁盘缓存、RAID/控制器缓存、文件系统屏障和挂载参数。
+- 容器里“堆不大但内存高”不能只怪 JVM，文件 IO 造成的 Page Cache 也可能被记账。
 
 ## 小结
 
 - Page Cache 是内核管理的文件缓存，用内存加速读写磁盘文件。
 - 普通 `write` 通常先写 Page Cache，脏页稍后由内核回写。
 - 要缩小机器崩溃丢数据窗口，需要 `fsync`、`fdatasync` 或应用级刷盘策略。
-- MySQL、Redis AOF、Kafka 都和 Page Cache 或 Direct IO 取舍相关。
-- 排查内存时要区分匿名内存、Page Cache、Dirty 和 Writeback。
+- 干净文件页回收成本低，脏页和匿名页回收更容易带来 IO 抖动。
+- MySQL、Redis AOF、Kafka 都和 Page Cache、预读、回写或 Direct IO 取舍相关。
+- 排查内存和 IO 时要区分匿名内存、Page Cache、Dirty、Writeback、cgroup 记账和磁盘压力。
 
 ## 参考
 
-基于 Linux man-pages、Linux kernel documentation、OpenJDK 工具文档与 POSIX 相关规范中进程、线程、内存、文件系统、I/O、epoll、sendfile 等内容整理。
+基于 Linux man-pages、Linux kernel documentation、文件系统刷盘接口说明、数据库与日志系统常见刷盘策略、POSIX 相关规范整理，并核对了 Page Cache、脏页回写、Direct IO、容器内存记账与数据库缓存的工程边界。

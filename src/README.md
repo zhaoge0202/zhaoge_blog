@@ -1,9 +1,9 @@
 ---
 home: true
 title: "拾级"
-description: "拾级 —— 面向 3-5 年 Java 后端工程师的进阶知识库，按知识域讲透高频题、原理与项目取舍，并保留独立博客记录实战与复盘。"
+description: "拾级 —— 后端知识库，按知识域讲透高频题、原理与项目取舍，并保留独立博客记录实战与复盘。"
 heroText: "拾级"
-tagline: "拾级而上，把 Java 后端每个高频点从原理讲到能落地。"
+tagline: "拾级而上，自我提升。"
 actions:
   - text: "开始复习"
     link: "/interview-preparation/"

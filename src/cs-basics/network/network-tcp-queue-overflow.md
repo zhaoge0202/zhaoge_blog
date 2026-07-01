@@ -75,6 +75,15 @@ sysctl net.core.somaxconn
 
 `LISTEN` 状态下，`ss` 的 `Recv-Q` 通常表示当前等待 accept 的连接数，`Send-Q` 表示队列上限相关值。若 `Recv-Q` 持续接近 `Send-Q`，就要看应用为什么不及时 accept。
 
+注意，`Recv-Q/Send-Q` 在不同状态下含义不一样，不能混着解释：
+
+| 连接状态    | `Recv-Q`                                 | `Send-Q`                   |
+| ----------- | ---------------------------------------- | -------------------------- |
+| `LISTEN`    | 已完成握手、正在等待 `accept()` 的连接数 | 全连接队列上限相关值       |
+| 非 `LISTEN` | 已到达内核、还没被应用读取的字节数       | 已发送但还没被确认的字节数 |
+
+所以，排查全连接队列是否满，重点看监听 socket 那一行；排查某条已建立连接为什么慢，再看非 `LISTEN` 连接的收发队列字节数。
+
 全连接队列上限不能只看 `listen(backlog)`。常见 Linux 上可以近似理解为：
 
 ```text
@@ -82,6 +91,14 @@ sysctl net.core.somaxconn
 ```
 
 所以只改应用里的 backlog，不调 `somaxconn`，可能没有效果；只调 `somaxconn`，应用没重新 `listen()` 或服务没重启，也可能看不到变化。
+
+配置还要落到具体框架：
+
+- Nginx 常见是 `listen ... backlog=...`。
+- Tomcat 常见要看 Connector 的 `acceptCount`、最大连接数和线程池配置。
+- Netty 常见要看 `ChannelOption.SO_BACKLOG`、boss group 是否被阻塞。
+
+这些配置最终都要通过新的 `listen()` 生效。已经启动的监听 socket 不会因为你改了配置文件就自动扩容。
 
 ## 半连接队列满了会怎样？
 
@@ -93,10 +110,13 @@ sysctl net.core.somaxconn
 ss -tan state syn-recv
 ss -tan state syn-recv | wc -l
 netstat -s | grep -i "SYN"
+nstat -az | egrep "TcpExtSyncookies|TcpExtListen"
 sysctl net.ipv4.tcp_max_syn_backlog
 sysctl net.ipv4.tcp_syncookies
 sysctl net.ipv4.tcp_synack_retries
 ```
+
+`netstat -s` 和 `nstat` 里的很多值是累计计数，不是瞬时值。最好隔几秒观察增量：如果 `ListenOverflows`、`ListenDrops`、SYN 丢弃或 syncookies 相关计数持续增长，才说明当前仍在发生队列压力。
 
 容易答错的一点：半连接队列大小不一定只由 `tcp_max_syn_backlog` 决定。不同 Linux 内核版本实现不同，还会和 `somaxconn`、应用 backlog、SYN Cookie 状态、队列是否接近阈值有关。
 
@@ -121,6 +141,14 @@ sequenceDiagram
 ```
 
 SYN Cookie 能缓解 SYN Flood 对半连接队列的冲击，但它不是无限扩容：CPU、带宽、后端全连接队列仍然可能成为瓶颈，部分 TCP 选项能力也可能受影响。
+
+常见配置语义是：
+
+- `0`：关闭。
+- `1`：半连接队列压力大时启用。
+- `2`：无条件启用。
+
+生产上更常见的是按需启用，而不是把它当成常态扩容手段。它能帮你减少为伪造 SYN 保存状态，但不能提升应用 `accept()` 和业务处理能力。
 
 ## Java 服务排查应该按什么顺序？
 
@@ -154,13 +182,16 @@ netstat -s
 
 如果是 Netty/Tomcat 服务，全连接队列满常常不是“内核参数太小”这么简单，背后可能是 boss 线程卡住、worker 线程被阻塞、业务线程池满、Full GC 或下游慢导致 accept 后处理跟不上。
 
+调参顺序也要克制：先证明队列确实在持续溢出，再扩 `backlog`、`somaxconn` 或半连接相关参数；如果应用消费能力没有恢复，队列变大只会把失败推迟，客户端等待时间和服务端内存占用反而可能上升。
+
 ## 小结
 
 - 半连接队列保存未完成三次握手的请求，全连接队列保存已完成握手、等待 `accept()` 的连接。
 - 全连接队列满时，客户端可能以为连接成功，但首包阻塞或被 RST。
 - 半连接队列满时，新 SYN 可能被丢弃；SYN Cookie 能缓解但不是扩容。
-- 全连接队列上限通常受 `backlog` 和 `somaxconn` 共同影响。
-- 排查要结合 `ss`、`netstat -s`、内核参数、应用线程栈和 GC/下游依赖，不能只调一个参数。
+- `ss` 的 `Recv-Q/Send-Q` 要区分 `LISTEN` 和非 `LISTEN` 状态，累计计数要看增量。
+- 全连接队列上限通常受 `backlog` 和 `somaxconn` 共同影响，配置生效还依赖框架和重新 `listen()`。
+- 排查要结合 `ss`、`netstat -s`、`nstat`、内核参数、应用线程栈和 GC/下游依赖，不能只调一个参数。
 
 ## 参考
 

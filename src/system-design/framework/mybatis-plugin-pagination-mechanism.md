@@ -85,6 +85,15 @@ Mapper 方法
 - `StatementHandler`
 - 或者某些实现里更上游的 `Executor`
 
+但这不代表四类接口都同样适合做分页：
+
+- `StatementHandler.prepare()` 更靠近 SQL 发送给 JDBC 之前，适合读取和改写最终 SQL。
+- `Executor.query()` 更靠近调度层，会同时碰到缓存、`MappedStatement`、`RowBounds` 等上下文。
+- `ParameterHandler` 更适合参数设置增强，不适合承载完整分页语义。
+- `ResultSetHandler` 已经到了结果映射阶段，再分页通常就晚了。
+
+所以分页插件选拦截点，本质是在“改写位置足够早”和“能拿到足够上下文”之间取平衡。
+
 ## MyBatis 插件本质上怎么生效？
 
 官方文档给出的关键点是：
@@ -132,6 +141,8 @@ public class ExamplePlugin implements Interceptor {
 2. 判断有没有插件命中它
 3. 如果命中，就一层层用代理包起来
 4. 调用方法时，先进入插件链，再回到原始实现
+
+更源码化一点说：`Executor`、`StatementHandler`、`ParameterHandler`、`ResultSetHandler` 这类内部对象创建出来后，会经过插件链包装。插件不是在项目启动时把所有 SQL 都改好，而是在 SQL 执行路径上遇到这些内部对象时，把匹配的对象代理起来。
 
 所以它和 Spring AOP 在思路上有相似性，但边界更死：
 
@@ -187,6 +198,8 @@ selectList(String statement, Object parameter, RowBounds rowBounds)
 
 - 它不是天然等价于数据库层 `limit offset`
 - 很多场景下未必是你想要的“真正物理分页”
+
+但也要补一个边界：有些分页插件会把 `RowBounds` 当作分页参数载体，然后在插件里改写成物理分页 SQL。此时真正起作用的不是原生 `RowBounds` 的结果范围控制，而是插件接管后的 SQL 改写。
 
 所以在大多数真实项目里，大家更常用的是：
 
@@ -246,6 +259,15 @@ flowchart TD
 - 找到分页参数
 - 按数据库方言改写
 
+这里不能只盯着 SQL 字符串。一次可靠的改写还要考虑：
+
+- `BoundSql` 里的参数映射和额外参数
+- `MappedStatement` 上的结果映射、缓存配置和 statement 配置
+- 缓存 key 是否和分页参数一致
+- 新增分页参数后，JDBC 占位符顺序是否还能对上
+
+所以“把 `BoundSql.sql` 拼上 limit”只是最表面的动作，真正难的是别把 MyBatis 执行上下文改坏。
+
 ## 分页插件除了改查询 SQL，通常还会做什么？
 
 真实项目里，前端分页一般不只要当前页数据，还要总条数。
@@ -277,6 +299,8 @@ select * from orders where status = 'PAID' order by created_at desc limit ?, ?
 
 - 怎么生成可靠的 count SQL
 - 遇到复杂 SQL（group by、union、子查询）时怎么不出错
+
+count SQL 不只是语法问题，也是语义和性能问题。`group by`、`distinct`、`union`、`having`、复杂 `left join`、深层子查询，都可能让自动生成的 count 与原查询语义不等价，或者让数据库执行得比原查询还慢。
 
 ## 为什么复杂 SQL 下分页插件容易翻车？
 
@@ -320,6 +344,8 @@ count SQL 或分页 SQL 的改写就可能变得不可靠。
 
 **我看到的这条 SQL，是原始 SQL，还是前面插件已经改过的 SQL？**
 
+还要注意线程安全。插件实例通常会被复用，不要用普通成员变量保存“当前页码、当前 SQL、当前用户”这类单次请求状态。确实需要上下文时，要么放在方法调用栈里传递，要么使用 `ThreadLocal` 后严格清理，否则并发下很容易串参数。
+
 ## 一个最容易误解的点：插件不是只能做分页
 
 分页是最常见场景，但插件机制本身远不止分页。
@@ -348,6 +374,7 @@ count SQL 或分页 SQL 的改写就可能变得不可靠。
 5. count SQL 是否被额外改坏了？
 6. 插件链上还有没有别的插件也在改 SQL？
 7. 当前数据库方言是不是和插件配置一致？
+8. 插件里有没有保存单次查询状态导致并发串数据？
 ```
 
 大多数问题不会卡在“插件机制本身”，而是卡在 SQL 改写边界或插件顺序上。
@@ -401,7 +428,7 @@ count SQL 或分页 SQL 的改写就可能变得不可靠。
 - MyBatis 插件机制本质上是对 `Executor`、`StatementHandler`、`ParameterHandler`、`ResultSetHandler` 这 4 类内部组件做代理增强。
 - 分页插件之所以能工作，本质上是在 SQL 真正执行前改写成数据库方言下的物理分页语句。
 - `RowBounds` 能做范围限制，但很多场景下不等于你真正想要的数据库物理分页。
-- 分页插件真正难的地方不只是 `limit`，还包括 count SQL、复杂语句兼容和多插件顺序。
+- 分页插件真正难的地方不只是 `limit`，还包括 `BoundSql` 上下文、count SQL、复杂语句兼容和多插件顺序。
 - 插件越接近 MyBatis 执行底层，越要谨慎；简单列表页适合插件，复杂报表场景往往更适合手写分页和总数 SQL。
 
 ## 参考

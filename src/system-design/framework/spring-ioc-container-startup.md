@@ -67,6 +67,17 @@ flowchart TD
  G --> H[finishRefresh 发布刷新完成事件]
 ```
 
+如果要把这条线落到源码方法名，可以记成下面这张表：
+
+| 阶段                | 常见源码入口                        | 重点                                                         |
+| ------------------- | ----------------------------------- | ------------------------------------------------------------ |
+| 准备刷新            | `prepareRefresh()`                  | 准备环境、校验属性源、标记容器状态                           |
+| 准备 BeanFactory    | `obtainFreshBeanFactory()`          | 创建或刷新底层 BeanFactory，并装载 BeanDefinition            |
+| 扩展 BeanDefinition | `invokeBeanFactoryPostProcessors()` | 执行 BeanFactory 级扩展点，允许继续注册或修改 BeanDefinition |
+| 注册实例后处理器    | `registerBeanPostProcessors()`      | 只是注册 BeanPostProcessor，后续创建 Bean 时才逐个执行       |
+| 创建非懒加载单例    | `finishBeanFactoryInitialization()` | 触发非懒加载单例实例化，也是依赖注入和初始化集中发生的地方   |
+| 发布完成事件        | `finishRefresh()`                   | 启动生命周期组件，发布容器刷新完成事件                       |
+
 下面按面试能说清的粒度拆开。
 
 ### 1. 准备刷新环境
@@ -126,6 +137,15 @@ DefaultListableBeanFactory
 
 很多人把 `@Autowired` 也说成这一步做完，这就不严谨了。依赖注入主要发生在后面真正创建 Bean 的阶段。
 
+这里还可以再补一个顺序细节：`BeanDefinitionRegistryPostProcessor` 会更早介入，因为它可以继续注册新的 BeanDefinition；普通 `BeanFactoryPostProcessor` 更多是修改已经存在的定义。比如配置类解析、扫描、导入这类动作，本质上就是先把“还没出现在图纸上的 Bean”补进来。
+
+所以这一层如果出问题，常见表现不是某个 Bean 初始化失败，而是：
+
+- 某个配置类没有被解析
+- 某个包没有被扫描到
+- `${...}` 占位符没被替换
+- 某个 BeanDefinition 被条件装配排除
+
 ## 4. 注册 BeanPostProcessor，后面创建 Bean 时会用到
 
 这一阶段会把所有 `BeanPostProcessor` 先准备好，后面每个 Bean 创建时都会经过它们。
@@ -143,6 +163,10 @@ DefaultListableBeanFactory
 BeanFactoryPostProcessor -> 先改施工图
 BeanPostProcessor -> 再改成品或半成品
 ```
+
+注意：这里是“注册”后处理器，不是“执行完所有后处理器”。真正执行发生在后面每个 Bean 创建过程中。
+
+这也解释了一个排障细节：某些 BeanPostProcessor 自己以及它们直接依赖的 Bean 会被提前创建，这些 Bean 可能还没机会被完整代理增强。线上如果发现某个基础设施 Bean 没有被 AOP 代理，不要只盯着切点表达式，也要看它是不是过早参与了容器启动。
 
 ## 5. 初始化容器级基础组件
 
@@ -179,6 +203,38 @@ BeanPostProcessor -> 再改成品或半成品
 7. 必要时返回代理对象而不是原始对象
 
 如果 Bean 之间有依赖，Spring 会按依赖关系递归创建。
+
+源码层面可以把这一步压成一条链：
+
+```text
+finishBeanFactoryInitialization()
+ -> preInstantiateSingletons()
+ -> getBean()
+ -> doCreateBean()
+```
+
+其中 `doCreateBean()` 才真正进入单个 Bean 的创建细节：实例化、属性填充、初始化、注册销毁回调，以及必要时通过后处理器返回代理对象。
+
+## 循环依赖在启动流程里处在哪一步？
+
+循环依赖不是发生在扫描阶段，而是发生在创建 Bean、填充属性时。
+
+典型的 setter/字段注入循环是这样：
+
+```text
+A 实例化 -> 需要注入 B
+B 实例化 -> 需要注入 A
+```
+
+Spring 之所以能在部分单例场景下绕过去，是因为它可以先暴露一个“早期引用”，让对方先拿到引用，后面再完成属性填充和初始化。
+
+但这有几个边界：
+
+- 构造器循环依赖很难解决，因为对象还没构造出来，没法提前暴露引用。
+- prototype Bean 循环依赖也不适合用单例缓存那套机制解决。
+- 如果 AOP 代理参与进来，早期暴露的引用还要考虑最终注入的是原始对象还是代理对象。
+
+所以面试里不要把“Spring 能解决循环依赖”说成绝对结论。更稳的说法是：**Spring 在特定单例、非构造器注入场景下可以缓解循环依赖，但工程上仍然应该避免设计成强循环。**
 
 ## 7. 刷新完成，发布事件
 
@@ -243,13 +299,27 @@ BeanPostProcessor -> 再改成品或半成品
 - 原型：每次 `getBean()` 时再创建。
 - 懒加载 Bean：第一次真正用到时再创建。
 
+## 启动失败应该先看哪一段？
+
+Spring 启动报错时，不要一上来就看最后一屏异常。先判断它卡在哪个阶段：
+
+| 现象                 | 更可能的问题阶段              | 常见原因                       |
+| -------------------- | ----------------------------- | ------------------------------ |
+| Bean 没被注册        | BeanDefinition 加载阶段       | 扫描路径、条件装配、配置类导入 |
+| 占位符解析失败       | BeanFactoryPostProcessor 阶段 | 配置缺失、环境变量缺失         |
+| 依赖找不到或多个候选 | 实例化和属性填充阶段          | `@Autowired` 类型冲突、缺 Bean |
+| 初始化方法抛异常     | 初始化阶段                    | `@PostConstruct`、外部资源连接 |
+| 事务/切面没生效      | BeanPostProcessor / AOP 阶段  | 没生成代理、调用没经过代理     |
+
+这张表的价值是把“启动失败”拆回 `refresh()` 主线。能说清失败阶段，排查速度会比只贴一大段堆栈快很多。
+
 ## 小结
 
 - Spring 容器启动的主线是 `refresh()`，核心阶段是载入 BeanDefinition、执行扩展点、初始化非懒加载单例。
 - `BeanFactoryPostProcessor` 处理的是 BeanDefinition，`BeanPostProcessor` 处理的是 Bean 实例。
-- IoC 容器启动时先准备“施工图”，再按依赖关系逐步创建对象。
-- 启动阶段默认不会实例化所有 Bean，重点是非懒加载单例。
-- 初始化回调和 AOP 代理不是一回事，不能想当然地认为 `@PostConstruct` 里已经拿到了完整增强能力。
+- 启动阶段默认不会实例化所有 Bean，重点是非懒加载单例；懒加载和原型 Bean 会延后创建。
+- 循环依赖只在特定单例场景下可被缓解，构造器循环、prototype 循环和代理早期引用都有边界。
+- 排查启动失败时，要先判断失败发生在 BeanDefinition、后处理器、属性填充、初始化还是 AOP 代理阶段。
 
 ## 参考
 
