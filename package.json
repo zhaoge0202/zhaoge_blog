@@ -13,6 +13,7 @@
     "lint:md": "markdownlint-cli2",
     "lint": "prettier --check . && markdownlint-cli2",
     "media:sync": "node scripts/sync-media.mjs",
+    "manifest:update": "node scripts/update-content-manifest.mjs",
     "test": "node --test tests/*.test.mjs",
     "test:media-sync": "node --test tests/media-sync.test.mjs",
     "prepare": "husky"
