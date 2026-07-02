@@ -14,8 +14,8 @@ prev:
   text: "分布式 ID 怎么选：雪花、号段、数据库自增？"
   link: "/distributed-system/distributed-id-selection.html"
 next:
-  text: "RPC 一次调用经历了哪些步骤？"
-  link: "/distributed-system/rpc/rpc-call-flow.html"
+  text: "RPC"
+  link: "/distributed-system/rpc/"
 ---
 
 # 分布式事务怎么选：2PC、TCC、Saga、本地消息表？

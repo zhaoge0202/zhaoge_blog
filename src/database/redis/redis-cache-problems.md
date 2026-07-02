@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "排障"
 prev:
-  text: "Redis 为什么会有内存碎片？"
-  link: "/database/redis/redis-memory-fragmentation.html"
+  text: "Redis 线上监控到底该盯哪些指标？"
+  link: "/database/redis/redis-monitoring-metrics.html"
 next:
   text: "Redis 里的布隆过滤器到底怎么用？"
   link: "/database/redis/redis-bloom-filter.html"

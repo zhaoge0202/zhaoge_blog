@@ -108,6 +108,8 @@ SELECT * FROM performance_schema.data_lock_waits\G
 SHOW ENGINE INNODB STATUS\G
 ```
 
+这里也要看版本边界：`performance_schema.data_lock_waits` 是 MySQL 8.0 常用的锁等待视图；MySQL 5.7 排查锁等待时，优先结合 `SHOW PROCESSLIST`、`SHOW ENGINE INNODB STATUS\G` 和业务事务日志。部分 5.7 环境还能看到旧的 `information_schema.INNODB_LOCKS` / `INNODB_LOCK_WAITS`，但这些视图已经废弃，不建议新脚本继续依赖。
+
 如果状态是等待锁，加索引未必解决，可能要缩短事务、拆批更新、调整访问顺序。如果磁盘 I/O 高，要看是不是刷脏页、binlog 暴涨或临时表落盘。
 
 ## 小结
@@ -120,4 +122,4 @@ SHOW ENGINE INNODB STATUS\G
 
 ## 参考
 
-基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。
+基于 MySQL 官方手册中 Optimizer、EXPLAIN、EXPLAIN ANALYZE、InnoDB 状态输出和 Performance Schema 锁等待视图相关章节整理，并按慢日志、执行计划、索引条件、锁等待、资源瓶颈这条排查链路复核。

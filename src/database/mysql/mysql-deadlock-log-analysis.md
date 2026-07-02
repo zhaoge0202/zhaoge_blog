@@ -34,7 +34,7 @@ SET GLOBAL innodb_print_all_deadlocks = ON;
 
 这样每次死锁都会写入 error log，避免被下一次死锁覆盖。长期是否开启要结合日志量评估。
 
-如果死锁还在持续发生，也可以用 Performance Schema 看当前锁等待：
+如果死锁还在持续发生，MySQL 8.0 可以用 Performance Schema 看当前锁等待：
 
 ```sql
 SELECT *
@@ -45,7 +45,7 @@ SELECT ENGINE_TRANSACTION_ID, OBJECT_SCHEMA, OBJECT_NAME, INDEX_NAME,
 FROM performance_schema.data_locks\G
 ```
 
-`SHOW ENGINE INNODB STATUS` 更像事后现场，`data_locks` / `data_lock_waits` 更适合观察还没结束的等待链。注意：这些表只能看到当前仍存在的锁和等待，死锁被 InnoDB 处理掉以后，现场就会消失。
+`SHOW ENGINE INNODB STATUS` 更像事后现场，`data_locks` / `data_lock_waits` 更适合观察还没结束的等待链。MySQL 5.7 侧主要依赖 `SHOW ENGINE INNODB STATUS\G`，部分环境还能用已经废弃的 `information_schema.INNODB_LOCKS` / `INNODB_LOCK_WAITS` 辅助。注意：锁等待视图只能看到当前仍存在的锁和等待，死锁被 InnoDB 处理掉以后，现场就会消失。
 
 ## 死锁日志看哪几块？
 
@@ -88,7 +88,7 @@ FROM performance_schema.data_locks\G
 
 `LOCK_TYPE=RECORD` 只是说这是行级锁，不等于 Record Lock。这个误读很常见。
 
-MySQL 8.0.13 之后，`data_locks.LOCK_MODE` 对 `REC_NOT_GAP`、`INSERT_INTENTION` 等描述更完整。老版本如果看不到这些字段细节，要结合 `SHOW ENGINE INNODB STATUS`、SQL 条件和索引结构自己还原。
+版本边界要记牢：`performance_schema.data_locks` / `data_lock_waits` 是 MySQL 8.0 侧常用视图；5.7 的旧锁等待视图已经废弃，字段也不如 8.0 的 Performance Schema 直观。老版本如果看不到 `REC_NOT_GAP`、`INSERT_INTENTION` 等细节，要结合 `SHOW ENGINE INNODB STATUS`、SQL 条件和索引结构自己还原。
 
 ## 怎么还原等待环？
 
@@ -156,4 +156,4 @@ InnoDB 检测到死锁后会回滚其中一个事务，应用会看到 `ERROR 12
 
 ## 参考
 
-基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。
+基于 MySQL 官方手册中 InnoDB 死锁检测、`SHOW ENGINE INNODB STATUS`、Performance Schema 锁视图和错误码相关章节整理，并按死锁日志、当前锁等待、业务事务入口三个层面复核排查路径。

@@ -3,6 +3,9 @@ title: "RPC"
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "分布式事务怎么选：2PC、TCC、Saga、本地消息表？"
+  link: "/distributed-system/distributed-transaction-selection.html"
 next:
   text: "RPC 一次调用经历了哪些步骤？"
   link: "/distributed-system/rpc/rpc-call-flow.html"

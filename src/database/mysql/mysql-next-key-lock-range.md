@@ -20,9 +20,11 @@ next:
 
 # next-key lock 到底锁了什么范围？
 
-> next-key lock 是“记录锁 + 前面的间隙锁”，默认是前开后闭区间，但在唯一命中、未命中、范围查询时会退化。
+> 在 InnoDB 的 RR 当前读里，next-key lock 是“记录锁 + 前面的间隙锁”，默认是前开后闭区间；唯一等值命中、未命中等场景可能退化，范围查询的首尾边界还要结合执行计划和实际锁视图判断。
 
 已有锁规则篇系统讲了行锁。这里单独把 next-key lock 的范围拿出来，因为面试和线上阻塞排查最容易错在“到底锁哪一段”。
+
+先把边界说清：本文讨论的是 InnoDB 行锁，重点是 RR 隔离级别下的当前读，比如 `UPDATE`、`DELETE`、`SELECT ... FOR UPDATE` 和 `SELECT ... LOCK IN SHARE MODE` / `FOR SHARE`。RC 隔离级别下，InnoDB 对普通索引搜索和扫描通常不会用 gap lock / next-key lock 防幻读，只在外键约束检查、重复键检查等必要场景保留间隙锁，所以不要把 RR 的加锁范围硬套到 RC。
 
 ## 先记住三个基础锁
 
@@ -78,7 +80,7 @@ SELECT * FROM user WHERE id > 5 AND id <= 10 FOR UPDATE;
 
 ## 怎么观察实际锁？
 
-MySQL 8.0 可以看：
+MySQL 8.0 可以看 Performance Schema：
 
 ```sql
 SELECT * FROM performance_schema.data_locks\G
@@ -93,14 +95,16 @@ SELECT * FROM performance_schema.data_lock_waits\G
 
 注意：`LOCK_TYPE=RECORD` 表示行级锁，不等于 Record Lock。具体是不是记录锁，要看 `LOCK_MODE` 是否包含 `REC_NOT_GAP`。
 
+MySQL 5.7 侧优先看 `SHOW ENGINE INNODB STATUS\G` 里的事务、等待锁和持有锁。部分 5.7 环境还能用 `information_schema.INNODB_LOCKS` / `INNODB_LOCK_WAITS` 辅助，但这些旧视图已经废弃，升级到 8.0 后要迁移到 Performance Schema，不要把排障脚本写死在旧表名上。
+
 ## 小结
 
 - next-key lock 是前开后闭区间，组合了间隙锁和记录锁。
 - 唯一索引等值命中通常退化为记录锁，未命中通常退化为间隙锁。
 - 普通索引等值查询锁得更宽，因为还要防止插入相同索引值。
-- 范围查询会锁扫描范围，实际边界要结合执行计划和 `data_locks` 看。
+- 范围查询会锁扫描范围，实际边界要结合隔离级别、执行计划和锁视图看。
 - 行锁锁的是索引；不走索引的加锁语句非常危险。
 
 ## 参考
 
-基于 MySQL 8.0 Reference Manual 中 InnoDB、Optimizer、Replication、EXPLAIN、Data Types、Online DDL 等相关官方章节整理。
+基于 MySQL 官方手册中 InnoDB 锁、隔离级别和 Performance Schema 锁视图相关章节整理，并用唯一索引、普通索引、范围当前读三个场景复核加锁边界。

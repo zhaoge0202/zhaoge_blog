@@ -33,7 +33,8 @@ AOF 还多一个日常写入问题：如果 `appendfsync always`，写入大 key
 排查时可以一起看：
 
 ```bash
-redis-cli INFO persistence | grep -E "latest_fork_usec|rdb_last_cow_size|aof_last_cow_size|aof_delayed_fsync"
+redis-cli INFO stats | grep latest_fork_usec
+redis-cli INFO persistence | grep -E "rdb_last_cow_size|aof_last_cow_size|aof_delayed_fsync"
 redis-cli --bigkeys
 ```
 
@@ -68,7 +69,7 @@ Cluster 迁槽时，大 key 也会拖慢迁移，造成局部抖动。
 更稳的做法：
 
 - 使用 `UNLINK` 异步释放。
-- 配置 lazyfree。
+- 按 Redis 版本和场景开启 lazyfree 参数，例如 `lazyfree-lazy-eviction`、`lazyfree-lazy-expire`、`lazyfree-lazy-server-del`、`lazyfree-lazy-user-del`；其中 `lazyfree-lazy-user-del` 这类参数要以目标版本的 `redis.conf` 为准。
 - 业务上拆小 key，避免单个 key 无限增长。
 - 删除前先评估类型和元素数量。
 
@@ -77,7 +78,7 @@ Cluster 迁槽时，大 key 也会拖慢迁移，造成局部抖动。
 1. 业务层先停止继续写这个 key，避免一边删除一边增长。
 2. 删除层优先用 `UNLINK` 或分批删除集合元素，例如对 Hash 用 `HSCAN` + `HDEL` 分批，对 ZSet 用 `ZREMRANGEBYRANK` 分段。
 
-`UNLINK` 能把释放内存的工作交给后台线程，但它不是“瞬间没有成本”。后台释放仍然会占 CPU 和内存管理资源，所以大规模清理要限速。
+`UNLINK` 是 Redis 4.0 引入的异步删除命令。它能把释放内存的工作交给后台线程，但不是“瞬间没有成本”。后台释放仍然会占 CPU 和内存管理资源，所以大规模清理要限速；lazyfree 参数也只是把部分释放路径异步化，不等于所有删除、过期、淘汰都无阻塞。
 
 ## 大 key 应该怎么预防？
 
