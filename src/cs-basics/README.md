@@ -1,5 +1,6 @@
 ---
 title: "计算机基础"
+description: "计算机基础知识域入口，覆盖操作系统、计算机网络、数据结构与算法四块底层功底。"
 article: false
 breadcrumb: true
 editLink: false

@@ -1,5 +1,6 @@
 ---
 title: "学习路线"
+description: "学习路线栏目，把知识库各个域串成一条按阶段推进的可执行成长路径。"
 article: false
 breadcrumb: true
 editLink: false

@@ -1,5 +1,6 @@
 ---
 title: "Maven"
+description: "Maven 专题，讲依赖管理与生命周期，打好排查打包问题的基础。"
 article: false
 breadcrumb: true
 editLink: false

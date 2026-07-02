@@ -1,5 +1,6 @@
 ---
 title: "面试准备"
+description: "面试准备栏目，给出复习顺序、回答目标与纠偏方法，而非堆砌资料。"
 article: false
 breadcrumb: true
 editLink: false

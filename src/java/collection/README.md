@@ -1,5 +1,6 @@
 ---
 title: "集合"
+description: "Java 集合专题，从 ArrayList、HashMap 到并发集合，讲数据结构、扩容与工程选型。"
 article: false
 breadcrumb: true
 editLink: false

@@ -1,5 +1,6 @@
 ---
 title: "框架"
+description: "Spring 全家桶专题，覆盖 IoC、AOP、事务、自动装配与 MyBatis 的原理和实战。"
 article: false
 breadcrumb: true
 editLink: false

@@ -1,5 +1,6 @@
 ---
 title: "安全"
+description: "认证授权、密码存储与常见漏洞防护专题，覆盖对外系统的安全设计要点。"
 article: false
 breadcrumb: true
 editLink: false

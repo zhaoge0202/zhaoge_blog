@@ -1,5 +1,6 @@
 ---
 title: "关于作者"
+description: "关于作者与本站，把 Java 后端面试、开发实践和个人复盘整理成长期可维护的知识库。"
 article: false
 breadcrumb: true
 editLink: false

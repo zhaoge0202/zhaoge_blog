@@ -1,5 +1,6 @@
 ---
 title: "工具实践"
+description: "工具实践栏目，收录可复用的工具链、工程实践与效率脚手架，独立于知识主线。"
 article: false
 breadcrumb: true
 editLink: false

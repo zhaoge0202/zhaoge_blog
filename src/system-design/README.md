@@ -1,5 +1,6 @@
 ---
 title: "系统设计"
+description: "系统设计知识域入口，覆盖高并发、高可用、缓存、消息队列与服务治理的工程主线。"
 article: false
 breadcrumb: true
 editLink: false

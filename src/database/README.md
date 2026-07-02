@@ -1,5 +1,6 @@
 ---
 title: "数据库"
+description: "数据库知识域入口，覆盖 MySQL、Redis、SQL、Elasticsearch 与 MongoDB 的原理与工程取舍。"
 article: false
 breadcrumb: true
 editLink: false

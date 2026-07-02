@@ -1,5 +1,6 @@
 ---
 title: "设计基础"
+description: "接口设计、设计模式与分层规范专题，讲从会写代码到会做设计的功底。"
 article: false
 breadcrumb: true
 editLink: false

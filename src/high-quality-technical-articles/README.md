@@ -1,5 +1,6 @@
 ---
 title: "程序人生"
+description: "程序人生栏目，收录职业发展、成长方法与行业观察的优质文章和个人复盘。"
 article: false
 breadcrumb: true
 editLink: false

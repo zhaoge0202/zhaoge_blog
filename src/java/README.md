@@ -1,5 +1,6 @@
 ---
 title: "Java"
+description: "Java 知识域入口，按集合、并发、JVM 组织，讲源码原理与工程选型。"
 article: false
 breadcrumb: true
 editLink: false

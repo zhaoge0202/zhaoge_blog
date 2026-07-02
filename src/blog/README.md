@@ -1,5 +1,6 @@
 ---
 title: "博客"
+description: "独立博客栏目，按时间线记录实战、bug、tips 与随笔，强调个人判断。"
 article: false
 breadcrumb: true
 editLink: false

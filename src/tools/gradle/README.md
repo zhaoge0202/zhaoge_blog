@@ -1,5 +1,6 @@
 ---
 title: "Gradle"
+description: "Gradle 专题，讲构建脚本灵活性及其与 Maven 的对比取舍。"
 article: false
 breadcrumb: true
 editLink: false

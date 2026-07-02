@@ -1,5 +1,6 @@
 ---
 title: "RPC"
+description: "RPC 专题，讲远程调用如何像本地方法一样工作，覆盖 Dubbo、gRPC 的核心机制。"
 article: false
 breadcrumb: true
 editLink: false

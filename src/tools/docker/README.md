@@ -1,5 +1,6 @@
 ---
 title: "Docker"
+description: "Docker 专题，讲容器与镜像原理及其在开发、CI、部署中的工程应用。"
 article: false
 breadcrumb: true
 editLink: false

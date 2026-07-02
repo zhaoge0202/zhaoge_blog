@@ -1,5 +1,6 @@
 ---
 title: "AI 编程"
+description: "AI 编程专题，记录用编程助手、代码评审改造工作流的真正跑通的用法。"
 article: false
 breadcrumb: true
 editLink: false

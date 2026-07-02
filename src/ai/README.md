@@ -1,5 +1,6 @@
 ---
 title: "AI 应用开发"
+description: "AI 应用开发专题，讲后端如何把大模型接进业务，从 Prompt、RAG 到 Agent 落地。"
 article: false
 breadcrumb: true
 editLink: false

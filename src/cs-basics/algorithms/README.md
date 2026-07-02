@@ -1,5 +1,6 @@
 ---
 title: "算法"
+description: "算法专题，重在复杂度意识与把问题抽象成模型的能力，而非背题。"
 article: false
 breadcrumb: true
 editLink: false

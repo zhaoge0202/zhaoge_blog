@@ -1,5 +1,6 @@
 ---
 title: "开源项目"
+description: "开源项目专题，沉淀值得读源码、参与和做项目经验的项目，把八股讲到原理层。"
 article: false
 breadcrumb: true
 editLink: false

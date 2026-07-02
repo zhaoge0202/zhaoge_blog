@@ -1,5 +1,6 @@
 ---
 title: "技术书籍"
+description: "技术书籍栏目，按知识域筛选对面试和工程都有帮助的进阶书单。"
 article: false
 breadcrumb: true
 editLink: false

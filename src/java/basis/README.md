@@ -1,5 +1,6 @@
 ---
 title: "Java 基础"
+description: "Java 基础专题，从语言特性追问到设计原理，看清是否只会背答案。"
 article: false
 breadcrumb: true
 editLink: false

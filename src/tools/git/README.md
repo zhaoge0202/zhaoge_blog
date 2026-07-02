@@ -1,5 +1,6 @@
 ---
 title: "Git"
+description: "Git 专题，讲分支模型、rebase 与冲突处理，梳理协作规范意识。"
 article: false
 breadcrumb: true
 editLink: false

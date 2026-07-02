@@ -1,5 +1,6 @@
 ---
 title: "IO"
+description: "Java IO 专题，从 BIO、NIO 到 Netty，讲高并发网络编程的 IO 模型底座。"
 article: false
 breadcrumb: true
 editLink: false

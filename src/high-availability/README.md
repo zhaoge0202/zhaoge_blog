@@ -1,5 +1,6 @@
 ---
 title: "高可用"
+description: "高可用专题，讲故障时核心链路如何顶住、如何防扩散、如何快速恢复。"
 article: false
 breadcrumb: true
 editLink: false

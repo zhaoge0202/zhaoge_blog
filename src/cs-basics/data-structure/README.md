@@ -1,5 +1,6 @@
 ---
 title: "数据结构"
+description: "数据结构专题，从 HashMap、B+ 树、跳表到布隆过滤器看工程场景下的取舍。"
 article: false
 breadcrumb: true
 editLink: false

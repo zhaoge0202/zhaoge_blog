@@ -1,5 +1,6 @@
 ---
 title: "新特性"
+description: "Java 新特性专题，梳理 Java 8 之后的版本演进与工程升级的现实取舍。"
 article: false
 breadcrumb: true
 editLink: false

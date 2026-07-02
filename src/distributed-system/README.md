@@ -1,5 +1,6 @@
 ---
 title: "分布式"
+description: "分布式知识域入口，讲服务拆分、调用、协调与一致性，覆盖单机扛不住之后的进阶主线。"
 article: false
 breadcrumb: true
 editLink: false
