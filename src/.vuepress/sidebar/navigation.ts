@@ -35,7 +35,7 @@ export const navigationSidebar = {
       text: "随笔",
       prefix: "essays/",
       collapsible: true,
-      children: ["2026-06-16-note-1"],
+      children: ["2026-06-16-note-1", "2026-07-02-ai-worldcup-betting"],
     },
   ],
 };
