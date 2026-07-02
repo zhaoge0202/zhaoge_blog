@@ -455,6 +455,50 @@ test("article prev and next links point to existing markdown files", async () =>
   }
 });
 
+test("adjacent article prev/next links stay bidirectionally consistent", async () => {
+  const sidebar = await loadSidebar();
+  const references = collectSidebarReferences(sidebar).filter(
+    (relativePath) => !relativePath.startsWith("src/blog/"),
+  );
+
+  // 把仓库相对路径映射成站点 route（README -> 目录路径，其余 -> .html）
+  const toRoute = (relativePath) => {
+    const withoutSrc = relativePath.replace(/^src\//, "/");
+    return withoutSrc.endsWith("/README.md")
+      ? withoutSrc.replace(/README\.md$/, "")
+      : withoutSrc.replace(/\.md$/, ".html");
+  };
+  const routeToPath = (link) => resolveSiteLink("src/x.md", link);
+
+  const nextOf = new Map();
+  const prevOf = new Map();
+  for (const relativePath of references) {
+    const frontmatter = parseFrontmatter(read(relativePath));
+    const route = toRoute(relativePath);
+    if (frontmatter.next?.link) nextOf.set(route, frontmatter.next.link);
+    if (frontmatter.prev?.link) prevOf.set(route, frontmatter.prev.link);
+  }
+
+  // 只校验「文章 -> 文章」的相邻对（两端都是 .html）：这类必须严格双向对称，
+  // A.next 指向 B，则 B.prev 必须指回 A。指向/来自专题 README 的接驳链不在此列。
+  for (const [routeA, nextLink] of nextOf) {
+    if (!routeA.endsWith(".html")) continue;
+    const nextPath = routeToPath(nextLink);
+    if (!nextPath || !nextPath.endsWith(".md")) continue;
+    if (nextPath.endsWith("/README.md")) continue;
+
+    const bRoute = toRoute(nextPath);
+    const bPrev = prevOf.get(bRoute);
+    assert.ok(bPrev, `${bRoute} 应有 prev（因为 ${routeA} 的 next 指向它）`);
+    const bPrevPath = routeToPath(bPrev);
+    assert.equal(
+      toRoute(bPrevPath),
+      routeA,
+      `prev/next 链断裂：${routeA} 的 next 指向 ${bRoute}，但 ${bRoute} 的 prev 指向 ${toRoute(bPrevPath)}`,
+    );
+  }
+});
+
 test("home page links point to new domain and blog entries instead of legacy sections", () => {
   const home = read("src/README.md");
 

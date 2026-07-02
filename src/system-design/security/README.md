@@ -4,6 +4,9 @@ description: "认证授权、密码存储与常见漏洞防护专题，覆盖对
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "MyBatis 插件机制和分页插件怎么工作？"
+  link: "/system-design/framework/mybatis-plugin-pagination-mechanism.html"
 next:
   text: "认证和授权有什么区别？"
   link: "/system-design/security/security-authentication-authorization.html"

@@ -14,8 +14,8 @@ prev:
   text: "MyBatis 一级缓存和二级缓存为什么容易踩坑？"
   link: "/system-design/framework/mybatis-cache-pitfalls.html"
 next:
-  text: "认证和授权有什么区别？"
-  link: "/system-design/security/security-authentication-authorization.html"
+  text: "安全"
+  link: "/system-design/security/"
 ---
 
 # MyBatis 插件机制和分页插件怎么工作？
