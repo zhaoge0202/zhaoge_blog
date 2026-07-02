@@ -16,6 +16,7 @@ editLink: false
 ## 随笔 / 纠偏
 
 - [从资料汇总转向内容纠偏](./essays/2026-06-16-note-1.html)
+- [我让 AI 预测了半个月世界杯，最后弄明白它只是在写剧本](./essays/2026-07-02-ai-worldcup-betting.html)
 
 ## 后续会继续扩展
 
