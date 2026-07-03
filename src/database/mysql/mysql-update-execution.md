@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "自增主键为什么不一定连续？"
-  link: "/database/mysql/mysql-auto-increment.html"
+  text: "MySQL 主从复制是怎么工作的，为什么会延迟？"
+  link: "/database/mysql/mysql-replication.html"
 next:
   text: "redo log、undo log、binlog 怎么配合保证崩溃恢复？"
   link: "/database/mysql/mysql-crash-recovery-logs.html"

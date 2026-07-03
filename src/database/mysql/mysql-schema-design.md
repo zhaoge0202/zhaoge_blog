@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "体系化"
 prev:
-  text: "MySQL 主从复制是怎么工作的，为什么会延迟？"
-  link: "/database/mysql/mysql-replication.html"
+  text: "MySQL 刷盘策略怎么影响性能和丢数据风险？"
+  link: "/database/mysql/mysql-flush-policy.html"
 next:
   text: "时间字段和主键怎么选？"
   link: "/database/mysql/mysql-time-and-primary-key.html"

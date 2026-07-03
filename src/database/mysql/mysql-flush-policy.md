@@ -14,8 +14,8 @@ prev:
   text: "redo log、undo log、binlog 怎么配合保证崩溃恢复？"
   link: "/database/mysql/mysql-crash-recovery-logs.html"
 next:
-  text: "next-key lock 到底锁了什么范围？"
-  link: "/database/mysql/mysql-next-key-lock-range.html"
+  text: "表结构和字段设计怎么做？"
+  link: "/database/mysql/mysql-schema-design.html"
 ---
 
 # MySQL 刷盘策略怎么影响性能和丢数据风险？

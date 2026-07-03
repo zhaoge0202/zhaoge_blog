@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "细节题"
 prev:
-  text: "MySQL 刷盘策略怎么影响性能和丢数据风险？"
-  link: "/database/mysql/mysql-flush-policy.html"
+  text: "自增主键为什么不一定连续？"
+  link: "/database/mysql/mysql-auto-increment.html"
 next:
   text: "慢 SQL 应该按什么顺序排查？"
   link: "/database/mysql/mysql-slow-query-troubleshooting.html"

@@ -14,8 +14,8 @@ prev:
   text: "redo log、undo log、binlog 分别有什么用？"
   link: "/database/mysql/mysql-logs.html"
 next:
-  text: "表结构和字段设计怎么做？"
-  link: "/database/mysql/mysql-schema-design.html"
+  text: "一条 UPDATE 语句在 MySQL 里怎么执行？"
+  link: "/database/mysql/mysql-update-execution.html"
 ---
 
 # MySQL 主从复制是怎么工作的，为什么会延迟？
