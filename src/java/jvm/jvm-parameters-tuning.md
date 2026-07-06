@@ -14,8 +14,8 @@ prev:
   text: "频繁 Full GC 怎么排查？"
   link: "/java/jvm/jvm-full-gc-troubleshooting.html"
 next:
-  text: "MySQL"
-  link: "/database/mysql/"
+  text: "IO"
+  link: "/java/io/"
 ---
 
 # JVM 参数调优到底在调什么？

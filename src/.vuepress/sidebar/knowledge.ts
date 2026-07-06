@@ -6,7 +6,41 @@ export const knowledgeSidebar = {
       text: "基础",
       prefix: "basis/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "语言与类型",
+          collapsible: true,
+          children: [
+            "java-basis-compile-and-run",
+            "java-basis-data-types",
+            "java-basis-pass-by-value",
+          ],
+        },
+        {
+          text: "面向对象",
+          collapsible: true,
+          children: [
+            "java-basis-oop",
+            "java-basis-equals-hashcode",
+            "java-basis-string",
+          ],
+        },
+        {
+          text: "异常与泛型",
+          collapsible: true,
+          children: ["java-basis-exception", "java-basis-generics"],
+        },
+        {
+          text: "反射、代理与 SPI",
+          collapsible: true,
+          children: [
+            "java-basis-reflection-annotation",
+            "java-basis-dynamic-proxy",
+            "java-basis-spi",
+          ],
+        },
+      ],
     },
     {
       text: "集合",
@@ -130,7 +164,23 @@ export const knowledgeSidebar = {
       text: "IO",
       prefix: "io/",
       collapsible: true,
-      children: [""],
+      children: [
+        "",
+        {
+          text: "流体系与模型",
+          collapsible: true,
+          children: [
+            "java-io-streams",
+            "java-io-design-patterns",
+            "java-io-models",
+          ],
+        },
+        {
+          text: "NIO 与 Netty",
+          collapsible: true,
+          children: ["java-io-nio-components", "java-io-netty"],
+        },
+      ],
     },
     {
       text: "新特性",

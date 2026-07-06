@@ -129,6 +129,14 @@ const parseFrontmatter = (content) => {
       }
 
       if (lines[index + 1]?.match(/^\s+\{/)) {
+        // prettier 会把 `key:` 换行后的对象压成单行内联（`  { ... }`），
+        // 也可能完全展开成多行。两种都要认，否则会把后续字段吞进来。
+        if (lines[index + 1].match(/^\s+\{.*\}\s*$/)) {
+          index += 1;
+          frontmatter[key] = parseInlineObject(lines[index].trim());
+          continue;
+        }
+
         const objectLines = [];
 
         while (lines[index + 1] && !lines[index + 1].match(/^\s*\}\s*$/)) {
