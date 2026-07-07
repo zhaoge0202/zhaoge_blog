@@ -11,7 +11,10 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  { text: "JDK 动态代理和 CGLIB 有什么区别？", link: "/java/basis/java-basis-dynamic-proxy.html" }
+  {
+    text: "Java 序列化为什么不推荐直接用于长期存储和接口传输？",
+    link: "/java/basis/java-basis-serialization.html",
+  }
 next: { text: "集合", link: "/java/collection/" }
 ---
 

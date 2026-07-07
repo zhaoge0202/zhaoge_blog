@@ -14,6 +14,7 @@ export const knowledgeSidebar = {
           children: [
             "java-basis-compile-and-run",
             "java-basis-data-types",
+            "java-basis-final-static-immutable",
             "java-basis-pass-by-value",
           ],
         },
@@ -22,6 +23,7 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "java-basis-oop",
+            "java-basis-enum",
             "java-basis-equals-hashcode",
             "java-basis-string",
           ],
@@ -32,11 +34,13 @@ export const knowledgeSidebar = {
           children: ["java-basis-exception", "java-basis-generics"],
         },
         {
-          text: "反射、代理与 SPI",
+          text: "反射、代理与运行时机制",
           collapsible: true,
           children: [
             "java-basis-reflection-annotation",
             "java-basis-dynamic-proxy",
+            "java-basis-lambda-invokedynamic",
+            "java-basis-serialization",
             "java-basis-spi",
           ],
         },
@@ -61,6 +65,8 @@ export const knowledgeSidebar = {
             "java-collection-hashmap-thread-safety",
             "java-collection-concurrenthashmap",
             "java-collection-linkedhashmap-lru",
+            "java-collection-treemap-treeset",
+            "java-collection-special-maps",
           ],
         },
         {
@@ -98,14 +104,19 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "java-concurrency-synchronized",
+            "java-concurrency-wait-notify-locksupport",
             "java-concurrency-cas",
             "java-concurrency-reentrantlock",
           ],
         },
         {
-          text: "线程池",
+          text: "协作工具与线程池",
           collapsible: true,
-          children: ["java-concurrency-thread-pool"],
+          children: [
+            "java-concurrency-coordination-tools",
+            "java-concurrency-blockingqueue",
+            "java-concurrency-thread-pool",
+          ],
         },
         {
           text: "并发工具与集合",
@@ -114,6 +125,7 @@ export const knowledgeSidebar = {
             "java-concurrency-threadlocal",
             "java-concurrency-concurrent-collections",
             "java-concurrency-completablefuture",
+            "java-concurrency-forkjoin-parallelstream",
           ],
         },
         {
@@ -140,6 +152,11 @@ export const knowledgeSidebar = {
           children: ["jvm-class-loading", "jvm-classloader"],
         },
         {
+          text: "运行时优化",
+          collapsible: true,
+          children: ["jvm-jit-compiler", "jvm-escape-analysis"],
+        },
+        {
           text: "GC 原理与收集器",
           collapsible: true,
           children: [
@@ -154,7 +171,9 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "jvm-oom-troubleshooting",
+            "jvm-gc-log-analysis",
             "jvm-full-gc-troubleshooting",
+            "jvm-performance-profiling",
             "jvm-parameters-tuning",
           ],
         },

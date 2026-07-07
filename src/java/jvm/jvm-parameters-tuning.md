@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "排障"
 prev:
-  text: "频繁 Full GC 怎么排查？"
-  link: "/java/jvm/jvm-full-gc-troubleshooting.html"
+  text: "如何用 JFR、async-profiler 定位 CPU、内存分配和锁竞争问题？"
+  link: "/java/jvm/jvm-performance-profiling.html"
 next:
   text: "IO"
   link: "/java/io/"

@@ -15,7 +15,11 @@ prev:
     text: "反射是什么？注解又是怎么靠反射工作的？",
     link: "/java/basis/java-basis-reflection-annotation.html",
   }
-next: { text: "SPI 是什么？和 API 有什么区别？", link: "/java/basis/java-basis-spi.html" }
+next:
+  {
+    text: "Lambda 和方法引用底层是怎么实现的？",
+    link: "/java/basis/java-basis-lambda-invokedynamic.html",
+  }
 ---
 
 # JDK 动态代理和 CGLIB 有什么区别？

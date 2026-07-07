@@ -12,8 +12,8 @@ tag:
   - "细节题"
 prev:
   {
-    text: "LinkedHashMap 为什么适合做 LRU？",
-    link: "/java/collection/java-collection-linkedhashmap-lru.html",
+    text: "WeakHashMap、EnumMap、IdentityHashMap 分别适合什么场景？",
+    link: "/java/collection/java-collection-special-maps.html",
   }
 next:
   {

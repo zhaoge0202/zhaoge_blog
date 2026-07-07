@@ -11,10 +11,7 @@ tag:
   - "高频"
   - "细节题"
 prev:
-  {
-    text: "面向对象三大特征、重载重写、接口与抽象类怎么理解？",
-    link: "/java/basis/java-basis-oop.html",
-  }
+  { text: "枚举 enum 为什么比常量类更适合表达固定集合？", link: "/java/basis/java-basis-enum.html" }
 next:
   {
     text: "String 为什么不可变？和 StringBuilder、常量池是什么关系？",

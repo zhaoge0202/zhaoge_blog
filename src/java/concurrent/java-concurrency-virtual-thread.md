@@ -12,8 +12,8 @@ tag:
   - "高频"
 prev:
   {
-    text: "CompletableFuture 怎么做异步任务编排？",
-    link: "/java/concurrent/java-concurrency-completablefuture.html",
+    text: "ForkJoinPool 和 parallelStream 适合什么场景？有哪些坑？",
+    link: "/java/concurrent/java-concurrency-forkjoin-parallelstream.html",
   }
 next: { text: "JVM", link: "/java/jvm/" }
 ---

@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "原理深入"
 prev:
-  text: "为什么需要自定义 ClassLoader？会带来什么风险？"
-  link: "/java/jvm/jvm-classloader.html"
+  text: "逃逸分析、标量替换、锁消除到底优化了什么？"
+  link: "/java/jvm/jvm-escape-analysis.html"
 next:
   text: "常见垃圾收集器怎么选？"
   link: "/java/jvm/jvm-gc-collectors.html"

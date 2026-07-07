@@ -17,7 +17,7 @@ next:
 
 ## 知识主线
 
-List 选型 → HashMap 结构与线程安全 → 并发 Map → 有序 Map 与 LRU → Set 去重 → 读多写少 List → Queue 场景
+List 选型 → HashMap 结构与线程安全 → 并发 Map → LRU → 有序集合与特殊 Map → Set 去重 → 读多写少 List → Queue 场景
 
 ## 题目列表
 
@@ -31,6 +31,8 @@ List 选型 → HashMap 结构与线程安全 → 并发 Map → 有序 Map 与 
 - [HashMap 为什么线程不安全？JDK 8 后还会死循环吗？](./java-collection-hashmap-thread-safety.html) — 并发 put、JDK 7 扩容环链、JDK 8 边界和 fail-fast。
 - [ConcurrentHashMap 是怎么从分段锁演进到 CAS + synchronized 的？](./java-collection-concurrenthashmap.html) — JDK 7 Segment 到 JDK 8 桶级同步、协助扩容和计数边界。
 - [LinkedHashMap 为什么适合做 LRU？](./java-collection-linkedhashmap-lru.html) — 插入顺序、访问顺序、`removeEldestEntry` 和本地缓存边界。
+- [TreeMap 和 TreeSet 为什么能有序？红黑树在这里怎么用？](./java-collection-treemap-treeset.html) — 比较器、红黑树、范围查询和排序去重边界。
+- [WeakHashMap、EnumMap、IdentityHashMap 分别适合什么场景？](./java-collection-special-maps.html) — 弱引用 key、枚举 key、引用相等和特殊 Map 选型。
 
 ### Set
 

@@ -11,11 +11,11 @@ tag:
   - "项目实战"
   - "高频"
 prev:
-  text: "线上 OOM 怎么定位？"
-  link: "/java/jvm/jvm-oom-troubleshooting.html"
+  text: "GC 日志怎么看？如何从日志判断问题方向？"
+  link: "/java/jvm/jvm-gc-log-analysis.html"
 next:
-  text: "JVM 参数调优到底在调什么？"
-  link: "/java/jvm/jvm-parameters-tuning.html"
+  text: "如何用 JFR、async-profiler 定位 CPU、内存分配和锁竞争问题？"
+  link: "/java/jvm/jvm-performance-profiling.html"
 ---
 
 # 频繁 Full GC 怎么排查？

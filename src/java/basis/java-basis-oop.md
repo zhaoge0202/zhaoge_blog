@@ -12,10 +12,7 @@ tag:
   - "基础"
 prev: { text: "为什么说 Java 只有值传递？", link: "/java/basis/java-basis-pass-by-value.html" }
 next:
-  {
-    text: "== 和 equals 有什么区别？为什么重写 equals 一定要重写 hashCode？",
-    link: "/java/basis/java-basis-equals-hashcode.html",
-  }
+  { text: "枚举 enum 为什么比常量类更适合表达固定集合？", link: "/java/basis/java-basis-enum.html" }
 ---
 
 # 面向对象三大特征、重载重写、接口与抽象类怎么理解？

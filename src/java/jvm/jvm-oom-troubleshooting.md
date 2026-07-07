@@ -14,8 +14,8 @@ prev:
   text: "G1、ZGC、Shenandoah 分别适合什么场景？"
   link: "/java/jvm/jvm-g1-zgc-shenandoah-scenarios.html"
 next:
-  text: "频繁 Full GC 怎么排查？"
-  link: "/java/jvm/jvm-full-gc-troubleshooting.html"
+  text: "GC 日志怎么看？如何从日志判断问题方向？"
+  link: "/java/jvm/jvm-gc-log-analysis.html"
 ---
 
 # 线上 OOM 怎么定位？

@@ -12,8 +12,8 @@ tag:
   - "原理深入"
 prev:
   {
-    text: "基本类型和包装类型有什么区别？缓存机制是怎么回事？",
-    link: "/java/basis/java-basis-data-types.html",
+    text: "final、static、不可变对象到底怎么理解？",
+    link: "/java/basis/java-basis-final-static-immutable.html",
   }
 next:
   {

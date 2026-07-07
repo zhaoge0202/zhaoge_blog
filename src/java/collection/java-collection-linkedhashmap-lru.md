@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "HashSet 为什么能去重？和 HashMap 是什么关系？",
-    link: "/java/collection/java-collection-hashset.html",
+    text: "TreeMap 和 TreeSet 为什么能有序？红黑树在这里怎么用？",
+    link: "/java/collection/java-collection-treemap-treeset.html",
   }
 ---
 

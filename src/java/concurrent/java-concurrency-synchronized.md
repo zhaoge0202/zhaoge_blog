@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "CAS 是怎么实现原子操作的？有哪些问题？",
-    link: "/java/concurrent/java-concurrency-cas.html",
+    text: "wait/notify、Condition、LockSupport 有什么区别？",
+    link: "/java/concurrent/java-concurrency-wait-notify-locksupport.html",
   }
 ---
 
@@ -229,7 +229,8 @@ public void update() {
 | 条件队列 | 一个（wait/notify）                        | 多个 Condition            |
 | 锁优化   | 偏向锁（JDK 15- 废弃）、轻量级锁、重量级锁 | CAS + AQS 队列            |
 
-详细的 ReentrantLock 和 AQS 原理在[下一篇](./java-concurrency-reentrantlock.html)展开。
+等待唤醒机制在[下一篇](./java-concurrency-wait-notify-locksupport.html)展开；详细的
+ReentrantLock 和 AQS 原理在后面的专题里继续讲。
 
 ## 小结
 

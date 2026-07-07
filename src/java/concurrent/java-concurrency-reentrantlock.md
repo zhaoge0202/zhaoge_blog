@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "线程池 7 个参数怎么理解？执行流程是怎样的？",
-    link: "/java/concurrent/java-concurrency-thread-pool.html",
+    text: "CountDownLatch、CyclicBarrier、Semaphore、Phaser 分别解决什么问题？",
+    link: "/java/concurrent/java-concurrency-coordination-tools.html",
   }
 ---
 

@@ -12,8 +12,8 @@ tag:
   - "高频"
 prev:
   {
-    text: "synchronized 的底层原理是什么？锁优化怎么回事？",
-    link: "/java/concurrent/java-concurrency-synchronized.html",
+    text: "wait/notify、Condition、LockSupport 有什么区别？",
+    link: "/java/concurrent/java-concurrency-wait-notify-locksupport.html",
   }
 next:
   {

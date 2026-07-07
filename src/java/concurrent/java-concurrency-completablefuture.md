@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "虚拟线程解决了什么问题？和平台线程什么关系？",
-    link: "/java/concurrent/java-concurrency-virtual-thread.html",
+    text: "ForkJoinPool 和 parallelStream 适合什么场景？有哪些坑？",
+    link: "/java/concurrent/java-concurrency-forkjoin-parallelstream.html",
   }
 ---
 

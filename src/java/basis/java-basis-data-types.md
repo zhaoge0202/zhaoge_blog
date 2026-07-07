@@ -12,7 +12,11 @@ tag:
   - "细节题"
 prev:
   { text: "Java 是编译型语言还是解释型语言？", link: "/java/basis/java-basis-compile-and-run.html" }
-next: { text: "为什么说 Java 只有值传递？", link: "/java/basis/java-basis-pass-by-value.html" }
+next:
+  {
+    text: "final、static、不可变对象到底怎么理解？",
+    link: "/java/basis/java-basis-final-static-immutable.html",
+  }
 ---
 
 # 基本类型和包装类型有什么区别？缓存机制是怎么回事？

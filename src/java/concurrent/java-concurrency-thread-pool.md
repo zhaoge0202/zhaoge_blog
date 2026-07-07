@@ -12,8 +12,8 @@ tag:
   - "项目实战"
 prev:
   {
-    text: "ReentrantLock 和 AQS 是怎么配合的？",
-    link: "/java/concurrent/java-concurrency-reentrantlock.html",
+    text: "BlockingQueue 怎么选？它和线程池是什么关系？",
+    link: "/java/concurrent/java-concurrency-blockingqueue.html",
   }
 next:
   {

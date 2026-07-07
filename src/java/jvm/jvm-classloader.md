@@ -14,8 +14,8 @@ prev:
   text: "类加载过程和双亲委派模型怎么理解？"
   link: "/java/jvm/jvm-class-loading.html"
 next:
-  text: "如何判断对象可以被回收？"
-  link: "/java/jvm/jvm-object-recycling.html"
+  text: "JIT 编译器是怎么工作的？解释执行、C1、C2 有什么关系？"
+  link: "/java/jvm/jvm-jit-compiler.html"
 ---
 
 # 为什么需要自定义 ClassLoader？会带来什么风险？
