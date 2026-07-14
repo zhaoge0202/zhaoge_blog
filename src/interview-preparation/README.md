@@ -1,27 +1,32 @@
 ---
 title: "面试准备"
-description: "面试准备栏目，给出复习顺序、回答目标与纠偏方法，而非堆砌资料。"
+description: "面试准备栏目，给出复习顺序、项目表达与追问准备，而不是堆砌资料。"
 article: false
 breadcrumb: true
 editLink: false
+next:
+  text: "3-5 年 Java 后端四周怎么复习？"
+  link: "/interview-preparation/interview-prep-four-week-plan.html"
 ---
 
 # 面试准备
 
-这里不堆“所有资料”，而是先给复习顺序、回答目标和纠偏方法。
+这里不堆“所有资料”，而是先给复习顺序、项目表达和追问路径。
 
 ## 建议顺序
 
-1. 先看 [Java 知识库](../java/) 和 [数据库知识库](../database/)，建立主线。
-2. 再刷当前四篇核心文章，把答案讲成“原理 + 场景 + 取舍”。
-3. 最后看 [博客里的复盘与实战记录](../blog/)，补表达和踩坑经验。
+1. 先读 [四周复习计划](./interview-prep-four-week-plan.html)，按周执行。
+2. 用 [STAR 项目模板](./interview-prep-project-star.html) 把 2-3 个项目故事写透。
+3. 按 [高频追问树](./interview-prep-followup-trees.html) 把主干题扩到第 3-4 层。
+4. 临场前过一遍 [容易答飘的点](./interview-prep-common-traps.html)。
+5. 再回到 [Java](../java/) 与 [数据库](../database/) 补盲区。
 
-## 当前必看
+## 题目列表
 
-- [线程池 7 个参数怎么理解？](../java/concurrent/java-concurrency-thread-pool.html)
-- [G1 相比 CMS 改进了什么？](../java/jvm/jvm-g1-vs-cms.html)
-- [MVCC 和 ReadView 是怎么工作的？](../database/mysql/mysql-mvcc-read-view.html)
-- [如何保证缓存和数据库一致性？](../database/redis/redis-cache-consistency.html)
+- [3-5 年 Java 后端四周怎么复习？](./interview-prep-four-week-plan.html)
+- [项目经验怎么用 STAR 讲清楚？](./interview-prep-project-star.html)
+- [高频题怎么准备追问树？](./interview-prep-followup-trees.html)
+- [面试里最容易答飘的点有哪些？](./interview-prep-common-traps.html)
 
 ## 复习目标
 

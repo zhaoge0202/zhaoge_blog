@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "后端常用设计模式怎么选？策略、模板、责任链怎么用？"
-  link: "/system-design/basis/design-common-patterns.html"
+  text: "贫血模型和充血模型怎么选？"
+  link: "/system-design/basis/design-anemic-vs-rich-model.html"
 next:
   text: "Spring IoC 容器启动时做了什么？"
   link: "/system-design/framework/spring-ioc-container-startup.html"

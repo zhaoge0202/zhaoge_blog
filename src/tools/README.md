@@ -4,6 +4,9 @@ description: "工具实践栏目，收录可复用的工具链、工程实践与
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "线程飙高、CPU 打满、死锁怎么标准排查？"
+  link: "/high-availability/high-availability-thread-cpu-troubleshooting.html"
 ---
 
 # 工具实践

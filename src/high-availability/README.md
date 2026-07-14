@@ -100,3 +100,11 @@ HTTP/RPC 调用基础、Redis/消息队列基础、数据库事务基础。
 
 - [容灾、多活、故障转移分别解决什么问题？](./high-availability-disaster-recovery.html) - 别把“多部署几台”误答成完整容灾方案。
 - [压测应该测什么？容量评估怎么做？](./high-availability-performance-testing.html) - 高可用设计最后一定要回到验证。
+
+### 可观测与诊断
+
+- [日志、指标、链路追踪怎么分工？](./high-availability-observability-pillars.html) - 三支柱各自回答什么问题。
+- [一次慢请求从网关到数据库怎么定位？](./high-availability-slow-request-tracing.html) - 分层切延迟，用证据链下钻。
+- [后端该埋哪些 RED/USE 指标？](./high-availability-metrics-red-use.html) - 请求指标、资源指标和业务指标怎么配。
+- [Arthas 怎么做线上诊断？](./high-availability-arthas-diagnostics.html) - watch/trace/profiler 与生产风险边界。
+- [线程飙高、CPU 打满、死锁怎么标准排查？](./high-availability-thread-cpu-troubleshooting.html) - 分类取样的标准作业。

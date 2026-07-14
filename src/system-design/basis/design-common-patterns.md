@@ -14,8 +14,8 @@ prev:
   text: "SOLID 五原则在后端项目里怎么落地？"
   link: "/system-design/basis/design-solid-principles.html"
 next:
-  text: "框架"
-  link: "/system-design/framework/"
+  text: "RESTful 接口怎么设计才不容易返工？"
+  link: "/system-design/basis/design-restful-api.html"
 ---
 
 > 设计模式不是拿来背类图的，是遇到"这块以后大概率会变"的代码时，脑子里该冒出来的一种隔离手段。3-5 年后端项目里真正高频用到的模式不超过 10 个，这篇只讲这些，不做 23 种模式的扫盲课。

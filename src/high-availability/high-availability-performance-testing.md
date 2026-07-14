@@ -14,8 +14,8 @@ prev:
   text: "容灾、多活、故障转移分别解决什么问题？"
   link: "/high-availability/high-availability-disaster-recovery.html"
 next:
-  text: "工具实践"
-  link: "/tools/"
+  text: "日志、指标、链路追踪怎么分工？"
+  link: "/high-availability/high-availability-observability-pillars.html"
 ---
 
 # 压测应该测什么？容量评估怎么做？

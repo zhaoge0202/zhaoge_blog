@@ -17,15 +17,12 @@ next:
 
 ## 知识主线
 
-设计原则 -> 设计模式 -> 接口与分层 -> 工程规范
+设计原则 -> 设计模式 -> 接口与分层 -> 模型取舍
 
 ## 题目列表
 
 - [SOLID 五原则在后端项目里怎么落地？](./design-solid-principles.html) — 用 Java 后端反例和改法讲清 SOLID，避免教条式背诵。
 - [后端常用设计模式怎么选？策略、模板、责任链怎么用？](./design-common-patterns.html) — 从业务场景和边界讲清后端高频设计模式。
-
-## 后续计划
-
-- RESTful 接口设计与错误码、幂等、版本。
-- 分层架构与领域建模边界。
-- 贫血模型 vs 充血模型怎么取舍。
+- [RESTful 接口怎么设计才不容易返工？](./design-restful-api.html) — 资源建模、错误码、幂等和版本策略。
+- [分层架构里 Controller、Service、领域模型怎么划界？](./design-layered-architecture.html) — 避免 Controller 塞业务、Service 变成大杂烩。
+- [贫血模型和充血模型怎么选？](./design-anemic-vs-rich-model.html) — 从业务复杂度和不变式保护做取舍。

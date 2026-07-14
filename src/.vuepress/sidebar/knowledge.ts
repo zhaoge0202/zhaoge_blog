@@ -1,5 +1,11 @@
 export const knowledgeSidebar = {
-  "/interview-preparation/": [""],
+  "/interview-preparation/": [
+    "",
+    "interview-prep-four-week-plan",
+    "interview-prep-project-star",
+    "interview-prep-followup-trees",
+    "interview-prep-common-traps",
+  ],
   "/java/": [
     "",
     {
@@ -561,7 +567,14 @@ export const knowledgeSidebar = {
       text: "设计基础",
       prefix: "basis/",
       collapsible: true,
-      children: ["", "design-solid-principles", "design-common-patterns"],
+      children: [
+        "",
+        "design-solid-principles",
+        "design-common-patterns",
+        "design-restful-api",
+        "design-layered-architecture",
+        "design-anemic-vs-rich-model",
+      ],
     },
     {
       text: "框架",
@@ -691,6 +704,17 @@ export const knowledgeSidebar = {
       children: [
         "high-availability-disaster-recovery",
         "high-availability-performance-testing",
+      ],
+    },
+    {
+      text: "可观测与诊断",
+      collapsible: true,
+      children: [
+        "high-availability-observability-pillars",
+        "high-availability-slow-request-tracing",
+        "high-availability-metrics-red-use",
+        "high-availability-arthas-diagnostics",
+        "high-availability-thread-cpu-troubleshooting",
       ],
     },
   ],
