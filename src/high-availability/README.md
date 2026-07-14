@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "顺序消息怎么保证？分区顺序和全局顺序差在哪？"
-  link: "/high-performance/high-performance-message-ordering.html"
+  text: "容量治理怎么和限流、扩容、压测联动？"
+  link: "/high-performance/high-performance-capacity-governance.html"
 next:
   text: "SLA、几个 9、RTO、RPO 到底是什么意思？"
   link: "/high-availability/high-availability-sla-rto-rpo.html"

@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "贫血模型和充血模型怎么选？"
-  link: "/system-design/basis/design-anemic-vs-rich-model.html"
+  text: "热 key 活动页怎么抗住瞬时流量？"
+  link: "/system-design/case/design-case-hotkey-page.html"
 next:
   text: "Spring IoC 容器启动时做了什么？"
   link: "/system-design/framework/spring-ioc-container-startup.html"

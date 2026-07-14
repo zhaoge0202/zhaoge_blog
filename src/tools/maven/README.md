@@ -1,24 +1,20 @@
 ---
 title: "Maven"
-description: "Maven 专题，讲依赖管理与生命周期，打好排查打包问题的基础。"
+description: "Maven 专题，讲依赖治理与多模块工程组织。"
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "复杂冲突和多人协作怎么处理？"
+  link: "/tools/git/git-conflict-workflow.html"
+next:
+  text: "Maven 依赖冲突怎么排查？"
+  link: "/tools/maven/maven-dependency-conflict.html"
 ---
 
 # Maven
 
-## 为什么重要
+## 题目列表
 
-Java 项目的主流构建工具，依赖管理和生命周期是排查「为什么打包出问题」的基础。
-
-## 知识主线
-
-坐标与依赖 -> 生命周期 -> 仓库 -> 多模块
-
-## 后续计划
-
-- 坐标、依赖管理、依赖传递与冲突。
-- 生命周期与常用插件。
-- 本地仓库、私服、镜像。
-- 多模块项目管理。
+- [Maven 依赖冲突怎么排查？](./maven-dependency-conflict.html)
+- [多模块工程和私服怎么组织？](./maven-multi-module.html)

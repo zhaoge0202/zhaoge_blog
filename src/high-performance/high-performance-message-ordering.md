@@ -14,8 +14,8 @@ prev:
   text: "Kafka 为什么吞吐高？顺序写、零拷贝和批量做了什么？"
   link: "/high-performance/high-performance-kafka-throughput.html"
 next:
-  text: "高可用"
-  link: "/high-availability/"
+  text: "多级缓存怎么做？本地缓存和 Redis 怎么配合？"
+  link: "/high-performance/high-performance-multi-level-cache.html"
 ---
 
 # 顺序消息怎么保证？分区顺序和全局顺序差在哪？

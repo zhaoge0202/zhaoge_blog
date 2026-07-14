@@ -1,50 +1,49 @@
 ---
-title: "计算机基础与系统设计方向书单怎么读？"
-description: "从网络、操作系统、分布式和稳定性治理梳理书单主线。"
+title: "计算机基础与系统设计该怎么读书？"
+description: "把网络、操作系统和系统设计书单映射到站内主线与场景题。"
 breadcrumb: true
 article: true
 editLink: false
 category:
-  - "技术书籍"
+  - "书单"
 tag:
+  - "基础"
   - "体系化"
-  - "进阶"
-  - "项目实战"
 prev:
-  text: "数据库与中间件方向书单怎么读？"
+  text: "数据库与中间件该怎么读书？"
   link: "/books/books-database-middleware.html"
 next:
-  text: "博客"
-  link: "/blog/"
+  text: "关于作者"
+  link: "/about-the-author/"
 ---
 
-# 计算机基础与系统设计方向书单怎么读？
+# 计算机基础与系统设计该怎么读书？
 
-> 系统设计能力来自底层知识和工程取舍：网络、操作系统、分布式、高性能、高可用要连成一张图。
+> 基础书用来补为什么系统会这样表现，场景题用来练你会怎么取舍。
 
-## 阅读顺序
+## 映射表
 
-1. 网络：TCP、HTTP、HTTPS、抓包。
-2. 操作系统：进程线程、内存、IO、零拷贝。
-3. 分布式：CAP、Raft、RPC、分布式锁、事务。
-4. 系统设计：限流、熔断、重试、幂等、容灾。
+| 主题              | 站内先读                                                                                                                                      | 书中关注                |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| TCP 连接          | [三次握手](/cs-basics/network/network-tcp-three-way-handshake.html)、[TIME_WAIT](/cs-basics/network/network-tcp-four-way-wave-time-wait.html) | 状态机、队列、抓包      |
+| HTTP/HTTPS        | [HTTP 版本](/cs-basics/network/network-http-versions.html)、[HTTPS](/cs-basics/network/network-https-rsa-ecdhe.html)                          | 握手、证书、性能        |
+| 进程线程与 IO     | [进程线程](/cs-basics/operating-system/os-process-thread.html)、[IO 多路复用](/cs-basics/operating-system/os-io-multiplexing.html)            | 阻塞、事件驱动          |
+| 内存与 Page Cache | [虚拟内存](/cs-basics/operating-system/os-virtual-memory.html)、[Page Cache](/cs-basics/operating-system/os-page-cache.html)                  | 与 Kafka/MySQL 落盘关系 |
+| 设计原则与模式    | [SOLID](/system-design/basis/design-solid-principles.html)、[常用模式](/system-design/basis/design-common-patterns.html)                      | 可维护性，不堆模式      |
+| 场景设计          | [秒杀](/system-design/case/design-case-seckill.html) 等 case                                                                                  | 容量、一致性、演进      |
 
-## 怎么读出面试表达？
+## 建议
 
-不要只记概念，要准备场景：
-
-- TIME_WAIT 多了怎么办？
-- 线程数为什么不能无限加？
-- 分布式事务为什么不用强一致硬扛所有场景？
-- 重试为什么会放大故障？
+1. 网络 OS：只深挖后端高频路径，别做成考研复习
+2. 系统设计：先写自己的方案草稿，再对照书中案例
+3. 算法结构：站内最小集练手感，书用来补模板
 
 ## 小结
 
-1. 计算机基础要服务后端排障和系统设计。
-2. 网络和 OS 是高性能组件的底座。
-3. 分布式理论要落到一致性和可用性取舍。
-4. 高可用书籍要结合故障演练、压测和恢复目标。
+1. 基础书服务排障直觉。
+2. 设计书服务取舍表达。
+3. 场景题是检验有没有读懂的最终题。
 
 ## 参考
 
-基于 Oracle Java、OpenJDK、MySQL、Redis、Linux、IETF RFC、Spring、MyBatis、Apache 与 CNCF 等官方文档体系整理阅读路径。
+综合自本站计算机基础、设计基础与系统设计场景专题路径整理。

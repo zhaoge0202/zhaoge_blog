@@ -1,24 +1,19 @@
 ---
 title: "Gradle"
-description: "Gradle 专题，讲构建脚本灵活性及其与 Maven 的对比取舍。"
+description: "Gradle 专题，讲构建性能与工程效率。"
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "多模块工程和私服怎么组织？"
+  link: "/tools/maven/maven-multi-module.html"
+next:
+  text: "Gradle 构建慢怎么优化？"
+  link: "/tools/gradle/gradle-build-speed.html"
 ---
 
 # Gradle
 
-## 为什么重要
+## 题目列表
 
-越来越多新项目用 Gradle，和 Maven 的对比、构建脚本灵活性是常见话题。
-
-## 知识主线
-
-构建脚本 -> 依赖管理 -> 任务与生命周期 -> 与 Maven 对比
-
-## 后续计划
-
-- 构建脚本与 DSL。
-- 依赖管理与版本控制。
-- 任务（Task）与构建生命周期。
-- 与 Maven 的对比与选型。
+- [Gradle 构建慢怎么优化？](./gradle-build-speed.html)

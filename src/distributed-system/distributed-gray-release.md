@@ -14,8 +14,8 @@ prev:
   text: "API 网关做了什么？鉴权、限流、路由为什么放在入口？"
   link: "/distributed-system/distributed-api-gateway.html"
 next:
-  text: "高性能"
-  link: "/high-performance/"
+  text: "超时、重试、熔断应该放在哪一层？"
+  link: "/distributed-system/distributed-service-mesh-placement.html"
 ---
 
 # 灰度发布、金丝雀和蓝绿怎么落地？

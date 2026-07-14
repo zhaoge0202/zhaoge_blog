@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "灰度发布、金丝雀和蓝绿怎么落地？"
-  link: "/distributed-system/distributed-gray-release.html"
+  text: "超时、重试、熔断应该放在哪一层？"
+  link: "/distributed-system/distributed-service-mesh-placement.html"
 next:
   text: "系统性能瓶颈应该怎么定位？"
   link: "/high-performance/high-performance-bottleneck-analysis.html"
@@ -103,8 +103,13 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - [Kafka 为什么吞吐高？顺序写、零拷贝和批量做了什么？](./high-performance-kafka-throughput.html) - 高吞吐是工程组合拳。
 - [顺序消息怎么保证？分区顺序和全局顺序差在哪？](./high-performance-message-ordering.html) - 局部顺序才是主流，全局顺序代价极高。
 
+### 缓存、加速与容量
+
+- [多级缓存怎么做？本地缓存和 Redis 怎么配合？](./high-performance-multi-level-cache.html)
+- [CDN 和静态加速解决什么问题？](./high-performance-cdn.html)
+- [冷热数据分离和归档怎么做？](./high-performance-cold-hot-data.html)
+- [容量治理怎么和限流、扩容、压测联动？](./high-performance-capacity-governance.html)
+
 ## 后续计划
 
-- CDN 与静态资源加速。
-- 冷热数据分离与归档策略。
-- 高性能和高可用联动的容量治理。
+- 持续结合大促复盘更新水位样例。

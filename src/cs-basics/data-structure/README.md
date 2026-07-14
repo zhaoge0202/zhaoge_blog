@@ -1,25 +1,21 @@
 ---
 title: "数据结构"
-description: "数据结构专题，从 HashMap、B+ 树、跳表到布隆过滤器看工程场景下的取舍。"
+description: "从线性结构、树堆哈希到 LRU、跳表布隆，覆盖工程向数据结构最小集。"
 article: false
 breadcrumb: true
 editLink: false
+next:
+  text: "数组、链表、栈、队列怎么选？"
+  link: "/cs-basics/data-structure/ds-array-list-stack-queue.html"
 ---
 
 # 数据结构
 
-## 为什么重要
+## 题目列表
 
-HashMap、B+ 树索引、跳表、布隆过滤器这些工程实现，本质都是数据结构在具体场景下的取舍。
-
-## 知识主线
-
-线性结构 -> 树 -> 图 -> 散列 -> 工程中的变体
-
-## 后续计划
-
-- 数组、链表、栈、队列、双端队列。
-- 二叉树、平衡树、红黑树、B 树与 B+ 树。
-- 堆、优先队列、并查集。
-- 哈希表、哈希冲突、一致性哈希。
-- 跳表、布隆过滤器、LRU 等工程结构。
+- [数组、链表、栈、队列怎么选？](./ds-array-list-stack-queue.html)
+- [二叉树和 BST 要掌握什么？](./ds-tree-bst.html)
+- [堆和 TopK 怎么做？](./ds-heap-topk.html)
+- [哈希冲突和一致性哈希怎么理解？](./ds-hash-consistent-hash.html)
+- [LRU 怎么实现与应用？](./ds-lru-cache.html)
+- [跳表和布隆过滤器怎么用？](./ds-skiplist-bloom.html)

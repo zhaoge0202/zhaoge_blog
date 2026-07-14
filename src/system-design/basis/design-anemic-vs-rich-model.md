@@ -14,8 +14,8 @@ prev:
   text: "分层架构里 Controller、Service、领域模型怎么划界？"
   link: "/system-design/basis/design-layered-architecture.html"
 next:
-  text: "框架"
-  link: "/system-design/framework/"
+  text: "秒杀系统怎么设计？"
+  link: "/system-design/case/design-case-seckill.html"
 ---
 
 # 贫血模型和充血模型怎么选？

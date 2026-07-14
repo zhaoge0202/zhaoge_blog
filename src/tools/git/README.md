@@ -1,24 +1,21 @@
 ---
 title: "Git"
-description: "Git 专题，讲分支模型、rebase 与冲突处理，梳理协作规范意识。"
+description: "Git 专题，讲协作流、回滚与冲突处理的工程实践。"
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "Docker Compose 本地联调怎么用？"
+  link: "/tools/docker/docker-compose.html"
+next:
+  text: "rebase 和 merge 怎么选？会带来什么风险？"
+  link: "/tools/git/git-rebase-merge.html"
 ---
 
 # Git
 
-## 为什么重要
+## 题目列表
 
-每天都在用，但分支模型、rebase、冲突处理这些能不能讲清楚，能看出协作规范意识。
-
-## 知识主线
-
-基础操作 -> 分支模型 -> 协作流程 -> 进阶技巧
-
-## 后续计划
-
-- 工作区、暂存区、版本库。
-- 分支、合并、rebase 的区别。
-- 冲突处理与撤销操作。
-- 常见协作流程（Git Flow 等）。
+- [rebase 和 merge 怎么选？会带来什么风险？](./git-rebase-merge.html)
+- [线上回滚和 Git 回退怎么配合？](./git-rollback-release.html)
+- [复杂冲突和多人协作怎么处理？](./git-conflict-workflow.html)
