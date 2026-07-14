@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "Dubbo 的注册发现、负载均衡和容错怎么配合？"
-  link: "/distributed-system/rpc/dubbo-discovery-loadbalance-faulttolerance.html"
+  text: "灰度发布、金丝雀和蓝绿怎么落地？"
+  link: "/distributed-system/distributed-gray-release.html"
 next:
   text: "系统性能瓶颈应该怎么定位？"
   link: "/high-performance/high-performance-bottleneck-analysis.html"
@@ -74,9 +74,9 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - MQ 解决了什么问题
 - 可靠性、幂等、积压和选型该怎么答
 
-### 4. 后续扩展
+### 4. 请求分发与 MQ 深挖
 
-- 负载均衡、CDN、冷热数据分离、流量入口治理
+- 负载均衡、Kafka 分区与副本、顺序消息
 
 ## 题目列表
 
@@ -97,10 +97,14 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - [MQ 如何处理重复消费和幂等？](./high-performance-message-idempotency.html) - 和高可用里的幂等设计是同一条线，但这里更偏消息语义。
 - [MQ 消息积压怎么排查？](./high-performance-message-backlog.html) - 真到线上，最忌讳只会说“加消费者”。
 - [Kafka、RocketMQ、RabbitMQ 怎么选？](./high-performance-mq-selection.html) - 技术选型题常见收口点。
+- [负载均衡怎么做？四层、七层和客户端 LB 有什么区别？](./high-performance-load-balancing.html) - 分散请求的边界，不自动治慢 SQL。
+- [Kafka 分区和消费组如何决定吞吐与顺序？](./high-performance-kafka-partition-consumer-group.html) - 并行度、Rebalance 和 key 路由。
+- [Kafka 副本、ISR 和 ACK 如何影响消息可靠性？](./high-performance-kafka-replica-isr.html) - 不丢是配置组合，不是默认白送。
+- [Kafka 为什么吞吐高？顺序写、零拷贝和批量做了什么？](./high-performance-kafka-throughput.html) - 高吞吐是工程组合拳。
+- [顺序消息怎么保证？分区顺序和全局顺序差在哪？](./high-performance-message-ordering.html) - 局部顺序才是主流，全局顺序代价极高。
 
 ## 后续计划
 
-- 负载均衡和请求分发。
 - CDN 与静态资源加速。
 - 冷热数据分离与归档策略。
 - 高性能和高可用联动的容量治理。

@@ -561,7 +561,7 @@ export const knowledgeSidebar = {
       text: "设计基础",
       prefix: "basis/",
       collapsible: true,
-      children: [""],
+      children: ["", "design-solid-principles", "design-common-patterns"],
     },
     {
       text: "框架",
@@ -615,6 +615,16 @@ export const knowledgeSidebar = {
         "dubbo-discovery-loadbalance-faulttolerance",
       ],
     },
+    {
+      text: "服务治理",
+      collapsible: true,
+      children: [
+        "distributed-service-discovery",
+        "distributed-config-center",
+        "distributed-api-gateway",
+        "distributed-gray-release",
+      ],
+    },
   ],
   "/high-performance/": [
     "",
@@ -643,6 +653,11 @@ export const knowledgeSidebar = {
         "high-performance-message-idempotency",
         "high-performance-message-backlog",
         "high-performance-mq-selection",
+        "high-performance-load-balancing",
+        "high-performance-kafka-partition-consumer-group",
+        "high-performance-kafka-replica-isr",
+        "high-performance-kafka-throughput",
+        "high-performance-message-ordering",
       ],
     },
   ],

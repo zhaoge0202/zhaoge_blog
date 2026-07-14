@@ -14,8 +14,8 @@ prev:
   text: "MQ 消息积压怎么排查？"
   link: "/high-performance/high-performance-message-backlog.html"
 next:
-  text: "高可用"
-  link: "/high-availability/"
+  text: "负载均衡怎么做？四层、七层和客户端 LB 有什么区别？"
+  link: "/high-performance/high-performance-load-balancing.html"
 ---
 
 # Kafka、RocketMQ、RabbitMQ 怎么选？

@@ -14,8 +14,8 @@ prev:
   text: "RPC 一次调用经历了哪些步骤？"
   link: "/distributed-system/rpc/rpc-call-flow.html"
 next:
-  text: "高性能"
-  link: "/high-performance/"
+  text: "服务注册发现解决什么问题？心跳、摘除、保护阈值怎么设计？"
+  link: "/distributed-system/distributed-service-discovery.html"
 ---
 
 # Dubbo 的注册发现、负载均衡和容错怎么配合？
