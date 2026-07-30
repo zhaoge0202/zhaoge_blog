@@ -21,5 +21,6 @@
     "docs/**",
     "src/.vuepress/.temp/**",
     "src/.vuepress/.cache/**",
+    ".zcode/**",
   ],
 }

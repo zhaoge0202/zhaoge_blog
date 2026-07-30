@@ -21,3 +21,4 @@ coverage/
 .media-sync.json
 AGENTS.md
 .catpaw
+.zcode/
