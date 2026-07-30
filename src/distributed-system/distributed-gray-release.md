@@ -201,4 +201,4 @@ flowchart LR
 
 综合工程实践中蓝绿发布、金丝雀发布、滚动更新与灰度流量控制相关公开资料，并结合 API 网关灰度路由、服务网格流量治理与数据库兼容性变更的常见工程实践整理。
 
-<!-- @include: @article-footer.snippet.md -->
+<!-- @include: ./_article-footer.snippet.md -->

@@ -387,6 +387,7 @@ test("public markdown files are discoverable from sidebar", async () => {
   const allowedOrphans = new Set([
     "src/README.md",
     "src/database/mysql/_article-footer.snippet.md",
+    "src/distributed-system/_article-footer.snippet.md",
   ]);
   const markdownFiles = collectMarkdownFiles(path.join(repoRoot, "src"));
 

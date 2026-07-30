@@ -236,4 +236,4 @@ Spring Cloud Gateway 内部值得记住的两点：一是它基于 Spring WebFlu
 
 综合自仓库内 API 网关与 Spring Cloud Gateway 参考材料，并结合 Spring Cloud Gateway、Kong、APISIX 官方文档中关于网关职责边界、双层网关架构和 Zuul 维护模式的说明整理。
 
-<!-- @include: @article-footer.snippet.md -->
+<!-- @include: ./_article-footer.snippet.md -->
