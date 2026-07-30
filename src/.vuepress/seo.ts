@@ -71,10 +71,19 @@ const trimDescription = (description: string): string => {
   return `${trimmed}。`;
 };
 
+// 站点 base 路径，与 config.ts 的 base 同源（读 VUEPRESS_BASE，缺省 "/"）。
+// 始终规整成以 "/" 开头、"/" 结尾，便于拼到 hostname 之后构造完整 URL，
+// 避免 canonical / JSON-LD 在非根 base（如 /zhaoge_blog/）下漏掉前缀。
+export const siteBase = (() => {
+  const raw = process.env.VUEPRESS_BASE || "/";
+  const withLead = raw.startsWith("/") ? raw : `/${raw}`;
+  return withLead.endsWith("/") ? withLead : `${withLead}/`;
+})();
+
 const buildPathUrl = (hostname: string, pagePath: string): string =>
   new URL(
     pagePath.replace(/^\//, ""),
-    hostname.endsWith("/") ? hostname : `${hostname}/`,
+    `${hostname.replace(/\/$/, "")}${siteBase}`,
   ).toString();
 
 const formatSegment = (segment: string): string =>
@@ -260,7 +269,7 @@ export const applySeoJsonLd = (
       isPartOf: {
         "@type": "WebSite",
         name: SITE_TITLE,
-        url: hostname,
+        url: buildPathUrl(hostname, "/"),
       },
     });
     return;

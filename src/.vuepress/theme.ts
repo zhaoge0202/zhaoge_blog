@@ -2,7 +2,7 @@ import { getDirname, path } from "vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
-import { applySeoJsonLd, buildSeoDescription } from "./seo.js";
+import { applySeoJsonLd, buildSeoDescription, siteBase } from "./seo.js";
 
 const __dirname = getDirname(import.meta.url);
 const hostname =
@@ -50,7 +50,7 @@ export default hopeTheme({
     medias: {
       Github: "https://github.com/zhaoge0202",
       Email: "mailto:zhaoge0202@gmail.com",
-      RSS: `${hostname.replace(/\/$/, "")}/rss.xml`,
+      RSS: `${hostname.replace(/\/$/, "")}${siteBase}rss.xml`,
     },
   },
   markdown: {
@@ -104,7 +104,7 @@ export default hopeTheme({
       ],
     },
     seo: {
-      canonical: hostname.replace(/\/$/, ""),
+      canonical: `${hostname.replace(/\/$/, "")}${siteBase}`.replace(/\/$/, ""),
       ogp: (ogp, page) => ({
         ...ogp,
         "og:description": buildSeoDescription(page),
