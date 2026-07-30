@@ -2,7 +2,12 @@ import { getDirname, path } from "vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
-import { applySeoJsonLd, buildSeoDescription, siteBase } from "./seo.js";
+import {
+  applySeoJsonLd,
+  buildSeoDescription,
+  siteBase,
+  defaultOgImage,
+} from "./seo.js";
 
 const __dirname = getDirname(import.meta.url);
 const hostname =
@@ -26,8 +31,9 @@ const toSlimsearchFieldValue = (
 
 export default hopeTheme({
   hostname,
-  logo: "/logo.svg",
-  favicon: "/logo.svg",
+  logo: "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-logo.svg",
+  favicon:
+    "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-favicon-zg.svg",
   author: {
     name: authorName,
   },
@@ -105,10 +111,18 @@ export default hopeTheme({
     },
     seo: {
       canonical: `${hostname.replace(/\/$/, "")}${siteBase}`.replace(/\/$/, ""),
-      ogp: (ogp, page) => ({
-        ...ogp,
-        "og:description": buildSeoDescription(page),
-      }),
+      ogp: (ogp, page) => {
+        const image = ogp["og:image"] || defaultOgImage;
+
+        return {
+          ...ogp,
+          "og:description": buildSeoDescription(page),
+          "og:image": image,
+          ...(ogp["og:image"]
+            ? {}
+            : { "og:image:width": "1200", "og:image:height": "630" }),
+        };
+      },
       jsonLd: (jsonLD, page) => ({
         ...jsonLD,
         description: buildSeoDescription(page),
