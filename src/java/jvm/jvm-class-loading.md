@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "对象从创建到回收经历了什么？"
-  link: "/java/jvm/jvm-object-lifecycle.html"
+  text: "直接内存和堆外内存是什么？为什么会 OOM？"
+  link: "/java/jvm/jvm-direct-memory.html"
 next:
   text: "为什么需要自定义 ClassLoader？会带来什么风险？"
   link: "/java/jvm/jvm-classloader.html"

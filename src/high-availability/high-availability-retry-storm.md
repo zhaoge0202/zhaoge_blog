@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "排障"
 prev:
-  text: "熔断、降级、隔离、超时、重试怎么组合？"
-  link: "/high-availability/high-availability-resilience-composition.html"
+  text: "服务降级怎么做才不变成「摆设」？有哪些常见降级策略？"
+  link: "/high-availability/high-availability-graceful-degradation.html"
 next:
   text: "接口幂等怎么设计？"
   link: "/high-availability/high-availability-idempotency-design.html"

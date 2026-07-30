@@ -110,6 +110,11 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - [冷热数据分离和归档怎么做？](./high-performance-cold-hot-data.html)
 - [容量治理怎么和限流、扩容、压测联动？](./high-performance-capacity-governance.html)
 
+### 高性能组件与数据扫描
+
+- [Disruptor 为什么比 BlockingQueue 快？无锁环形队列怎么做到的？](./high-performance-disruptor.html) - 无锁环形缓冲、缓存行填充与单机高频事件流。
+- [百万级数据导出和全表扫描怎么不撑爆内存？](./high-performance-deep-pagination.html) - 游标分页、流式查询和分批提交的全量拉取方案。
+
 ## 后续计划
 
 - 持续结合大促复盘更新水位样例。

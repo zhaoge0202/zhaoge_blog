@@ -40,13 +40,21 @@ export const navigationSidebar = {
       text: "实战记录",
       prefix: "practice/",
       collapsible: true,
-      children: ["2026-06-18-r2-media-sync-tutorial"],
+      children: [
+        "2026-06-18-r2-media-sync-tutorial",
+        "2026-07-30-read-source-code-rpc",
+      ],
     },
     {
       text: "随笔",
       prefix: "essays/",
       collapsible: true,
-      children: ["2026-06-16-note-1", "2026-07-02-ai-worldcup-betting"],
+      children: [
+        "2026-06-16-note-1",
+        "2026-07-02-ai-worldcup-betting",
+        "2026-07-30-learn-cs-connect",
+        "2026-07-30-bad-habits",
+      ],
     },
   ],
 };

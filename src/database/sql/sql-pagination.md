@@ -14,8 +14,8 @@ prev:
   text: "NULL 和 CASE WHEN 有哪些坑？"
   link: "/database/sql/sql-null-and-case.html"
 next:
-  text: "写 SQL 有哪些常见的写法坑？"
-  link: "/database/sql/sql-writing-best-practices.html"
+  text: "CTE 和递归查询怎么用？解决哪些问题？"
+  link: "/database/sql/sql-cte-recursive.html"
 ---
 
 # 分页查询怎么写？深度分页怎么优化？

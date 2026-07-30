@@ -14,8 +14,8 @@ prev:
   text: "冷热数据分离和归档怎么做？"
   link: "/high-performance/high-performance-cold-hot-data.html"
 next:
-  text: "高可用"
-  link: "/high-availability/"
+  text: "Disruptor 为什么比 BlockingQueue 快？无锁环形队列怎么做到的？"
+  link: "/high-performance/high-performance-disruptor.html"
 ---
 
 # 容量治理怎么和限流、扩容、压测联动？

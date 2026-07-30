@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "基础"
 prev:
-  text: "Maven"
-  link: "/tools/maven/"
+  text: "Maven 的生命周期和插件机制是怎么运转的？"
+  link: "/tools/maven/maven-lifecycle.html"
 next:
   text: "多模块工程和私服怎么组织？"
   link: "/tools/maven/maven-multi-module.html"

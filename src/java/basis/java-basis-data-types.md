@@ -12,11 +12,7 @@ tag:
   - "细节题"
 prev:
   { text: "Java 是编译型语言还是解释型语言？", link: "/java/basis/java-basis-compile-and-run.html" }
-next:
-  {
-    text: "final、static、不可变对象到底怎么理解？",
-    link: "/java/basis/java-basis-final-static-immutable.html",
-  }
+next: { text: "BigDecimal 怎么用才不丢精度？", link: "/java/basis/java-basis-bigdecimal.html" }
 ---
 
 # 基本类型和包装类型有什么区别？缓存机制是怎么回事？

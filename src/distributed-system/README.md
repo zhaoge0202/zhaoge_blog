@@ -29,6 +29,7 @@ next:
 ### RPC
 
 - [RPC 调用流程](./rpc/rpc-call-flow.html)
+- [RPC 协议怎么设计](./rpc/rpc-protocol.html)
 - [Dubbo 治理](./rpc/dubbo-discovery-loadbalance-faulttolerance.html)
 
 ### 服务治理

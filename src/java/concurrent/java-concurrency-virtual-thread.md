@@ -12,8 +12,8 @@ tag:
   - "高频"
 prev:
   {
-    text: "ForkJoinPool 和 parallelStream 适合什么场景？有哪些坑？",
-    link: "/java/concurrent/java-concurrency-forkjoin-parallelstream.html",
+    text: "Unsafe 为什么被称为 Java 的后门？能做什么？",
+    link: "/java/concurrent/java-concurrency-unsafe.html",
   }
 next: { text: "JVM", link: "/java/jvm/" }
 ---

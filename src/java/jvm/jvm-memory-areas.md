@@ -14,8 +14,8 @@ prev:
   text: "JVM"
   link: "/java/jvm/"
 next:
-  text: "对象从创建到回收经历了什么？"
-  link: "/java/jvm/jvm-object-lifecycle.html"
+  text: "字符串常量池在哪个区域？intern 到底做了什么？"
+  link: "/java/jvm/jvm-string-pool.html"
 ---
 
 # JVM 内存区域怎么划分？哪些区域会 OOM？

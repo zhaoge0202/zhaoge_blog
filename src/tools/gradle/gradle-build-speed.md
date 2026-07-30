@@ -14,8 +14,8 @@ prev:
   text: "Gradle"
   link: "/tools/gradle/"
 next:
-  text: "计算机基础"
-  link: "/cs-basics/"
+  text: "Gradle 和 Maven 到底怎么选？构建脚本、依赖和性能差在哪？"
+  link: "/tools/gradle/gradle-vs-maven.html"
 ---
 
 # Gradle 构建慢怎么优化？

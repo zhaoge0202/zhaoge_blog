@@ -10,11 +10,7 @@ tag:
   - "基础"
   - "高频"
   - "细节题"
-prev:
-  {
-    text: "基本类型和包装类型有什么区别？缓存机制是怎么回事？",
-    link: "/java/basis/java-basis-data-types.html",
-  }
+prev: { text: "BigDecimal 怎么用才不丢精度？", link: "/java/basis/java-basis-bigdecimal.html" }
 next: { text: "为什么说 Java 只有值传递？", link: "/java/basis/java-basis-pass-by-value.html" }
 ---
 

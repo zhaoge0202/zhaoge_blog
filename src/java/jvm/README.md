@@ -43,7 +43,9 @@ Java 基础、集合、并发、操作系统内存基础。
 ### 内存与对象
 
 - [JVM 内存区域怎么划分？哪些区域会 OOM？](./jvm-memory-areas.html) — 线程私有、线程共享、方法区/元空间和直接内存的边界。
+- [字符串常量池在哪个区域？intern 到底做了什么？](./jvm-string-pool.html) — 永久代到堆的位置演变与 intern 机制。
 - [对象从创建到回收经历了什么？](./jvm-object-lifecycle.html) — `new` 指令、对象布局、TLAB、分代流转和 GC 回收入口。
+- [直接内存和堆外内存是什么？为什么会 OOM？](./jvm-direct-memory.html) — NIO DirectBuffer 与池化直接内存的分配回收。
 
 ### 类加载
 
@@ -53,6 +55,7 @@ Java 基础、集合、并发、操作系统内存基础。
 ### 运行时优化
 
 - [JIT 编译器是怎么工作的？解释执行、C1、C2 有什么关系？](./jvm-jit-compiler.html) — 解释执行、热点探测、分层编译、Code Cache 和去优化。
+- [安全点是什么？为什么 GC 和偏向锁都依赖它？](./jvm-safepoint.html) — safepoint 轮询、TTSP、偏向锁撤销与排查。
 - [逃逸分析、标量替换、锁消除到底优化了什么？](./jvm-escape-analysis.html) — 对象逃逸、分配消除、锁消除与“栈上分配”的边界。
 
 ### GC 原理与收集器

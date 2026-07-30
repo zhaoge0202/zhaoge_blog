@@ -14,8 +14,8 @@ prev:
   text: "RPC"
   link: "/distributed-system/rpc/"
 next:
-  text: "Dubbo 的注册发现、负载均衡和容错怎么配合？"
-  link: "/distributed-system/rpc/dubbo-discovery-loadbalance-faulttolerance.html"
+  text: "RPC 协议怎么设计？序列化、协议头和私有协议怎么取舍？"
+  link: "/distributed-system/rpc/rpc-protocol.html"
 ---
 
 # RPC 一次调用经历了哪些步骤？

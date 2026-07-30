@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "虚拟线程解决了什么问题？和平台线程什么关系？",
-    link: "/java/concurrent/java-concurrency-virtual-thread.html",
+    text: "Unsafe 为什么被称为 Java 的后门？能做什么？",
+    link: "/java/concurrent/java-concurrency-unsafe.html",
   }
 ---
 

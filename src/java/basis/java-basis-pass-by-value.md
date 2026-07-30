@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "面向对象三大特征、重载重写、接口与抽象类怎么理解？",
-    link: "/java/basis/java-basis-oop.html",
+    text: "强、软、弱、虚引用有什么区别？各自用在哪？",
+    link: "/java/basis/java-basis-reference-type.html",
   }
 ---
 

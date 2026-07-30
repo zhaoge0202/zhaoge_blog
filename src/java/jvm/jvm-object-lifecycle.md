@@ -11,11 +11,11 @@ tag:
   - "原理深入"
   - "高频"
 prev:
-  text: "JVM 内存区域怎么划分？哪些区域会 OOM？"
-  link: "/java/jvm/jvm-memory-areas.html"
+  text: "字符串常量池在哪个区域？intern 到底做了什么？"
+  link: "/java/jvm/jvm-string-pool.html"
 next:
-  text: "类加载过程和双亲委派模型怎么理解？"
-  link: "/java/jvm/jvm-class-loading.html"
+  text: "直接内存和堆外内存是什么？为什么会 OOM？"
+  link: "/java/jvm/jvm-direct-memory.html"
 ---
 
 # 对象从创建到回收经历了什么？

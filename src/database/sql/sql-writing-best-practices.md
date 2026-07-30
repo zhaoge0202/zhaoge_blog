@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "体系化"
 prev:
-  text: "分页查询怎么写？深度分页怎么优化？"
-  link: "/database/sql/sql-pagination.html"
+  text: "CTE 和递归查询怎么用？解决哪些问题？"
+  link: "/database/sql/sql-cte-recursive.html"
 next:
   text: "Elasticsearch"
   link: "/database/elasticsearch/"

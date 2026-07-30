@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "项目实战"
 prev:
-  text: "RPC 一次调用经历了哪些步骤？"
-  link: "/distributed-system/rpc/rpc-call-flow.html"
+  text: "RPC 协议怎么设计？序列化、协议头和私有协议怎么取舍？"
+  link: "/distributed-system/rpc/rpc-protocol.html"
 next:
   text: "服务注册发现解决什么问题？心跳、摘除、保护阈值怎么设计？"
   link: "/distributed-system/distributed-service-discovery.html"

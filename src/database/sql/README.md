@@ -81,6 +81,7 @@ SQL 资料里最容易出问题的，是把语法罗列当成讲解——列一�
 - [窗口函数解决什么问题？](./sql-window-functions.html) - RANK/DENSE_RANK/ROW_NUMBER 的区别，以及 Top-N、累计、偏移等经典场景。
 - [NULL 和 CASE WHEN 有哪些坑？](./sql-null-and-case.html) - 三值逻辑、聚合忽略 NULL，以及条件聚合和行转列的写法。
 - [分页查询怎么写？深度分页怎么优化？](./sql-pagination.html) - LIMIT 分页、深分页慢的根因，以及游标分页和延迟关联两种解法。
+- [CTE 和递归查询怎么用？解决哪些问题？](./sql-cte-recursive.html) - WITH 语法、递归 CTE 锚点与 UNION ALL，处理层级数据。
 
 ### 写法规范与优化
 

@@ -12,8 +12,7 @@ tag:
   - "细节题"
 prev:
   { text: "为什么需要自定义 ClassLoader？会带来什么风险？", link: "/java/jvm/jvm-classloader.html" }
-next:
-  { text: "逃逸分析、标量替换、锁消除到底优化了什么？", link: "/java/jvm/jvm-escape-analysis.html" }
+next: { text: "安全点是什么？为什么 GC 和偏向锁都依赖它？", link: "/java/jvm/jvm-safepoint.html" }
 ---
 
 # JIT 编译器是怎么工作的？解释执行、C1、C2 有什么关系？

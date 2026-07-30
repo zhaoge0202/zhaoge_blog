@@ -14,8 +14,8 @@ prev:
   text: "限流算法怎么选：固定窗口、滑动窗口、漏桶、令牌桶？"
   link: "/high-availability/high-availability-rate-limiting.html"
 next:
-  text: "重试为什么可能放大故障？"
-  link: "/high-availability/high-availability-retry-storm.html"
+  text: "熔断器怎么设计？状态机、滑动窗口和半开恢复怎么落？"
+  link: "/high-availability/high-availability-circuit-breaker.html"
 ---
 
 # 熔断、降级、隔离、超时、重试怎么组合？

@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "ReentrantLock 和 AQS 是怎么配合的？",
-    link: "/java/concurrent/java-concurrency-reentrantlock.html",
+    text: "Atomic 原子类怎么用？LongAdder 为什么比 AtomicLong 快？",
+    link: "/java/concurrent/java-concurrency-atomic-classes.html",
   }
 ---
 

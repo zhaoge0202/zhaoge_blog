@@ -25,14 +25,17 @@ export const knowledgeSidebar = {
           children: [
             "java-basis-compile-and-run",
             "java-basis-data-types",
+            "java-basis-bigdecimal",
             "java-basis-final-static-immutable",
             "java-basis-pass-by-value",
+            "java-basis-reference-type",
           ],
         },
         {
           text: "面向对象",
           collapsible: true,
           children: [
+            "java-basis-clone",
             "java-basis-oop",
             "java-basis-enum",
             "java-basis-equals-hashcode",
@@ -117,6 +120,7 @@ export const knowledgeSidebar = {
             "java-concurrency-synchronized",
             "java-concurrency-wait-notify-locksupport",
             "java-concurrency-cas",
+            "java-concurrency-atomic-classes",
             "java-concurrency-reentrantlock",
           ],
         },
@@ -137,6 +141,7 @@ export const knowledgeSidebar = {
             "java-concurrency-concurrent-collections",
             "java-concurrency-completablefuture",
             "java-concurrency-forkjoin-parallelstream",
+            "java-concurrency-unsafe",
           ],
         },
         {
@@ -155,7 +160,12 @@ export const knowledgeSidebar = {
         {
           text: "内存与对象",
           collapsible: true,
-          children: ["jvm-memory-areas", "jvm-object-lifecycle"],
+          children: [
+            "jvm-memory-areas",
+            "jvm-string-pool",
+            "jvm-object-lifecycle",
+            "jvm-direct-memory",
+          ],
         },
         {
           text: "类加载",
@@ -165,7 +175,11 @@ export const knowledgeSidebar = {
         {
           text: "运行时优化",
           collapsible: true,
-          children: ["jvm-jit-compiler", "jvm-escape-analysis"],
+          children: [
+            "jvm-jit-compiler",
+            "jvm-safepoint",
+            "jvm-escape-analysis",
+          ],
         },
         {
           text: "GC 原理与收集器",
@@ -527,6 +541,7 @@ export const knowledgeSidebar = {
             "sql-window-functions",
             "sql-null-and-case",
             "sql-pagination",
+            "sql-cte-recursive",
           ],
         },
         {
@@ -694,6 +709,7 @@ export const knowledgeSidebar = {
       children: [
         "",
         "rpc-call-flow",
+        "rpc-protocol",
         "dubbo-discovery-loadbalance-faulttolerance",
       ],
     },
@@ -747,6 +763,14 @@ export const knowledgeSidebar = {
         "high-performance-capacity-governance",
       ],
     },
+    {
+      text: "高性能组件与数据扫描",
+      collapsible: true,
+      children: [
+        "high-performance-disruptor",
+        "high-performance-deep-pagination",
+      ],
+    },
   ],
   "/high-availability/": [
     "",
@@ -761,6 +785,8 @@ export const knowledgeSidebar = {
       children: [
         "high-availability-rate-limiting",
         "high-availability-resilience-composition",
+        "high-availability-circuit-breaker",
+        "high-availability-graceful-degradation",
         "high-availability-retry-storm",
       ],
     },
@@ -821,13 +847,18 @@ export const knowledgeSidebar = {
       text: "Maven",
       prefix: "maven/",
       collapsible: true,
-      children: ["", "maven-dependency-conflict", "maven-multi-module"],
+      children: [
+        "",
+        "maven-lifecycle",
+        "maven-dependency-conflict",
+        "maven-multi-module",
+      ],
     },
     {
       text: "Gradle",
       prefix: "gradle/",
       collapsible: true,
-      children: ["", "gradle-build-speed"],
+      children: ["", "gradle-build-speed", "gradle-vs-maven"],
     },
   ],
 };

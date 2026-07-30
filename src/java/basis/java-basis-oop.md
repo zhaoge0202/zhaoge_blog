@@ -10,7 +10,11 @@ tag:
   - "必会"
   - "高频"
   - "基础"
-prev: { text: "为什么说 Java 只有值传递？", link: "/java/basis/java-basis-pass-by-value.html" }
+prev:
+  {
+    text: "对象拷贝怎么做？深浅拷贝和 Cloneable 有什么坑？",
+    link: "/java/basis/java-basis-clone.html",
+  }
 next:
   { text: "枚举 enum 为什么比常量类更适合表达固定集合？", link: "/java/basis/java-basis-enum.html" }
 ---

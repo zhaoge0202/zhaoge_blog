@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "容量治理怎么和限流、扩容、压测联动？"
-  link: "/high-performance/high-performance-capacity-governance.html"
+  text: "百万级数据导出和全表扫描怎么不撑爆内存？"
+  link: "/high-performance/high-performance-deep-pagination.html"
 next:
   text: "SLA、几个 9、RTO、RPO 到底是什么意思？"
   link: "/high-availability/high-availability-sla-rto-rpo.html"
@@ -89,6 +89,8 @@ HTTP/RPC 调用基础、Redis/消息队列基础、数据库事务基础。
 
 - [限流算法怎么选：固定窗口、滑动窗口、漏桶、令牌桶？](./high-availability-rate-limiting.html) - 不是背算法名，而是看你要保护谁、允许不允许突发流量。
 - [熔断、降级、隔离、超时、重试怎么组合？](./high-availability-resilience-composition.html) - 把几种保护动作放回一次真实调用链里。
+- [熔断器怎么设计？状态机、滑动窗口和半开恢复怎么落？](./high-availability-circuit-breaker.html) - 三态状态机、滑动窗口统计与半开探测。
+- [服务降级怎么做才不变成「摆设」？有哪些常见降级策略？](./high-availability-graceful-degradation.html) - 读降级、写降级、同步转异步与降级开关治理。
 - [重试为什么可能放大故障？](./high-availability-retry-storm.html) - 高可用题里最容易答成“会重试就行”的反例。
 
 ### 幂等与重复请求

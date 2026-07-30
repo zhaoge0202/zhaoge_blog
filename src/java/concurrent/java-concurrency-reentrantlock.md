@@ -12,8 +12,8 @@ tag:
   - "高频"
 prev:
   {
-    text: "CAS 是怎么实现原子操作的？有哪些问题？",
-    link: "/java/concurrent/java-concurrency-cas.html",
+    text: "Atomic 原子类怎么用？LongAdder 为什么比 AtomicLong 快？",
+    link: "/java/concurrent/java-concurrency-atomic-classes.html",
   }
 next:
   {

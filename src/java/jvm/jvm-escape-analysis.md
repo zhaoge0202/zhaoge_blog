@@ -10,11 +10,7 @@ tag:
   - "进阶"
   - "原理深入"
   - "细节题"
-prev:
-  {
-    text: "JIT 编译器是怎么工作的？解释执行、C1、C2 有什么关系？",
-    link: "/java/jvm/jvm-jit-compiler.html",
-  }
+prev: { text: "安全点是什么？为什么 GC 和偏向锁都依赖它？", link: "/java/jvm/jvm-safepoint.html" }
 next: { text: "如何判断对象可以被回收？", link: "/java/jvm/jvm-object-recycling.html" }
 ---
 
