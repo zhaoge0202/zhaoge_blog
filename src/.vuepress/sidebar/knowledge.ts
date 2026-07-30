@@ -838,6 +838,7 @@ export const knowledgeSidebar = {
       collapsible: true,
       children: [
         "",
+        "git-commit-undo",
         "git-rebase-merge",
         "git-rollback-release",
         "git-conflict-workflow",

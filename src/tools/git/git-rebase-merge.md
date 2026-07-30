@@ -11,8 +11,8 @@ tag:
   - "基础"
   - "项目实战"
 prev:
-  text: "Git"
-  link: "/tools/git/"
+  text: "本地提交怎么撤销和整理？reset、amend 和 cherry-pick 怎么用？"
+  link: "/tools/git/git-commit-undo.html"
 next:
   text: "线上回滚和 Git 回退怎么配合？"
   link: "/tools/git/git-rollback-release.html"

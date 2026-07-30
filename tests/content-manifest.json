@@ -1,6 +1,6 @@
 {
   "$comment": "自动生成的内容清单快照，请勿手改。新增/删除笔记后运行 `npm run manifest:update` 刷新。",
-  "count": 382,
+  "count": 383,
   "files": [
     "src/README.md",
     "src/about-the-author/README.md",
@@ -374,6 +374,7 @@
     "src/tools/docker/docker-image-container.md",
     "src/tools/docker/docker-network-volume.md",
     "src/tools/git/README.md",
+    "src/tools/git/git-commit-undo.md",
     "src/tools/git/git-conflict-workflow.md",
     "src/tools/git/git-rebase-merge.md",
     "src/tools/git/git-rollback-release.md",
