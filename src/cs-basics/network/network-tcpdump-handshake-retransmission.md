@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "进阶"
 prev:
-  text: "HTTP Keep-Alive 和 TCP Keepalive 是一回事吗？"
-  link: "/cs-basics/network/network-http-keepalive-tcp-keepalive.html"
+  text: "HTTP 和 RPC 到底是不是一回事？怎么选？"
+  link: "/cs-basics/network/network-http-vs-rpc.html"
 next:
   text: "操作系统"
   link: "/cs-basics/operating-system/"

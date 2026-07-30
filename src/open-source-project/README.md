@@ -4,6 +4,9 @@ description: "开源项目专题，沉淀值得读源码、参与和做项目经
 article: false
 breadcrumb: true
 editLink: false
+prev:
+  text: "Vibe Coding 实战里那些少踩坑的技巧"
+  link: "/ai-coding/ai-coding-vibe-coding-tips.html"
 next:
   text: "读 Spring 源码应该从 Bean 生命周期还是启动流程切入？"
   link: "/open-source-project/source-reading-spring-entry.html"

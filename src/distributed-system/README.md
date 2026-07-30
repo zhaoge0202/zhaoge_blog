@@ -18,8 +18,10 @@ next:
 ### 一致性与协调
 
 - [CAP 和 BASE](./distributed-cap-base.html)
+- [Paxos](./distributed-paxos.html)
 - [Raft](./distributed-raft-overview.html)
 - [ZooKeeper/ZAB](./distributed-zookeeper-zab.html)
+- [Gossip](./distributed-gossip.html)
 - [分布式锁](./distributed-lock-implementations.html)
 - [分布式 ID](./distributed-id-selection.html)
 - [分布式事务](./distributed-transaction-selection.html)

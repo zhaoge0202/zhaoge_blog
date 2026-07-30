@@ -14,8 +14,8 @@ prev:
   text: "分词器是怎么工作的？中文怎么分词？"
   link: "/database/elasticsearch/es-analyzer.html"
 next:
-  text: "查询 DSL 怎么写？match 和 term 有什么区别？"
-  link: "/database/elasticsearch/es-query-dsl.html"
+  text: "动态映射怎么不失控？text/keyword 和 date 怎么识别？"
+  link: "/database/elasticsearch/es-dynamic-mapping-control.html"
 ---
 
 # Mapping 怎么设计？text 和 keyword 有什么区别？

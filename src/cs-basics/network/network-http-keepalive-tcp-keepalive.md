@@ -14,8 +14,8 @@ prev:
   text: "HTTPS RSA 握手和 ECDHE 握手有什么区别？"
   link: "/cs-basics/network/network-https-rsa-ecdhe.html"
 next:
-  text: "tcpdump 抓包应该怎么看三次握手和重传？"
-  link: "/cs-basics/network/network-tcpdump-handshake-retransmission.html"
+  text: "HTTP 和 RPC 到底是不是一回事？怎么选？"
+  link: "/cs-basics/network/network-http-vs-rpc.html"
 ---
 
 # HTTP Keep-Alive 和 TCP Keepalive 是一回事吗？

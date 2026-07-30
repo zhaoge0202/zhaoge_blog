@@ -14,8 +14,8 @@ prev:
   text: "malloc 申请内存后真的马上占用物理内存吗？"
   link: "/cs-basics/operating-system/os-malloc-physical-memory.html"
 next:
-  text: "select、poll、epoll 的区别是什么？"
-  link: "/cs-basics/operating-system/os-io-multiplexing.html"
+  text: "文件系统是怎么组织和管理数据的？"
+  link: "/cs-basics/operating-system/os-file-system.html"
 ---
 
 # Page Cache 是什么？为什么写文件不一定马上落盘？

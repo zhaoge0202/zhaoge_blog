@@ -14,8 +14,8 @@ prev:
   text: "Elasticsearch 的核心概念是什么，和 MySQL 怎么对应？"
   link: "/database/elasticsearch/es-core-concepts.html"
 next:
-  text: "分词器是怎么工作的？中文怎么分词？"
-  link: "/database/elasticsearch/es-analyzer.html"
+  text: "ES 的近实时写入靠 refresh 和 flush 怎么做到？"
+  link: "/database/elasticsearch/es-near-realtime-write.html"
 ---
 
 # 倒排索引为什么让 Elasticsearch 搜索这么快？

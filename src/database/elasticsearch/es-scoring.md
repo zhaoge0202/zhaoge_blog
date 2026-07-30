@@ -14,8 +14,8 @@ prev:
   text: "查询 DSL 怎么写？match 和 term 有什么区别？"
   link: "/database/elasticsearch/es-query-dsl.html"
 next:
-  text: "聚合查询怎么用？和 SQL GROUP BY 有什么不同？"
-  link: "/database/elasticsearch/es-aggregation.html"
+  text: "bool 复合查询里 must/filter/should/must_not 怎么搭？"
+  link: "/database/elasticsearch/es-bool-query-deep.html"
 ---
 
 # 相关性打分是怎么回事？TF-IDF 和 BM25 有什么区别？

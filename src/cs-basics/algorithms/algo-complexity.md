@@ -14,8 +14,8 @@ prev:
   text: "数据结构"
   link: "/cs-basics/data-structure/"
 next:
-  text: "双指针和滑动窗口怎么用？"
-  link: "/cs-basics/algorithms/algo-two-pointers-window.html"
+  text: "十大排序怎么选？稳定性和最坏情况怎么看？"
+  link: "/cs-basics/algorithms/algo-sorting.html"
 ---
 
 # 时间与空间复杂度怎么分析？

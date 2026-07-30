@@ -11,11 +11,11 @@ tag:
   - "体系化"
   - "项目实战"
 prev:
-  text: "面试准备"
-  link: "/interview-preparation/"
+  text: "3-5 年 Java 后端面试到底该怎么准备？"
+  link: "/interview-preparation/interview-prep-overview.html"
 next:
-  text: "项目经验怎么用 STAR 讲清楚？"
-  link: "/interview-preparation/interview-prep-project-star.html"
+  text: "简历怎么写才不被秒刷？"
+  link: "/interview-preparation/interview-prep-resume.html"
 ---
 
 # 3-5 年 Java 后端四周怎么复习？

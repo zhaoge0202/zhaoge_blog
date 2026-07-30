@@ -14,8 +14,8 @@ prev:
   text: "LRU 怎么实现与应用？"
   link: "/cs-basics/data-structure/ds-lru-cache.html"
 next:
-  text: "算法"
-  link: "/cs-basics/algorithms/"
+  text: "前缀树怎么用？和哈希表比赢在哪？"
+  link: "/cs-basics/data-structure/ds-trie.html"
 ---
 
 # 跳表和布隆过滤器怎么用？

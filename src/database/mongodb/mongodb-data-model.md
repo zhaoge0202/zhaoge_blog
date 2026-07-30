@@ -14,8 +14,8 @@ prev:
   text: "MongoDB"
   link: "/database/mongodb/"
 next:
-  text: "MongoDB 索引怎么设计？查询为什么没走索引？"
-  link: "/database/mongodb/mongodb-index-query.html"
+  text: "MongoDB 模式怎么设计才不像无脑堆字段？"
+  link: "/database/mongodb/mongodb-schema-design.html"
 ---
 
 # MongoDB 文档模型怎么设计？和 MySQL 怎么选？

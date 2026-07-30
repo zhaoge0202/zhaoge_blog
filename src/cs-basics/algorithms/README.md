@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "跳表和布隆过滤器怎么用？"
-  link: "/cs-basics/data-structure/ds-skiplist-bloom.html"
+  text: "图的表示和最短路径怎么选？"
+  link: "/cs-basics/data-structure/ds-graph.html"
 next:
   text: "时间与空间复杂度怎么分析？"
   link: "/cs-basics/algorithms/algo-complexity.html"
@@ -17,6 +17,7 @@ next:
 ## 题目列表
 
 - [时间与空间复杂度怎么分析？](./algo-complexity.html)
+- [十大排序怎么选？稳定性和最坏情况怎么看？](./algo-sorting.html)
 - [双指针和滑动窗口怎么用？](./algo-two-pointers-window.html)
 - [二分查找怎么写对？](./algo-binary-search.html)
 - [BFS 和 DFS 怎么选？](./algo-bfs-dfs.html)

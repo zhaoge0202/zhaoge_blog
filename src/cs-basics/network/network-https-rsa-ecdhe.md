@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "HTTP/1.1、HTTP/2、HTTP/3 有什么核心区别？"
-  link: "/cs-basics/network/network-http-versions.html"
+  text: "HTTP 状态码怎么记才不会在面试时卡壳？"
+  link: "/cs-basics/network/network-http-status-codes.html"
 next:
   text: "HTTP Keep-Alive 和 TCP Keepalive 是一回事吗？"
   link: "/cs-basics/network/network-http-keepalive-tcp-keepalive.html"

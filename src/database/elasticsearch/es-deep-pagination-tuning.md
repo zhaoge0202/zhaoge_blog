@@ -11,11 +11,11 @@ tag:
   - "进阶"
   - "排障"
 prev:
-  text: "写入和查询在集群里是怎么流转的？"
-  link: "/database/elasticsearch/es-read-write-flow.html"
+  text: "ES 集群健康、路由和故障恢复怎么判断？"
+  link: "/database/elasticsearch/es-cluster-health-routing.html"
 next:
-  text: "MongoDB"
-  link: "/database/mongodb/"
+  text: "ES 怎么零停机改映射？reindex 加别名怎么做？"
+  link: "/database/elasticsearch/es-reindex-alias.html"
 ---
 
 # 深分页怎么优化？ES 还有哪些性能调优手段？

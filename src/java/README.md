@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "面试里最容易答飘的点有哪些？"
-  link: "/interview-preparation/interview-prep-common-traps.html"
+  text: "面试紧张到发挥失常怎么办？"
+  link: "/interview-preparation/interview-prep-nerves.html"
 ---
 
 # Java

@@ -11,11 +11,11 @@ tag:
   - "进阶"
   - "项目实战"
 prev:
-  text: "MongoDB 索引怎么设计？查询为什么没走索引？"
-  link: "/database/mongodb/mongodb-index-query.html"
+  text: "MongoDB 索引底层和那些容易答错的索引选项？"
+  link: "/database/mongodb/mongodb-index-internals.html"
 next:
-  text: "MongoDB 副本集和分片集群怎么理解？"
-  link: "/database/mongodb/mongodb-replica-sharding.html"
+  text: "MongoDB 聚合管道的进阶阶段和性能边界在哪？"
+  link: "/database/mongodb/mongodb-aggregation-deep.html"
 ---
 
 # MongoDB 聚合管道怎么用？和 SQL GROUP BY 有什么不同？

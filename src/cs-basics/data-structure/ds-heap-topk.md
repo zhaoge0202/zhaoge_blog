@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "基础"
 prev:
-  text: "二叉树和 BST 要掌握什么？"
-  link: "/cs-basics/data-structure/ds-tree-bst.html"
+  text: "红黑树为什么折中？和 AVL 怎么选？"
+  link: "/cs-basics/data-structure/ds-red-black-tree.html"
 next:
   text: "哈希冲突和一致性哈希怎么理解？"
   link: "/cs-basics/data-structure/ds-hash-consistent-hash.html"

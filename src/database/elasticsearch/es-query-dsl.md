@@ -11,8 +11,8 @@ tag:
   - "必会"
   - "项目实战"
 prev:
-  text: "Mapping 怎么设计？text 和 keyword 有什么区别？"
-  link: "/database/elasticsearch/es-mapping.html"
+  text: "动态映射怎么不失控？text/keyword 和 date 怎么识别？"
+  link: "/database/elasticsearch/es-dynamic-mapping-control.html"
 next:
   text: "相关性打分是怎么回事？TF-IDF 和 BM25 有什么区别？"
   link: "/database/elasticsearch/es-scoring.html"

@@ -14,8 +14,8 @@ prev:
   text: "TCP/IP 四层模型怎么理解？和 OSI 七层有什么关系？"
   link: "/cs-basics/network/network-tcp-ip-model.html"
 next:
-  text: "TCP 三次握手到底解决什么问题？"
-  link: "/cs-basics/network/network-tcp-three-way-handshake.html"
+  text: "DNS 解析到底是怎么找到 IP 的？"
+  link: "/cs-basics/network/network-dns.html"
 ---
 
 # 输入 URL 到页面展示，中间发生了什么？

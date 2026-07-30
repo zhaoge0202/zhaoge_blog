@@ -14,8 +14,8 @@ prev:
   text: "数组、链表、栈、队列怎么选？"
   link: "/cs-basics/data-structure/ds-array-list-stack-queue.html"
 next:
-  text: "堆和 TopK 怎么做？"
-  link: "/cs-basics/data-structure/ds-heap-topk.html"
+  text: "红黑树为什么折中？和 AVL 怎么选？"
+  link: "/cs-basics/data-structure/ds-red-black-tree.html"
 ---
 
 # 二叉树和 BST 要掌握什么？

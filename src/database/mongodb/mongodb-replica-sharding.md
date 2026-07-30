@@ -11,11 +11,11 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "MongoDB 聚合管道怎么用？和 SQL GROUP BY 有什么不同？"
-  link: "/database/mongodb/mongodb-aggregation-pipeline.html"
+  text: "MongoDB 聚合管道的进阶阶段和性能边界在哪？"
+  link: "/database/mongodb/mongodb-aggregation-deep.html"
 next:
-  text: "MongoDB"
-  link: "/database/mongodb/"
+  text: "MongoDB 读写关注和因果一致性怎么不答飘？"
+  link: "/database/mongodb/mongodb-read-write-concern.html"
 ---
 
 # MongoDB 副本集和分片集群怎么理解？

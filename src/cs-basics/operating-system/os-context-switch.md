@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "排障"
 prev:
-  text: "进程和线程有什么区别？为什么线程更轻量？"
-  link: "/cs-basics/operating-system/os-process-thread.html"
+  text: "进程和线程是怎么被调度的？"
+  link: "/cs-basics/operating-system/os-schedule.html"
 next:
   text: "线程数量能无限增加吗？"
   link: "/cs-basics/operating-system/os-thread-count-limit.html"

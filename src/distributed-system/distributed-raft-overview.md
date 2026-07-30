@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "CAP 和 BASE 怎么理解？为什么不是简单三选二？"
-  link: "/distributed-system/distributed-cap-base.html"
+  text: "Paxos 到底难在哪里？为什么是共识算法之母？"
+  link: "/distributed-system/distributed-paxos.html"
 next:
   text: "ZooKeeper 和 ZAB 是什么关系？"
   link: "/distributed-system/distributed-zookeeper-zab.html"

@@ -14,8 +14,8 @@ prev:
   text: "高频题怎么准备追问树？"
   link: "/interview-preparation/interview-prep-followup-trees.html"
 next:
-  text: "Java"
-  link: "/java/"
+  text: "反问环节问什么才不丢分？"
+  link: "/interview-preparation/interview-prep-questions-to-ask.html"
 ---
 
 # 面试里最容易答飘的点有哪些？

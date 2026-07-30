@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "深分页怎么优化？ES 还有哪些性能调优手段？"
-  link: "/database/elasticsearch/es-deep-pagination-tuning.html"
+  text: "ES 怎么零停机改映射？reindex 加别名怎么做？"
+  link: "/database/elasticsearch/es-reindex-alias.html"
 next:
   text: "MongoDB 文档模型怎么设计？和 MySQL 怎么选？"
   link: "/database/mongodb/mongodb-data-model.html"
@@ -63,15 +63,19 @@ MongoDB 资料里容易有两类问题：一类是把“无模式”讲成“不
 ### 文档模型与选型
 
 - [MongoDB 文档模型怎么设计？和 MySQL 怎么选？](./mongodb-data-model.html) - 从文档、集合、BSON 和嵌入式建模讲清 MongoDB 的适用边界。
+- [MongoDB 模式怎么设计才不像无脑堆字段？](./mongodb-schema-design.html) - 嵌入 vs 引用、validator 校验和模式演进，把无模式当工程做。
 
 ### 索引与查询优化
 
 - [MongoDB 索引怎么设计？查询为什么没走索引？](./mongodb-index-query.html) - 讲清单字段、复合、多键、TTL、覆盖查询和 `explain()` 排障思路。
+- [MongoDB 索引底层和那些容易答错的索引选项？](./mongodb-index-internals.html) - WiredTiger B+树、unique/sparse/partial/TTL 和建索引代价。
 
 ### 聚合管道
 
 - [MongoDB 聚合管道怎么用？和 SQL GROUP BY 有什么不同？](./mongodb-aggregation-pipeline.html) - 用订单统计例子讲清 `$match`、`$unwind`、`$group`、`$lookup` 的顺序和边界。
+- [MongoDB 聚合管道的进阶阶段和性能边界在哪？](./mongodb-aggregation-deep.html) - `$facet`/`$merge`、100MB 限制、allowDiskUse 和分片执行。
 
 ### 高可用与扩展
 
 - [MongoDB 副本集和分片集群怎么理解？](./mongodb-replica-sharding.html) - 从 oplog、读写关注、Secondary 旧读、分片键和分片策略讲清集群能力。
+- [MongoDB 读写关注和因果一致性怎么不答飘？](./mongodb-read-write-concern.html) - writeConcern/readConcern/readPreference、因果一致性和 change stream。

@@ -14,8 +14,8 @@ prev:
   text: "分布式"
   link: "/distributed-system/"
 next:
-  text: "Raft 解决了什么问题？为什么比 Paxos 更容易落地？"
-  link: "/distributed-system/distributed-raft-overview.html"
+  text: "Paxos 到底难在哪里？为什么是共识算法之母？"
+  link: "/distributed-system/distributed-paxos.html"
 ---
 
 # CAP 和 BASE 怎么理解？为什么不是简单三选二？

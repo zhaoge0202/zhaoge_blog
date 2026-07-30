@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "基础"
 prev:
-  text: "时间与空间复杂度怎么分析？"
-  link: "/cs-basics/algorithms/algo-complexity.html"
+  text: "十大排序怎么选？稳定性和最坏情况怎么看？"
+  link: "/cs-basics/algorithms/algo-sorting.html"
 next:
   text: "二分查找怎么写对？"
   link: "/cs-basics/algorithms/algo-binary-search.html"

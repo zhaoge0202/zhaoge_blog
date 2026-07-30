@@ -76,26 +76,32 @@ ES 资料里最容易出问题的，是把概念罗列当成讲解——堆一�
 
 - [Elasticsearch 的核心概念是什么，和 MySQL 怎么对应？](./es-core-concepts.html) - 讲清 index/document/node/shard 的对应关系，以及 type 在 8.x 已删除的纠偏。
 - [倒排索引为什么让 Elasticsearch 搜索这么快？](./es-inverted-index.html) - 从正排痛点出发，讲透倒排索引、segment、translog 与近实时机制。
+- [ES 的近实时写入靠 refresh 和 flush 怎么做到？](./es-near-realtime-write.html) - refresh/flush/translog 与 sync，讲清 1 秒可见性和落盘的差别。
 
 ### 分词与映射
 
 - [分词器是怎么工作的？中文怎么分词？](./es-analyzer.html) - 拆解 analyzer 三段结构、内置分词器与 IK 中文分词，讲清索引时与查询时的分词坑。
 - [Mapping 怎么设计？text 和 keyword 有什么区别？](./es-mapping.html) - 讲清动态/显式映射、字段类型，以及 text 与 keyword 在分词、聚合上的本质区别。
+- [动态映射怎么不失控？text/keyword 和 date 怎么识别？](./es-dynamic-mapping-control.html) - 动态映射识别规则、dynamic 策略和显式映射兜底。
 
 ### 查询与打分
 
 - [查询 DSL 怎么写？match 和 term 有什么区别？](./es-query-dsl.html) - 讲清 Query/Filter 上下文、bool 复合查询，以及 match 会分词、term 不分词的坑。
 - [相关性打分是怎么回事？TF-IDF 和 BM25 有什么区别？](./es-scoring.html) - 讲清 TF-IDF 的问题与 BM25 的改进，以及默认打分自 5.0 起切换的版本纠偏。
+- [bool 复合查询里 must/filter/should/must_not 怎么搭？](./es-bool-query-deep.html) - bool 子句上下文、打分影响和常见组合坑。
 
 ### 聚合
 
 - [聚合查询怎么用？和 SQL GROUP BY 有什么不同？](./es-aggregation.html) - 讲清 bucket/metric/pipeline 三类聚合、嵌套用法，以及基于分片近似的边界。
+- [ES 聚合的性能边界在哪？分片近似和大聚合怎么不爆？](./es-aggregation-optimization.html) - 分片近似、doc_values、深度分桶与聚合优化。
 
 ### 集群与分布式
 
 - [分片和副本是怎么回事？分片数怎么定？](./es-shard-replica.html) - 讲清主分片不可变的原因、路由公式、副本作用，以及分片数怎么估。
 - [写入和查询在集群里是怎么流转的？](./es-read-write-flow.html) - 讲清写流程的 refresh/flush/同步副本，以及读流程的 query then fetch 两阶段。
+- [ES 集群健康、路由和故障恢复怎么判断？](./es-cluster-health-routing.html) - red/yellow/green、分片分配、脑裂与故障恢复。
 
 ### 工程实践
 
 - [深分页怎么优化？ES 还有哪些性能调优手段？](./es-deep-pagination-tuning.html) - 对比 from+size/scroll/search_after 三种分页，并汇总写入、查询、JVM 等调优要点。
+- [ES 怎么零停机改映射？reindex 加别名怎么做？](./es-reindex-alias.html) - reindex、别名切换、索引生命周期与零停机变更。

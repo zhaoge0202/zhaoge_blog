@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "必会"
 prev:
-  text: "Page Cache 是什么？为什么写文件不一定马上落盘？"
-  link: "/cs-basics/operating-system/os-page-cache.html"
+  text: "软中断是什么？和硬中断有什么区别？"
+  link: "/cs-basics/operating-system/os-soft-interrupt.html"
 next:
   text: "零拷贝到底少拷了什么？"
   link: "/cs-basics/operating-system/os-zero-copy.html"

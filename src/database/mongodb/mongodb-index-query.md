@@ -11,11 +11,11 @@ tag:
   - "进阶"
   - "排障"
 prev:
-  text: "MongoDB 文档模型怎么设计？和 MySQL 怎么选？"
-  link: "/database/mongodb/mongodb-data-model.html"
+  text: "MongoDB 模式怎么设计才不像无脑堆字段？"
+  link: "/database/mongodb/mongodb-schema-design.html"
 next:
-  text: "MongoDB 聚合管道怎么用？和 SQL GROUP BY 有什么不同？"
-  link: "/database/mongodb/mongodb-aggregation-pipeline.html"
+  text: "MongoDB 索引底层和那些容易答错的索引选项？"
+  link: "/database/mongodb/mongodb-index-internals.html"
 ---
 
 # MongoDB 索引怎么设计？查询为什么没走索引？

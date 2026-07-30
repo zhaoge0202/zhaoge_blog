@@ -14,8 +14,8 @@ prev:
   text: "Raft 解决了什么问题？为什么比 Paxos 更容易落地？"
   link: "/distributed-system/distributed-raft-overview.html"
 next:
-  text: "分布式锁有哪些实现？Redis 锁的边界在哪里？"
-  link: "/distributed-system/distributed-lock-implementations.html"
+  text: "Gossip 协议为什么适合大规模集群的状态传播？"
+  link: "/distributed-system/distributed-gossip.html"
 ---
 
 # ZooKeeper 和 ZAB 是什么关系？

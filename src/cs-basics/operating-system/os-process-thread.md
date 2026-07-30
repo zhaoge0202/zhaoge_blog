@@ -14,8 +14,8 @@ prev:
   text: "操作系统"
   link: "/cs-basics/operating-system/"
 next:
-  text: "上下文切换为什么会影响性能？"
-  link: "/cs-basics/operating-system/os-context-switch.html"
+  text: "进程和线程是怎么被调度的？"
+  link: "/cs-basics/operating-system/os-schedule.html"
 ---
 
 # 进程和线程有什么区别？为什么线程更轻量？

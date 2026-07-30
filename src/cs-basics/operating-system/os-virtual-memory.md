@@ -11,8 +11,8 @@ tag:
   - "原理深入"
   - "体系化"
 prev:
-  text: "死锁产生的条件是什么？线上怎么避免？"
-  link: "/cs-basics/operating-system/os-deadlock.html"
+  text: "CPU 缓存和 MESI 协议是怎么回事？"
+  link: "/cs-basics/operating-system/os-cpu-cache-mesi.html"
 next:
   text: "malloc 申请内存后真的马上占用物理内存吗？"
   link: "/cs-basics/operating-system/os-malloc-physical-memory.html"

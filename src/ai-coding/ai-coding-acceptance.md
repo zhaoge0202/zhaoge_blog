@@ -14,8 +14,8 @@ prev:
   text: "如何用 AI 辅助重写技术文章？"
   link: "/ai-coding/ai-coding-technical-writing.html"
 next:
-  text: "开源项目"
-  link: "/open-source-project/"
+  text: "AI 编程选 CLI 还是 IDE？"
+  link: "/ai-coding/ai-coding-cli-vs-ide.html"
 ---
 
 # AI 生成代码后应该怎样验收？

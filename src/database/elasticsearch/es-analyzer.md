@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "细节题"
 prev:
-  text: "倒排索引为什么让 Elasticsearch 搜索这么快？"
-  link: "/database/elasticsearch/es-inverted-index.html"
+  text: "ES 的近实时写入靠 refresh 和 flush 怎么做到？"
+  link: "/database/elasticsearch/es-near-realtime-write.html"
 next:
   text: "Mapping 怎么设计？text 和 keyword 有什么区别？"
   link: "/database/elasticsearch/es-mapping.html"

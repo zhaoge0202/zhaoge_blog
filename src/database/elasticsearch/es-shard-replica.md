@@ -11,8 +11,8 @@ tag:
   - "进阶"
   - "体系化"
 prev:
-  text: "聚合查询怎么用？和 SQL GROUP BY 有什么不同？"
-  link: "/database/elasticsearch/es-aggregation.html"
+  text: "ES 聚合的性能边界在哪？分片近似和大聚合怎么不爆？"
+  link: "/database/elasticsearch/es-aggregation-optimization.html"
 next:
   text: "写入和查询在集群里是怎么流转的？"
   link: "/database/elasticsearch/es-read-write-flow.html"

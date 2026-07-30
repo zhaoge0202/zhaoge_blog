@@ -14,8 +14,8 @@ prev:
   text: "进程间通信有哪些方式？Java 后端常遇到哪些？"
   link: "/cs-basics/operating-system/os-ipc.html"
 next:
-  text: "虚拟内存解决了什么问题？"
-  link: "/cs-basics/operating-system/os-virtual-memory.html"
+  text: "CPU 缓存和 MESI 协议是怎么回事？"
+  link: "/cs-basics/operating-system/os-cpu-cache-mesi.html"
 ---
 
 # 死锁产生的条件是什么？线上怎么避免？

@@ -11,8 +11,8 @@ tag:
   - "项目实战"
   - "原理深入"
 prev:
-  text: "ZooKeeper 和 ZAB 是什么关系？"
-  link: "/distributed-system/distributed-zookeeper-zab.html"
+  text: "Gossip 协议为什么适合大规模集群的状态传播？"
+  link: "/distributed-system/distributed-gossip.html"
 next:
   text: "分布式 ID 怎么选：雪花、号段、数据库自增？"
   link: "/distributed-system/distributed-id-selection.html"

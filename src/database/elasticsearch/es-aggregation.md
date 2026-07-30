@@ -11,11 +11,11 @@ tag:
   - "进阶"
   - "项目实战"
 prev:
-  text: "相关性打分是怎么回事？TF-IDF 和 BM25 有什么区别？"
-  link: "/database/elasticsearch/es-scoring.html"
+  text: "bool 复合查询里 must/filter/should/must_not 怎么搭？"
+  link: "/database/elasticsearch/es-bool-query-deep.html"
 next:
-  text: "分片和副本是怎么回事？分片数怎么定？"
-  link: "/database/elasticsearch/es-shard-replica.html"
+  text: "ES 聚合的性能边界在哪？分片近似和大聚合怎么不爆？"
+  link: "/database/elasticsearch/es-aggregation-optimization.html"
 ---
 
 # 聚合查询怎么用？和 SQL GROUP BY 有什么不同？

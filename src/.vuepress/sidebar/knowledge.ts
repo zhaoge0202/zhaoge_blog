@@ -1,10 +1,15 @@
 export const knowledgeSidebar = {
   "/interview-preparation/": [
     "",
+    "interview-prep-overview",
     "interview-prep-four-week-plan",
+    "interview-prep-resume",
+    "interview-prep-self-intro",
     "interview-prep-project-star",
     "interview-prep-followup-trees",
     "interview-prep-common-traps",
+    "interview-prep-questions-to-ask",
+    "interview-prep-nerves",
   ],
   "/java/": [
     "",
@@ -233,6 +238,7 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "os-process-thread",
+            "os-schedule",
             "os-context-switch",
             "os-thread-count-limit",
             "os-ipc",
@@ -243,15 +249,22 @@ export const knowledgeSidebar = {
           text: "内存与文件系统",
           collapsible: true,
           children: [
+            "os-cpu-cache-mesi",
             "os-virtual-memory",
             "os-malloc-physical-memory",
             "os-page-cache",
+            "os-file-system",
           ],
         },
         {
           text: "网络 IO",
           collapsible: true,
-          children: ["os-io-multiplexing", "os-zero-copy", "os-reactor-netty"],
+          children: [
+            "os-soft-interrupt",
+            "os-io-multiplexing",
+            "os-zero-copy",
+            "os-reactor-netty",
+          ],
         },
       ],
     },
@@ -264,7 +277,11 @@ export const knowledgeSidebar = {
         {
           text: "网络基础",
           collapsible: true,
-          children: ["network-tcp-ip-model", "network-url-process"],
+          children: [
+            "network-tcp-ip-model",
+            "network-url-process",
+            "network-dns",
+          ],
         },
         {
           text: "TCP 连接生命周期",
@@ -289,8 +306,10 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "network-http-versions",
+            "network-http-status-codes",
             "network-https-rsa-ecdhe",
             "network-http-keepalive-tcp-keepalive",
+            "network-http-vs-rpc",
           ],
         },
         {
@@ -308,10 +327,14 @@ export const knowledgeSidebar = {
         "",
         "ds-array-list-stack-queue",
         "ds-tree-bst",
+        "ds-red-black-tree",
         "ds-heap-topk",
         "ds-hash-consistent-hash",
         "ds-lru-cache",
         "ds-skiplist-bloom",
+        "ds-trie",
+        "ds-union-find",
+        "ds-graph",
       ],
     },
     {
@@ -321,6 +344,7 @@ export const knowledgeSidebar = {
       children: [
         "",
         "algo-complexity",
+        "algo-sorting",
         "algo-two-pointers-window",
         "algo-binary-search",
         "algo-bfs-dfs",
@@ -521,32 +545,40 @@ export const knowledgeSidebar = {
         {
           text: "核心概念与原理",
           collapsible: true,
-          children: ["es-core-concepts", "es-inverted-index"],
+          children: [
+            "es-core-concepts",
+            "es-inverted-index",
+            "es-near-realtime-write",
+          ],
         },
         {
           text: "分词与映射",
           collapsible: true,
-          children: ["es-analyzer", "es-mapping"],
+          children: ["es-analyzer", "es-mapping", "es-dynamic-mapping-control"],
         },
         {
           text: "查询与打分",
           collapsible: true,
-          children: ["es-query-dsl", "es-scoring"],
+          children: ["es-query-dsl", "es-scoring", "es-bool-query-deep"],
         },
         {
           text: "聚合",
           collapsible: true,
-          children: ["es-aggregation"],
+          children: ["es-aggregation", "es-aggregation-optimization"],
         },
         {
           text: "集群与分布式",
           collapsible: true,
-          children: ["es-shard-replica", "es-read-write-flow"],
+          children: [
+            "es-shard-replica",
+            "es-read-write-flow",
+            "es-cluster-health-routing",
+          ],
         },
         {
           text: "工程实践",
           collapsible: true,
-          children: ["es-deep-pagination-tuning"],
+          children: ["es-deep-pagination-tuning", "es-reindex-alias"],
         },
       ],
     },
@@ -559,22 +591,25 @@ export const knowledgeSidebar = {
         {
           text: "文档模型与选型",
           collapsible: true,
-          children: ["mongodb-data-model"],
+          children: ["mongodb-data-model", "mongodb-schema-design"],
         },
         {
           text: "索引与查询优化",
           collapsible: true,
-          children: ["mongodb-index-query"],
+          children: ["mongodb-index-query", "mongodb-index-internals"],
         },
         {
           text: "聚合管道",
           collapsible: true,
-          children: ["mongodb-aggregation-pipeline"],
+          children: [
+            "mongodb-aggregation-pipeline",
+            "mongodb-aggregation-deep",
+          ],
         },
         {
           text: "高可用与扩展",
           collapsible: true,
-          children: ["mongodb-replica-sharding"],
+          children: ["mongodb-replica-sharding", "mongodb-read-write-concern"],
         },
       ],
     },
@@ -645,8 +680,10 @@ export const knowledgeSidebar = {
   "/distributed-system/": [
     "",
     "distributed-cap-base",
+    "distributed-paxos",
     "distributed-raft-overview",
     "distributed-zookeeper-zab",
+    "distributed-gossip",
     "distributed-lock-implementations",
     "distributed-id-selection",
     "distributed-transaction-selection",

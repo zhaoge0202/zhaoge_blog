@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "项目实战"
 prev:
-  text: "3-5 年 Java 后端四周怎么复习？"
-  link: "/interview-preparation/interview-prep-four-week-plan.html"
+  text: "自我介绍怎么说才不像背书？"
+  link: "/interview-preparation/interview-prep-self-intro.html"
 next:
   text: "高频题怎么准备追问树？"
   link: "/interview-preparation/interview-prep-followup-trees.html"

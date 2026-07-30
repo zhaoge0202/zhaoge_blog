@@ -1,11 +1,22 @@
 export const navigationSidebar = {
-  "/ai/": [""],
+  "/ai/": [
+    "",
+    "ai-llm-basis",
+    "ai-prompt-structured-output",
+    "ai-rag",
+    "ai-agent-tools",
+    "ai-application-engineering",
+  ],
   "/ai-coding/": [
     "",
     "ai-coding-code-review",
     "ai-coding-project-context",
     "ai-coding-technical-writing",
     "ai-coding-acceptance",
+    "ai-coding-cli-vs-ide",
+    "ai-coding-spec-coding",
+    "ai-coding-context-rules",
+    "ai-coding-vibe-coding-tips",
   ],
   "/roadmap/": [""],
   "/open-source-project/": [

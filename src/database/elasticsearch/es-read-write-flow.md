@@ -14,8 +14,8 @@ prev:
   text: "分片和副本是怎么回事？分片数怎么定？"
   link: "/database/elasticsearch/es-shard-replica.html"
 next:
-  text: "深分页怎么优化？ES 还有哪些性能调优手段？"
-  link: "/database/elasticsearch/es-deep-pagination-tuning.html"
+  text: "ES 集群健康、路由和故障恢复怎么判断？"
+  link: "/database/elasticsearch/es-cluster-health-routing.html"
 ---
 
 # 写入和查询在集群里是怎么流转的？

@@ -44,6 +44,7 @@ Java Socket、HTTP 基础、Linux 常用命令、操作系统用户态/内核态
 
 - [TCP/IP 四层模型怎么理解？和 OSI 七层有什么关系？](./network-tcp-ip-model.html) — 分层职责、封装/解封装、OSI 与 TCP/IP 的关系。
 - [输入 URL 到页面展示，中间发生了什么？](./network-url-process.html) — URL、DNS、TCP/TLS、HTTP、服务端处理和浏览器渲染全链路。
+- [DNS 解析到底是怎么找到 IP 的？](./network-dns.html) — 递归/迭代查询、多级缓存、记录类型、负载均衡与 DNS 安全。
 
 ### TCP 连接生命周期
 
@@ -60,8 +61,10 @@ Java Socket、HTTP 基础、Linux 常用命令、操作系统用户态/内核态
 ### HTTP/HTTPS
 
 - [HTTP/1.1、HTTP/2、HTTP/3 有什么核心区别？](./network-http-versions.html) — 长连接、头部压缩、多路复用、QUIC 和连接迁移。
+- [HTTP 状态码怎么记才不会在面试时卡壳？](./network-http-status-codes.html) — 五大类分段、高频状态码、易混重定向与排障定位。
 - [HTTPS RSA 握手和 ECDHE 握手有什么区别？](./network-https-rsa-ecdhe.html) — 身份认证、密钥协商、前向安全和对称加密。
 - [HTTP Keep-Alive 和 TCP Keepalive 是一回事吗？](./network-http-keepalive-tcp-keepalive.html) — 应用层连接复用、TCP 保活和长连接回收。
+- [HTTP 和 RPC 到底是不是一回事？怎么选？](./network-http-vs-rpc.html) — 协议与序列化、服务发现、性能取舍与选型边界。
 
 ### 抓包排障
 
@@ -70,6 +73,6 @@ Java Socket、HTTP 基础、Linux 常用命令、操作系统用户态/内核态
 ## 后续计划
 
 - TCP 与 UDP 的区别与选型。
-- DNS、CDN、负载均衡和跨域。
-- HTTP 缓存、状态码、断点续传和 Range。
+- CDN、负载均衡和跨域。
+- HTTP 缓存、断点续传和 Range。
 - 网络故障复盘：RST、连接超时、MTU 黑洞和 NAT 端口耗尽。

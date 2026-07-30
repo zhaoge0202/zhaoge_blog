@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "原理深入"
 prev:
-  text: "输入 URL 到页面展示，中间发生了什么？"
-  link: "/cs-basics/network/network-url-process.html"
+  text: "DNS 解析到底是怎么找到 IP 的？"
+  link: "/cs-basics/network/network-dns.html"
 next:
   text: "TCP 四次挥手为什么需要 TIME_WAIT？"
   link: "/cs-basics/network/network-tcp-four-way-wave-time-wait.html"

@@ -14,8 +14,8 @@ prev:
   text: "服务端没有 accept，客户端连接会怎样？"
   link: "/cs-basics/network/network-server-no-accept.html"
 next:
-  text: "HTTPS RSA 握手和 ECDHE 握手有什么区别？"
-  link: "/cs-basics/network/network-https-rsa-ecdhe.html"
+  text: "HTTP 状态码怎么记才不会在面试时卡壳？"
+  link: "/cs-basics/network/network-http-status-codes.html"
 ---
 
 # HTTP/1.1、HTTP/2、HTTP/3 有什么核心区别？
