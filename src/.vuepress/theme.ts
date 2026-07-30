@@ -31,7 +31,7 @@ const toSlimsearchFieldValue = (
 
 export default hopeTheme({
   hostname,
-  logo: "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-logo.svg",
+  logo: "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-favicon-zg.svg",
   favicon:
     "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-favicon-zg.svg",
   author: {
