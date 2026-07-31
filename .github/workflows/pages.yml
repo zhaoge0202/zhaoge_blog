@@ -65,13 +65,16 @@ jobs:
 
       - name: Purge Cloudflare edge cache
         # 新站点上线后清掉 Cloudflare 边缘缓存的旧 HTML/资源，让国内访问立刻拿到新版。
-        # 未配置 secrets 时自动跳过；purge 失败只告警、不影响已完成的部署。
-        if: ${{ secrets.CF_API_TOKEN != '' && secrets.CF_ZONE_ID != '' }}
+        # 未配置 secrets 时在脚本内跳过；purge 失败只告警、不影响已完成的部署。
         continue-on-error: true
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
         run: |
+          if [ -z "${CF_API_TOKEN}" ] || [ -z "${CF_ZONE_ID}" ]; then
+            echo "Cloudflare secrets not configured, skipping purge."
+            exit 0
+          fi
           code=$(curl -s -o /tmp/purge.json -w '%{http_code}' \
             -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
             -H "Authorization: Bearer ${CF_API_TOKEN}" \
