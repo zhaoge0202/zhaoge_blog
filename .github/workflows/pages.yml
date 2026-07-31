@@ -62,3 +62,21 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Purge Cloudflare edge cache
+        # 新站点上线后清掉 Cloudflare 边缘缓存的旧 HTML/资源，让国内访问立刻拿到新版。
+        # 未配置 secrets 时自动跳过；purge 失败只告警、不影响已完成的部署。
+        if: ${{ secrets.CF_API_TOKEN != '' && secrets.CF_ZONE_ID != '' }}
+        continue-on-error: true
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        run: |
+          code=$(curl -s -o /tmp/purge.json -w '%{http_code}' \
+            -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}')
+          echo "Cloudflare purge HTTP ${code}"
+          cat /tmp/purge.json
+          [ "${code}" = "200" ] || echo "::warning::Cloudflare purge failed; site still deployed, edge cache will expire by TTL"
