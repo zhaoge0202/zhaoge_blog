@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "vuepress dev src --clean-cache --port 3000",
-    "build": "vuepress build src --clean-cache",
+    "build": "vuepress build src --clean-cache && node scripts/inline-critical-css.mjs",
     "clean": "rm -rf src/.vuepress/.temp src/.vuepress/.cache src/.vuepress/dist dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -30,6 +30,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.30",
     "@vuepress/plugin-feed": "^2.0.0-rc.130",
     "@vuepress/plugin-slimsearch": "^2.0.0-rc.130",
+    "critters": "^0.0.23",
     "husky": "^9.1.7",
     "markdownlint-cli2": "^0.22.1",
     "mermaid": "^11.15.0",

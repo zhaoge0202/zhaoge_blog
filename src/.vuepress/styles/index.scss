@@ -54,6 +54,14 @@ pre {
   backdrop-filter: none;
 }
 
+// 主题默认给 logo 只设了 height（auto 宽度），Lighthouse 会因 <img> 无显式尺寸报 CLS 风险。
+// logo 是 1024×1024 方形 SVG，显式锁定宽高 + aspect-ratio，视觉与原一致、消除布局抖动。
+.vp-nav-logo {
+  width: var(--navbar-line-height);
+  height: var(--navbar-line-height);
+  aspect-ratio: 1 / 1;
+}
+
 .vp-hero-info-wrapper,
 .vp-feature-item {
   background: rgba(255, 255, 255, 0.52);

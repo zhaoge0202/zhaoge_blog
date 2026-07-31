@@ -20,6 +20,20 @@ export default defineUserConfig({
   description:
     "拾级 —— 面向 3-5 年 Java 后端工程师的进阶知识库，按知识域讲透高频题、原理与项目取舍，并保留独立博客记录实战与复盘。",
   head: [
+    // 提前建立到第三方 CDN 的连接，省掉首屏 icon / logo 的 DNS+TLS 建链时间
+    [
+      "link",
+      {
+        rel: "preconnect",
+        href: "https://api.iconify.design",
+        crossorigin: "",
+      },
+    ],
+    [
+      "link",
+      { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossorigin: "" },
+    ],
+    ["link", { rel: "preconnect", href: "https://media.zhaoge.top" }],
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "zhaoge" }],
     [
@@ -56,5 +70,7 @@ export default defineUserConfig({
     },
   }),
   shouldPrefetch: false,
-  shouldPreload: false,
+  // 预加载当前页自身的路由 chunk（如首页 README chunk），使其与 app.js 并行下载、缩短关键请求链。
+  // slimsearch 关 suggestion 后 worker 不再进首页 eager 依赖图，不会被误预加载。
+  shouldPreload: true,
 });

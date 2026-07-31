@@ -98,6 +98,10 @@ export default hopeTheme({
     },
     photoSwipe: false,
     slimsearch: {
+      // 关闭输入联想。开启时建议框作为 root 组件每页挂载、onMounted 即创建 2.6MB 搜索 worker，
+      // 拖累首屏 LCP；关闭后 worker 改由 SearchResult 懒加载 chunk 在用户真正打开搜索时才创建，
+      // 全文搜索能力不受影响（仍按输入实时返回结果）。
+      suggestion: false,
       customFields: [
         {
           getter: (page) => toSlimsearchFieldValue(page.frontmatter.category),
