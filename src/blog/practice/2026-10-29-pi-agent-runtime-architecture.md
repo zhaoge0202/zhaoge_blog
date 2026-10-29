@@ -1,6 +1,6 @@
 ---
 title: "读《pi 的设计艺术》：生产级 Coding Agent 运行时架构与工程决策复盘"
-description: "精读张汉东老师《pi 的设计艺术》。从四层洋葱架构、无状态双层循环、JSONL 会话树到上下文 Compaction 与约束型工具设计，全面拆解一个生产级 Coding Agent 运行时的硬核设计考量。"
+description: "精读张汉东老师《pi 的设计艺术》。结合手写 Agent 的踩坑血泪史，横向映射 Netty、WAL、LSM-tree 等经典后端架构，剖析无状态双层循环、JSONL 会话树、Compaction 追踪与约束型工具的生产级工程取舍。"
 date: 2026-10-29
 article: true
 timeline: true
@@ -15,27 +15,36 @@ tag:
 
 # 读《pi 的设计艺术》：生产级 Coding Agent 运行时架构与工程决策复盘
 
-最近精读了张汉东老师的在线开源著作《pi 的设计艺术：构建生产级 Coding Agent 的架构决策》（基于开源项目 `pi-mono`）。市面上讲大模型调用的材料浩如烟海，但绝大部分停留在 Prompt 调试、LangChain 胶水层拼装，或者做一个简单的问答 Demo。而这本书直击一个极为严肃的工业级课题：**如果要构建一个能稳定帮人写代码的生产级 Coding Agent，底层的运行时架构到底该如何设计？**
+之前我自己折腾过一个自动化修改代码的小 Agent 脚本，当时想得特别简单：只要写个 `while (true)`，把历史消息塞进 OpenAI SDK，模型如果返回了函数调用就跑一下本地命令，跑完把结果 `messages.push()` 进去再继续调模型——不就是一个闭环了吗？
 
-书中没有空洞的概念堆砌，每一章都咬住一个具体的技术决策，讲透“为什么这样选、放弃了什么、得到了什么”。读完之后，很多此前在写 Agent 时模棱两可的工程痛点，豁然开朗。这里梳理一份核心架构决策的深度复盘。
+结果一上线，现实结结实实地给我上了一堂工程毒打课：
+
+- **调度失控**：模型中途改偏了文件，我想紧急敲回车纠偏（“停，不要动数据库迁移脚本！”），由于单层循环正在傻傻等待工具返回，消息要么被丢弃，要么在下一轮粗暴覆盖，Agent 像个“耳聋的推土机”一路横冲直撞；
+- **回滚绝望**：用简单的数组存聊天记录，Agent 连改了 5 个文件测试挂了，我想“回到两步之前换种思路”，却发现除了原地物理清空数组、或者彻底重开一个 session 丢失前面所有上下文，根本无法做到无损的分支与回退；
+- **压缩失忆**：上下文快爆时，我让大模型“把上述对话精简总结一下”。大模型总结得文采飞扬：“排查了用户模块并做了必要修改”，结果下一轮再让它写代码，它两眼一抹黑反问我：“请问你刚才改的是哪个文件？”——自然语言把最关键的**文件路径和修改集元数据**当废话吞了；
+- **工具翻车**：给模型一把万能 `bash` 工具，让它自己跑 `sed -i` 改代码，结果模型引号转义写串，直接把整个配置文件清空，引发灾难性事故。
+
+直到最近精读了张汉东老师的开源著作《pi 的设计艺术：构建生产级 Coding Agent 的架构决策》（基于开源项目 `pi-mono`），我才彻底想明白：**我之前踩的所有雷，根本不是 Prompt 写得不够好，而是缺少一个严肃的“Agent 运行时（Runtime）”。**
+
+这本书没有空话，每一章都在回答一个极其尖锐的工程抉择：**为什么这样选？放弃了什么？得到了什么？** 这里结合我自己的试错体会与后端系统架构视角，做一次深度的技术复盘。
 
 ---
 
 ## 1. 范式转变：从“LLM 调用库”到“Agent 运行时（Runtime）”
 
-搭建一个 Agent 最难的部分究竟在哪里？
+市面上 95% 的教程都在讲 LangChain、Prompt 技巧或拼装 Demo。这种思维本质上是**“RPC 调用库思维”**：重点在怎么组装参数、怎么序列化 JSON、怎么发 HTTP 请求。
 
-很多人的直觉是：难在大模型选型、Prompt 提示词工程、以及怎么把接口调通。但只要你在真实生产环境里写过自动化编码代理，就会发现：**调大模型只占整个复杂度的 10%，剩下的 90% 全在“大模型响应之后该怎么办”。**
+但真正的 Coding Agent，调大模型只占复杂度的 10%，剩下的 90% 全在**“大模型响应之后怎么治理”**。
 
-| 关注维度     | 通用 LLM 调用库（如 OpenAI SDK / Vercel AI SDK） | 生产级 Coding Agent 运行时（如 pi）                         |
-| :----------- | :----------------------------------------------- | :---------------------------------------------------------- |
-| **核心职责** | 怎么发 HTTP 请求、怎么把 JSON 序列化送进模型     | 模型返回后如何运转闭环、状态机如何流转                      |
-| **错误观念** | 将网络异常、API 报错当做异常（throw exception）  | 错误是一等公民，被编码进统一事件流（`stopReason: "error"`） |
-| **生命周期** | 单次 Request-Response 或单纯的流式打字机         | 持续自愈的无状态执行循环（Agent Loop）                      |
-| **多轮治理** | 简单的消息数组（`messages.push(...)`）           | 非线性会话树、分支跳转、自动上下文压缩（Compaction）        |
-| **工具交互** | 暴露函数给模型，听天由命                         | 严格的三阶段管道（准备、执行、终结）与类型护栏              |
+| 关注维度     | 通用 LLM 调用库（如 LangChain / Vercel AI SDK）     | 生产级 Coding Agent 运行时（如 pi）                         |
+| :----------- | :-------------------------------------------------- | :---------------------------------------------------------- |
+| **核心职责** | 怎么发 HTTP 请求、怎么把 JSON 序列化送进模型        | 模型返回后如何运转闭环、状态机如何流转                      |
+| **错误观念** | 将网络异常、API 报错当做异常抛出（throw exception） | 错误是一等公民，被编码进统一事件流（`stopReason: "error"`） |
+| **生命周期** | 单次 Request-Response 或单纯的流式打字机            | 持续自愈的无状态执行循环（Agent Loop）                      |
+| **多轮治理** | 简单的消息数组（`messages.push(...)`）              | 非线性会话树、分支跳转、自动上下文压缩（Compaction）        |
+| **工具交互** | 暴露函数给模型，听天由命                            | 严格的三阶段管道（准备、执行、终结）与类型护栏              |
 
-正如书开篇所言：**pi 是一个 Agent 运行时（Runtime），而不是又一个 LLM 包装器（Wrapper）。** 它管理的是一个持续运行、自主感知环境、纠正错误、并在有限窗口中自愈的操作系统式循环。
+正如书开篇所言：**pi 是一个 Agent 运行时（Runtime），而不是又一个 LLM 包装器（Wrapper）。** 它管理的是一个持续运行、自主感知环境、纠正错误、并在有限窗口中自愈的操作系统式状态机。
 
 ---
 
@@ -71,18 +80,120 @@ flowchart TD
 
 ---
 
-## 3. 内核发动机：`agentLoop` 为什么必须是“无状态纯函数”？
+## 3. 内核发动机：`agentLoop` 源码解剖与双层循环
 
-在许多 Agent 框架设计中，循环执行器往往兼任了“大内总管”：既管发消息，又管记历史，还管失败重试。
+很多初学者（包括我自己）写 Agent 时，循环逻辑往往兼任了“大内总管”：既管发消息，又管记历史，还管失败重试。
 
-但 pi 做出了一个反直觉的抉择：**循环引擎应该知道尽可能少的事情。** 打开 `packages/agent/src/agent-loop.ts`，核心注释只有两句话：
+但 pi 提出了一个反直觉的抉择：**循环引擎应该知道尽可能少的事情。** 打开 `packages/agent/src/agent-loop.ts`，核心注释只有两句话：
 
 > _"Agent loop that works with AgentMessage throughout._  
 > _Transforms to Message[] only at the LLM call boundary."_
 
-### 双层嵌套循环状态机
+### 核心源码解剖：`runLoop()` 的设计精髓
 
-`agentLoop` 的内部实现由内外两层 `while` 循环构成，分别承担截然不同的语义：
+这是 `agentLoop` 的无状态核心驱动逻辑（取自 `packages/agent/src/agent-loop.ts:155-320` 核心骨架）：
+
+```typescript
+async function runLoop(
+  currentContext: AgentContext,
+  newMessages: AgentMessage[],
+  config: AgentLoopConfig,
+  signal: AbortSignal | undefined,
+  emit: AgentEventSink,
+  streamFunction: StreamFn,
+): Promise<void> {
+  let pendingMessages: AgentMessage[] = (await config.getSteeringMessages?.()) || [];
+
+  // 外层循环：挂起等待，消费用户追加的 follow-up 任务
+  while (true) {
+    let hasMoreToolCalls = true;
+
+    // 内层循环：处理 tool calls 和用户实时的 steering 转向指令
+    while (hasMoreToolCalls || pendingMessages.length > 0) {
+      // 1. 优先注入 pending 消息（用户打断/转向）
+      if (pendingMessages.length > 0) {
+        for (const message of pendingMessages) {
+          currentContext.messages.push(message);
+          newMessages.push(message);
+        }
+        pendingMessages = [];
+      }
+
+      // 2. 调用 LLM，获取 assistant 响应流
+      const message = await streamAssistantResponse(
+        currentContext,
+        config,
+        signal,
+        emit,
+        streamFunction,
+      );
+      newMessages.push(message);
+
+      // 3. 错误或中断 → 直接退出
+      if (message.stopReason === "error" || message.stopReason === "aborted") {
+        return;
+      }
+
+      // 4. 工具调用管线：prepare → execute → finalize
+      const toolCalls = message.content.filter((c) => c.type === "toolCall");
+      const toolResults: ToolResultMessage[] = [];
+      hasMoreToolCalls = false;
+
+      if (toolCalls.length > 0) {
+        const batch = await executeToolCalls(currentContext, message, config, signal, emit);
+        for (const result of batch.messages) {
+          currentContext.messages.push(result);
+          newMessages.push(result);
+        }
+        toolResults.push(...batch.messages);
+        // 工具可主动叫停：整批结果都标记 terminate 时不再续轮
+        hasMoreToolCalls = !batch.terminate;
+      }
+
+      // 5. turn 间热切换：支持动态替换 context / model / thinkingLevel
+      const snapshot = await config.prepareNextTurn?.({
+        message,
+        toolResults,
+        context: currentContext,
+        newMessages,
+      });
+
+      // 6. turn 校验：是否满足优雅停止条件
+      if (
+        await config.shouldStopAfterTurn?.({
+          message,
+          toolResults,
+          context: currentContext,
+          newMessages,
+        })
+      ) {
+        return;
+      }
+
+      // 7. 每轮末尾检查：是否有用户在当前 turn 期间插队的 steering 消息
+      pendingMessages = (await config.getSteeringMessages?.()) || [];
+    }
+
+    // 内层结束，检查有没有在任务完全结束后追加的 follow-up 消息
+    const followUpMessages = (await config.getFollowUpMessages?.()) || [];
+    if (followUpMessages.length > 0) {
+      pendingMessages = followUpMessages;
+      continue; // 重新唤醒内层循环
+    }
+
+    break; // 彻底无新任务，退出
+  }
+}
+```
+
+### 为什么必须是“双层”而不是“单层”？
+
+看懂了这段源码，就明白了我之前写的单层循环为什么会被用户骂“耳聋”：
+
+1. **Steering（转向指令）**：Agent 正在改代码，用户中途发现方向偏了，输入“别改 A 文件，去改 B”。这种消息必须在**当前 turn 的工具执行完毕后立刻插队注入（第 7 步获取）**，影响下一次 LLM 推理。它发生在内层。
+2. **Follow-up（追加任务）**：Agent 已经完整完成了当前需求并准备停下来（内层退出），用户接着说“好的，顺便把单元测试也补上”。这是**外层循环在 Agent 即将停下时将其重新激活**。
+
+两类消息的消费时机和生命周期完全不同：**Steering 是干活时的抢占式插队，Follow-up 是交工后的下一单委托。** 只有双层循环才能优雅解耦两者的消费时机。
 
 ```mermaid
 flowchart TB
@@ -119,13 +230,6 @@ flowchart TB
     style StreamLLM fill:#fff3e0
     style ExecuteTools fill:#f3e5f5
 ```
-
-为什么要精细划分两层循环？因为在真实编码交互中，有两类完全不同的用户消息：
-
-1. **Steering（转向指令）**：Agent 正在改代码，用户中途发现方向偏了，输入“别改 A 文件，去改 B”。这种消息必须在**当前 turn 的工具执行完毕后立刻插队注入**，直接影响下一次 LLM 推理。
-2. **Follow-up（追加任务）**：Agent 已经完整完成了当前需求并准备停下来（内层退出），用户接着说“好的，顺便把单元测试也补上”。这是**外层循环在 Agent 即将停下时将其重新激活**。
-
-如果把逻辑揉成单层循环，就无法在状态机中正交解耦“干活中的实时纠偏”与“干完活后的连续追加”。
 
 ---
 
@@ -254,15 +358,36 @@ classDiagram
     AgentTool <|-- BashTool
 ```
 
-1. **`edit` 工具：精确旧文本替换，严禁全文件重写**
-   - 不允许模型直接给文件内容做 overwrite，也不采用极易漂移的行号修改。
-   - 采用 `oldText -> newText` 精确匹配。一旦文件被外部修改导致 `oldText` 不匹配，立即拒绝写入并报错打断。
-   - 内置 `file-mutation-queue`，对同一文件的并发写入进行排队串行化，彻底消除文件写穿隐患。
-2. **`read` 工具：带行号与强制分页**
-   - 不做简单的 `cat`。强制返回带行号的内容，让后续需要编辑时可以精确锁定位置；限制单次读取上限，超大文件自动提示分页，防止单次读取撑爆上下文。
-3. **把 `find` 和 `grep` 独立为一等公民工具**
-   - 不鼓励模型自己在 `bash` 里面拼凑复杂的 `find . -name "*.ts" | xargs grep` 命令。模型极易在 Shell 引号、转义字符上出错。
-   - 提供结构化的搜索工具，由原生代码执行文件系统遍历，既快又准。
+### `edit` 工具源码设计：为什么必须逆序替换？
+
+很多人以为文件修改就是正则替换。看下 `edit-diff.ts` 的实现逻辑：
+
+```typescript
+// packages/coding-agent/src/core/tools/edit-diff.ts:193-260（核心精髓）
+export function applyEditsToNormalizedContent(
+  normalizedContent: string,
+  edits: Edit[],
+  path: string,
+): AppliedEditsResult {
+  // 1. 统一 LF 换行空间
+  // 2. 严格校验：oldText 不能为空，且在原文件中必须【唯一存在】（count === 1）
+  // 3. 检测重叠：相邻 edit 的匹配范围绝不能重叠
+  // 4. 按匹配位置排序后，【从后往前替换（Reverse Order）】！
+  const sortedEdits = [...edits].sort((a, b) => b.startIndex - a.startIndex);
+  let currentContent = normalizedContent;
+
+  for (const edit of sortedEdits) {
+    currentContent =
+      currentContent.slice(0, edit.startIndex) + edit.newText + currentContent.slice(edit.endIndex);
+  }
+  return { newContent: currentContent };
+}
+```
+
+为什么必须**“从后往前替换”**？
+如果从前往后替换，第一个修改完成后，后面的文本字符偏移（offset）全部会发生漂移，第二个修改就会改错位置甚至直接写穿。而从后往前替换，前面的索引坐标稳如泰山。
+
+再加上基于单文件维度的 `file-mutation-queue` Promise 互斥排队锁，彻底杜绝了并发写入导致文件内容交叉损坏的可能。
 
 ---
 
@@ -286,6 +411,22 @@ pi 怎么做？**内核根本没有 Sub-Agent 的概念。**
 ### 为什么 Skill 只是带 frontmatter 的 Markdown？
 
 pi 的 Skill 机制不依赖任何复杂的插件加载器或外部 RPC 服务。一个 Skill 就是一段带有 frontmatter 描述的 Markdown 说明书。Agent 在需要时把 Markdown 读进 System Prompt，模型就自然学会了这套业务规范。**用最朴素的文本和协议替代沉重的代码，是系统能够长期演进的秘诀。**
+
+---
+
+## 8. 映射到经典系统设计：Java 后端眼中的 Agent 运行时
+
+如果把视角拔高到分布式与高并发架构，会发现 pi 的每一个 Agent 设计决策，在经典的 Java / 后端基础设施中都能找到几乎完全一致的灵魂投射：
+
+| pi Agent 运行时设计                | Java / 分布式系统经典设计                     | 为什么两者的设计直觉完全相通？                                                                                                                                       |
+| :--------------------------------- | :-------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`agentLoop` 无状态单向轮转**     | **Netty 的 `EventLoop` (Reactor 模式)**       | 核心驱动循环绝对不能被繁重的业务逻辑阻塞；EventLoop 只管事件分发与推动，业务与持久化全部剥离给外部处理。                                                             |
+| **JSONL + parentId 会话树**        | **MySQL WAL (重做日志) / Raft Log**           | 面对随时可能崩溃退出的环境，只有不可变的 Append-only 顺序日志最坚韧；天然支持像 Git / Raft 分区一样的分支与回溯。                                                    |
+| **Compaction（保留文件操作追踪）** | **RocksDB 的 LSM-tree Compaction**            | 内存中的热数据不断堆积膨胀，必须定期与历史数据做合并压缩；压缩丢弃冗余细节的同时，必须保留类似于 Bloom Filter 和 SSTable 元数据索引（`readFiles`/`modifiedFiles`）。 |
+| **统一流式事件与消息变换**         | **API 网关协议适配 / Dubbo Filter 链**        | 面对下游多异构协议（OpenAI、Anthropic、Gemini），在系统入口做统一格式标准化，错误统一收敛为标准错误码。                                                              |
+| **`file-mutation-queue` 队列**     | **`ConcurrentHashMap` 分段锁 / 分布式排它锁** | 杜绝全局粗粒度锁，按文件路径作为 Key 细粒度串行化排队，既保证并发读写安全，又保持非冲突文件的吞吐。                                                                  |
+
+软件工程演进了几十年，从单机到分布式，再到今天的 AI Agent，**处理“状态、并发、不确定性与故障恢复”的底层工程智慧，从未改变。**
 
 ---
 
