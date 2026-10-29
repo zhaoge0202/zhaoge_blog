@@ -19,8 +19,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      VUEPRESS_BASE: ${{ vars.VUEPRESS_BASE || '/zhaoge_blog/' }}
-      VUEPRESS_HOSTNAME: ${{ vars.VUEPRESS_HOSTNAME || 'https://zhaoge0202.github.io/' }}
+      VUEPRESS_BASE: ${{ vars.VUEPRESS_BASE || '/' }}
+      VUEPRESS_HOSTNAME: ${{ vars.VUEPRESS_HOSTNAME || 'https://zhaoge.si/' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

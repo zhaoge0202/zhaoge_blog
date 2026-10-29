@@ -24,7 +24,7 @@ tag:
 我先把 R2 桶和自定义域都配好了：
 
 - 桶：`zhaogepersonal`
-- 自定义域：`media.zhaoge.top`
+- 自定义域：`media.zhaoge.si`
 - 自定义域缓存链路：正常
 
 看上去一切都准备好了，但真正回到本地跑脚本的时候，还是会卡住。原因很简单：
@@ -33,7 +33,7 @@ tag:
 
 也就是说，桶能公开访问，只解决了“读”的问题；本地脚本想上传文件，还需要“写”的身份。
 
-![R2 本地配置要点](https://media.zhaoge.top/blog/2026/06/18/20260618-v001-r2-media-sync-config-card.png)
+![R2 本地配置要点](https://media.zhaoge.si/blog/2026/06/18/20260618-v001-r2-media-sync-config-card.png)
 
 ## 真正缺的是什么
 
@@ -63,7 +63,7 @@ tag:
   "endpoint": "https://<account-id>.r2.cloudflarestorage.com",
   "accessKeyId": "fc80************************1d4f",
   "secretAccessKey": "2d01****************************************6057",
-  "publicBaseUrl": "https://media.zhaoge.top",
+  "publicBaseUrl": "https://media.zhaoge.si",
   "keyPrefix": "blog",
   "region": "auto"
 }
@@ -91,7 +91,7 @@ tag:
 
 这次跑通之后，整个流程其实很顺：
 
-![R2 媒体同步链路](https://media.zhaoge.top/blog/2026/06/18/20260618-v001-r2-media-sync-workflow-card.png)
+![R2 媒体同步链路](https://media.zhaoge.si/blog/2026/06/18/20260618-v001-r2-media-sync-workflow-card.png)
 
 核心命令只有一个：
 
@@ -128,7 +128,7 @@ assets/pictures/logo.png
 我把它传进了：
 
 ```text
-https://media.zhaoge.top/blog/2026/06/18/logo.png
+https://media.zhaoge.si/blog/2026/06/18/logo.png
 ```
 
 这里我故意先走了一次最直观的上传验证，确认桶、权限和公网访问都没问题，再回头继续优化脚本的版本化命名。
@@ -137,14 +137,14 @@ https://media.zhaoge.top/blog/2026/06/18/logo.png
 
 对象上传成功还不够，我还想确认两件事：
 
-1. `media.zhaoge.top` 这个自定义域是不是能直接访问到对象
+1. `media.zhaoge.si` 这个自定义域是不是能直接访问到对象
 2. Cloudflare 缓存是不是真的生效了
 
 最直接的验证方式就是连续请求两次同一个 URL：
 
 ```bash
-curl -I https://media.zhaoge.top/blog/2026/06/18/logo.png
-curl -I https://media.zhaoge.top/blog/2026/06/18/logo.png
+curl -I https://media.zhaoge.si/blog/2026/06/18/logo.png
+curl -I https://media.zhaoge.si/blog/2026/06/18/logo.png
 ```
 
 我这次实际看到的是：
@@ -152,7 +152,7 @@ curl -I https://media.zhaoge.top/blog/2026/06/18/logo.png
 - 第一次：`CF-Cache-Status: MISS`
 - 第二次：`CF-Cache-Status: HIT`
 
-![CDN 缓存验证](https://media.zhaoge.top/blog/2026/06/18/20260618-v001-r2-media-sync-cache-check-card.png)
+![CDN 缓存验证](https://media.zhaoge.si/blog/2026/06/18/20260618-v001-r2-media-sync-cache-check-card.png)
 
 这就说明自定义域缓存链路已经打通了。
 
@@ -161,7 +161,7 @@ curl -I https://media.zhaoge.top/blog/2026/06/18/logo.png
 回头看，这次真正把流程跑通，靠的是把问题拆成了三层：
 
 1. **桶和自定义域**
-   先确认 `media.zhaoge.top` 能稳定作为公网访问入口。
+   先确认 `media.zhaoge.si` 能稳定作为公网访问入口。
 
 2. **本地上传身份**
    再补上 R2 的 S3 凭据，而不是一直盯着桶设置页转。
@@ -194,7 +194,7 @@ curl -I https://media.zhaoge.top/blog/2026/06/18/logo.png
 7. 最后用：
 
    ```bash
-   curl -I https://media.zhaoge.top/你的对象路径
+   curl -I https://media.zhaoge.si/你的对象路径
    ```
 
    验证 `MISS -> HIT`

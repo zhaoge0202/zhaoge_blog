@@ -49,18 +49,21 @@ dist
 Settings -> Pages -> Build and deployment -> Source: GitHub Actions
 ```
 
-默认 workflow 会按 GitHub Pages 项目地址构建：
+当前 workflow 使用 GitHub Pages 自定义域名构建：
 
 ```text
-https://zhaoge0202.github.io/zhaoge_blog/
+https://zhaoge.si/
 ```
 
-也就是默认：
+对应的构建变量是：
 
 ```text
-VUEPRESS_BASE=/zhaoge_blog/
-VUEPRESS_HOSTNAME=https://zhaoge0202.github.io/
+VUEPRESS_BASE=/
+VUEPRESS_HOSTNAME=https://zhaoge.si/
 ```
+
+GitHub Pages 项目地址 `https://zhaoge0202.github.io/zhaoge_blog/` 会跳转到上述
+自定义域名。
 
 如果使用自定义域名，继续在：
 
@@ -131,7 +134,7 @@ blog/2026/06/18/20260618-v001-system-design-diagram.png
 ```
 
 - 同一天、同一个清洗后的文件名会自动递增版本号。
-- 成功后会直接改写 Markdown 文件，把本地路径替换为 `https://media.zhaoge.top/...` 这样的公网 URL。
+- 成功后会直接改写 Markdown 文件，把本地路径替换为 `https://media.zhaoge.si/...` 这样的公网 URL。
 
 ### 4. 自检
 

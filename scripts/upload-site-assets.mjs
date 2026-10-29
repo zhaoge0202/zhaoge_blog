@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Upload site-wide static assets (favicon / og-image / logo / etc.) to the R2
-// media CDN, so they are served from media.zhaoge.top and never stored in git.
+// media CDN, so they are served from media.zhaoge.si and never stored in git.
 //
 // Reuses the same R2 config the markdown media-sync script uses (.media-sync.json,
 // gitignored). Each file is stored under a date-versioned key consistent with the

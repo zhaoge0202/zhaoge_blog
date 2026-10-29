@@ -33,7 +33,7 @@ export default defineUserConfig({
       "link",
       { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossorigin: "" },
     ],
-    ["link", { rel: "preconnect", href: "https://media.zhaoge.top" }],
+    ["link", { rel: "preconnect", href: "https://media.zhaoge.si" }],
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "zhaoge" }],
     [

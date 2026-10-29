@@ -82,7 +82,7 @@ export const siteBase = (() => {
 
 // 默认社交分享图（1200×630），托管在 R2 媒体 CDN，git 仓库不存图片
 export const defaultOgImage =
-  "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-og-image.png";
+  "https://media.zhaoge.si/blog/2026/07/30/20260730-v001-og-image.png";
 
 const buildPathUrl = (hostname: string, pagePath: string): string =>
   new URL(

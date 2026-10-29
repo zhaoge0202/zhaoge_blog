@@ -10,8 +10,7 @@ import {
 } from "./seo.js";
 
 const __dirname = getDirname(import.meta.url);
-const hostname =
-  process.env.VUEPRESS_HOSTNAME || "https://zhaoge0202.github.io/";
+const hostname = process.env.VUEPRESS_HOSTNAME || "https://zhaoge.si/";
 const authorName = "zhaoge";
 const toSlimsearchFieldValue = (
   value: unknown,
@@ -31,9 +30,9 @@ const toSlimsearchFieldValue = (
 
 export default hopeTheme({
   hostname,
-  logo: "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-favicon-zg.svg",
+  logo: "https://media.zhaoge.si/blog/2026/07/30/20260730-v001-favicon-zg.svg",
   favicon:
-    "https://media.zhaoge.top/blog/2026/07/30/20260730-v001-favicon-zg.svg",
+    "https://media.zhaoge.si/blog/2026/07/30/20260730-v001-favicon-zg.svg",
   author: {
     name: authorName,
   },
