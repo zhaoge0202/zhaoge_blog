@@ -1,6 +1,6 @@
 {
   "$comment": "自动生成的内容清单快照，请勿手改。新增/删除笔记后运行 `npm run manifest:update` 刷新。",
-  "count": 383,
+  "count": 384,
   "files": [
     "src/README.md",
     "src/about-the-author/README.md",
@@ -26,6 +26,7 @@
     "src/blog/essays/2026-07-30-learn-cs-connect.md",
     "src/blog/practice/2026-06-18-r2-media-sync-tutorial.md",
     "src/blog/practice/2026-07-30-read-source-code-rpc.md",
+    "src/blog/practice/2026-10-29-pi-agent-runtime-architecture.md",
     "src/books/README.md",
     "src/books/books-cs-system-design.md",
     "src/books/books-database-middleware.md",

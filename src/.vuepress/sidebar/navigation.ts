@@ -43,6 +43,7 @@ export const navigationSidebar = {
       children: [
         "2026-06-18-r2-media-sync-tutorial",
         "2026-07-30-read-source-code-rpc",
+        "2026-10-29-pi-agent-runtime-architecture",
       ],
     },
     {
