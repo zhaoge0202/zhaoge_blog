@@ -9,7 +9,7 @@
 
 ## 本地开发
 
-只需要 Node.js 20+ 和 npm。
+只需要 Node.js 22.18+ 和 npm。
 
 ```bash
 npm ci

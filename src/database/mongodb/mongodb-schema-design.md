@@ -112,9 +112,7 @@ db.createCollection("orders", {
 db.runCommand({
   collMod: "orders",
   validator: {
-    $jsonSchema: {
-      /* 新规则 */
-    },
+    $jsonSchema: {/* 新规则 */},
   },
   validationLevel: "strict",
   validationAction: "error",
