@@ -15,6 +15,7 @@ editLink: false
 - [把本地 Markdown 媒体同步接到 R2 的一次实战](./practice/2026-06-18-r2-media-sync-tutorial.html)
 - [手写一个 RPC 框架再读源码的一次复盘](./practice/2026-07-30-read-source-code-rpc.html)
 - [读《pi 的设计艺术》：生产级 Coding Agent 运行时架构与工程决策复盘](./practice/2026-10-29-pi-agent-runtime-architecture.html)
+- [大厂 AI 后端面经复盘：网关协议转换、工具适配、上下文治理与 10 万行 Excel 场景题](./practice/2026-11-11-ai-gateway-agent-context-interview.html)
 
 ## 随笔 / 纠偏
 

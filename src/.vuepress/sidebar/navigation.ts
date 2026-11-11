@@ -44,6 +44,7 @@ export const navigationSidebar = {
         "2026-06-18-r2-media-sync-tutorial",
         "2026-07-30-read-source-code-rpc",
         "2026-10-29-pi-agent-runtime-architecture",
+        "2026-11-11-ai-gateway-agent-context-interview",
       ],
     },
     {
