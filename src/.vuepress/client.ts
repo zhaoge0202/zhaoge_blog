@@ -2,6 +2,7 @@ import { defineClientConfig } from "vuepress/client";
 import { h } from "vue";
 import DeferredLayoutToggle from "./components/DeferredLayoutToggle.vue";
 import ClickImagePreview from "./components/ClickImagePreview.vue";
+import FullscreenToggle from "./components/FullscreenToggle.vue";
 
 const CHUNK_LOAD_ERROR_PATTERN =
   /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Unable to preload CSS/i;
@@ -31,5 +32,9 @@ export default defineClientConfig({
       window.sessionStorage.removeItem(`interview:chunk-reload:${to.fullPath}`);
     });
   },
-  rootComponents: [() => h(DeferredLayoutToggle), () => h(ClickImagePreview)],
+  rootComponents: [
+    () => h(DeferredLayoutToggle),
+    () => h(FullscreenToggle),
+    () => h(ClickImagePreview),
+  ],
 });
