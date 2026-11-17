@@ -49,9 +49,37 @@ if (code.includes(SEGMENTER_TOKENIZE)) {
 }
 
 // 1. 取出注入的索引（双重 JSON.stringify 的结果）
-const injected = code.match(/JSON\.parse\(("(?:[^"\\]|\\.)*")\)/s);
-if (!injected) fail("未找到索引注入点，插件结构可能已变更");
-const rawIndex = injected[1];
+//
+// 注意：这里不能用 /JSON\.parse\(("(?:[^"\\]|\\.)*")\)/s 这类正则。
+// 索引长到几 MB 后，交替分组里的 * 会让 V8 的正则引擎回溯到栈溢出
+// （RangeError: Maximum call stack size exceeded），表现为构建产物已经生成、
+// 但后处理脚本崩掉、搜索索引没被优化。改成逐字符扫描字符串字面量，线性且稳定。
+const findInjectedIndexLiteral = (source) => {
+  const marker = "JSON.parse(";
+  const start = source.indexOf(marker);
+  if (start === -1) return null;
+
+  const begin = source.indexOf('"', start + marker.length);
+  if (begin === -1) return null;
+
+  let index = begin + 1;
+  while (index < source.length) {
+    const char = source[index];
+    if (char === "\\") {
+      index += 2;
+      continue;
+    }
+    if (char === '"') break;
+    index += 1;
+  }
+  if (source[index] !== '"') return null;
+
+  const literal = source.slice(begin, index + 1);
+  return /^\s*\)/.test(source.slice(index + 1, index + 8)) ? literal : null;
+};
+
+const rawIndex = findInjectedIndexLiteral(code);
+if (!rawIndex) fail("未找到索引注入点，插件结构可能已变更");
 
 const locales = JSON.parse(JSON.parse(rawIndex));
 if (typeof locales !== "object" || locales === null) fail("索引结构异常");
