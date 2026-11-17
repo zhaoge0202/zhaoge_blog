@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "基础"
 prev:
-  text: "Kafka、RocketMQ、RabbitMQ 怎么选？"
-  link: "/high-performance/high-performance-mq-selection.html"
+  text: "RabbitMQ 生产环境最容易踩哪些坑？"
+  link: "/high-performance/high-performance-rabbitmq-ops-pitfalls.html"
 next:
   text: "Kafka 分区和消费组如何决定吞吐与顺序？"
   link: "/high-performance/high-performance-kafka-partition-consumer-group.html"

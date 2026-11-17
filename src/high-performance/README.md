@@ -74,7 +74,12 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - MQ 解决了什么问题
 - 可靠性、幂等、积压和选型该怎么答
 
-### 4. 请求分发与 MQ 深挖
+### 4. RabbitMQ 路由与可靠性
+
+- AMQP 模型、Exchange 路由、队列类型与声明边界
+- 可靠性三段、延迟消息与死信治理、线上常见坑
+
+### 5. 请求分发与 Kafka 深挖
 
 - 负载均衡、Kafka 分区与副本、顺序消息
 
@@ -97,6 +102,16 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - [MQ 如何处理重复消费和幂等？](./high-performance-message-idempotency.html) - 和高可用里的幂等设计是同一条线，但这里更偏消息语义。
 - [MQ 消息积压怎么排查？](./high-performance-message-backlog.html) - 真到线上，最忌讳只会说“加消费者”。
 - [Kafka、RocketMQ、RabbitMQ 怎么选？](./high-performance-mq-selection.html) - 技术选型题常见收口点。
+
+### RabbitMQ 路由与可靠性
+
+- [RabbitMQ 的 Exchange 路由和 AMQP 模型是怎么回事？](./high-performance-rabbitmq-routing-model.html) - 从连接、信道、虚拟主机讲到四种 Exchange 的匹配规则。
+- [RabbitMQ 怎么保证消息不丢、不重复？](./high-performance-rabbitmq-reliability.html) - confirm 与 return、队列类型、ack 与 prefetch 的组合契约。
+- [RabbitMQ 延迟消息和死信队列怎么落地？](./high-performance-rabbitmq-delay-and-dlq.html) - TTL 队头判定的坑、五种延迟方案与重试退避。
+- [RabbitMQ 生产环境最容易踩哪些坑？](./high-performance-rabbitmq-ops-pitfalls.html) - 内存水位、单队列热点、网络分区和 Spring 默认值。
+
+### 请求分发与 Kafka 深挖
+
 - [负载均衡怎么做？四层、七层和客户端 LB 有什么区别？](./high-performance-load-balancing.html) - 分散请求的边界，不自动治慢 SQL。
 - [Kafka 分区和消费组如何决定吞吐与顺序？](./high-performance-kafka-partition-consumer-group.html) - 并行度、Rebalance 和 key 路由。
 - [Kafka 副本、ISR 和 ACK 如何影响消息可靠性？](./high-performance-kafka-replica-isr.html) - 不丢是配置组合，不是默认白送。

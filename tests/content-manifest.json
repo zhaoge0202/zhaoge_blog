@@ -1,6 +1,6 @@
 {
   "$comment": "自动生成的内容清单快照，请勿手改。新增/删除笔记后运行 `npm run manifest:update` 刷新。",
-  "count": 385,
+  "count": 389,
   "files": [
     "src/README.md",
     "src/about-the-author/README.md",
@@ -237,6 +237,10 @@
     "src/high-performance/high-performance-message-reliability.md",
     "src/high-performance/high-performance-mq-selection.md",
     "src/high-performance/high-performance-multi-level-cache.md",
+    "src/high-performance/high-performance-rabbitmq-delay-and-dlq.md",
+    "src/high-performance/high-performance-rabbitmq-ops-pitfalls.md",
+    "src/high-performance/high-performance-rabbitmq-reliability.md",
+    "src/high-performance/high-performance-rabbitmq-routing-model.md",
     "src/high-performance/high-performance-read-write-splitting-consistency.md",
     "src/high-performance/high-performance-sharding-tradeoffs.md",
     "src/high-performance/high-performance-sql-optimization-chain.md",

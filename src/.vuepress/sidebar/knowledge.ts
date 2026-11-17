@@ -752,11 +752,33 @@ export const knowledgeSidebar = {
         "high-performance-message-idempotency",
         "high-performance-message-backlog",
         "high-performance-mq-selection",
+      ],
+    },
+    {
+      text: "RabbitMQ 路由与可靠性",
+      collapsible: true,
+      children: [
+        "high-performance-rabbitmq-routing-model",
+        "high-performance-rabbitmq-reliability",
+        "high-performance-rabbitmq-delay-and-dlq",
+        "high-performance-rabbitmq-ops-pitfalls",
+      ],
+    },
+    {
+      text: "请求分发与 Kafka 深挖",
+      collapsible: true,
+      children: [
         "high-performance-load-balancing",
         "high-performance-kafka-partition-consumer-group",
         "high-performance-kafka-replica-isr",
         "high-performance-kafka-throughput",
         "high-performance-message-ordering",
+      ],
+    },
+    {
+      text: "缓存、加速与容量",
+      collapsible: true,
+      children: [
         "high-performance-multi-level-cache",
         "high-performance-cdn",
         "high-performance-cold-hot-data",
