@@ -46,6 +46,15 @@ export default defineUserConfig({
     ],
     ["meta", { name: "mobile-web-app-capable", content: "yes" }],
   ],
+  // 本地私有笔记（src/private/，已 gitignore）只给 `npm run dev` 看。
+  // 构建时一律排除：即使本地存在这些文件，产物里也不会有它们，
+  // 避免「本地构建后手动上传 dist」这类路径把私密内容带出去。
+  pagePatterns: [
+    "**/*.md",
+    "!.vuepress",
+    "!node_modules",
+    ...(process.env.NODE_ENV === "production" ? ["!private/**"] : []),
+  ],
   theme,
   bundler: viteBundler({
     viteOptions: {

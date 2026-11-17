@@ -2,7 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 
 // 内容目录之外不算「可路由页面」：.vuepress 是配置，node_modules/dist 是生成物。
-const IGNORED_DIRECTORIES = new Set([".vuepress", "node_modules", "dist"]);
+// private/ 是本地私有笔记（已 gitignore），不属于对外发布内容，不进清单。
+const IGNORED_DIRECTORIES = new Set([
+  ".vuepress",
+  "node_modules",
+  "dist",
+  "private",
+]);
 
 // 下划线开头或 *.snippet.md 是被 include 引入的片段，不是独立页面，不进内容清单。
 const isPartial = (fileName) =>

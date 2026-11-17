@@ -52,7 +52,8 @@ const collectMarkdownFiles = (dir) => {
     const absolutePath = path.join(dir, entry.name);
 
     if (entry.isDirectory()) {
-      if ([".vuepress", "node_modules", "dist"].includes(entry.name)) continue;
+      if ([".vuepress", "node_modules", "dist", "private"].includes(entry.name))
+        continue;
       files.push(...collectMarkdownFiles(absolutePath));
       continue;
     }
@@ -238,7 +239,11 @@ const collectSidebarReferences = (sidebar) => {
     walk(basePath, items);
   }
 
-  return [...new Set(references)].sort();
+  // src/private/ 是本地私有笔记（已 gitignore），线上不发布，
+  // 因此不纳入 sidebar 可达性、frontmatter 与 prev/next 链路的校验范围。
+  return [...new Set(references)]
+    .filter((relativePath) => !relativePath.startsWith("src/private/"))
+    .sort();
 };
 
 const resolveSiteLink = (fromRelativePath, link) => {

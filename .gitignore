@@ -8,6 +8,8 @@ docs/
 target/
 node_modules/
 dist/
+# 本地私有笔记：不进 git，不参与 CI 构建，线上不可见
+src/private/
 .next/
 .next-dev/
 .next-build/
