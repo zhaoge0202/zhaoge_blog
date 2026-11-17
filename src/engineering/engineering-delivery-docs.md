@@ -11,11 +11,11 @@ tag:
   - "体系化"
   - "细节题"
 prev:
-  text: "Java 项目的测试怎么写才不白写？"
-  link: "/engineering/engineering-testing-strategy.html"
+  text: "集成测试怎么跑得像线上？Testcontainers 和契约测试怎么摆？"
+  link: "/engineering/engineering-integration-test-testcontainers.html"
 next:
-  text: "工具实践"
-  link: "/tools/"
+  text: "CI/CD 流水线怎么设计？制品怎么晋级、怎么回滚？"
+  link: "/engineering/engineering-cicd-pipeline.html"
 ---
 
 # 交付文档到底要交哪些？

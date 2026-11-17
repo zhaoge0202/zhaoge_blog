@@ -14,8 +14,8 @@ prev:
   text: "MQTT 适合什么场景、QoS 怎么选？"
   link: "/iot/iot-mqtt-practice.html"
 next:
-  text: "工程与交付"
-  link: "/engineering/"
+  text: "数字能源"
+  link: "/energy/"
 ---
 
 # 采集数据该存时序库还是 MySQL？

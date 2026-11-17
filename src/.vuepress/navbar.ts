@@ -46,6 +46,11 @@ const navbar = [
         link: "/iot/",
       },
       {
+        text: "数字能源",
+        icon: "mdi:solar-power-variant",
+        link: "/energy/",
+      },
+      {
         text: "工程与交付",
         icon: "mdi:clipboard-check-outline",
         link: "/engineering/",

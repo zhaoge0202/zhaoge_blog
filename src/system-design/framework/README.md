@@ -22,6 +22,8 @@ Spring 全家桶是 Java 后端的事实标准，IoC、AOP、事务、自动装�
 
 Spring 核心 -> Spring MVC -> Spring Boot -> Spring Cloud / MyBatis
 
+Spring Cloud 的组件落位、调用链、网关、流控、配置刷新与分布式事务，已经拆成独立专题：[Spring Cloud](/system-design/spring-cloud/)。这一栏只负责"单个应用内部"的框架原理，跨服务的治理能力不在这里重复展开。
+
 ## 题目列表
 
 ### Spring 核心

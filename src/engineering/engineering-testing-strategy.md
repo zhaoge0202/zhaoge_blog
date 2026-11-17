@@ -14,8 +14,8 @@ prev:
   text: "前后端联调怎么少返工？"
   link: "/engineering/engineering-api-contract-testing.html"
 next:
-  text: "交付文档到底要交哪些？"
-  link: "/engineering/engineering-delivery-docs.html"
+  text: "单元测试怎么写才不是自嗨？JUnit 5 和 Mockito 的边界在哪？"
+  link: "/engineering/engineering-unit-test-junit5.html"
 ---
 
 # Java 项目的测试怎么写才不白写？
@@ -180,12 +180,12 @@ class OrderApiTest {
 
 H2 的 MySQL 模式只是"嘴上兼容"。用 H2 顶掉真库，等于在一台行为不同的数据库上验收 SQL：
 
-| 差异面        | H2 上的表现                                                              | MySQL 上的行为                                     |
-| ------------- | ------------------------------------------------------------------------ | -------------------------------------------------- |
-| 方言函数      | `ON DUPLICATE KEY UPDATE`、`DATE_FORMAT`、`FIND_IN_SET` 不支持或语义不同 | 项目里到处都是                                     |
-| JSON 与生成列 | `JSON_EXTRACT`、`->>`、函数索引支持有限                                  | JSON 列 + 虚拟列索引是常用优化                     |
-| 锁与隔离级别  | 默认 READ_COMMITTED，行锁实现简化                                        | 默认 REPEATABLE READ，范围锁、间隙锁、死锁时机不同 |
-| 标识符大小写  | 未加引号的标识符被转大写                                                 | Linux 下表名大小写敏感                             |
+| 差异面        | H2 上的表现                                                                                                                                     | MySQL 上的行为                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| 方言函数      | `INSERT IGNORE`、`REPLACE INTO` 只有部分支持，`DATE_FORMAT`、`FIND_IN_SET` 语义或支持度不同；`ON DUPLICATE KEY UPDATE` 还要靠 `MODE=MySQL` 才认 | 项目里到处都是                                     |
+| JSON 与生成列 | `JSON_EXTRACT`、`->>`、函数索引支持有限                                                                                                         | JSON 列 + 虚拟列索引是常用优化                     |
+| 锁与隔离级别  | 默认 READ_COMMITTED，行锁实现简化                                                                                                               | 默认 REPEATABLE READ，范围锁、间隙锁、死锁时机不同 |
+| 标识符大小写  | 未加引号的标识符被转大写                                                                                                                        | Linux 下表名大小写敏感                             |
 
 ```java
 @SpringBootTest

@@ -6,6 +6,17 @@ export const navigationSidebar = {
     "ai-rag",
     "ai-agent-tools",
     "ai-application-engineering",
+    {
+      text: "AI 能力接入业务系统",
+      collapsible: true,
+      children: [
+        "ai-java-integration-stack",
+        "ai-streaming-sse-backend",
+        "ai-tool-calling-business-api",
+        "ai-async-task-pipeline",
+        "ai-feature-rollout-guard",
+      ],
+    },
   ],
   "/ai-coding/": [
     "",

@@ -14,8 +14,8 @@ prev:
   text: "数据仓库"
   link: "/database/datawarehouse/"
 next:
-  text: "维度建模怎么落到数仓里？事实表和维度表怎么设计？"
-  link: "/database/datawarehouse/dw-dimensional-modeling.html"
+  text: "HDFS、YARN、Hive、HBase 到底各管什么？现在还有必要学吗？"
+  link: "/database/datawarehouse/dw-hadoop-ecosystem.html"
 ---
 
 # 数据仓库为什么要分层？ODS、DWD、DWS、ADS 各管什么？

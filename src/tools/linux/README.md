@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "Docker Compose 本地联调怎么用？"
-  link: "/tools/docker/docker-compose.html"
+  text: "Tomcat 的连接器和线程模型是怎么跑的？线程数该调多少？"
+  link: "/tools/tomcat/tomcat-connector-thread-model.html"
 next:
   text: "Java 服务怎么用 systemd 托管？"
   link: "/tools/linux/linux-systemd-deploy.html"

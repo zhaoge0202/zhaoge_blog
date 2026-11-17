@@ -14,8 +14,8 @@ prev:
   text: "离线数据管道怎么设计和运维？调度、幂等和重跑怎么做？"
   link: "/database/datawarehouse/dw-offline-pipeline.html"
 next:
-  text: "数仓任务又慢又贵怎么优化？数据倾斜和小文件怎么治？"
-  link: "/database/datawarehouse/dw-skew-and-tuning.html"
+  text: "湖仓一体解决什么问题？Iceberg、Hudi、Paimon 该怎么选？"
+  link: "/database/datawarehouse/dw-lakehouse.html"
 ---
 
 # 实时链路怎么保证不丢不重？Flink 的 checkpoint 和维表 join 怎么用？

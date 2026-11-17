@@ -16,4 +16,5 @@ next:
 - [设计基础](./basis/)：SOLID、模式、接口、分层、模型取舍
 - [系统设计场景](./case/)：秒杀、短链、订单、Feed、调度、热 key
 - [框架](./framework/)：Spring 与 MyBatis
+- [Spring Cloud](./spring-cloud/)：微服务组件落位、调用链、网关、流控、配置事务与链路追踪
 - [安全](./security/)：认证授权与数据保护

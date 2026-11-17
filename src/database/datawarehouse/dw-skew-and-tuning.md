@@ -11,8 +11,8 @@ tag:
   - "排障"
   - "项目实战"
 prev:
-  text: "实时链路怎么保证不丢不重？Flink 的 checkpoint 和维表 join 怎么用？"
-  link: "/database/datawarehouse/dw-realtime-pipeline.html"
+  text: "湖仓一体解决什么问题？Iceberg、Hudi、Paimon 该怎么选？"
+  link: "/database/datawarehouse/dw-lakehouse.html"
 next:
   text: "数据质量怎么监控与治理？校验规则和异常排查怎么做？"
   link: "/database/datawarehouse/dw-data-quality.html"

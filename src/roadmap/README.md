@@ -20,8 +20,9 @@ next:
   → Java 并发/JVM/集合
   → MySQL/Redis
   → 分布式治理 + MQ + 高可用/可观测
-  → Spring/安全/设计基础
+  → Spring/Spring Cloud/安全/设计基础
   → 系统设计场景
+  → 岗位方向：数字能源 / AI 应用接入
   → 算法数据结构补强
   → 工具链与复盘
 ```
@@ -53,17 +54,20 @@ next:
 ## 5. 工程与设计
 
 - [框架](/system-design/framework/)：Spring / MyBatis
+- [Spring Cloud](/system-design/spring-cloud/)：组件落位、调用链与重试、负载均衡、网关、Sentinel、Nacos 配置刷新、Seata 与链路追踪
 - [安全](/system-design/security/)：认证授权、JWT、RBAC
 - [设计基础](/system-design/basis/)：SOLID、模式、接口、分层
 - [系统设计场景](/system-design/case/)：秒杀、短链、订单、Feed、调度、热 key
 - [工业物联网](/iot/)：设备接入链路、Modbus/S7/串口、MQTT 上行与采集数据存储
-- [工程与交付](/engineering/)：需求调研、设计文档、接口契约、测试策略与交付文档
+- [数字能源](/energy/)：电站建模、站端规约、指标口径、EMS 策略与结算链路
+- [AI 应用开发](/ai/)：大模型调用、RAG、Agent，以及把 AI 能力接进 Java 业务系统的流式、工具调用与灰度兜底
+- [工程与交付](/engineering/)：需求调研、设计文档、接口契约、测试策略与交付；测试实操、CI/CD 与发布、协作治理与技术债
 
 ## 6. 基本功与工具
 
 - [网络 / OS](/cs-basics/)
 - [数据结构](/cs-basics/data-structure/) / [算法](/cs-basics/algorithms/)：最小可上机集
-- [工具实践](/tools/)：Docker / Git / Maven / Gradle
+- [工具实践](/tools/)：Docker / Kubernetes / Nginx / Tomcat / Linux / Git / Maven / Gradle
 
 ## 7. 书单怎么用
 

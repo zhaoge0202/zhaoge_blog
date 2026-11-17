@@ -13,8 +13,8 @@ prev:
   text: "Agent、工具调用、多轮编排怎么搭？"
   link: "/ai/ai-agent-tools.html"
 next:
-  text: "AI 编程"
-  link: "/ai-coding/"
+  text: "Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？"
+  link: "/ai/ai-java-integration-stack.html"
 ---
 
 # AI 应用工程化、网关和成本怎么控？

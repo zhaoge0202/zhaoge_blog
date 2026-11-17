@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "原理深入"
 prev:
-  text: "数据仓库为什么要分层？ODS、DWD、DWS、ADS 各管什么？"
-  link: "/database/datawarehouse/dw-overview.html"
+  text: "HDFS、YARN、Hive、HBase 到底各管什么？现在还有必要学吗？"
+  link: "/database/datawarehouse/dw-hadoop-ecosystem.html"
 next:
   text: "缓慢变化维怎么处理？拉链表怎么设计和使用？"
   link: "/database/datawarehouse/dw-scd-zip-table.html"

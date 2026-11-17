@@ -11,8 +11,8 @@ tag:
   - "体系化"
   - "高频"
 prev:
-  text: "数仓场景的手撕 SQL 怎么准备？窗口函数和高频题型有哪些套路？"
-  link: "/database/datawarehouse/dw-sql-patterns.html"
+  text: "Java 业务系统怎么对接数仓？埋点、CDC 和指标回流怎么设计？"
+  link: "/database/datawarehouse/dw-bigdata-java-integration.html"
 next:
   text: "数据仓库"
   link: "/database/datawarehouse/"

@@ -639,6 +639,7 @@ export const knowledgeSidebar = {
           collapsible: true,
           children: [
             "dw-overview",
+            "dw-hadoop-ecosystem",
             "dw-dimensional-modeling",
             "dw-scd-zip-table",
             "dw-metric-system",
@@ -647,7 +648,11 @@ export const knowledgeSidebar = {
         {
           text: "管道与实时链路",
           collapsible: true,
-          children: ["dw-offline-pipeline", "dw-realtime-pipeline"],
+          children: [
+            "dw-offline-pipeline",
+            "dw-realtime-pipeline",
+            "dw-lakehouse",
+          ],
         },
         {
           text: "性能与质量",
@@ -655,9 +660,13 @@ export const knowledgeSidebar = {
           children: ["dw-skew-and-tuning", "dw-data-quality"],
         },
         {
-          text: "面试实战",
+          text: "业务对接与面试",
           collapsible: true,
-          children: ["dw-sql-patterns", "dw-interview-playbook"],
+          children: [
+            "dw-bigdata-java-integration",
+            "dw-sql-patterns",
+            "dw-interview-playbook",
+          ],
         },
       ],
     },
@@ -706,6 +715,22 @@ export const knowledgeSidebar = {
         "spring-boot-auto-configuration-principles",
         "mybatis-cache-pitfalls",
         "mybatis-plugin-pagination-mechanism",
+      ],
+    },
+    {
+      text: "Spring Cloud",
+      prefix: "spring-cloud/",
+      collapsible: true,
+      children: [
+        "",
+        "spring-cloud-architecture-positioning",
+        "spring-cloud-openfeign-call-chain",
+        "spring-cloud-loadbalancer-strategy",
+        "spring-cloud-gateway-filter-limit",
+        "spring-cloud-sentinel-flow-circuit",
+        "spring-cloud-nacos-config-refresh",
+        "spring-cloud-seata-at-tcc",
+        "spring-cloud-observability-trace",
       ],
     },
     {
@@ -908,6 +933,24 @@ export const knowledgeSidebar = {
       ],
     },
   ],
+  "/energy/": [
+    "",
+    {
+      text: "建模与接数",
+      collapsible: true,
+      children: ["energy-domain-model", "energy-station-protocols"],
+    },
+    {
+      text: "指标与策略",
+      collapsible: true,
+      children: ["energy-metrics-definition", "energy-ems-strategy"],
+    },
+    {
+      text: "运维与数据链路",
+      collapsible: true,
+      children: ["energy-alarm-workorder", "energy-data-pipeline"],
+    },
+  ],
   "/engineering/": [
     "",
     {
@@ -916,20 +959,38 @@ export const knowledgeSidebar = {
       children: [
         "engineering-requirements-feasibility",
         "engineering-design-docs",
+        "engineering-user-story-ac",
+        "engineering-backend-api-experience",
       ],
     },
     {
-      text: "联调与质量",
+      text: "骨架与联调",
       collapsible: true,
       children: [
+        "engineering-project-scaffold",
         "engineering-api-contract-testing",
         "engineering-testing-strategy",
+        "engineering-unit-test-junit5",
+        "engineering-integration-test-testcontainers",
       ],
     },
     {
-      text: "交付",
+      text: "交付与发布",
       collapsible: true,
-      children: ["engineering-delivery-docs"],
+      children: [
+        "engineering-delivery-docs",
+        "engineering-cicd-pipeline",
+        "engineering-container-release",
+      ],
+    },
+    {
+      text: "协作与治理",
+      collapsible: true,
+      children: [
+        "engineering-cross-team-collaboration",
+        "engineering-tech-debt-refactor",
+        "engineering-defect-rca",
+      ],
     },
   ],
   "/tools/": [
@@ -945,6 +1006,34 @@ export const knowledgeSidebar = {
         "docker-network-volume",
         "docker-compose",
       ],
+    },
+    {
+      text: "Kubernetes",
+      prefix: "kubernetes/",
+      collapsible: true,
+      children: [
+        "",
+        "kubernetes-core-objects",
+        "kubernetes-service-ingress",
+        "kubernetes-config-secret-resource",
+        "kubernetes-troubleshooting",
+      ],
+    },
+    {
+      text: "Nginx",
+      prefix: "nginx/",
+      collapsible: true,
+      children: [
+        "",
+        "nginx-reverse-proxy-upstream",
+        "nginx-buffer-timeout-limit",
+      ],
+    },
+    {
+      text: "Tomcat",
+      prefix: "tomcat/",
+      collapsible: true,
+      children: ["", "tomcat-connector-thread-model"],
     },
     {
       text: "Linux",

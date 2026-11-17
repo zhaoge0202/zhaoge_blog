@@ -14,8 +14,8 @@ prev:
   text: "MyBatis 一级缓存和二级缓存为什么容易踩坑？"
   link: "/system-design/framework/mybatis-cache-pitfalls.html"
 next:
-  text: "安全"
-  link: "/system-design/security/"
+  text: "Spring Cloud"
+  link: "/system-design/spring-cloud/"
 ---
 
 # MyBatis 插件机制和分页插件怎么工作？

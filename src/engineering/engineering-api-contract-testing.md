@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "细节题"
 prev:
-  text: "概要设计、详细设计要写到什么程度？"
-  link: "/engineering/engineering-design-docs.html"
+  text: "从 0 搭一个可交付的 Spring Boot 多模块工程，骨架里该有哪些东西？"
+  link: "/engineering/engineering-project-scaffold.html"
 next:
   text: "Java 项目的测试怎么写才不白写？"
   link: "/engineering/engineering-testing-strategy.html"

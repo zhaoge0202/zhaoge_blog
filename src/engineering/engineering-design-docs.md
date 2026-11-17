@@ -14,8 +14,8 @@ prev:
   text: "需求调研和可行性分析怎么做到位？"
   link: "/engineering/engineering-requirements-feasibility.html"
 next:
-  text: "前后端联调怎么少返工？"
-  link: "/engineering/engineering-api-contract-testing.html"
+  text: "需求怎么细化成可验收的条目？用户故事和验收标准怎么写？"
+  link: "/engineering/engineering-user-story-ac.html"
 ---
 
 # 概要设计、详细设计要写到什么程度？

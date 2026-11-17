@@ -19,6 +19,7 @@ actions:
   <a href="/database/">数据库</a>
   <a href="/cs-basics/">计算机基础</a>
   <a href="/system-design/">系统设计</a>
+  <a href="/energy/">数字能源</a>
   <a href="/tools/">工具实践</a>
   <a href="/blog/">博客</a>
 </div>

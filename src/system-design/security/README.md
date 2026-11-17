@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "MyBatis 插件机制和分页插件怎么工作？"
-  link: "/system-design/framework/mybatis-plugin-pagination-mechanism.html"
+  text: "跨服务调用的 traceId 怎么串起来？断链了去哪查？"
+  link: "/system-design/spring-cloud/spring-cloud-observability-trace.html"
 next:
   text: "认证和授权有什么区别？"
   link: "/system-design/security/security-authentication-authorization.html"

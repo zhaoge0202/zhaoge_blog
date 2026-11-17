@@ -14,8 +14,8 @@ prev:
   text: "数据质量怎么监控与治理？校验规则和异常排查怎么做？"
   link: "/database/datawarehouse/dw-data-quality.html"
 next:
-  text: "数据开发岗怎么准备面试？从 JD 拆解到项目叙述怎么走？"
-  link: "/database/datawarehouse/dw-interview-playbook.html"
+  text: "Java 业务系统怎么对接数仓？埋点、CDC 和指标回流怎么设计？"
+  link: "/database/datawarehouse/dw-bigdata-java-integration.html"
 ---
 
 # 数仓场景的手撕 SQL 怎么准备？窗口函数和高频题型有哪些套路？
