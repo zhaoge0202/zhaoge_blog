@@ -101,6 +101,12 @@ export default hopeTheme({
       // 拖累首屏 LCP；关闭后 worker 改由 SearchResult 懒加载 chunk 在用户真正打开搜索时才创建，
       // 全文搜索能力不受影响（仍按输入实时返回结果）。
       suggestion: false,
+      // 注意：搜索索引的字段裁剪与中文分词修复不能在插件选项里做。
+      // 插件把 `fields: ["h","t","c"]` 硬编码在 indexOptions 展开之后，此处配 indexOptions 会被覆盖。
+      // 实际处理在 scripts/optimize-search-worker.mjs（build 后处理 worker 产物）：
+      //   - 删掉正文(t)倒排，term 18611 -> 3918，worker 10MB -> 2.3MB（gzip 3.09MB -> 0.77MB）
+      //   - 注入与索引端一致的 Intl.Segmenter 分词，修复中文双字以上词搜不到的问题
+      // 需要保留正文召回时用 `SEARCH_INDEX_CONTENT=1 npm run build`。
       customFields: [
         {
           getter: (page) => toSlimsearchFieldValue(page.frontmatter.category),

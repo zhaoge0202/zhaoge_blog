@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "vuepress dev src --clean-cache --port 3000",
-    "build": "vuepress build src --clean-cache && node scripts/inline-critical-css.mjs",
+    "build": "vuepress build src --clean-cache && node scripts/inline-critical-css.mjs && node scripts/optimize-search-worker.mjs",
     "clean": "rm -rf src/.vuepress/.temp src/.vuepress/.cache src/.vuepress/dist dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
