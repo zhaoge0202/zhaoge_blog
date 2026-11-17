@@ -40,6 +40,16 @@ const navbar = [
         icon: "mdi:shield-check-outline",
         link: "/high-availability/",
       },
+      {
+        text: "工业物联网",
+        icon: "mdi:factory",
+        link: "/iot/",
+      },
+      {
+        text: "工程与交付",
+        icon: "mdi:clipboard-check-outline",
+        link: "/engineering/",
+      },
     ],
   },
   {

@@ -14,8 +14,8 @@ prev:
   text: "容器网络和数据卷怎么选？"
   link: "/tools/docker/docker-network-volume.html"
 next:
-  text: "Git"
-  link: "/tools/git/"
+  text: "Linux"
+  link: "/tools/linux/"
 ---
 
 # Docker Compose 本地联调怎么用？

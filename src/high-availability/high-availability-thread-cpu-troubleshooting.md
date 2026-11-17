@@ -14,8 +14,8 @@ prev:
   text: "Arthas 怎么做线上诊断？"
   link: "/high-availability/high-availability-arthas-diagnostics.html"
 next:
-  text: "工具实践"
-  link: "/tools/"
+  text: "工业物联网"
+  link: "/iot/"
 ---
 
 # 线程飙高、CPU 打满、死锁怎么标准排查？

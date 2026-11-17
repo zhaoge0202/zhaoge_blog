@@ -79,7 +79,11 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - AMQP 模型、Exchange 路由、队列类型与声明边界
 - 可靠性三段、延迟消息与死信治理、线上常见坑
 
-### 5. 请求分发与 Kafka 深挖
+### 5. RocketMQ 存储与语义
+
+- 存储三件套与刷盘复制、事务/顺序消息边界、积压与切换排障
+
+### 6. 请求分发与 Kafka 深挖
 
 - 负载均衡、Kafka 分区与副本、顺序消息
 
@@ -109,6 +113,12 @@ MySQL 索引与事务基础、Redis 缓存基础、RPC / 分布式基础。
 - [RabbitMQ 怎么保证消息不丢、不重复？](./high-performance-rabbitmq-reliability.html) - confirm 与 return、队列类型、ack 与 prefetch 的组合契约。
 - [RabbitMQ 延迟消息和死信队列怎么落地？](./high-performance-rabbitmq-delay-and-dlq.html) - TTL 队头判定的坑、五种延迟方案与重试退避。
 - [RabbitMQ 生产环境最容易踩哪些坑？](./high-performance-rabbitmq-ops-pitfalls.html) - 内存水位、单队列热点、网络分区和 Spring 默认值。
+
+### RocketMQ 存储与语义
+
+- [RocketMQ 的 CommitLog 和 ConsumeQueue 怎么配合？](./high-performance-rocketmq-architecture-storage.html) - 单一日志 + 索引回读、刷盘与复制、主从与自动选主。
+- [RocketMQ 事务消息和顺序消息怎么保证不丢不重？](./high-performance-rocketmq-reliability-transaction.html) - 半消息与回查、MessageGroup 三段对齐、重试死信与幂等边界。
+- [RocketMQ 积压、重复消费怎么排查？](./high-performance-rocketmq-ops-troubleshooting.html) - 位点、页缓存、磁盘与切换，按证据链排障。
 
 ### 请求分发与 Kafka 深挖
 

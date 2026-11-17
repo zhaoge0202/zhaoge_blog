@@ -56,6 +56,8 @@ next:
 - [安全](/system-design/security/)：认证授权、JWT、RBAC
 - [设计基础](/system-design/basis/)：SOLID、模式、接口、分层
 - [系统设计场景](/system-design/case/)：秒杀、短链、订单、Feed、调度、热 key
+- [工业物联网](/iot/)：设备接入链路、Modbus/S7/串口、MQTT 上行与采集数据存储
+- [工程与交付](/engineering/)：需求调研、设计文档、接口契约、测试策略与交付文档
 
 ## 6. 基本功与工具
 

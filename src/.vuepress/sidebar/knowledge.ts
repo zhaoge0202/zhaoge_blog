@@ -798,6 +798,15 @@ export const knowledgeSidebar = {
       ],
     },
     {
+      text: "RocketMQ 存储与语义",
+      collapsible: true,
+      children: [
+        "high-performance-rocketmq-architecture-storage",
+        "high-performance-rocketmq-reliability-transaction",
+        "high-performance-rocketmq-ops-troubleshooting",
+      ],
+    },
+    {
       text: "请求分发与 Kafka 深挖",
       collapsible: true,
       children: [
@@ -873,6 +882,56 @@ export const knowledgeSidebar = {
       ],
     },
   ],
+  "/iot/": [
+    "",
+    {
+      text: "接入架构",
+      collapsible: true,
+      children: ["iot-device-access-overview"],
+    },
+    {
+      text: "现场通信",
+      collapsible: true,
+      children: [
+        "iot-modbus-protocol",
+        "iot-siemens-s7-protocol",
+        "iot-serial-rs232-rs485",
+      ],
+    },
+    {
+      text: "可靠性与上行",
+      collapsible: true,
+      children: [
+        "iot-frame-parsing-reliability",
+        "iot-mqtt-practice",
+        "iot-time-series-storage",
+      ],
+    },
+  ],
+  "/engineering/": [
+    "",
+    {
+      text: "需求与设计",
+      collapsible: true,
+      children: [
+        "engineering-requirements-feasibility",
+        "engineering-design-docs",
+      ],
+    },
+    {
+      text: "联调与质量",
+      collapsible: true,
+      children: [
+        "engineering-api-contract-testing",
+        "engineering-testing-strategy",
+      ],
+    },
+    {
+      text: "交付",
+      collapsible: true,
+      children: ["engineering-delivery-docs"],
+    },
+  ],
   "/tools/": [
     "",
     {
@@ -885,6 +944,18 @@ export const knowledgeSidebar = {
         "docker-dockerfile-cache",
         "docker-network-volume",
         "docker-compose",
+      ],
+    },
+    {
+      text: "Linux",
+      prefix: "linux/",
+      collapsible: true,
+      children: [
+        "",
+        "linux-systemd-deploy",
+        "linux-process-diagnosis",
+        "linux-network-troubleshooting",
+        "linux-shell-troubleshooting",
       ],
     },
     {

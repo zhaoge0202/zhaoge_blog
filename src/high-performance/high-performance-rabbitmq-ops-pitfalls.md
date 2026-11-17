@@ -14,8 +14,8 @@ prev:
   text: "RabbitMQ 延迟消息和死信队列怎么落地？"
   link: "/high-performance/high-performance-rabbitmq-delay-and-dlq.html"
 next:
-  text: "负载均衡怎么做？四层、七层和客户端 LB 有什么区别？"
-  link: "/high-performance/high-performance-load-balancing.html"
+  text: "RocketMQ 的 CommitLog 和 ConsumeQueue 怎么配合？"
+  link: "/high-performance/high-performance-rocketmq-architecture-storage.html"
 ---
 
 # RabbitMQ 生产环境最容易踩哪些坑？

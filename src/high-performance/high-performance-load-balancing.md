@@ -11,8 +11,8 @@ tag:
   - "高频"
   - "基础"
 prev:
-  text: "RabbitMQ 生产环境最容易踩哪些坑？"
-  link: "/high-performance/high-performance-rabbitmq-ops-pitfalls.html"
+  text: "RocketMQ 积压、重复消费怎么排查？"
+  link: "/high-performance/high-performance-rocketmq-ops-troubleshooting.html"
 next:
   text: "Kafka 分区和消费组如何决定吞吐与顺序？"
   link: "/high-performance/high-performance-kafka-partition-consumer-group.html"

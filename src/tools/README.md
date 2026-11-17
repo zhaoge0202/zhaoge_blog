@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "线程飙高、CPU 打满、死锁怎么标准排查？"
-  link: "/high-availability/high-availability-thread-cpu-troubleshooting.html"
+  text: "交付文档到底要交哪些？"
+  link: "/engineering/engineering-delivery-docs.html"
 next:
   text: "Docker"
   link: "/tools/docker/"
@@ -15,6 +15,7 @@ next:
 # 工具实践
 
 - [Docker](./docker/)
+- [Linux](./linux/)
 - [Git](./git/)
 - [Maven](./maven/)
 - [Gradle](./gradle/)

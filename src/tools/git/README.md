@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "Docker Compose 本地联调怎么用？"
-  link: "/tools/docker/docker-compose.html"
+  text: "磁盘满、日志滚爆、定时任务不跑怎么处理？"
+  link: "/tools/linux/linux-shell-troubleshooting.html"
 next:
   text: "本地提交怎么撤销和整理？reset、amend 和 cherry-pick 怎么用？"
   link: "/tools/git/git-commit-undo.html"
