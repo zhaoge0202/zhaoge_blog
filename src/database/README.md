@@ -17,6 +17,7 @@ editLink: false
 - [SQL](./sql/)：查询执行、连接、子查询、窗口函数和写法优化。
 - [Elasticsearch](./elasticsearch/)：倒排索引、分词映射、查询打分、聚合和集群读写。
 - [MongoDB](./mongodb/)：文档模型、索引、聚合管道、副本集和分片。
+- [数据仓库](./datawarehouse/)：分层建模、指标口径、离线与实时管道、质量治理和性能优化。
 
 ## 当前重点文章
 
@@ -31,6 +32,9 @@ editLink: false
 - [如何保证缓存和数据库一致性？](./redis/redis-cache-consistency.html)
 - [MongoDB 文档模型怎么设计？和 MySQL 怎么选？](./mongodb/mongodb-data-model.html)
 - [MongoDB 索引怎么设计？查询为什么没走索引？](./mongodb/mongodb-index-query.html)
+- [数据仓库为什么要分层？ODS、DWD、DWS、ADS 各管什么？](./datawarehouse/dw-overview.html)
+- [离线数据管道怎么设计和运维？调度、幂等和重跑怎么做？](./datawarehouse/dw-offline-pipeline.html)
+- [数仓任务又慢又贵怎么优化？数据倾斜和小文件怎么治？](./datawarehouse/dw-skew-and-tuning.html)
 
 ## 后续计划
 

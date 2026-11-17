@@ -628,6 +628,39 @@ export const knowledgeSidebar = {
         },
       ],
     },
+    {
+      text: "数据仓库",
+      prefix: "datawarehouse/",
+      collapsible: true,
+      children: [
+        "",
+        {
+          text: "分层与建模",
+          collapsible: true,
+          children: [
+            "dw-overview",
+            "dw-dimensional-modeling",
+            "dw-scd-zip-table",
+            "dw-metric-system",
+          ],
+        },
+        {
+          text: "管道与实时链路",
+          collapsible: true,
+          children: ["dw-offline-pipeline", "dw-realtime-pipeline"],
+        },
+        {
+          text: "性能与质量",
+          collapsible: true,
+          children: ["dw-skew-and-tuning", "dw-data-quality"],
+        },
+        {
+          text: "面试实战",
+          collapsible: true,
+          children: ["dw-sql-patterns", "dw-interview-playbook"],
+        },
+      ],
+    },
   ],
   "/system-design/": [
     "",

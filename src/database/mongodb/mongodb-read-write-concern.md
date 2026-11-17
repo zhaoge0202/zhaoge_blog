@@ -13,8 +13,8 @@ prev:
   text: "MongoDB 副本集和分片集群怎么理解？"
   link: "/database/mongodb/mongodb-replica-sharding.html"
 next:
-  text: "MongoDB"
-  link: "/database/mongodb/"
+  text: "数据仓库"
+  link: "/database/datawarehouse/"
 ---
 
 # MongoDB 读写关注和因果一致性怎么不答飘？
