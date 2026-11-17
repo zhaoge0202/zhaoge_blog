@@ -23,7 +23,7 @@ actions:
   <a href="/blog/">博客</a>
 </div>
 
-> 不照搬资料：每个结论都交叉验证过，过时和讲错的地方在正文里直接点出来。
+> 从原理到实践：结合资料与示例解释技术取舍，标明版本和适用边界，持续校验与修订。
 
 ## 精选题目
 
@@ -52,5 +52,5 @@ actions:
 
 ## 最近博客
 
-- [从资料汇总转向内容纠偏](./blog/essays/2026-06-16-note-1.html)：这个站点的价值不是简单聚合资料，而是筛选、纠错、解释取舍并沉淀自己的判断。
-- [把本地 Markdown 媒体同步接到 R2 的一次实战](./blog/practice/2026-06-18-r2-media-sync-tutorial.html)：工具链要真的能跑通，卡住你的往往不是脚本，而是凭据链路。
+- [大厂 AI 后端面经复盘](./blog/practice/2026-11-11-ai-gateway-agent-context-interview.html)：从网关协议转换、工具适配与上下文治理，走到大规模 Excel 检索场景的工程设计。
+- [读《pi 的设计艺术》](./blog/practice/2026-10-29-pi-agent-runtime-architecture.html)：梳理 Coding Agent 运行时的分层架构、扩展机制与工程取舍。

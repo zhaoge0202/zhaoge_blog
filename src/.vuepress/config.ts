@@ -18,7 +18,7 @@ export default defineUserConfig({
   lang: "zh-CN",
   title: "拾级",
   description:
-    "拾级 —— 面向 3-5 年 Java 后端工程师的进阶知识库，按知识域讲透高频题、原理与项目取舍，并保留独立博客记录实战与复盘。",
+    "拾级 —— 面向 Java 后端开发者的进阶知识库，按知识域讲透高频题、原理与项目取舍，并保留独立博客记录实战与复盘。",
   head: [
     // 提前建立到第三方 CDN 的连接，省掉首屏 icon / logo 的 DNS+TLS 建链时间
     [

@@ -1,17 +1,17 @@
 ---
 title: "学习路线"
-description: "把拾级知识库按 3-5 年 Java 后端面试节奏串成可执行路线。"
+description: "按知识依赖、能力目标与项目实践，把拾级知识库串成可执行路线。"
 article: false
 breadcrumb: true
 editLink: false
 next:
-  text: "3-5 年 Java 后端四周怎么复习？"
+  text: "Java 后端四周怎么复习？"
   link: "/interview-preparation/interview-prep-four-week-plan.html"
 ---
 
 # 学习路线
 
-这份路线服务一个目标：**3-5 年 Java 后端面试能讲清原理、边界和项目取舍**。不是把所有文章读完，而是按主线推进。
+这份路线服务一个目标：**在 Java 后端学习与面试中讲清原理、边界和项目取舍**。根据已有基础和目标岗位选择起点，沿知识依赖逐步推进。
 
 ## 总览
 

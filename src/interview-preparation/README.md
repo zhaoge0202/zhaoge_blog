@@ -5,7 +5,7 @@ article: false
 breadcrumb: true
 editLink: false
 next:
-  text: "3-5 年 Java 后端面试到底该怎么准备？"
+  text: "Java 后端面试到底该怎么准备？"
   link: "/interview-preparation/interview-prep-overview.html"
 ---
 
@@ -25,8 +25,8 @@ next:
 
 ## 题目列表
 
-- [3-5 年 Java 后端面试到底该怎么准备？](./interview-prep-overview.html)
-- [3-5 年 Java 后端四周怎么复习？](./interview-prep-four-week-plan.html)
+- [Java 后端面试到底该怎么准备？](./interview-prep-overview.html)
+- [Java 后端四周怎么复习？](./interview-prep-four-week-plan.html)
 - [简历怎么写才不被秒刷？](./interview-prep-resume.html)
 - [自我介绍怎么说才不像背书？](./interview-prep-self-intro.html)
 - [项目经验怎么用 STAR 讲清楚？](./interview-prep-project-star.html)

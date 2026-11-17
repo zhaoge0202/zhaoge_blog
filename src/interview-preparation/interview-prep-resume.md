@@ -10,7 +10,7 @@ tag:
   - "高频"
   - "项目实战"
 prev:
-  text: "3-5 年 Java 后端四周怎么复习？"
+  text: "Java 后端四周怎么复习？"
   link: "/interview-preparation/interview-prep-four-week-plan.html"
 next:
   text: "自我介绍怎么说才不像背书？"
