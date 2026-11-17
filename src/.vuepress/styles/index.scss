@@ -23,6 +23,7 @@ body {
   --home-border: rgba(20, 80, 160, 0.16);
   --home-muted: #5c6b7a;
   --home-accent-soft: rgba(17, 85, 255, 0.1);
+  --home-shadow: 0 8px 24px rgba(20, 40, 80, 0.12);
 }
 
 h1,
@@ -223,6 +224,7 @@ pre {
   --home-border: rgba(120, 160, 220, 0.16);
   --home-muted: rgba(180, 200, 230, 0.75);
   --home-accent-soft: rgba(60, 158, 255, 0.16);
+  --home-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] .question-radar a,

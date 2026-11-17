@@ -99,11 +99,11 @@ onMounted(() => {
   align-items: center;
   gap: 6px;
   padding: 0.55rem 0.9rem;
-  border: 1px solid var(--vp-c-border);
+  border: 1px solid var(--home-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--home-surface-strong);
   color: var(--vp-c-text);
-  box-shadow: 0 8px 24px rgba(52, 39, 28, 0.12);
+  box-shadow: var(--home-shadow);
   cursor: pointer;
   transition:
     transform 0.2s ease,
