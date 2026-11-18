@@ -5,7 +5,16 @@ import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
 const require = createRequire(import.meta.url);
-const dist = fileURLToPath(new URL("../../dist", import.meta.url));
+
+// 私有构建：把 src/private/ 一并打进单独的 dist-private/，用于部署到
+// 「带访问控制」的私有站（Cloudflare Access / 内网），而不是公开的 GitHub Pages。
+const isPrivateBuild = process.env.VUEPRESS_PRIVATE === "1";
+const dist = fileURLToPath(
+  new URL(
+    isPrivateBuild ? "../../dist-private" : "../../dist",
+    import.meta.url,
+  ),
+);
 const lazyMermaidComponentPath = fileURLToPath(
   new URL("./components/LazyMermaid.vue", import.meta.url),
 );
@@ -34,7 +43,13 @@ export default defineUserConfig({
       { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossorigin: "" },
     ],
     ["link", { rel: "preconnect", href: "https://media.zhaoge.si" }],
-    ["meta", { name: "robots", content: "all" }],
+    [
+      "meta",
+      {
+        name: "robots",
+        content: isPrivateBuild ? "noindex, nofollow, noarchive" : "all",
+      },
+    ],
     ["meta", { name: "author", content: "zhaoge" }],
     [
       "meta",
@@ -46,14 +61,18 @@ export default defineUserConfig({
     ],
     ["meta", { name: "mobile-web-app-capable", content: "yes" }],
   ],
-  // 本地私有笔记（src/private/，已 gitignore）只给 `npm run dev` 看。
-  // 构建时一律排除：即使本地存在这些文件，产物里也不会有它们，
+  // 本地私有笔记（src/private/，已 gitignore）默认只给 `npm run dev` 看。
+  // 公开构建一律排除：即使本地存在这些文件，dist/ 里也不会有它们，
   // 避免「本地构建后手动上传 dist」这类路径把私密内容带出去。
+  // 想让私有笔记出一个能线上访问的版本，走 `npm run build:private`
+  // （产物在 dist-private/，必须部署到带访问控制的私有站）。
   pagePatterns: [
     "**/*.md",
     "!.vuepress",
     "!node_modules",
-    ...(process.env.NODE_ENV === "production" ? ["!private/**"] : []),
+    ...(process.env.NODE_ENV === "production" && !isPrivateBuild
+      ? ["!private/**"]
+      : []),
   ],
   theme,
   bundler: viteBundler({
