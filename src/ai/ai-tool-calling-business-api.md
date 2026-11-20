@@ -11,11 +11,15 @@ tag:
   - "原理深入"
   - "进阶"
 prev:
-  text: "大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？"
-  link: "/ai/ai-streaming-sse-backend.html"
+  {
+    text: "大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？",
+    link: "/ai/ai-streaming-sse-backend.html",
+  }
 next:
-  text: "模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？"
-  link: "/ai/ai-async-task-pipeline.html"
+  {
+    text: "模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？",
+    link: "/ai/ai-async-task-pipeline.html",
+  }
 ---
 
 # Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？

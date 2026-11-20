@@ -11,11 +11,11 @@ tag:
   - "体系化"
   - "高频"
 prev:
-  text: "Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？"
-  link: "/ai/ai-tool-calling-business-api.html"
-next:
-  text: "AI 功能怎么灰度、怎么评测、怎么兜底？"
-  link: "/ai/ai-feature-rollout-guard.html"
+  {
+    text: "Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？",
+    link: "/ai/ai-tool-calling-business-api.html",
+  }
+next: { text: "AI 功能怎么灰度、怎么评测、怎么兜底？", link: "/ai/ai-feature-rollout-guard.html" }
 ---
 
 # 模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？

@@ -11,11 +11,11 @@ tag:
   - "项目实战"
   - "进阶"
 prev:
-  text: "模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？"
-  link: "/ai/ai-async-task-pipeline.html"
-next:
-  text: "AI 编程"
-  link: "/ai-coding/"
+  {
+    text: "模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？",
+    link: "/ai/ai-async-task-pipeline.html",
+  }
+next: { text: "Java 工单 Agent 的接口与模块应怎样划分？", link: "/ai/ai-agent-java-project.html" }
 ---
 
 # AI 功能怎么灰度、怎么评测、怎么兜底？

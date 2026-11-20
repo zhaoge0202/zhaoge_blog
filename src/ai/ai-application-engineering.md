@@ -10,11 +10,11 @@ tag:
   - "项目实战"
   - "体系化"
 prev:
-  text: "MCP 工具不出现、调用超时和重复执行时怎么排查？"
-  link: "/ai/ai-mcp-troubleshooting.html"
-next:
-  text: "Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？"
-  link: "/ai/ai-java-integration-stack.html"
+  {
+    text: "MCP 工具不出现、调用超时和重复执行时怎么排查？",
+    link: "/ai/ai-mcp-troubleshooting.html",
+  }
+next: { text: "模型服务怎样部署，并验证容量与过载行为？", link: "/ai/ai-model-serving.html" }
 ---
 
 # AI 应用工程化、网关和成本怎么控？

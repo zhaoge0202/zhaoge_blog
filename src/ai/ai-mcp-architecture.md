@@ -9,7 +9,11 @@ category:
 tag:
   - "必会"
   - "体系化"
-prev: { text: "Agent、工具调用、多轮编排怎么搭？", link: "/ai/ai-agent-tools.html" }
+prev:
+  {
+    text: "接入第三方工具和 Skill 后，怎样管理版本、权限与供应链？",
+    link: "/ai/ai-agent-tool-supply-chain.html",
+  }
 next:
   { text: "MCP 的 Tools、Resources、Prompts 应该怎么区分？", link: "/ai/ai-mcp-primitives.html" }
 ---

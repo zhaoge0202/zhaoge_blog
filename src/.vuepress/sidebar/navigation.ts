@@ -1,10 +1,54 @@
 export const navigationSidebar = {
   "/ai/": [
     "",
-    "ai-llm-basis",
-    "ai-prompt-structured-output",
-    "ai-rag",
-    "ai-agent-tools",
+    {
+      text: "模型基础与输出",
+      collapsible: true,
+      children: [
+        "ai-llm-basis",
+        "ai-transformer-attention",
+        "ai-llm-inference-latency",
+        "ai-prompt-structured-output",
+        "ai-fine-tuning-decision",
+        "ai-fine-tuning-data-evaluation",
+      ],
+    },
+    {
+      text: "RAG 与证据处理",
+      collapsible: true,
+      children: [
+        "ai-rag",
+        "ai-embedding-reranker",
+        "ai-rag-document-parsing",
+        "ai-rag-table-evidence",
+        "ai-rag-visual-evidence",
+        "ai-rag-retrieval-diagnosis",
+        "ai-rag-index-lifecycle",
+      ],
+    },
+    {
+      text: "Agent 运行与治理",
+      collapsible: true,
+      children: [
+        "ai-agent-tools",
+        "ai-agent-runtime-loop",
+        "ai-agent-context-engineering",
+        "ai-agent-memory",
+        "ai-agent-workflow-recovery",
+        "ai-agent-skills-harness",
+        "ai-agent-coordination",
+        "ai-agent-evaluation",
+      ],
+    },
+    {
+      text: "Agent 执行安全",
+      collapsible: true,
+      children: [
+        "ai-agent-prompt-injection",
+        "ai-agent-sandbox-isolation",
+        "ai-agent-tool-supply-chain",
+      ],
+    },
     {
       text: "MCP 协议与工程实践",
       collapsible: true,
@@ -18,16 +62,28 @@ export const navigationSidebar = {
         "ai-mcp-troubleshooting",
       ],
     },
-    "ai-application-engineering",
     {
       text: "AI 能力接入业务系统",
       collapsible: true,
       children: [
+        "ai-application-engineering",
+        "ai-model-serving",
+        "ai-agent-observability",
         "ai-java-integration-stack",
         "ai-streaming-sse-backend",
         "ai-tool-calling-business-api",
         "ai-async-task-pipeline",
         "ai-feature-rollout-guard",
+      ],
+    },
+    {
+      text: "Java 应用设计",
+      collapsible: true,
+      children: [
+        "ai-agent-java-project",
+        "ai-agent-java-knowledge-tools",
+        "ai-agent-java-approval-recovery",
+        "ai-agent-java-evaluation",
       ],
     },
   ],
