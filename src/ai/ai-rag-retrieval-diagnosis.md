@@ -15,7 +15,10 @@ prev:
     link: "/ai/ai-rag-visual-evidence.html",
   }
 next:
-  { text: "知识库改版或撤权后，RAG 为什么还会答旧内容？", link: "/ai/ai-rag-index-lifecycle.html" }
+  {
+    text: "向量索引加了租户过滤，为什么凑不齐 Top K？",
+    link: "/ai/ai-pgvector-filtered-recall.html",
+  }
 ---
 
 # RAG 答错了，怎么区分召回、排序和生成问题？

@@ -1,6 +1,6 @@
 {
   "$comment": "自动生成的内容清单快照，请勿手改。新增/删除笔记后运行 `npm run manifest:update` 刷新。",
-  "count": 507,
+  "count": 510,
   "files": [
     "src/README.md",
     "src/about-the-author/README.md",
@@ -35,7 +35,9 @@
     "src/ai/ai-agent-workflow-recovery.md",
     "src/ai/ai-application-engineering.md",
     "src/ai/ai-async-task-pipeline.md",
+    "src/ai/ai-business-model-selection.md",
     "src/ai/ai-embedding-reranker.md",
+    "src/ai/ai-enterprise-knowledge-base-design.md",
     "src/ai/ai-eval-ci-release-gates.md",
     "src/ai/ai-feature-rollout-guard.md",
     "src/ai/ai-fine-tuning-data-evaluation.md",
@@ -53,6 +55,7 @@
     "src/ai/ai-mcp-troubleshooting.md",
     "src/ai/ai-model-serving.md",
     "src/ai/ai-natural-language-analytics.md",
+    "src/ai/ai-pgvector-filtered-recall.md",
     "src/ai/ai-prompt-structured-output.md",
     "src/ai/ai-rag-document-parsing.md",
     "src/ai/ai-rag-graph-retrieval.md",

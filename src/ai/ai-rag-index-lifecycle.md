@@ -11,8 +11,8 @@ tag:
   - "进阶"
 prev:
   {
-    text: "RAG 答错了，怎么区分召回、排序和生成问题？",
-    link: "/ai/ai-rag-retrieval-diagnosis.html",
+    text: "向量索引加了租户过滤，为什么凑不齐 Top K？",
+    link: "/ai/ai-pgvector-filtered-recall.html",
   }
 next:
   {

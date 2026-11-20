@@ -14,6 +14,31 @@ next:
 面向后端开发者，先理解模型怎样处理输入，再学习证据、Agent运行和业务接入。
 推荐按“模型基础 → RAG与证据 → Agent运行 → 执行安全 → MCP → 应用工程 → Java设计”阅读，也可以按具体问题查阅。
 
+## 面试怎么复习
+
+用这 12 道题做自测。先用自己的话答一遍，再用后半句检查能不能说清工程取舍。按目标岗位选择知识库或 Agent 方向加练。
+
+### AI 应用基础
+
+1. **一次模型请求要给输入和输出各留多少 Token？** 追问检索结果、历史消息和工具定义都要怎样计入预算。 [模型调用与上下文](./ai-llm-basis.html)
+2. **Java 业务服务怎样选择接入方式？** 追问供应商换版时，哪些接口要由自己的应用层掌握。 [Java 接入选型](./ai-java-integration-stack.html)
+3. **用户等不到第一个字，从哪里开始查？** 追问怎样分开测量服务端排队、模型首字和下游缓冲。 [推理耗时](./ai-llm-inference-latency.html) · [SSE 排障](./ai-streaming-sse-backend.html)
+4. **新模型单次调用更便宜，值得替换吗？** 追问用同一批工单怎样比较成功率、重试开销和每次成功的成本。 [业务模型选型](./ai-business-model-selection.html)
+
+### RAG 与知识库
+
+5. **怎样设计一个跨团队的企业知识库？** 追问文档规模怎样影响容量，答案怎样引用到原文，读权限由谁决定。 [企业知识库系统设计](./ai-enterprise-knowledge-base-design.html)
+6. **检索已经命中，为什么还是答错？** 追问怎样验证例外条款是否进入候选、重排结果和模型上下文。 [RAG 故障定位](./ai-rag-retrieval-diagnosis.html)
+7. **租户明明有足够多的文档，为什么向量查询只返回几条？** 追问怎样用精确近邻和执行计划验证召回损失。 [向量索引调优](./ai-pgvector-filtered-recall.html)
+8. **索引更新延迟时，怎样让撤权仍然生效？** 追问旧索引、答案缓存和引用下载各在哪一层复核授权。 [知识库更新与撤权](./ai-rag-index-lifecycle.html)
+
+### Agent 与上线
+
+9. **模型给出的工具参数已经合法，后端还要检查什么？** 追问谁可以操作这笔业务，用户什么时候要确认。 [业务工具调用](./ai-tool-calling-business-api.html)
+10. **用户确认后服务崩溃，怎样恢复且避免重复写入？** 追问如何区分调用还没发生与调用结果未知。 [Java Agent 的审批与恢复](./ai-agent-java-approval-recovery.html)
+11. **远程 MCP 已经拿到 Token，为什么还可能越权？** 追问令牌受众、工具权限和业务资源权限分别由谁验证。 [MCP 授权](./ai-mcp-authorization.html)
+12. **新版本平均分更高，为什么 CI 还要拦住？** 追问怎么用业务终态和关键分组判断能不能发布。 [评测发布门槛](./ai-eval-ci-release-gates.html)
+
 ## 模型基础与输出
 
 先理解Token、注意力和推理，再判断输出约束及微调的适用条件。
@@ -36,6 +61,7 @@ next:
 - [自然语言查数怎样对齐指标口径、权限和结果？](./ai-natural-language-analytics.html) - 从一句业务问题生成受控查询计划，用固定数据核对权限、时区和聚合结果。
 - [图片和图表怎样进入知识库，回答时如何回查原图？](./ai-rag-visual-evidence.html) - 区分文字识别、视觉描述与图文检索，保留能回查的原图证据。
 - [RAG 答错了，怎么区分召回、排序和生成问题？](./ai-rag-retrieval-diagnosis.html) - 用固定问集和黄金证据定位检索、上下文与生成失败。
+- [向量索引加了租户过滤，为什么凑不齐 Top K？](./ai-pgvector-filtered-recall.html) - 用相同租户条件比较精确近邻和近似索引，检查候选数量、召回和查询计划。
 - [知识库改版或撤权后，RAG 为什么还会答旧内容？](./ai-rag-index-lifecycle.html) - 用文档版本、索引发布和权限复核解释知识库更新链路。
 - [GraphRAG 什么时候值得用，怎样验证图检索带来的收益？](./ai-rag-graph-retrieval.html) - 用多跳证据和固定对照理解图检索的收益、更新成本与授权边界。
 
@@ -84,6 +110,7 @@ next:
 - [Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？](./ai-java-integration-stack.html) - 从三条接入路线、抽象层设计到超时重试与密钥合规，讲清 AI 能力在 Java 侧的落地。
 - [大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？](./ai-streaming-sse-backend.html) - 从 SSE 协议、两种 Spring 实现到六层缓冲的排障顺序，讲清流式输出的落地与坑。
 - [两个模型都说兼容，网关切流量为什么会失败？](./ai-llm-provider-contracts.html) - 用契约验收模型能力、流式切换和每次调用的用量。
+- [业务模型怎么选，什么情况下值得换？](./ai-business-model-selection.html) - 在同一批工单上比较成功率、响应速度和成功完成任务的成本。
 - [实时语音 Agent 怎样降低首音延迟，并处理打断后的旧音频？](./ai-realtime-voice-agent.html) - 量出用户听到的第一声，让打断、取消和迟到音频可追踪。
 - [Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？](./ai-tool-calling-business-api.html) - 从身份、校验、写操作确认到幂等与审计，讲清工具调用接业务接口的工程约束。
 - [模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？](./ai-async-task-pipeline.html) - 从任务状态机、租约与幂等到分段超时与预算，讲清 AI 长任务的异步工程设计。
@@ -92,9 +119,10 @@ next:
 
 ## Java 应用设计
 
-通过接口、工具、状态、事务和测试片段，将前面的原则放回Java应用设计。
+用工单 Agent 练习接口、工具、审批和测试，再用企业知识库串起容量估算、文档授权和上线验收。
 
 - [Java 工单 Agent 的接口与模块应怎样划分？](./ai-agent-java-project.html) - 用工单场景说明Java应用中的模型、工具、状态与接口边界。
 - [Java Agent 怎样组织知识证据与工具调用？](./ai-agent-java-knowledge-tools.html) - 从一轮工单查询说明证据注入、调用标识和Java工具执行边界。
 - [Java Agent 的审批与恢复怎样落到状态和事务？](./ai-agent-java-approval-recovery.html) - 以状态表和事务边界解释Java任务的可信确认、恢复与业务幂等。
 - [Java Agent 的测试怎样分层并覆盖关键故障？](./ai-agent-java-evaluation.html) - 围绕模型替身、接口和业务终态设计Java应用的分层验收。
+- [怎样设计一个能撤权、可追溯的企业知识库？](./ai-enterprise-knowledge-base-design.html) - 从面试题的规模和目标出发，设计入库、问答、撤权与故障验收链路。

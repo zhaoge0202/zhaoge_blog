@@ -5,7 +5,10 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  { text: "Java Agent 的测试怎样分层并覆盖关键故障？", link: "/ai/ai-agent-java-evaluation.html" }
+  {
+    text: "怎样设计一个能撤权、可追溯的企业知识库？",
+    link: "/ai/ai-enterprise-knowledge-base-design.html",
+  }
 next:
   text: "如何用 AI 做代码审查但不放弃工程判断？"
   link: "/ai-coding/ai-coding-code-review.html"

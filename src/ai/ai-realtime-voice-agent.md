@@ -9,8 +9,7 @@ category:
 tag:
   - "项目实战"
   - "排障"
-prev:
-  { text: "两个模型都说兼容，网关切流量为什么会失败？", link: "/ai/ai-llm-provider-contracts.html" }
+prev: { text: "业务模型怎么选，什么情况下值得换？", link: "/ai/ai-business-model-selection.html" }
 next:
   {
     text: "Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？",

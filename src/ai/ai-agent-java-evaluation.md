@@ -14,7 +14,11 @@ prev:
     text: "Java Agent 的审批与恢复怎样落到状态和事务？",
     link: "/ai/ai-agent-java-approval-recovery.html",
   }
-next: { text: "AI 编程", link: "/ai-coding/" }
+next:
+  {
+    text: "怎样设计一个能撤权、可追溯的企业知识库？",
+    link: "/ai/ai-enterprise-knowledge-base-design.html",
+  }
 ---
 
 # Java Agent 的测试怎样分层并覆盖关键故障？

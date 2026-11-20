@@ -14,11 +14,7 @@ prev:
     text: "大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？",
     link: "/ai/ai-streaming-sse-backend.html",
   }
-next:
-  {
-    text: "实时语音 Agent 怎样降低首音延迟，并处理打断后的旧音频？",
-    link: "/ai/ai-realtime-voice-agent.html",
-  }
+next: { text: "业务模型怎么选，什么情况下值得换？", link: "/ai/ai-business-model-selection.html" }
 ---
 
 # 两个模型都说兼容，网关切流量为什么会失败？
