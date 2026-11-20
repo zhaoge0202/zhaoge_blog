@@ -13,8 +13,8 @@ prev:
   text: "RAG 从切分到召回怎么做才不翻车？"
   link: "/ai/ai-rag.html"
 next:
-  text: "AI 应用工程化、网关和成本怎么控？"
-  link: "/ai/ai-application-engineering.html"
+  text: "MCP 解决什么问题，和 Function Calling、Agent、Skill 有什么关系？"
+  link: "/ai/ai-mcp-architecture.html"
 ---
 
 # Agent、工具调用、多轮编排怎么搭？
@@ -96,7 +96,9 @@ flowchart TD
 
 MCP（模型上下文协议）是 Anthropic 在 2024 年 11 月推出的一套通信协议，底层用 JSON-RPC 2.0。核心角色三个：Host（AI 应用，如 Cursor）、Client（Host 里负责跟 Server 通信的那层）、Server（把能力封装出去）。一个 Host 可以连多个 Server，Server 后面再接数据库、文件、第三方 API。
 
-这里要分清一个容易混的点：**JSON Schema 是数据格式，MCP 是通信协议**。MCP Server 对外暴露工具时，内部照样用 JSON Schema 描述参数——MCP 没有取代 Schema，只是在它外面包了一层标准接入。传输方式按场景选：本地工具、个人用，优先 stdio（把 Server 当子进程，走标准输入输出）；团队服务、远程 API、多用户，优先 Streamable HTTP。stdio 有个经典坑：别往 stdout 打调试日志，stdout 是 JSON-RPC 消息通道，一句 `print()` 就能把消息流污染掉导致断连，日志要写到 stderr 或文件里。
+这里要分清一个容易混的点：**JSON Schema 描述数据结构与约束，MCP 规定通信契约**。MCP Server 对外暴露工具时，内部照样用 JSON Schema 描述参数——MCP 没有取代 Schema，只是在它外面包了一层标准接入。传输方式按场景选：本地工具、个人用，优先 stdio（把 Server 当子进程，走标准输入输出）；团队服务、远程 API、多用户，优先 Streamable HTTP。stdio 有个经典坑：别往 stdout 打调试日志，stdout 是 JSON-RPC 消息通道，一句 `print()` 就能把消息流污染掉导致断连，日志要写到 stderr 或文件里。
+
+这部分只建立分层概念，完整学习路径从 [MCP 接入架构](./ai-mcp-architecture.html) 开始。`2026-07-28` 规范已改为逐请求元数据，不能把旧教程的初始化握手、会话和 SSE 续传机制套到所有版本上，具体见 [MCP 新旧协议兼容](./ai-mcp-lifecycle.html)。
 
 ## 记忆：短期上下文 vs 长期记忆
 

@@ -5,6 +5,19 @@ export const navigationSidebar = {
     "ai-prompt-structured-output",
     "ai-rag",
     "ai-agent-tools",
+    {
+      text: "MCP 协议与工程实践",
+      collapsible: true,
+      children: [
+        "ai-mcp-architecture",
+        "ai-mcp-primitives",
+        "ai-mcp-lifecycle",
+        "ai-mcp-transports",
+        "ai-mcp-authorization",
+        "ai-mcp-java-server",
+        "ai-mcp-troubleshooting",
+      ],
+    },
     "ai-application-engineering",
     {
       text: "AI 能力接入业务系统",

@@ -1,6 +1,6 @@
 {
   "$comment": "自动生成的内容清单快照，请勿手改。新增/删除笔记后运行 `npm run manifest:update` 刷新。",
-  "count": 466,
+  "count": 473,
   "files": [
     "src/README.md",
     "src/about-the-author/README.md",
@@ -20,6 +20,13 @@
     "src/ai/ai-feature-rollout-guard.md",
     "src/ai/ai-java-integration-stack.md",
     "src/ai/ai-llm-basis.md",
+    "src/ai/ai-mcp-architecture.md",
+    "src/ai/ai-mcp-authorization.md",
+    "src/ai/ai-mcp-java-server.md",
+    "src/ai/ai-mcp-lifecycle.md",
+    "src/ai/ai-mcp-primitives.md",
+    "src/ai/ai-mcp-transports.md",
+    "src/ai/ai-mcp-troubleshooting.md",
     "src/ai/ai-prompt-structured-output.md",
     "src/ai/ai-rag.md",
     "src/ai/ai-streaming-sse-backend.md",

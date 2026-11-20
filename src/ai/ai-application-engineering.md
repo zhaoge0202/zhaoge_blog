@@ -10,8 +10,8 @@ tag:
   - "项目实战"
   - "体系化"
 prev:
-  text: "Agent、工具调用、多轮编排怎么搭？"
-  link: "/ai/ai-agent-tools.html"
+  text: "MCP 工具不出现、调用超时和重复执行时怎么排查？"
+  link: "/ai/ai-mcp-troubleshooting.html"
 next:
   text: "Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？"
   link: "/ai/ai-java-integration-stack.html"

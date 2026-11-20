@@ -1,6 +1,6 @@
 ---
 title: "AI 应用开发"
-description: "AI 应用开发专题，讲后端如何把大模型接进业务：Prompt、RAG、Agent，到 Java 侧接入与上线兜底。"
+description: "AI 应用开发专题，讲后端如何把大模型接进业务：Prompt、RAG、Agent、MCP，到 Java 侧接入与上线兜底。"
 article: false
 breadcrumb: true
 editLink: false
@@ -11,7 +11,7 @@ next:
 
 # AI 应用开发
 
-后端工程师怎么把大模型接进业务：从 Prompt、RAG 到 Agent 与工程落地，再到把 AI 能力真正接进 Java 业务系统的那一段——流式输出、工具调用、异步长任务、灰度与兜底。作为知识库的外延方向，单独沉淀。
+后端工程师怎么把大模型接进业务：从 Prompt、RAG 到 Agent、MCP 与工程落地，再到把 AI 能力真正接进 Java 业务系统的那一段——流式输出、工具调用、异步长任务、灰度与兜底。作为知识库的外延方向，单独沉淀。
 
 ## 题目列表
 
@@ -20,6 +20,19 @@ next:
 - [RAG 从切分到召回怎么做才不翻车？](./ai-rag.html) - 切分、向量库、召回、重排、评测全链路。
 - [Agent、工具调用、多轮编排怎么搭？](./ai-agent-tools.html) - Agent Loop、工具注册、MCP、多轮编排，搭一个能收敛的 Agent。
 - [AI 应用工程化、网关和成本怎么控？](./ai-application-engineering.html) - 从 Prompt Demo 到生产，网关、评测、成本、可观测。
+
+## MCP 协议与工程实践
+
+按“为什么接入 → 如何描述能力 → 请求怎样运行 → 如何传输 → 如何授权 → Java 实现 → 故障定位”阅读。
+这一组按 2026-11-20 核对的 `2026-07-28` 规范讲解，并明确区分 `2025-11-25` 及以前的握手与会话机制。
+
+- [MCP 解决什么问题，和 Function Calling、Agent、Skill 有什么关系？](./ai-mcp-architecture.html) - 接入架构、职责分层，以及什么情况下不必使用 MCP。
+- [MCP 的 Tools、Resources、Prompts 应该怎么区分？](./ai-mcp-primitives.html) - 三类原语、输入输出契约、资源读取与上下文边界。
+- [MCP 如何发现能力、处理请求，并兼容新旧协议？](./ai-mcp-lifecycle.html) - 逐请求元数据、能力发现、MRTR 与旧版握手兼容。
+- [MCP 的 stdio 和 Streamable HTTP 有什么区别？](./ai-mcp-transports.html) - 子进程、HTTP 与 SSE、代理缓冲，以及断线后的重试边界。
+- [远程 MCP 如何认证授权，为什么有 Token 仍会越权？](./ai-mcp-authorization.html) - 授权发现、令牌受众、租户隔离与提示词注入防护。
+- [Java 后端如何把业务接口封装成 MCP Server？](./ai-mcp-java-server.html) - Spring AI Modern Server、订单工具与可信身份注入。
+- [MCP 工具不出现、调用超时和重复执行时怎么排查？](./ai-mcp-troubleshooting.html) - 分层故障树、错误判定、结果未知与业务幂等。
 
 ## AI 能力接入业务系统
 
