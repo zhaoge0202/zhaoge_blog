@@ -24,6 +24,9 @@ coverage/
 .env.local
 .media-sync.json
 .private-repo.json
+# 真实部署配置与本机生成文件只留在本地；仓库仅保留 example。
+/deploy/blog.config.json
+/deploy/*.local.*
 AGENTS.md
 .catpaw
 .zcode/

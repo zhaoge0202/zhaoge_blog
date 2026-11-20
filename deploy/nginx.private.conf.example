@@ -1,0 +1,30 @@
+# 公开示例仅使用虚构地址；真实本机配置放 nginx.private.local.conf（已由 Git 忽略）。
+# 私有站的独立参考模板：不由公开博客发布器生成，也不由 deploy:blog 上传。
+# 使用前单独核对域名、目录、证书与身份来源；没有认证保护时不能对外发布。
+server {
+    listen 443 ssl;
+    server_name private.example.com;
+
+    ssl_certificate     /etc/letsencrypt/live/private.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/private.example.com/privkey.pem;
+
+    root /srv/example-private;
+    index index.html;
+
+    auth_basic "private";
+    auth_basic_user_file /etc/nginx/.htpasswd-example-private;
+    add_header X-Robots-Tag "noindex, nofollow, noarchive" always;
+    add_header Cache-Control "private, no-store" always;
+
+    gzip on;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css application/javascript application/json
+               application/xml text/xml image/svg+xml;
+
+    # 子 location 不覆盖 add_header，让 noindex 与私有缓存策略保持继承。
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+}

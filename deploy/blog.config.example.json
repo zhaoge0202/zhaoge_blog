@@ -1,0 +1,9 @@
+{
+  "siteUrl": "https://blog.example.com/",
+  "assetsDir": "assets-v2",
+  "remote": {
+    "target": "deploy@server.example.com",
+    "webRoot": "/srv/example-blog",
+    "sshKey": "~/.ssh/id_example_deploy"
+  }
+}

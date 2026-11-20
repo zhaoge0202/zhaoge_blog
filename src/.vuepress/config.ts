@@ -5,6 +5,8 @@ import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
 const require = createRequire(import.meta.url);
+// 普通构建与 CI 只读取可公开的示例默认值，不加载本机真实连接配置。
+const blogDeployment = require("../../deploy/blog.config.example.json");
 
 // 私有构建：把 src/private/ 一并打进单独的 dist-private/，用于部署到
 // 「带访问控制」的私有站（Cloudflare Access / 内网），而不是公开的 GitHub Pages。
@@ -84,6 +86,8 @@ export default defineUserConfig({
         },
       },
       build: {
+        // 与自建发布脚本共用资源版本；其他发布目标仍可显式覆盖。
+        assetsDir: process.env.VUEPRESS_ASSETS_DIR || blogDeployment.assetsDir,
         rollupOptions: {
           // Vite 8 默认打包器 Rolldown 对 /* #__PURE__ */ 注释位置的校验更严格，
           // @vueuse/core 等第三方依赖的产物会刷出大量 INVALID_ANNOTATION 告警。

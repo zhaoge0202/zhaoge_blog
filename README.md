@@ -81,6 +81,21 @@ VUEPRESS_HOSTNAME=https://你的域名
 
 这样静态资源会从域名根路径加载。
 
+## 自建博客发布
+
+仓库只保留 `deploy/blog.config.example.json` 示例。首次使用时复制为
+`deploy/blog.config.json`，在本地填写真实值；真实配置及 `deploy/*.local.*` 已被 Git 忽略。
+先查看离线计划，再生成仅供本地使用的 Nginx 配置：
+
+```bash
+npm run deploy:blog:plan
+npm run --silent deploy:blog:nginx > deploy/nginx.blog.local.conf
+```
+
+确认配置、证书和服务器目录后，再运行 `npm run deploy:blog`。
+完整流程与公开/私有边界见 [自建部署约定](./deploy/README.md)。
+现有 GitHub Pages 自动发布流程继续独立运行。
+
 ## R2 媒体同步
 
 仓库提供了一个**手动触发**的本地脚本，用来把 Markdown 里的本地媒体上传到 R2，并把文中的相对路径改写成 CDN URL。
