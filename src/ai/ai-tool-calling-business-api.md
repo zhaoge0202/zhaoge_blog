@@ -12,8 +12,8 @@ tag:
   - "进阶"
 prev:
   {
-    text: "大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？",
-    link: "/ai/ai-streaming-sse-backend.html",
+    text: "实时语音 Agent 怎样降低首音延迟，并处理打断后的旧音频？",
+    link: "/ai/ai-realtime-voice-agent.html",
   }
 next:
   {

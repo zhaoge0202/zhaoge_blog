@@ -21,9 +21,11 @@ export const navigationSidebar = {
         "ai-embedding-reranker",
         "ai-rag-document-parsing",
         "ai-rag-table-evidence",
+        "ai-natural-language-analytics",
         "ai-rag-visual-evidence",
         "ai-rag-retrieval-diagnosis",
         "ai-rag-index-lifecycle",
+        "ai-rag-graph-retrieval",
       ],
     },
     {
@@ -37,6 +39,7 @@ export const navigationSidebar = {
         "ai-agent-workflow-recovery",
         "ai-agent-skills-harness",
         "ai-agent-coordination",
+        "ai-a2a-delegation",
         "ai-agent-evaluation",
       ],
     },
@@ -47,6 +50,7 @@ export const navigationSidebar = {
         "ai-agent-prompt-injection",
         "ai-agent-sandbox-isolation",
         "ai-agent-tool-supply-chain",
+        "ai-agent-computer-use",
       ],
     },
     {
@@ -71,9 +75,12 @@ export const navigationSidebar = {
         "ai-agent-observability",
         "ai-java-integration-stack",
         "ai-streaming-sse-backend",
+        "ai-llm-provider-contracts",
+        "ai-realtime-voice-agent",
         "ai-tool-calling-business-api",
         "ai-async-task-pipeline",
         "ai-feature-rollout-guard",
+        "ai-eval-ci-release-gates",
       ],
     },
     {
@@ -97,6 +104,7 @@ export const navigationSidebar = {
     "ai-coding-spec-coding",
     "ai-coding-context-rules",
     "ai-coding-vibe-coding-tips",
+    "ai-coding-pr-review-case",
   ],
   "/roadmap/": [""],
   "/open-source-project/": [

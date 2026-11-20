@@ -14,7 +14,11 @@ prev:
     text: "RAG 答错了，怎么区分召回、排序和生成问题？",
     link: "/ai/ai-rag-retrieval-diagnosis.html",
   }
-next: { text: "Agent、工具调用、多轮编排怎么搭？", link: "/ai/ai-agent-tools.html" }
+next:
+  {
+    text: "GraphRAG 什么时候值得用，怎样验证图检索带来的收益？",
+    link: "/ai/ai-rag-graph-retrieval.html",
+  }
 ---
 
 # 知识库改版或撤权后，RAG 为什么还会答旧内容？

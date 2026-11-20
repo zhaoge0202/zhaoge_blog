@@ -11,8 +11,8 @@ tag:
   - "进阶"
 prev:
   {
-    text: "表格和 Excel 怎样保住字段关系，并支持可靠查询？",
-    link: "/ai/ai-rag-table-evidence.html",
+    text: "自然语言查数怎样对齐指标口径、权限和结果？",
+    link: "/ai/ai-natural-language-analytics.html",
   }
 next:
   {

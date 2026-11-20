@@ -16,8 +16,8 @@ prev:
   }
 next:
   {
-    text: "MCP 解决什么问题，和 Function Calling、Agent、Skill 有什么关系？",
-    link: "/ai/ai-mcp-architecture.html",
+    text: "Computer Use Agent 怎样操作界面，并确认动作真的成功？",
+    link: "/ai/ai-agent-computer-use.html",
   }
 ---
 

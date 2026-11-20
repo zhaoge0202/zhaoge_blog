@@ -14,7 +14,7 @@ prev:
     text: "Agent Skills 怎样按需加载，执行约束由谁保证？",
     link: "/ai/ai-agent-skills-harness.html",
   }
-next: { text: "怎么评测 Agent 真的完成了任务？", link: "/ai/ai-agent-evaluation.html" }
+next: { text: "A2A 怎样跨服务委托任务、校验身份和跟踪状态？", link: "/ai/ai-a2a-delegation.html" }
 ---
 
 # 一个 Agent 不够用时，什么时候值得拆成多个？

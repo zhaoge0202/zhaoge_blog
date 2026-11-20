@@ -5,8 +5,8 @@ article: false
 breadcrumb: true
 editLink: false
 prev:
-  text: "Vibe Coding 实战里那些少踩坑的技巧"
-  link: "/ai-coding/ai-coding-vibe-coding-tips.html"
+  text: "怎样用 AI 审查一个真实 PR，并用测试核对结论？"
+  link: "/ai-coding/ai-coding-pr-review-case.html"
 next:
   text: "读 Spring 源码应该从 Bean 生命周期还是启动流程切入？"
   link: "/open-source-project/source-reading-spring-entry.html"

@@ -16,10 +16,7 @@ prev:
     link: "/ai/ai-java-integration-stack.html",
   }
 next:
-  {
-    text: "Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？",
-    link: "/ai/ai-tool-calling-business-api.html",
-  }
+  { text: "两个模型都说兼容，网关切流量为什么会失败？", link: "/ai/ai-llm-provider-contracts.html" }
 ---
 
 # 大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？

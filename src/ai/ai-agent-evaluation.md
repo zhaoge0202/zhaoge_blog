@@ -9,8 +9,7 @@ category:
 tag:
   - "项目实战"
   - "体系化"
-prev:
-  { text: "一个 Agent 不够用时，什么时候值得拆成多个？", link: "/ai/ai-agent-coordination.html" }
+prev: { text: "A2A 怎样跨服务委托任务、校验身份和跟踪状态？", link: "/ai/ai-a2a-delegation.html" }
 next:
   {
     text: "提示注入和工具投毒怎样影响 Agent，运行时如何限制后果？",

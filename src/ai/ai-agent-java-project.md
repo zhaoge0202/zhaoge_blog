@@ -9,7 +9,11 @@ category:
 tag:
   - "项目实战"
   - "体系化"
-prev: { text: "AI 功能怎么灰度、怎么评测、怎么兜底？", link: "/ai/ai-feature-rollout-guard.html" }
+prev:
+  {
+    text: "模型或 Prompt 变更后，CI 怎样用评测决定能不能发布？",
+    link: "/ai/ai-eval-ci-release-gates.html",
+  }
 next:
   {
     text: "Java Agent 怎样组织知识证据与工具调用？",

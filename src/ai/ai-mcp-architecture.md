@@ -11,8 +11,8 @@ tag:
   - "体系化"
 prev:
   {
-    text: "接入第三方工具和 Skill 后，怎样管理版本、权限与供应链？",
-    link: "/ai/ai-agent-tool-supply-chain.html",
+    text: "Computer Use Agent 怎样操作界面，并确认动作真的成功？",
+    link: "/ai/ai-agent-computer-use.html",
   }
 next:
   { text: "MCP 的 Tools、Resources、Prompts 应该怎么区分？", link: "/ai/ai-mcp-primitives.html" }

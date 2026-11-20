@@ -10,7 +10,10 @@ tag:
   - "进阶"
   - "体系化"
 prev:
-  { text: "知识库改版或撤权后，RAG 为什么还会答旧内容？", link: "/ai/ai-rag-index-lifecycle.html" }
+  {
+    text: "GraphRAG 什么时候值得用，怎样验证图检索带来的收益？",
+    link: "/ai/ai-rag-graph-retrieval.html",
+  }
 next:
   { text: "Agent 的一次运行怎样从模型走到工具再回到模型？", link: "/ai/ai-agent-runtime-loop.html" }
 ---

@@ -27,15 +27,17 @@ next:
 
 ## RAG 与证据处理
 
-从文档、表格和图片形成证据，再检查检索、生成与更新链路。
+从文档、表格和图片取得证据，再检查查数口径、检索质量和知识更新。
 
 - [RAG 从切分到召回怎么做才不翻车？](./ai-rag.html) - 切分、向量库、召回、重排和评测，RAG 全链路怎么不翻车。
 - [Embedding 和 Reranker 有什么区别，怎样用业务样本选型？](./ai-embedding-reranker.html) - 用业务证据说明语义编码、交互重排与检索模型的选型验证。
 - [PDF、OCR 和正文怎样变成可引用的 RAG 证据？](./ai-rag-document-parsing.html) - 从阅读顺序、页码与标定样例建立文档解析的证据质量链路。
 - [表格和 Excel 怎样保住字段关系，并支持可靠查询？](./ai-rag-table-evidence.html) - 保留表格的表头、单位与行列关系，验证检索和结构化计算。
+- [自然语言查数怎样对齐指标口径、权限和结果？](./ai-natural-language-analytics.html) - 从一句业务问题生成受控查询计划，用固定数据核对权限、时区和聚合结果。
 - [图片和图表怎样进入知识库，回答时如何回查原图？](./ai-rag-visual-evidence.html) - 区分文字识别、视觉描述与图文检索，保留能回查的原图证据。
 - [RAG 答错了，怎么区分召回、排序和生成问题？](./ai-rag-retrieval-diagnosis.html) - 用固定问集和黄金证据定位检索、上下文与生成失败。
 - [知识库改版或撤权后，RAG 为什么还会答旧内容？](./ai-rag-index-lifecycle.html) - 用文档版本、索引发布和权限复核解释知识库更新链路。
+- [GraphRAG 什么时候值得用，怎样验证图检索带来的收益？](./ai-rag-graph-retrieval.html) - 用多跳证据和固定对照理解图检索的收益、更新成本与授权边界。
 
 ## Agent 运行与治理
 
@@ -48,6 +50,7 @@ next:
 - [Agent 跑到一半中断，工作流怎样接着执行？](./ai-agent-workflow-recovery.html) - 用工单流程讲清节点状态、暂停恢复与外部操作防重。
 - [Agent Skills 怎样按需加载，执行约束由谁保证？](./ai-agent-skills-harness.html) - 以工单分诊说明技能发现加载、工具权限和可验证的执行环境。
 - [一个 Agent 不够用时，什么时候值得拆成多个？](./ai-agent-coordination.html) - 从依赖、状态隔离和结果合并判断多 Agent 协作是否划算。
+- [A2A 怎样跨服务委托任务、校验身份和跟踪状态？](./ai-a2a-delegation.html) - 沿两个服务之间的委托链理解身份范围、任务状态、续跟踪与幂等。
 - [怎么评测 Agent 真的完成了任务？](./ai-agent-evaluation.html) - 用可重置的测试环境验证业务终态、工具轨迹与成功稳定性。
 
 ## Agent 执行安全
@@ -57,6 +60,7 @@ next:
 - [提示注入和工具投毒怎样影响 Agent，运行时如何限制后果？](./ai-agent-prompt-injection.html) - 沿间接注入和工具描述入口检查信任边界与服务端执行约束。
 - [代码工具怎样限制文件、进程、凭据和网络出口？](./ai-agent-sandbox-isolation.html) - 从文件、进程、凭据和网络限制理解代码工具的实际隔离边界。
 - [接入第三方工具和 Skill 后，怎样管理版本、权限与供应链？](./ai-agent-tool-supply-chain.html) - 用来源、版本、变更回归和撤销管理第三方工具与技能风险。
+- [Computer Use Agent 怎样操作界面，并确认动作真的成功？](./ai-agent-computer-use.html) - 用界面观察、受控执行与结果复核验证操作，处理页面变化与结果未知。
 
 ## MCP 协议与工程实践
 
@@ -72,16 +76,19 @@ next:
 
 ## AI 能力接入业务系统
 
-从网关、部署和观测，走到框架接入、流式输出、业务工具与上线治理。
+从网关、部署和观测，走到 Java 接入、流式交互、业务工具与发布门槛。
 
 - [AI 应用工程化、网关和成本怎么控？](./ai-application-engineering.html) - 网关路由、限流降级、评测闭环和成本控制，AI 应用怎么上生产。
 - [模型服务怎样部署，并验证容量与过载行为？](./ai-model-serving.html) - 按版本与负载复现部署、容量测量和过载拒绝的验证过程。
 - [一条 Agent Trace 怎样串起检索、工具、模型和费用？](./ai-agent-observability.html) - 从示例执行记录串联检索、工具、模型、耗时与费用的观测。
 - [Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？](./ai-java-integration-stack.html) - 从三条接入路线、抽象层设计到超时重试与密钥合规，讲清 AI 能力在 Java 侧的落地。
 - [大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？](./ai-streaming-sse-backend.html) - 从 SSE 协议、两种 Spring 实现到六层缓冲的排障顺序，讲清流式输出的落地与坑。
+- [两个模型都说兼容，网关切流量为什么会失败？](./ai-llm-provider-contracts.html) - 用契约验收模型能力、流式切换和每次调用的用量。
+- [实时语音 Agent 怎样降低首音延迟，并处理打断后的旧音频？](./ai-realtime-voice-agent.html) - 量出用户听到的第一声，让打断、取消和迟到音频可追踪。
 - [Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？](./ai-tool-calling-business-api.html) - 从身份、校验、写操作确认到幂等与审计，讲清工具调用接业务接口的工程约束。
 - [模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？](./ai-async-task-pipeline.html) - 从任务状态机、租约与幂等到分段超时与预算，讲清 AI 长任务的异步工程设计。
 - [AI 功能怎么灰度、怎么评测、怎么兜底？](./ai-feature-rollout-guard.html) - 从灰度维度、评测准入到兜底矩阵与合规成本，讲清 AI 功能上线的工程闭环。
+- [模型或 Prompt 变更后，CI 怎样用评测决定能不能发布？](./ai-eval-ci-release-gates.html) - 按同题对照和关键分组生成报告，验证该挡住的退步会挡住。
 
 ## Java 应用设计
 
@@ -91,9 +98,3 @@ next:
 - [Java Agent 怎样组织知识证据与工具调用？](./ai-agent-java-knowledge-tools.html) - 从一轮工单查询说明证据注入、调用标识和Java工具执行边界。
 - [Java Agent 的审批与恢复怎样落到状态和事务？](./ai-agent-java-approval-recovery.html) - 以状态表和事务边界解释Java任务的可信确认、恢复与业务幂等。
 - [Java Agent 的测试怎样分层并覆盖关键故障？](./ai-agent-java-evaluation.html) - 围绕模型替身、接口和业务终态设计Java应用的分层验收。
-
-## 后续可以扩展的方向
-
-- 实时语音Agent的首音、打断和迟到音频。
-- A2A与跨运行时任务、状态和身份互操作。
-- Computer Use、图结构检索与更深入的模型训练方法。

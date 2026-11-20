@@ -13,8 +13,10 @@ prev:
   text: "AGENTS.md/CLAUDE.md 上下文规则怎么写？"
   link: "/ai-coding/ai-coding-context-rules.html"
 next:
-  text: "开源项目"
-  link: "/open-source-project/"
+  {
+    text: "怎样用 AI 审查一个真实 PR，并用测试核对结论？",
+    link: "/ai-coding/ai-coding-pr-review-case.html",
+  }
 ---
 
 # Vibe Coding 实战里那些少踩坑的技巧

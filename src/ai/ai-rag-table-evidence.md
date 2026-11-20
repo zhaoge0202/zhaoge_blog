@@ -13,8 +13,8 @@ prev:
   { text: "PDF、OCR 和正文怎样变成可引用的 RAG 证据？", link: "/ai/ai-rag-document-parsing.html" }
 next:
   {
-    text: "图片和图表怎样进入知识库，回答时如何回查原图？",
-    link: "/ai/ai-rag-visual-evidence.html",
+    text: "自然语言查数怎样对齐指标口径、权限和结果？",
+    link: "/ai/ai-natural-language-analytics.html",
   }
 ---
 

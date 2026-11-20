@@ -25,3 +25,4 @@ next:
 - [Spec 驱动编程怎么治 Vibe Coding 的野？](./ai-coding-spec-coding.html) - 用规范和验收把 Vibe Coding 拉回工程化。
 - [AGENTS.md/CLAUDE.md 上下文规则怎么写？](./ai-coding-context-rules.html) - 给 AI 的项目级常驻约束怎么写不踩坑。
 - [Vibe Coding 实战里那些少踩坑的技巧](./ai-coding-vibe-coding-tips.html) - Git、Spec、上下文、多 Agent 少翻车。
+- [怎样用 AI 审查一个真实 PR，并用测试核对结论？](./ai-coding-pr-review-case.html) - 复审站点迁移，跟着原始差异和构建产物核对一条导航。
