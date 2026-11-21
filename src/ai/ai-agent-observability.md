@@ -9,7 +9,11 @@ category:
 tag:
   - "项目实战"
   - "进阶"
-prev: { text: "模型服务怎样部署，并验证容量与过载行为？", link: "/ai/ai-model-serving.html" }
+prev:
+  {
+    text: "模型权重和 KV Cache 怎样估算显存，量化能省多少？",
+    link: "/ai/ai-model-memory-quantization.html",
+  }
 next:
   {
     text: "Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？",

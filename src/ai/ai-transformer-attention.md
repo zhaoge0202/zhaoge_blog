@@ -10,7 +10,11 @@ tag:
   - "基础"
   - "原理深入"
 prev: { text: "大模型到底怎么调、Token 和上下文窗口怎么算？", link: "/ai/ai-llm-basis.html" }
-next: { text: "大模型为什么首字慢，后续生成也会慢？", link: "/ai/ai-llm-inference-latency.html" }
+next:
+  {
+    text: "预训练、后训练、偏好优化和蒸馏分别改变什么？",
+    link: "/ai/ai-training-alignment-distillation.html",
+  }
 ---
 
 # Attention 怎样利用上下文，位置编码解决什么问题？

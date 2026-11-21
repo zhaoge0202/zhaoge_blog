@@ -10,7 +10,10 @@ tag:
   - "项目实战"
   - "体系化"
 prev:
-  { text: "Java Agent 的测试怎样分层并覆盖关键故障？", link: "/ai/ai-agent-java-evaluation.html" }
+  {
+    text: "Java 工单 Agent 怎样分阶段接入，并定义每一步的验收？",
+    link: "/ai/ai-agent-java-delivery.html",
+  }
 next: { text: "AI 编程", link: "/ai-coding/" }
 ---
 

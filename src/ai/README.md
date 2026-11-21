@@ -16,7 +16,7 @@ next:
 
 ## 面试怎么复习
 
-用这 12 道题做自测。先用自己的话答一遍，再用后半句检查能不能说清工程取舍。按目标岗位选择知识库或 Agent 方向加练。
+用这 16 道题做自测。先用自己的话答一遍，再用后半句检查能不能说清工程取舍。按目标岗位选择知识库或 Agent 方向加练。
 
 ### AI 应用基础
 
@@ -39,13 +39,23 @@ next:
 11. **远程 MCP 已经拿到 Token，为什么还可能越权？** 追问令牌受众、工具权限和业务资源权限分别由谁验证。 [MCP 授权](./ai-mcp-authorization.html)
 12. **新版本平均分更高，为什么 CI 还要拦住？** 追问怎么用业务终态和关键分组判断能不能发布。 [评测发布门槛](./ai-eval-ci-release-gates.html)
 
+### 模型能力与实施
+
+13. **模型自报 95% 把握，能直接据此执行吗？** 追问 Token 概率、事实校准与授权各自能证明什么。 [幻觉与拒答](./ai-hallucination-abstention.html)
+14. **输出很短，为什么仍消耗大量生成预算？** 追问推理 Token、无可见答案的截断和任务总预算。 [推理模型预算](./ai-reasoning-model-budget.html)
+15. **同一道题换模型后答得不同，怎样判断谁更好？** 追问证据、权限、时间与初始业务状态应该怎样冻结。 [评测集设计](./ai-evaluation-dataset.html)
+16. **Java Agent 的模块已经划分好，第一步先接什么？** 追问只读、证据、确认和恢复各阶段需要哪些验收依据。 [分阶段接入](./ai-agent-java-delivery.html)
+
 ## 模型基础与输出
 
-先理解Token、注意力和推理，再判断输出约束及微调的适用条件。
+先理解 Token、注意力与训练路线，再学习推理预算、事实边界、输出约束和微调的适用条件。
 
 - [大模型到底怎么调、Token 和上下文窗口怎么算？](./ai-llm-basis.html) - Token、上下文窗口、采样参数和调用工程，把大模型调用讲清。
 - [Attention 怎样利用上下文，位置编码解决什么问题？](./ai-transformer-attention.html) - 从一次工单问答理解注意力、因果遮罩、位置编码与生成边界。
+- [预训练、后训练、偏好优化和蒸馏分别改变什么？](./ai-training-alignment-distillation.html) - 按目标、数据和模型制品理解训练路线，区分 SFT、LoRA、RLHF、DPO 与蒸馏。
 - [大模型为什么首字慢，后续生成也会慢？](./ai-llm-inference-latency.html) - 从推理阶段、缓存与队列拆解模型首字延迟和输出速率。
+- [推理模型的思考预算、输出上限和调用状态怎样管理？](./ai-reasoning-model-budget.html) - 区分思考档位、生成额度与任务时限，处理截断、续接和无可见输出。
+- [模型为什么会自信地答错，什么时候该追问或拒答？](./ai-hallucination-abstention.html) - 从证据与概率校准理解幻觉，同时衡量回答覆盖率、错误风险和误拒。
 - [Prompt 工程和结构化输出怎么落地？](./ai-prompt-structured-output.html) - Prompt 技巧、JSON 契约和 Function Calling，把结构化输出讲透。
 - [什么时候需要微调，Prompt、RAG 和微调怎么选？](./ai-fine-tuning-decision.html) - 从知识时效、任务行为与成本判断提示词、检索和微调的分工。
 - [SFT 和 LoRA 怎样准备数据，怎么验证训练有没有用？](./ai-fine-tuning-data-evaluation.html) - 围绕监督数据、参数适配与独立验证构建可核查的微调流程。
@@ -106,6 +116,7 @@ next:
 
 - [AI 应用工程化、网关和成本怎么控？](./ai-application-engineering.html) - 网关路由、限流降级、评测闭环和成本控制，AI 应用怎么上生产。
 - [模型服务怎样部署，并验证容量与过载行为？](./ai-model-serving.html) - 按版本与负载复现部署、容量测量和过载拒绝的验证过程。
+- [模型权重和 KV Cache 怎样估算显存，量化能省多少？](./ai-model-memory-quantization.html) - 用限定假设下的算例拆分权重、缓存和运行时开销，解释量化与多卡容量边界。
 - [一条 Agent Trace 怎样串起检索、工具、模型和费用？](./ai-agent-observability.html) - 从示例执行记录串联检索、工具、模型、耗时与费用的观测。
 - [Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？](./ai-java-integration-stack.html) - 从三条接入路线、抽象层设计到超时重试与密钥合规，讲清 AI 能力在 Java 侧的落地。
 - [大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？](./ai-streaming-sse-backend.html) - 从 SSE 协议、两种 Spring 实现到六层缓冲的排障顺序，讲清流式输出的落地与坑。
@@ -115,6 +126,7 @@ next:
 - [Function Calling 调内部接口要注意什么？写操作怎么防止被模型乱调？](./ai-tool-calling-business-api.html) - 从身份、校验、写操作确认到幂等与审计，讲清工具调用接业务接口的工程约束。
 - [模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？](./ai-async-task-pipeline.html) - 从任务状态机、租约与幂等到分段超时与预算，讲清 AI 长任务的异步工程设计。
 - [AI 功能怎么灰度、怎么评测、怎么兜底？](./ai-feature-rollout-guard.html) - 从灰度维度、评测准入到兜底矩阵与合规成本，讲清 AI 功能上线的工程闭环。
+- [AI 评测集怎样保存证据、权限和状态，避免数据泄漏？](./ai-evaluation-dataset.html) - 组织用例、环境与评分依据，按来源切分并隔离每次尝试。
 - [模型或 Prompt 变更后，CI 怎样用评测决定能不能发布？](./ai-eval-ci-release-gates.html) - 按同题对照和关键分组生成报告，验证该挡住的退步会挡住。
 
 ## Java 应用设计
@@ -125,4 +137,5 @@ next:
 - [Java Agent 怎样组织知识证据与工具调用？](./ai-agent-java-knowledge-tools.html) - 从一轮工单查询说明证据注入、调用标识和Java工具执行边界。
 - [Java Agent 的审批与恢复怎样落到状态和事务？](./ai-agent-java-approval-recovery.html) - 以状态表和事务边界解释Java任务的可信确认、恢复与业务幂等。
 - [Java Agent 的测试怎样分层并覆盖关键故障？](./ai-agent-java-evaluation.html) - 围绕模型替身、接口和业务终态设计Java应用的分层验收。
+- [Java 工单 Agent 怎样分阶段接入，并定义每一步的验收？](./ai-agent-java-delivery.html) - 沿可信只读、模型工具、政策证据、确认写入和故障恢复组织实施步骤。
 - [怎样设计一个能撤权、可追溯的企业知识库？](./ai-enterprise-knowledge-base-design.html) - 从面试题的规模和目标出发，设计入库、问答、撤权与故障验收链路。

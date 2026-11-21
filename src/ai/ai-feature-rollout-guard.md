@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "模型或 Prompt 变更后，CI 怎样用评测决定能不能发布？",
-    link: "/ai/ai-eval-ci-release-gates.html",
+    text: "AI 评测集怎样保存证据、权限和状态，避免数据泄漏？",
+    link: "/ai/ai-evaluation-dataset.html",
   }
 ---
 

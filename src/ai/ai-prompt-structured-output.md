@@ -9,7 +9,11 @@ category:
 tag:
   - "高频"
   - "项目实战"
-prev: { text: "大模型为什么首字慢，后续生成也会慢？", link: "/ai/ai-llm-inference-latency.html" }
+prev:
+  {
+    text: "模型为什么会自信地答错，什么时候该追问或拒答？",
+    link: "/ai/ai-hallucination-abstention.html",
+  }
 next:
   { text: "什么时候需要微调，Prompt、RAG 和微调怎么选？", link: "/ai/ai-fine-tuning-decision.html" }
 ---

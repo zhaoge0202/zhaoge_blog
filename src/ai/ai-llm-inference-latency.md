@@ -11,10 +11,14 @@ tag:
   - "排障"
 prev:
   {
-    text: "Attention 怎样利用上下文，位置编码解决什么问题？",
-    link: "/ai/ai-transformer-attention.html",
+    text: "预训练、后训练、偏好优化和蒸馏分别改变什么？",
+    link: "/ai/ai-training-alignment-distillation.html",
   }
-next: { text: "Prompt 工程和结构化输出怎么落地？", link: "/ai/ai-prompt-structured-output.html" }
+next:
+  {
+    text: "推理模型的思考预算、输出上限和调用状态怎样管理？",
+    link: "/ai/ai-reasoning-model-budget.html",
+  }
 ---
 
 # 大模型为什么首字慢，后续生成也会慢？

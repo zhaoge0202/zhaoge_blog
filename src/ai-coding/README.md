@@ -1,6 +1,6 @@
 ---
 title: "AI 编程"
-description: "AI 编程专题，记录用编程助手、代码评审改造工作流的真正跑通的用法。"
+description: "整理编程助手、代码审查与验收方法，区分实践记录和教学案例。"
 article: false
 breadcrumb: true
 editLink: false
@@ -16,7 +16,7 @@ next:
 
 # AI 编程
 
-用 AI 工具提升日常开发效率：编程助手、代码评审、工作流改造。记录真正跑通的用法，而不是概念堆砌。
+用 AI 工具提升日常开发效率：编程助手、代码评审、工作流改造。结合实践记录与明确标注的教学案例，讲清任务边界、定位方法和验收依据。
 
 ## 题目列表
 
@@ -24,6 +24,7 @@ next:
 - [如何给 AI 准备一个可复用的项目上下文？](./ai-coding-project-context.html)
 - [如何用 AI 辅助重写技术文章？](./ai-coding-technical-writing.html)
 - [AI 生成代码后应该怎样验收？](./ai-coding-acceptance.html)
+- [怎样用 AI 定位 Java 多租户缺陷，并设计能抓错的测试？](./ai-coding-java-bugfix-walkthrough.html) - 用构造案例追踪身份与 SQL，解释跨租户修复、过度 Mock 和状态断言。
 - [AI 编程选 CLI 还是 IDE？](./ai-coding-cli-vs-ide.html) - 按任务类型和上下文形态分工，别一刀切。
 - [Spec 驱动编程怎么治 Vibe Coding 的野？](./ai-coding-spec-coding.html) - 用规范和验收把 Vibe Coding 拉回工程化。
 - [AGENTS.md/CLAUDE.md 上下文规则怎么写？](./ai-coding-context-rules.html) - 给 AI 的项目级常驻约束怎么写不踩坑。

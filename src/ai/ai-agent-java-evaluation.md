@@ -16,8 +16,8 @@ prev:
   }
 next:
   {
-    text: "怎样设计一个能撤权、可追溯的企业知识库？",
-    link: "/ai/ai-enterprise-knowledge-base-design.html",
+    text: "Java 工单 Agent 怎样分阶段接入，并定义每一步的验收？",
+    link: "/ai/ai-agent-java-delivery.html",
   }
 ---
 

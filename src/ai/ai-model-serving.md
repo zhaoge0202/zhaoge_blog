@@ -12,8 +12,8 @@ tag:
 prev: { text: "AI 应用工程化、网关和成本怎么控？", link: "/ai/ai-application-engineering.html" }
 next:
   {
-    text: "一条 Agent Trace 怎样串起检索、工具、模型和费用？",
-    link: "/ai/ai-agent-observability.html",
+    text: "模型权重和 KV Cache 怎样估算显存，量化能省多少？",
+    link: "/ai/ai-model-memory-quantization.html",
   }
 ---
 

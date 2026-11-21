@@ -9,7 +9,11 @@ category:
 tag:
   - "项目实战"
   - "进阶"
-prev: { text: "AI 功能怎么灰度、怎么评测、怎么兜底？", link: "/ai/ai-feature-rollout-guard.html" }
+prev:
+  {
+    text: "AI 评测集怎样保存证据、权限和状态，避免数据泄漏？",
+    link: "/ai/ai-evaluation-dataset.html",
+  }
 next: { text: "Java 工单 Agent 的接口与模块应怎样划分？", link: "/ai/ai-agent-java-project.html" }
 ---
 
