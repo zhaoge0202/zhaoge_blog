@@ -10,8 +10,11 @@ tag:
   - "项目实战"
   - "进阶"
 prev:
-  { text: "Vibe Coding 实战里那些少踩坑的技巧", link: "/ai-coding/ai-coding-vibe-coding-tips.html" }
-next: { text: "开源项目", link: "/open-source-project/" }
+  {
+    text: "多 Agent 配合 git worktree，怎样拆任务和整合结果？",
+    link: "/ai-coding/ai-coding-worktree-collaboration.html",
+  }
+next: { text: "编码 Agent 怎样接入 CI，辅助审查 PR？", link: "/ai-coding/ai-coding-ci-review.html" }
 ---
 
 # 怎样用 AI 审查一个真实 PR，并用测试核对结论？

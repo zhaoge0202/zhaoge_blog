@@ -15,10 +15,7 @@ prev:
     link: "/ai/ai-rag-visual-evidence.html",
   }
 next:
-  {
-    text: "向量索引加了租户过滤，为什么凑不齐 Top K？",
-    link: "/ai/ai-pgvector-filtered-recall.html",
-  }
+  { text: "多轮 RAG 怎样改写问题，什么时候需要继续检索？", link: "/ai/ai-rag-query-planning.html" }
 ---
 
 # RAG 答错了，怎么区分召回、排序和生成问题？

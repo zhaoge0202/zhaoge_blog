@@ -10,8 +10,12 @@ tag:
   - "原理深入"
   - "项目实战"
 prev:
-  { text: "Agent 的一次运行怎样从模型走到工具再回到模型？", link: "/ai/ai-agent-runtime-loop.html" }
-next: { text: "Agent 怎样记住用户偏好，并在之后更新或删除？", link: "/ai/ai-agent-memory.html" }
+  { text: "工具上百以后，Agent 怎样检索并装配正确工具？", link: "/ai/ai-agent-tool-retrieval.html" }
+next:
+  {
+    text: "同一会话并发提问、重新生成和取消，怎样管理？",
+    link: "/ai/ai-conversation-concurrency.html",
+  }
 ---
 
 # Agent 上下文怎么装配，历史太长时怎么压缩？

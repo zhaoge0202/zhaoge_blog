@@ -11,8 +11,8 @@ tag:
   - "进阶"
 prev:
   {
-    text: "模型权重和 KV Cache 怎样估算显存，量化能省多少？",
-    link: "/ai/ai-model-memory-quantization.html",
+    text: "推测解码与 Prefill/Decode 分离分别解决什么瓶颈？",
+    link: "/ai/ai-inference-speculation-disaggregation.html",
   }
 next:
   {

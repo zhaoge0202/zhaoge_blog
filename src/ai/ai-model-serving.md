@@ -9,7 +9,7 @@ category:
 tag:
   - "项目实战"
   - "进阶"
-prev: { text: "AI 应用工程化、网关和成本怎么控？", link: "/ai/ai-application-engineering.html" }
+prev: { text: "答案缓存、语义缓存和前缀缓存，应该怎样选？", link: "/ai/ai-cache-lifecycle.html" }
 next:
   {
     text: "模型权重和 KV Cache 怎样估算显存，量化能省多少？",

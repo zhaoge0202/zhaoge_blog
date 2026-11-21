@@ -11,10 +11,7 @@ tag:
   - "高频"
 prev: { text: "Agent、工具调用、多轮编排怎么搭？", link: "/ai/ai-agent-tools.html" }
 next:
-  {
-    text: "Agent 上下文怎么装配，历史太长时怎么压缩？",
-    link: "/ai/ai-agent-context-engineering.html",
-  }
+  { text: "工具上百以后，Agent 怎样检索并装配正确工具？", link: "/ai/ai-agent-tool-retrieval.html" }
 ---
 
 # Agent 的一次运行怎样从模型走到工具再回到模型？

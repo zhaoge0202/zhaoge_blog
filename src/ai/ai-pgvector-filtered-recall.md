@@ -10,10 +10,7 @@ tag:
   - "排障"
   - "进阶"
 prev:
-  {
-    text: "RAG 答错了，怎么区分召回、排序和生成问题？",
-    link: "/ai/ai-rag-retrieval-diagnosis.html",
-  }
+  { text: "多轮 RAG 怎样改写问题，什么时候需要继续检索？", link: "/ai/ai-rag-query-planning.html" }
 next:
   { text: "知识库改版或撤权后，RAG 为什么还会答旧内容？", link: "/ai/ai-rag-index-lifecycle.html" }
 ---

@@ -12,8 +12,8 @@ tag:
   - "进阶"
 prev:
   {
-    text: "模型很慢，长任务怎么设计？状态机、回调和补偿怎么摆？",
-    link: "/ai/ai-async-task-pipeline.html",
+    text: "AI 生成报告，怎样保证数字、引用和文件版本一致？",
+    link: "/ai/ai-report-artifact-verification.html",
   }
 next:
   {

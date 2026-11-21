@@ -17,8 +17,8 @@ prev:
   }
 next:
   {
-    text: "大模型流式输出怎么落到后端？SSE 为什么会卡住不出字？",
-    link: "/ai/ai-streaming-sse-backend.html",
+    text: "Spring AI 的请求怎样经过 Advisor、记忆和工具调用？",
+    link: "/ai/ai-spring-ai-call-chain.html",
   }
 ---
 

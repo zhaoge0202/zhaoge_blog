@@ -14,8 +14,8 @@ prev:
   link: "/ai-coding/ai-coding-context-rules.html"
 next:
   {
-    text: "怎样用 AI 审查一个真实 PR，并用测试核对结论？",
-    link: "/ai-coding/ai-coding-pr-review-case.html",
+    text: "多 Agent 配合 git worktree，怎样拆任务和整合结果？",
+    link: "/ai-coding/ai-coding-worktree-collaboration.html",
   }
 ---
 

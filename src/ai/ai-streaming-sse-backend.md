@@ -12,8 +12,8 @@ tag:
   - "原理深入"
 prev:
   {
-    text: "Java 后端怎么接大模型？Spring AI、LangChain4j 和直连 HTTP 怎么选？",
-    link: "/ai/ai-java-integration-stack.html",
+    text: "Spring AI 的请求怎样经过 Advisor、记忆和工具调用？",
+    link: "/ai/ai-spring-ai-call-chain.html",
   }
 next:
   { text: "两个模型都说兼容，网关切流量为什么会失败？", link: "/ai/ai-llm-provider-contracts.html" }

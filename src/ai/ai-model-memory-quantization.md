@@ -12,8 +12,8 @@ tag:
 prev: { text: "模型服务怎样部署，并验证容量与过载行为？", link: "/ai/ai-model-serving.html" }
 next:
   {
-    text: "一条 Agent Trace 怎样串起检索、工具、模型和费用？",
-    link: "/ai/ai-agent-observability.html",
+    text: "连续批处理怎样调度长短请求，吞吐与首字延迟如何取舍？",
+    link: "/ai/ai-inference-continuous-batching.html",
   }
 ---
 

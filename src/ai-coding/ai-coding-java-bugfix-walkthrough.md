@@ -10,7 +10,11 @@ tag:
   - "项目实战"
   - "排障"
 prev: { text: "AI 生成代码后应该怎样验收？", link: "/ai-coding/ai-coding-acceptance.html" }
-next: { text: "AI 编程选 CLI 还是 IDE？", link: "/ai-coding/ai-coding-cli-vs-ide.html" }
+next:
+  {
+    text: "怎样让 AI 重构遗留 Java 模块，同时保留原有行为？",
+    link: "/ai-coding/ai-coding-legacy-refactoring.html",
+  }
 ---
 
 # 怎样用 AI 定位 Java 多租户缺陷，并设计能抓错的测试？

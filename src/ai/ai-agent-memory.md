@@ -11,8 +11,8 @@ tag:
   - "项目实战"
 prev:
   {
-    text: "Agent 上下文怎么装配，历史太长时怎么压缩？",
-    link: "/ai/ai-agent-context-engineering.html",
+    text: "同一会话并发提问、重新生成和取消，怎样管理？",
+    link: "/ai/ai-conversation-concurrency.html",
   }
 next:
   { text: "Agent 跑到一半中断，工作流怎样接着执行？", link: "/ai/ai-agent-workflow-recovery.html" }
